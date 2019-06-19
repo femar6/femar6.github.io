@@ -1,0 +1,391 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>Available Flood Maps</title>
+    <meta media="screen" charset='utf-8'>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+    crossorigin=""/>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+    <link href="./css/app.css" rel="stylesheet" type="text/css" media="all" title="no title" charset="utf-8" >
+<!-- <link rel="stylesheet" href="./css/Control.MiniMap.css" /> -->
+  </head>
+
+  <body>
+    <div id="cover"><div id="splash">
+      <h3>FEMA Region 6 AVAILABLE FLOOD MAPS</h3><br><img style="margin-left:20%;" height=160 width=200 src="./img/fema.png">
+    </div>
+      <!-- <button id="printBtn" class="btns hide" style="position:absolute;top:1%;left:1%;z-index:1001;" onclick="printDiv('printableArea');">PRINT</button> -->
+
+    <div id="coverMap">
+      <img id="test" height=60 width=120 style="position:absolute;top:5%;left:7%;z-index:700;" src="./img/arrow.png">
+
+    </div>
+
+    </div>
+    <button class="btns hide" style="position:absolute;top:50%;left:3.5%;z-index:1005;font-size:7rem;background-color:white;" id="restart" onclick="location.reload()">Restart</button>
+    <!-- <page size="A4"></page>
+    <page size="A4"></page> -->
+    <!-- <button class="btns" style="position:absolute;top:1%;left:1%;" onclick="printDiv('printableArea');">PRINT</button> -->
+    <a id="printBtn" class="hide" style="top:55%;margin-left:5%;background-color:white;color:black;font-size:4rem;" href="javascript:printDiv('printableArea');restart_()">Print</a>
+    <div style="top:10%;margin-left:1%;width:10%;background-color:white;color:black;font-size:1.5rem;position:absolute;padding:10px;">*PRINT RULES -<br> 1# Please Print Landscape<br><b>For Adobe</b><br>SELECT *>properties<br>>layout>Orientation<br><br><b>Not a rule</b> but<br>after you press print, a restart button will appear.<br>or press ctrl+R (whatvr..)<div id="nfhl_site"></div></div>
+    <!-- <button class="btns" style="position:absolute;top:1%;left:1%;" onclick="print()">PRINT</button> -->
+    <page id="printableArea" size="A4" layout="landscape">
+      <div class="container-fluid" style="padding-right:35px;">
+      <div class="title col-md-12"><span id="title_"></span><b>Available Flood Maps</b>
+      <div id = "address" style="font-size:2rem;font-family:monospace;">Physical Address:</div>
+      <div style="font-size:2rem;font-family:monospace;"><span id="lat">Latitude</span>,<span id="long"> Longitude:</span></div>
+      </div>
+      <div class="row">
+      <div class="col-md-3">
+      <div id="m">
+      </div>
+      <p style="font-size:2rem;padding-bottom:2rem;text-align:center;font-family: 'Oswald', sans-serif;}"><b>EFFECTIVE DATA</b></p>
+      <p id='effect_source'>Source:</p>
+      <p id='effect_panel'>FIRM PANEL:</p>
+      <p id='effect_date'>FIRM Date:</p>
+      <p id='effect_fld'>Flood Zone:</p>
+      <p id='effect_bfe'>BFE:</p>
+      </div>
+      <div class="col-md-3">
+      <div id="m2"></div>
+      <p style="font-size:2rem;padding-bottom:2rem;text-align:center;font-family: 'Oswald', sans-serif;}"><b>PENDING</b></p>
+      <p id='pending_source'>Source:</p>
+      <p id='pending_panel'>FIRM PANEL:</p>
+      <p id='pending_date'>Pending FIRM Date:</p>
+      <p id='pending_fld'>Flood Zone:</p>
+      <p id='pending_bfe'>BFE:</p>
+      </div>
+      <div class="col-md-3">
+        <div id="m3"></div>
+      <p style="font-size:2rem;padding-bottom:2rem;text-align:center;font-family: 'Oswald', sans-serif;}"><b>PRELIM</b></p>
+      <p id='prelim_source'>Source:</p>
+      <p id='prelim_panel'>FIRM PANEL:</p>
+      <p id='prelim_date'>Preliminary FIRM Date:</p>
+      <p id='prelim_fld'>Flood Zone:</p>
+      <p id='prelim_bfe'>BFE:</p>
+      </div>
+      <div class="col-md-3">
+        <div id="m4"></div>
+      <p style="font-size:2rem;text-align:center;font-family: 'Oswald', sans-serif;}"><b>OTHER AVAILABLE FLOOD HAZARD INFO</b></p>
+      <p style="margin-top:-1rem;" id='draft_source'>Source:</p>
+      <p id='draft_panel'>FIRM PANEL:</p>
+      <p id='draft_date'>Preliminary FIRM Date:</p>
+      <p id='draft_fld'>Flood Zone:</p>
+      <p id='draft_bfe'>BFE:</p>
+      <div style="border-style:solid;border-width:thin;border-color:black;padding:3px;margin-top:60%;">
+        <p><b>Determined Flood Zone:
+        </p>
+        <p><b>Determined BFE:
+        </p>
+      </div>
+    </div>
+  </div>
+        <div id="source"></div></div>
+    </page>
+    <script data-require="jquery@3.1.1" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+        integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
+        crossorigin=""></script>
+        <script>
+            if( L.Browser.ie ) {$("body").append('<div class="util-ui-error-banner">This page is best viewed in Chrome, FireFox, or Microsoft Edge.</div>'); document.getElementById("coverMap").classList.add("hide")};
+        </script>
+    <script src="https://unpkg.com/esri-leaflet@2.1.4/dist/esri-leaflet.js" integrity="sha512-m+BZ3OSlzGdYLqUBZt3u6eA0sH+Txdmq7cqA1u8/B2aTXviGMMLOfrKyiIW7181jbzZAY0u+3jWoiL61iLcTKQ==" crossorigin=""></script>
+    <!-- Load Esri Leaflet Geocoder from CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.css"
+    integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ=="
+    crossorigin="">
+  <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js"
+    integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A=="
+    crossorigin=""></script>
+    <!-- <script src="https://unpkg.com/esri-leaflet-renderers@2.0.6"></script> -->
+    <script src="./js/sync.js"></script>
+      <script src="./js/bouncemarker.js"></script>
+    <script>
+
+    setTimeout(function(){
+
+      let splash_ = document.getElementById("splash");
+      splash_.classList.add("hide");
+    },3000);
+
+    function restart_(){
+setTimeout(function () {
+    var restart = document.getElementById("restart");
+    restart.classList.remove("hide");
+    restart.onclick = function(){
+    location.reload()}
+  },2000);
+  };
+
+    var mapC = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', {
+    	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    	subdomains: 'abcd',
+    	minZoom: 0,
+    	maxZoom: 20,
+    	ext: 'png'
+    });
+    var map1 = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', {
+    	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    	subdomains: 'abcd',
+    	minZoom: 0,
+    	maxZoom: 20,
+    	ext: 'png'
+    });
+    var map2 = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', {
+    	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    	subdomains: 'abcd',
+    	minZoom: 0,
+    	maxZoom: 20,
+    	ext: 'png'
+    });
+    var map3 = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', {
+    	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    	subdomains: 'abcd',
+    	minZoom: 0,
+    	maxZoom: 20,
+    	ext: 'png'
+    });
+    var map4 = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', {
+    	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    	subdomains: 'abcd',
+    	minZoom: 0,
+    	maxZoom: 20,
+    	ext: 'png'
+    });
+    const mCover = new L.map("coverMap", {
+      layers:[mapC],
+      zoom: 5,center: [38, -96],zoomControl: false,minZoom: 1,maxZoom: 21,attributionControl: false});
+      const results = L.layerGroup().addTo(mCover);
+      var geocodeService = L.esri.Geocoding.geocodeService();
+      var searchControl = L.esri.Geocoding.geosearch({expanded:true,collapseAfterResult:false,searchBounds:L.latLngBounds([ 48.904331,-124.503294],[  24.489948,-66.885886])}).addTo(mCover);
+      searchControl.on('results', function(data){
+        document.getElementById("test").classList.add("hide");
+
+        results.clearLayers();
+        for (var i = data.results.length - 1; i >= 0; i--) {
+          var latlng = data.results[i].latlng;
+            document.getElementById('lat').innerHTML =
+                '<b>Latitude: <b>'+data.latlng.lat
+              document.getElementById('long').innerHTML =
+                '<b>Longitude: <b>'+data.latlng.lng;
+          const marker1 = L.marker([data.latlng.lat,data.latlng.lng],{draggable:true}).addTo(mCover).bindPopup("<button style='background-color:white;font-family:monospace;' id='commit'>PRESS<br>COMMIT<br>for MAP</button>").openPopup();
+            document.getElementById("commit").onclick = function(){
+            document.getElementById("cover").classList.add("hide");
+            document.getElementById("printBtn").classList.remove("hide");
+            var dragmarkerLatlng = marker1.getLatLng();
+            geocodeService.reverse().latlng(data.latlng).run(function(error, result){
+              document.getElementById('address').innerHTML =
+                '<b>Address: <b>'+result.address.Match_addr;
+            });
+          // const effectIcon = L.icon({iconUrl:'./img/effect.png',iconSize:[36,102]});
+          // const pendIcon = L.icon({iconUrl:'./img/effect.png',iconSize:[36,102]});
+          // const prelimIcon = L.icon({iconUrl:'./img/effect.png',iconSize:[36,102]});
+          // const draftIcon = L.icon({iconUrl:'./img/effect.png',iconSize:[36,102]});
+          // setTimeout(function () {const marker2 = L.marker([data.latlng.lat,data.latlng.lng], {bounceOnAdd: true,icon:effectIcon}).addTo(m);},2000);
+          // setTimeout(function () {const marker3 = L.marker([data.latlng.lat,data.latlng.lng], {bounceOnAdd: true,icon:pendIcon}).addTo(m2);},2500);
+          // setTimeout(function () {const marker4 = L.marker([data.latlng.lat,data.latlng.lng], {bounceOnAdd: true,icon:pendIcon}).addTo(m3);},3000);
+          // setTimeout(function () {const marker5 = L.marker([data.latlng.lat,data.latlng.lng], {bounceOnAdd: true,icon:draftIcon}).addTo(m4);},3500);
+
+          setTimeout(function () {const marker2 = L.marker([data.latlng.lat,data.latlng.lng], {bounceOnAdd: true}).addTo(m);},2000);
+          setTimeout(function () {const marker3 = L.marker([data.latlng.lat,data.latlng.lng], {bounceOnAdd: true}).addTo(m2);},2500);
+          setTimeout(function () {const marker4 = L.marker([data.latlng.lat,data.latlng.lng], {bounceOnAdd: true}).addTo(m3);},3000);
+          setTimeout(function () {const marker5 = L.marker([data.latlng.lat,data.latlng.lng], {bounceOnAdd: true}).addTo(m4);},3500);
+          m.setView([data.latlng.lat,data.latlng.lng],15);
+          setTimeout(function () {
+          var pending = L.esri.featureLayer({url:'https://hazards.fema.gov/gis/nfhl/rest/services/PrelimPending/Pending_NFHL/MapServer/24',
+
+
+where:"FLD_ZONE IN ('A','AE','A99','V','VE')",
+
+          style: function (feature) {
+            if(feature.properties.FLD_ZONE === 'VE'){
+              return {color: 'darkpurple', weight: 0,fillOpacity:0.5 };
+            } else if(feature.properties.FLD_ZONE === 'V'){
+              return { color: 'purple', weight: 0,fillOpacity:0.5 };
+            } else {
+              return { color: '#01e5ff', weight: 0,fillOpacity:0.5 };
+            }
+          }
+        }).addTo(m2);
+          var preliminary = L.esri.featureLayer({url:'https://hazards.fema.gov/gis/nfhl/rest/services/PrelimPending/Prelim_NFHL/MapServer/24',
+where:"FLD_ZONE IN ('A','AE','A99','V','VE')",
+        style: function (feature) {
+          if(feature.properties.FLD_ZONE === 'VE'){
+            return {color: 'darkpurple', weight: 0,fillOpacity:0.5 };
+          } else if(feature.properties.FLD_ZONE === 'V'){
+            return { color: 'purple', weight: 0,fillOpacity:0.5 };
+          } else {
+            return { color: '#01e5ff', weight: 0,fillOpacity:0.5 };
+          }
+        }
+
+        }).addTo(m3);
+          var draft = L.esri.featureLayer({url:'https://hazards.fema.gov/gis/nfhl/rest/services/AFHI/Draft_FIRM_DB/MapServer/11',
+where:"FLD_ZONE IN ('A','AE','A99','V','VE')",
+style: function (feature) {
+  if(feature.properties.FLD_ZONE === 'VE'){
+    return {color: 'darkpurple', weight: 0,fillOpacity:0.5 };
+  } else if(feature.properties.FLD_ZONE === 'V'){
+    return { color: 'purple', weight: 0,fillOpacity:0.5 };
+  } else {
+    return { color: '#01e5ff', weight: 0,fillOpacity:0.5 };
+  }
+}
+
+
+        }).addTo(m4);
+        }, 1500);
+
+
+
+        document.getElementById('effect_source').innerHTML = "<div class='loading'>Loading</div>";
+        document.getElementById('effect_fld').innerHTML = '';
+        document.getElementById('effect_date').innerHTML = '';
+        document.getElementById('effect_panel').innerHTML = "";
+        document.getElementById('effect_bfe').innerHTML = '';
+          L.esri.query({
+            url: "https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28"
+          }).intersects(data.latlng).run(function(error, nfhl) {
+            if (nfhl.features.length > 0) {
+              document.getElementById('effect_source').innerHTML =
+                'Source: ' + nfhl.features[0].properties.SOURCE_CIT;
+                document.getElementById('effect_panel').innerHTML =
+                  'FIRM PANEL: ' + nfhl.features[0].properties.DFIRM_ID;
+              document.getElementById('effect_fld').innerHTML =
+                'Flood Zone: ' + nfhl.features[0].properties.FLD_ZONE;
+                document.getElementById('effect_bfe').innerHTML =
+                  // 'Determined BFE: ' + nfhl.features[0].properties.STATIC_BFE+" ft.";
+                  'Determined BFE:' + "____________";
+            } else {
+              document.getElementById('effect_source').innerHTML ='';
+              document.getElementById('effect_panel').innerHTML ='';
+              document.getElementById('effect_date').innerHTML ='';
+              document.getElementById('effect_fld').innerHTML ='Please see Corelogic Dataset.';
+              document.getElementById('effect_bfe').innerHTML ='';
+            }
+            document.getElementById('nfhl_site').innerHTML = '<br><a target="_blank" href="https://hazards-fema.maps.arcgis.com/apps/webappviewer/index.html?id=8b0adb51996444d4879338b5529aa9cd&level=13&marker='+data.latlng.lng+';'+data.latlng.lat+
+            ';"><img height=50 width=125 class="agol" src="agol.png"></a>&nbsp;&nbsp;&nbsp;<a target="_blank" href="https://msc.fema.gov/portal/downloadProduct?productID=NFHL_'
+            +nfhl.features[0].properties.DFIRM_ID+'">PNG</a>&nbsp;&nbsp;<a target="_blank" href="https://msc.fema.gov/portal/downloadProduct?productID=NFHL_'
+            +nfhl.features[0].properties.DFIRM_ID+'">SHP</a><br><br>';
+
+          });
+
+          document.getElementById('pending_source').innerHTML = "<div class='loading'>Loading</div>";
+          document.getElementById('pending_fld').innerHTML = '';
+          document.getElementById('pending_date').innerHTML = '';
+          document.getElementById('pending_panel').innerHTML = "";
+          document.getElementById('pending_bfe').innerHTML = '';
+          L.esri.query({
+            url: "https://hazards.fema.gov/gis/nfhl/rest/services/PrelimPending/Pending_NFHL/MapServer/24"
+          }).intersects(data.latlng).run(function(error, pending) {
+            if (pending.features.length > 0) {
+              document.getElementById('pending_source').innerHTML =
+                'Source: ' + pending.features[0].properties.SOURCE_CIT;
+              document.getElementById('pending_fld').innerHTML =
+                'Flood Zone: ' + pending.features[0].properties.FLD_ZONE;
+              document.getElementById('pending_panel').innerHTML =
+                'FIRM PANEL: ' + pending.features[0].properties.DFIRM_ID;
+                document.getElementById('pending_bfe').innerHTML =
+                  // 'Determined BFE: ' + pending.features[0].properties.STATIC_BFE+" ft.";
+                  'Determined BFE:' + "____________";
+            } else {
+              document.getElementById('pending_source').innerHTML =''
+              document.getElementById('pending_panel').innerHTML =''
+              document.getElementById('pending_date').innerHTML =''
+              document.getElementById('pending_fld').innerHTML ='There is no pending data.'
+              document.getElementById('pending_bfe').innerHTML =''
+            }
+          });
+
+
+
+          document.getElementById('prelim_source').innerHTML = "<div class='loading'>Loading</div>"
+           document.getElementById('prelim_fld').innerHTML = ''
+           document.getElementById('prelim_date').innerHTML = ''
+           document.getElementById('prelim_panel').innerHTML = ""
+           document.getElementById('prelim_bfe').innerHTML = ''
+           L.esri.query({
+             url: "https://hazards.fema.gov/gis/nfhl/rest/services/PrelimPending/Prelim_NFHL/MapServer/24"
+           }).intersects(data.latlng).run(function(error, prelim) {
+             if (prelim.features.length > 0) {
+               document.getElementById('prelim_source').innerHTML =
+                 'Source: ' + prelim.features[0].properties.SOURCE_CIT;
+               document.getElementById('prelim_fld').innerHTML =
+                 'Flood Zone: ' + prelim.features[0].properties.FLD_ZONE;
+               document.getElementById('prelim_panel').innerHTML =
+                 'FIRM PANEL: ' + prelim.features[0].properties.DFIRM_ID;
+                 document.getElementById('prelim_bfe').innerHTML =
+                   // 'Determined BFE: ' + prelim.features[0].properties.STATIC_BFE+" ft.";
+                  'Determined BFE:' + "____________";
+             } else {
+               document.getElementById('prelim_source').innerHTML =''
+               document.getElementById('prelim_panel').innerHTML =''
+               document.getElementById('prelim_date').innerHTML =''
+               document.getElementById('prelim_fld').innerHTML ='There is no prelim data.'
+               document.getElementById('prelim_bfe').innerHTML =''
+             }
+           });
+
+
+
+            document.getElementById('draft_source').innerHTML = "<div class='loading'>Loading</div>"
+             document.getElementById('draft_fld').innerHTML = ''
+             document.getElementById('draft_date').innerHTML = ""
+             document.getElementById('draft_panel').innerHTML = ""
+             document.getElementById('draft_bfe').innerHTML = ''
+             L.esri.query({
+               url: "https://hazards.fema.gov/gis/nfhl/rest/services/AFHI/Draft_FIRM_DB/MapServer/11"
+             }).intersects(data.latlng).run(function(error, draft) {
+               if (draft.features.length > 0) {
+                 document.getElementById('draft_source').innerHTML =
+                   'Source: ' + draft.features[0].properties.SOURCE_CIT;
+                 document.getElementById('draft_fld').innerHTML =
+                   'Flood Zone: ' + draft.features[0].properties.FLD_ZONE;
+                 document.getElementById('draft_panel').innerHTML =
+                   'FIRM PANEL: ' + draft.features[0].properties.DFIRM_ID;
+                   document.getElementById('draft_bfe').innerHTML =
+                     // 'Determined BFE: ' + draft.features[0].properties.STATIC_BFE+" ft.";
+                  'Determined BFE:' + "____________";
+               } else {
+                 document.getElementById('draft_source').innerHTML =''
+                 document.getElementById('draft_panel').innerHTML =''
+                 document.getElementById('draft_date').innerHTML =''
+                 document.getElementById('draft_fld').innerHTML ='There is no draft data.'
+                 document.getElementById('draft_bfe').innerHTML =''
+               }
+             });
+        }
+      }
+});
+    const m = new L.map("m", {layers:[map1],zoom: 4,center: [30, -99],zoomControl: false,minZoom: 1,maxZoom: 21,attributionControl: false});
+    const m2 = new L.map("m2", {zoom: 4,center: [30, -99],zoomControl: false,minZoom: 1,maxZoom: 21,layers:[map2],attributionControl: false,});
+    const m3 = new L.map("m3", {zoom: 4,center: [30, -99],zoomControl: false,minZoom: 1,maxZoom: 21,layers:[map3],attributionControl: false,});
+    const m4 = new L.map("m4", {zoom: 4,center: [30, -99],zoomControl: false,minZoom: 1,maxZoom: 21,layers:[map4],attributionControl: false,});
+    m.sync(m2);m.sync(m3);m.sync(m4);m.sync(mCover);
+    m2.sync(m);m2.sync(m3);m2.sync(m4);m2.sync(mCover);
+    m3.sync(m);m3.sync(m2);m3.sync(m4);m3.sync(mCover);
+    m4.sync(m);m4.sync(m2);m4.sync(m3);m4.sync(mCover);
+    mCover.sync(m);mCover.sync(m2);mCover.sync(m3);mCover.sync(m4);
+    function printDiv(divName) {
+         var printContents = document.getElementById(divName).innerHTML;
+         var originalContents = document.body.innerHTML;
+         document.body.innerHTML = printContents;
+         window.print();
+         document.body.innerHTML = originalContents;
+    }
+  	  var currentTime = new Date();
+      document.getElementById("source").innerHTML = currentTime;
+var fldHazLayer = L.tileLayer.wms('https://hazards.fema.gov/gis/nfhl/services/public/NFHLWMS/MapServer/WMSServer?', {layers: '4',transparent: true,opacity: 0.5,minZoom: 12,maxZoom: 21,format: 'image/png'}).addTo(m);
+
+
+
+
+</script>
+</body>
+
+</html>
