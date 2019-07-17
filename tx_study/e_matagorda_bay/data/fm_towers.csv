@@ -1,0 +1,5 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,CEDAR LAKE,,,,,1,Yes,28.776100000000000,-95.620800000000003,East Matagorda Bay,img/fm_towers.png
+-1,,,FREEPORT,,,,,1,Yes,28.815799999999999,-95.600800000000007,East Matagorda Bay,img/fm_towers.png
+-1,,,MARKHAM,,,,,0,No,28.983300000000000,-95.969399999999993,East Matagorda Bay,img/fm_towers.png
+-1,,,BAY CITY,,,,,0,No,29.149400000000000,-95.987200000000001,East Matagorda Bay,img/fm_towers.png

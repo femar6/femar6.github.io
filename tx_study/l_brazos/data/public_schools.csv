@@ -1,0 +1,85 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,BRAZORIA,WEST COLUMBIA,,,,Lower Brazos,0,No,29.135258162000000,-95.644437745999994,Lower Brazos,img/public_schools.png
+-1,,BRAZORIA,DAMON,,,,Lower Brazos,0,No,29.289118401000000,-95.740551042000007,Lower Brazos,img/public_schools.png
+-1,,BRAZORIA,DAMON,,,,Lower Brazos,0,No,29.289214141999999,-95.740540668999998,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,MISSOURI CITY,,,,Lower Brazos,0,No,29.492258059000001,-95.533633124999994,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.511112914000002,-95.804434303999997,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,MISSOURI CITY,,,,Lower Brazos,0,No,29.513085000000000,-95.534049999999993,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.515374134999998,-95.745166526999995,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.516876000000000,-95.691299999999998,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.520273283000002,-95.694468971999996,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.539163751000000,-95.683176919000005,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.541547119000001,-95.725544620999997,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,ROSENBERG,,,,Lower Brazos,0,No,29.543582620999999,-95.820576903000003,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,ROSENBERG,,,,Lower Brazos,0,No,29.543903518000000,-95.779477818000004,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,ROSENBERG,,,,Lower Brazos,0,No,29.544113091000000,-95.772918532999995,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,MISSOURI CITY,,,,Lower Brazos,0,No,29.545395516999999,-95.558166555000000,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,ROSENBERG,,,,Lower Brazos,0,No,29.547251383999999,-95.779353055000001,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,SUGAR LAND,,,,Lower Brazos,0,No,29.550537989999999,-95.661535692000001,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,SUGAR LAND,,,,Lower Brazos,0,No,29.550538546999999,-95.686682271999999,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,ROSENBERG,,,,Lower Brazos,0,No,29.552657790000001,-95.799168929000004,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,ROSENBERG,,,,Lower Brazos,0,No,29.552844216000000,-95.809466899000000,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,ROSENBERG,,,,Lower Brazos,0,No,29.554360694000000,-95.799272536999993,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,SUGAR LAND,,,,Lower Brazos,0,No,29.556137000000000,-95.630660000000006,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,ROSENBERG,,,,Lower Brazos,0,No,29.558453723000000,-95.786375926999995,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.558499019999999,-95.786396980999996,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,SUGAR LAND,,,,Lower Brazos,0,No,29.558590313000000,-95.615266919000007,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.560139618000001,-95.778058302999995,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,ROSENBERG,,,,Lower Brazos,0,No,29.560381853999999,-95.779219999999995,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.560414777999998,-95.766965378999998,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,ROSENBERG,,,,Lower Brazos,0,No,29.560428823999999,-95.767575121999997,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,ROSENBERG,,,,Lower Brazos,0,No,29.560568415999999,-95.777134821999994,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,ROSENBERG,,,,Lower Brazos,0,No,29.561046740999998,-95.792017885000007,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,ROSENBERG,,,,Lower Brazos,0,No,29.564638698000000,-95.806372930999999,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.564955999999999,-95.722210000000004,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.571843694999998,-95.750992834000002,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,SUGAR LAND,,,,Lower Brazos,0,No,29.574400078000000,-95.633395428000000,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,SUGAR LAND,,,,Lower Brazos,0,No,29.574580714000000,-95.604177902000004,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,SUGAR LAND,,,,Lower Brazos,0,No,29.575650250999999,-95.583667880999997,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,SUGAR LAND,,,,Lower Brazos,0,No,29.576996689000001,-95.595643308999996,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.577776875000001,-95.762412411000000,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.577878489000000,-95.764674085999999,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,SUGAR LAND,,,,Lower Brazos,0,No,29.580952938999999,-95.629780295000003,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,SUGAR LAND,,,,Lower Brazos,0,No,29.580960911999998,-95.610064485999999,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,SUGAR LAND,,,,Lower Brazos,0,No,29.586240000000000,-95.673590000000004,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.586293694999998,-95.770310257000006,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,SUGAR LAND,,,,Lower Brazos,0,No,29.586855709999998,-95.656885168000002,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.588604085000000,-95.773376083000002,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,ROSHARON,,,,Lower Brazos,0,No,29.589621169000001,-95.618609058999994,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,SUGAR LAND,,,,Lower Brazos,0,No,29.589626769999999,-95.618644979999999,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,MISSOURI CITY,,,,Lower Brazos,0,No,29.589630000000000,-95.622079999999997,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.589648451999999,-95.618676903999997,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,SUGAR LAND,,,,Lower Brazos,0,No,29.589700223000001,-95.618652069000007,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,MISSOURI CITY,,,,Lower Brazos,0,No,29.589929999999999,-95.621510000000001,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,SUGAR LAND,,,,Lower Brazos,0,No,29.593009800000001,-95.692191496999996,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,SUGAR LAND,,,,Lower Brazos,0,No,29.600311854000001,-95.667035178000006,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,ORCHARD,,,,Lower Brazos,0,No,29.609327383000000,-95.968107740999997,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.617928120999998,-95.732628886000001,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.624217434999998,-95.810016097000002,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.627162097999999,-95.810080940000006,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.639132967999998,-95.738879085999997,Lower Brazos,img/public_schools.png
+-1,,FORT BEND,RICHMOND,,,,Lower Brazos,0,No,29.640479971000001,-95.745444315000000,Lower Brazos,img/public_schools.png
+-1,,AUSTIN,SEALY,,,,Lower Brazos,0,No,29.762086000000000,-96.174350000000004,Lower Brazos,img/public_schools.png
+-1,,AUSTIN,SEALY,,,,Lower Brazos,0,No,29.766435999999999,-96.171515999999997,Lower Brazos,img/public_schools.png
+-1,,AUSTIN,SEALY,,,,Lower Brazos,0,No,29.772635304000001,-96.160828882000004,Lower Brazos,img/public_schools.png
+-1,,AUSTIN,SEALY,,,,Lower Brazos,0,No,29.772694000000001,-96.160799999999995,Lower Brazos,img/public_schools.png
+-1,,WALLER,BROOKSHIRE,,,,Lower Brazos,0,No,29.790279999999999,-95.949380000000005,Lower Brazos,img/public_schools.png
+-1,,WALLER,BROOKSHIRE,,,,Lower Brazos,0,No,29.803979697999999,-95.969562828999997,Lower Brazos,img/public_schools.png
+-1,,WALLER,BROOKSHIRE,,,,Lower Brazos,0,No,29.807589814000000,-95.961563615000003,Lower Brazos,img/public_schools.png
+-1,,WALLER,BROOKSHIRE,,,,Lower Brazos,0,No,29.809661128999998,-95.966580594999996,Lower Brazos,img/public_schools.png
+-1,,WALLER,BROOKSHIRE,,,,Lower Brazos,0,No,29.809902339000001,-95.966744276000000,Lower Brazos,img/public_schools.png
+-1,,AUSTIN,NEW ULM,,,,Lower Brazos,0,No,29.905812394000002,-96.508853063999993,Lower Brazos,img/public_schools.png
+-1,,AUSTIN,BELLVILLE,,,,Lower Brazos,0,No,29.924676963000000,-96.251937656999999,Lower Brazos,img/public_schools.png
+-1,,AUSTIN,BELLVILLE,,,,Lower Brazos,0,No,29.929172999999999,-96.252049999999997,Lower Brazos,img/public_schools.png
+-1,,AUSTIN,BELLVILLE,,,,Lower Brazos,0,No,29.943900509999999,-96.254198785000000,Lower Brazos,img/public_schools.png
+-1,,AUSTIN,BELLVILLE,,,,Lower Brazos,0,No,29.944384251999999,-96.255326095000001,Lower Brazos,img/public_schools.png
+-1,,AUSTIN,BELLVILLE,,,,Lower Brazos,0,No,29.949924349000000,-96.268084349000006,Lower Brazos,img/public_schools.png
+-1,,AUSTIN,INDUSTRY,,,,Lower Brazos,0,No,29.967337000000001,-96.502210000000005,Lower Brazos,img/public_schools.png
+-1,,WALLER,HEMPSTEAD,,,,Lower Brazos,0,No,30.080914789000001,-96.077297611999995,Lower Brazos,img/public_schools.png
+-1,,WALLER,HEMPSTEAD,,,,Lower Brazos,0,No,30.083392000000000,-96.077230000000000,Lower Brazos,img/public_schools.png
+-1,,WALLER,PRAIRIE VIEW,,,,Lower Brazos,0,No,30.089142226000000,-95.987512525000000,Lower Brazos,img/public_schools.png
+-1,,WALLER,HEMPSTEAD,,,,Lower Brazos,0,No,30.091736234999999,-96.081322927000002,Lower Brazos,img/public_schools.png
+-1,,WALLER,HEMPSTEAD,,,,Lower Brazos,0,No,30.092238999999999,-96.081800000000001,Lower Brazos,img/public_schools.png
+-1,,WALLER,HEMPSTEAD,,,,Lower Brazos,0,No,30.098659999999999,-96.090850000000003,Lower Brazos,img/public_schools.png
+-1,,WASHINGTON,BURTON,,,,Lower Brazos,0,No,30.180422922000002,-96.589370574000000,Lower Brazos,img/public_schools.png
+-1,,WASHINGTON,BURTON,,,,Lower Brazos,0,No,30.183956999999999,-96.598721999999995,Lower Brazos,img/public_schools.png

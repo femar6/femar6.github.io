@@ -1,0 +1,4 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,FORT BEND,NEEDVILLE,,,,,0,No,29.395682520000001,-95.723517259999994,Lower Brazos,img/landfills.png
+-1,,FORT BEND,FRESNO,,,,,0,No,29.522400000000001,-95.759200000000007,Lower Brazos,img/landfills.png
+-1,,AUSTIN,SEALY,,,,,0,No,29.890998010000001,-96.290156659999994,Lower Brazos,img/landfills.png

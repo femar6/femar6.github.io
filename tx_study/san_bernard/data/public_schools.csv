@@ -1,0 +1,25 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,BRAZORIA,JONES CREEK,,,,San Bernard,0,No,28.966080062000000,-95.464441483000002,San Bernard,img/public_schools.png
+-1,,BRAZORIA,SWEENY,,,,San Bernard,0,No,29.045376233999999,-95.701806275999999,San Bernard,img/public_schools.png
+-1,,BRAZORIA,SWEENY,,,,San Bernard,0,No,29.048383710000000,-95.709111206000003,San Bernard,img/public_schools.png
+-1,,BRAZORIA,SWEENY,,,,San Bernard,0,No,29.049151461000001,-95.704283310999998,San Bernard,img/public_schools.png
+-1,,BRAZORIA,BRAZORIA,,,,San Bernard,0,No,29.050988535999998,-95.568522720000004,San Bernard,img/public_schools.png
+-1,,BRAZORIA,BRAZORIA,,,,San Bernard,0,No,29.071539999999999,-95.588890000000006,San Bernard,img/public_schools.png
+-1,,BRAZORIA,BRAZORIA,,,,San Bernard,0,No,29.076063999999999,-95.616680000000002,San Bernard,img/public_schools.png
+-1,,BRAZORIA,WEST COLUMBIA,,,,San Bernard,0,No,29.137293885999998,-95.651137239999997,San Bernard,img/public_schools.png
+-1,,BRAZORIA,WEST COLUMBIA,,,,San Bernard,0,No,29.138056491000000,-95.650516636000006,San Bernard,img/public_schools.png
+-1,,BRAZORIA,WEST COLUMBIA,,,,San Bernard,0,No,29.146024561000001,-95.656644017000005,San Bernard,img/public_schools.png
+-1,,WHARTON,WHARTON,,,,San Bernard,0,No,29.318432000000001,-96.062230999999997,San Bernard,img/public_schools.png
+-1,,WHARTON,WHARTON,,,,San Bernard,0,No,29.328141708000000,-96.091921846000005,San Bernard,img/public_schools.png
+-1,,FORT BEND,NEEDVILLE,,,,San Bernard,0,No,29.370779017000000,-95.802240827000006,San Bernard,img/public_schools.png
+-1,,FORT BEND,NEEDVILLE,,,,San Bernard,0,No,29.371443593999999,-95.803083349999994,San Bernard,img/public_schools.png
+-1,,FORT BEND,NEEDVILLE,,,,San Bernard,0,No,29.371825370000000,-95.801901852000000,San Bernard,img/public_schools.png
+-1,,FORT BEND,NEEDVILLE,,,,San Bernard,0,No,29.374137199000000,-95.798923967999997,San Bernard,img/public_schools.png
+-1,,FORT BEND,NEEDVILLE,,,,San Bernard,0,No,29.392171897000001,-95.838533325000000,San Bernard,img/public_schools.png
+-1,,FORT BEND,BEASLEY,,,,San Bernard,0,No,29.493366541000000,-95.915723907000000,San Bernard,img/public_schools.png
+-1,,WHARTON,EAST BERNARD,,,,San Bernard,0,No,29.523446045000000,-96.064954069999999,San Bernard,img/public_schools.png
+-1,,WHARTON,EAST BERNARD,,,,San Bernard,0,No,29.526105178000002,-96.066382271999998,San Bernard,img/public_schools.png
+-1,,WHARTON,EAST BERNARD,,,,San Bernard,0,No,29.526283739000000,-96.066752794999999,San Bernard,img/public_schools.png
+-1,,AUSTIN,WALLIS,,,,San Bernard,0,No,29.615849000000001,-96.034580000000005,San Bernard,img/public_schools.png
+-1,,AUSTIN,WALLIS,,,,San Bernard,0,No,29.619225000000000,-96.035290000000003,San Bernard,img/public_schools.png
+-1,,AUSTIN,WALLIS,,,,San Bernard,0,No,29.625037202000001,-96.072885389999996,San Bernard,img/public_schools.png

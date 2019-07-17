@@ -1,0 +1,7 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,,Phi,Pr,Montgomery County,,0,No,28.439724168000001,-96.434974444100007,West Matagorda Bay,img/heliports.png
+-1,,,,Hhi-Port O'connor,Pr,Montgomery County,,0,No,28.442501945400000,-96.425251944500005,West Matagorda Bay,img/heliports.png
+-1,,,,Industrial Helicopters Inc,Pr,Montgomery County,,1,Yes,28.445000000899999,-96.448333333199997,West Matagorda Bay,img/heliports.png
+-1,,,,Port O'connor Base (Ehi),Pr,Montgomery County,,0,No,28.469723611999999,-96.491920000500002,West Matagorda Bay,img/heliports.png
+-1,,,,Cig 806,Pr,Montgomery County,,0,No,28.624996389100001,-96.683590555099997,West Matagorda Bay,img/heliports.png
+-1,,,,Citizens Medical Center,Pr,Montgomery County,,0,No,28.814155833600001,-96.976375277599999,West Matagorda Bay,img/heliports.png

@@ -1,0 +1,38 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,JEFFERSON,PORT NECHES,,,,Lower Neches,0,No,29.988760374000002,-93.953352666000001,Lower Neches,img/public_schools.png
+-1,,JEFFERSON,PORT NECHES,,,,Lower Neches,0,No,29.990853576999999,-93.966112205000002,Lower Neches,img/public_schools.png
+-1,,JEFFERSON,PORT NECHES,,,,Lower Neches,0,No,29.997614076000001,-93.962338613000000,Lower Neches,img/public_schools.png
+-1,,ORANGE,BRIDGE CITY,,,,Lower Neches,0,No,30.034255787999999,-93.853646781999998,Lower Neches,img/public_schools.png
+-1,,ORANGE,BRIDGE CITY,,,,Lower Neches,1,Yes,30.035610963000000,-93.857705245999995,Lower Neches,img/public_schools.png
+-1,,JEFFERSON,BEAUMONT,,,,Lower Neches,0,No,30.079075365000001,-94.093423901999998,Lower Neches,img/public_schools.png
+-1,,JEFFERSON,BEAUMONT,,,,Lower Neches,0,No,30.079107071999999,-94.093519024000003,Lower Neches,img/public_schools.png
+-1,,JEFFERSON,BEAUMONT,,,,Lower Neches,0,No,30.109654507999998,-94.115492454000005,Lower Neches,img/public_schools.png
+-1,,JEFFERSON,BEAUMONT,,,,Lower Neches,0,No,30.110445022000000,-94.116346049000001,Lower Neches,img/public_schools.png
+-1,,JEFFERSON,BEAUMONT,,,,Lower Neches,0,No,30.114082000000000,-94.122022999999999,Lower Neches,img/public_schools.png
+-1,,JEFFERSON,BEAUMONT,,,,Lower Neches,0,No,30.114260000000002,-94.106705000000005,Lower Neches,img/public_schools.png
+-1,,ORANGE,VIDOR,,,,Lower Neches,0,No,30.122921048999999,-94.005363967999997,Lower Neches,img/public_schools.png
+-1,,ORANGE,VIDOR,,,,Lower Neches,0,No,30.125779125000001,-94.007164051999993,Lower Neches,img/public_schools.png
+-1,,ORANGE,VIDOR,,,,Lower Neches,0,No,30.126096434000001,-94.007364824999996,Lower Neches,img/public_schools.png
+-1,,JEFFERSON,BEAUMONT,,,,Lower Neches,0,No,30.126096508000000,-94.115388854000003,Lower Neches,img/public_schools.png
+-1,,ORANGE,VIDOR,,,,Lower Neches,0,No,30.137756615000001,-94.004143806000002,Lower Neches,img/public_schools.png
+-1,,ORANGE,VIDOR,,,,Lower Neches,0,No,30.182734640000000,-94.022655744000005,Lower Neches,img/public_schools.png
+-1,,HARDIN,SILSBEE,,,,Lower Neches,0,No,30.339267859000000,-94.164818018999995,Lower Neches,img/public_schools.png
+-1,,HARDIN,SILSBEE,,,,Lower Neches,0,No,30.343759967000000,-94.184743691999998,Lower Neches,img/public_schools.png
+-1,,HARDIN,SILSBEE,,,,Lower Neches,0,No,30.344093000000001,-94.153729999999996,Lower Neches,img/public_schools.png
+-1,,HARDIN,SILSBEE,,,,Lower Neches,0,No,30.345500000000001,-94.183700000000002,Lower Neches,img/public_schools.png
+-1,,HARDIN,SILSBEE,,,,Lower Neches,0,No,30.345505355000000,-94.186419681000004,Lower Neches,img/public_schools.png
+-1,,JASPER,EVADALE,,,,Lower Neches,0,No,30.346791002000000,-94.077797919999995,Lower Neches,img/public_schools.png
+-1,,JASPER,EVADALE,,,,Lower Neches,0,No,30.347059742999999,-94.080072107000007,Lower Neches,img/public_schools.png
+-1,,JASPER,EVADALE,,,,Lower Neches,0,No,30.347561700000000,-94.078592604999997,Lower Neches,img/public_schools.png
+-1,,JASPER,EVADALE,,,,Lower Neches,0,No,30.354700000000001,-94.072500000000005,Lower Neches,img/public_schools.png
+-1,,HARDIN,SILSBEE,,,,Lower Neches,0,No,30.360575076000000,-94.175564085999994,Lower Neches,img/public_schools.png
+-1,,TYLER,FRED,,,,Lower Neches,0,No,30.574279000000001,-94.177470999999997,Lower Neches,img/public_schools.png
+-1,,TYLER,SPURGER,,,,Lower Neches,0,No,30.695209028000001,-94.178549900999997,Lower Neches,img/public_schools.png
+-1,,JASPER,JASPER,,,,Lower Neches,0,No,30.899401379000000,-94.003370391999994,Lower Neches,img/public_schools.png
+-1,,JASPER,JASPER,,,,Lower Neches,0,No,30.902604539999999,-94.006337450999993,Lower Neches,img/public_schools.png
+-1,,JASPER,JASPER,,,,Lower Neches,0,No,30.906770739999999,-93.992810661999997,Lower Neches,img/public_schools.png
+-1,,TYLER,COLMESNEIL,,,,Lower Neches,0,No,30.908322999999999,-94.429715999999999,Lower Neches,img/public_schools.png
+-1,,TYLER,COLMESNEIL,,,,Lower Neches,0,No,30.908329040000002,-94.429897202999996,Lower Neches,img/public_schools.png
+-1,,JASPER,JASPER,,,,Lower Neches,0,No,30.914652755999999,-93.989070471999995,Lower Neches,img/public_schools.png
+-1,,JASPER,JASPER,,,,Lower Neches,0,No,30.920986134000000,-94.012492549000001,Lower Neches,img/public_schools.png
+-1,,JASPER,JASPER,,,,Lower Neches,0,No,30.922352550999999,-94.009500754000001,Lower Neches,img/public_schools.png

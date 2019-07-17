@@ -1,0 +1,3 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,MONTGOMERY,CONROE,,,,,1,Yes,30.336411269999999,-95.415355120000001,West Fork San Jacinto,img/landfills.png
+-1,,WALKER,HUNTSVILLE,,,,,0,No,30.743883539999999,-95.595563619999993,West Fork San Jacinto,img/landfills.png

@@ -1,0 +1,10 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,,,,,Austin-Oyster,1,Yes,28.919999998600002,-95.369959999599999,Austin-Oyster,img/wastewater.png
+-1,,,,,,,Austin-Oyster,1,Yes,28.944164998700000,-95.378023999999996,Austin-Oyster,img/wastewater.png
+-1,,,,,,,Austin-Oyster,0,No,29.015527999000000,-95.390667000299999,Austin-Oyster,img/wastewater.png
+-1,,,,,,,Austin-Oyster,1,Yes,29.158577000099999,-95.460274999700005,Austin-Oyster,img/wastewater.png
+-1,,,,,,,Austin-Oyster,0,No,29.526306000400002,-95.478082999799994,Austin-Oyster,img/wastewater.png
+-1,,,,,,,Austin-Oyster,0,No,29.539666998700000,-95.504638999600004,Austin-Oyster,img/wastewater.png
+-1,,,,,,,Austin-Oyster,0,No,29.572178998900000,-95.550778000400001,Austin-Oyster,img/wastewater.png
+-1,,,,,,,Austin-Oyster,0,No,29.603888998900000,-95.552499999800006,Austin-Oyster,img/wastewater.png
+-1,,,,,,,Austin-Oyster,1,Yes,29.634638998700002,-95.673193999700004,Austin-Oyster,img/wastewater.png

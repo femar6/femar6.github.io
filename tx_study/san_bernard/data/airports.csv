@@ -1,0 +1,9 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,2TE0,Brazoria,Brazoria,Eagle Air Park,Pr,Montgomery County,San Bernard,1,Yes,28.982194167700001,-95.579669166100004,San Bernard,img/airports.png
+-1,1TX4,Wharton,New Gulf,New Gulf,Pr,Montgomery County,San Bernard,0,No,29.273340279100001,-95.886902778000007,San Bernard,img/airports.png
+-1,61XS,Wharton,Wharton,Shanks Ag Strip,Pr,Montgomery County,San Bernard,0,No,29.324413889399999,-96.020790000600002,San Bernard,img/airports.png
+-1,5T0,Fort Bend,Beasley,Ward Airpark,Pr,Montgomery County,San Bernard,0,No,29.502722223500001,-95.935972221499995,San Bernard,img/airports.png
+-1,ELA,Colorado,Eagle Lake,Eagle Lake,Pu,Montgomery County,San Bernard,0,No,29.600666667599999,-96.322055555800006,San Bernard,img/airports.png
+-1,5TE7,Colorado,Eagle Lake,Renz Ranch,Pr,Montgomery County,San Bernard,0,No,29.719401389300000,-96.309409722500007,San Bernard,img/airports.png
+-1,2TA4,Austin,Sealy,Mario's Flying Pizza,Pr,Montgomery County,San Bernard,0,No,29.747733611400001,-96.292742777200004,San Bernard,img/airports.png
+-1,05TA,Austin,Sealy,Brandes Air Field,Pr,Montgomery County,San Bernard,0,No,29.809130556100001,-96.265077778099993,San Bernard,img/airports.png

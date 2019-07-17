@@ -1,0 +1,27 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,"Chapman Ranch, TX",,,,WT,0,No,27.623768999999999,-97.497974999999997,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Violet, TX",,,,GEN1,0,No,27.798530000000000,-97.565252999999998,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Robstown, TX",,,,10,0,No,27.800447999999999,-97.662447999999998,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Robstown, TX",,,,11,0,No,27.800447999999999,-97.662447999999998,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Robstown, TX",,,,2,0,No,27.800447999999999,-97.662447999999998,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Robstown, TX",,,,3,0,No,27.800447999999999,-97.662447999999998,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Robstown, TX",,,,4,0,No,27.800447999999999,-97.662447999999998,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Robstown, TX",,,,5,0,No,27.800447999999999,-97.662447999999998,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Robstown, TX",,,,6,0,No,27.800447999999999,-97.662447999999998,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Robstown, TX",,,,7,0,No,27.800447999999999,-97.662447999999998,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Robstown, TX",,,,8,0,No,27.800447999999999,-97.662447999999998,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Robstown, TX",,,,9,0,No,27.800447999999999,-97.662447999999998,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Robstown, TX",,,,1,0,No,27.800447999999999,-97.662447999999998,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Corpus Christi, TX",,,,GEN2,0,No,27.813886000000000,-97.436989999999994,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Corpus Christi, TX",,,,GEN1,0,No,27.813886000000000,-97.436989999999994,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Corpus Christi, TX",,,,CC1,0,No,27.814435000000000,-97.428156999999999,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Viola, TX",,,,GEN1,0,No,27.817014000000000,-97.539361000000000,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Viola, TX",,,,GEN2,0,No,27.817014000000000,-97.539361000000000,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Viola, TX",,,,GEN3,0,No,27.817014000000000,-97.539361000000000,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Viola, TX",,,,GEN4,0,No,27.817014000000000,-97.539361000000000,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Viola, TX",,,,GEN5,0,No,27.817014000000000,-97.539361000000000,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Viola, TX",,,,CC,0,No,27.817014000000000,-97.539361000000000,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Viola, TX",,,,TG1,0,No,27.818044000000000,-97.483726000000004,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Viola, TX",,,,TG2,0,No,27.818044000000000,-97.483726000000004,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Viola, TX",,,,TG3,0,No,27.818044000000000,-97.483726000000004,South Corpus Christi Bay,img/gen_units.png
+-1,,,"Viola, TX",,,,PRU,0,No,27.818044000000000,-97.483726000000004,South Corpus Christi Bay,img/gen_units.png

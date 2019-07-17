@@ -1,0 +1,43 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,"Liverpool, TX",,,,GEN1,0,No,29.230758999999999,-95.193901999999994,West Galveston Bay,img/gen_units.png
+-1,,,"Texas City, TX",,,,GEN2,0,No,29.368865000000000,-94.909587999999999,West Galveston Bay,img/gen_units.png
+-1,,,"Texas City, TX",,,,GEN3,0,No,29.368865000000000,-94.909587999999999,West Galveston Bay,img/gen_units.png
+-1,,,"Texas City, TX",,,,GEN1,0,No,29.368865000000000,-94.909587999999999,West Galveston Bay,img/gen_units.png
+-1,,,"La Marque, TX",,,,GTG,0,No,29.376124999999998,-94.945672000000002,West Galveston Bay,img/gen_units.png
+-1,,,"La Marque, TX",,,,CC,0,No,29.376124999999998,-94.945672000000002,West Galveston Bay,img/gen_units.png
+-1,,,"La Marque, TX",,,,CC,0,No,29.378129999999999,-94.943819000000005,West Galveston Bay,img/gen_units.png
+-1,,,"La Marque, TX",,,,CC,0,No,29.378375999999999,-94.943950999999998,West Galveston Bay,img/gen_units.png
+-1,,,"Texas City, TX",,,,CC,0,No,29.378167999999999,-94.932827000000003,West Galveston Bay,img/gen_units.png
+-1,,,"Texas City, TX",,,,307B,0,No,29.378302999999999,-94.922470000000004,West Galveston Bay,img/gen_units.png
+-1,,,"Texas City, TX",,,,307C,0,No,29.378302999999999,-94.922470000000004,West Galveston Bay,img/gen_units.png
+-1,,,"Texas City, TX",,,,307D,0,No,29.378302999999999,-94.922470000000004,West Galveston Bay,img/gen_units.png
+-1,,,"Texas City, TX",,,,307E,0,No,29.378302999999999,-94.922470000000004,West Galveston Bay,img/gen_units.png
+-1,,,"Texas City, TX",,,,CC,0,No,29.378302999999999,-94.922470000000004,West Galveston Bay,img/gen_units.png
+-1,,,"Texas City, TX",,,,307A,0,No,29.378302999999999,-94.922470000000004,West Galveston Bay,img/gen_units.png
+-1,,,"Texas City, TX",,,,GEN1,0,No,29.378208000000001,-94.902634000000006,West Galveston Bay,img/gen_units.png
+-1,,,"Algoa, TX",,,,UNT2,0,No,29.427440000000001,-95.187612999999999,West Galveston Bay,img/gen_units.png
+-1,,,"Algoa, TX",,,,UNT3,0,No,29.427440000000001,-95.187612999999999,West Galveston Bay,img/gen_units.png
+-1,,,"Algoa, TX",,,,UNT4,0,No,29.427440000000001,-95.187612999999999,West Galveston Bay,img/gen_units.png
+-1,,,"Algoa, TX",,,,UNT1,0,No,29.427440000000001,-95.187612999999999,West Galveston Bay,img/gen_units.png
+-1,,,"Alvin, TX",,,,1,0,No,29.432938000000000,-95.255973999999995,West Galveston Bay,img/gen_units.png
+-1,,,"Bacliff, TX",,,,2,0,No,29.487006999999998,-94.980017000000004,West Galveston Bay,img/gen_units.png
+-1,,,"Bacliff, TX",,,,3,0,No,29.487006999999998,-94.980017000000004,West Galveston Bay,img/gen_units.png
+-1,,,"Bacliff, TX",,,,4,0,No,29.487006999999998,-94.980017000000004,West Galveston Bay,img/gen_units.png
+-1,,,"Bacliff, TX",,,,GT1,0,No,29.487006999999998,-94.980017000000004,West Galveston Bay,img/gen_units.png
+-1,,,"Bacliff, TX",,,,GT2,0,No,29.487006999999998,-94.980017000000004,West Galveston Bay,img/gen_units.png
+-1,,,"Bacliff, TX",,,,GT3,0,No,29.487006999999998,-94.980017000000004,West Galveston Bay,img/gen_units.png
+-1,,,"Bacliff, TX",,,,GT4,0,No,29.487006999999998,-94.980017000000004,West Galveston Bay,img/gen_units.png
+-1,,,"Bacliff, TX",,,,GT5,0,No,29.487006999999998,-94.980017000000004,West Galveston Bay,img/gen_units.png
+-1,,,"Bacliff, TX",,,,GT6,0,No,29.487006999999998,-94.980017000000004,West Galveston Bay,img/gen_units.png
+-1,,,"Bacliff, TX",,,,GT7,0,No,29.487006999999998,-94.980017000000004,West Galveston Bay,img/gen_units.png
+-1,,,"Bacliff, TX",,,,1,0,No,29.487006999999998,-94.980017000000004,West Galveston Bay,img/gen_units.png
+-1,,,"Nassau Bay, TX",,,,2,0,No,29.529722000000000,-95.103611000000001,West Galveston Bay,img/gen_units.png
+-1,,,"Nassau Bay, TX",,,,3,0,No,29.529722000000000,-95.103611000000001,West Galveston Bay,img/gen_units.png
+-1,,,"Nassau Bay, TX",,,,GT1,0,No,29.529722000000000,-95.103611000000001,West Galveston Bay,img/gen_units.png
+-1,,,"Nassau Bay, TX",,,,1,0,No,29.529722000000000,-95.103611000000001,West Galveston Bay,img/gen_units.png
+-1,,,"South Houston, TX",,,,GT1,0,No,29.625000000000000,-95.186000000000007,West Galveston Bay,img/gen_units.png
+-1,,,"Bayside Terrace, TX",,,,CC1,0,No,29.625595000000001,-95.067261000000002,West Galveston Bay,img/gen_units.png
+-1,,,"Bayside Terrace, TX",,,,GEN2,0,No,29.625793000000002,-95.046726000000007,West Galveston Bay,img/gen_units.png
+-1,,,"Bayside Terrace, TX",,,,GEN3,0,No,29.625793000000002,-95.046726000000007,West Galveston Bay,img/gen_units.png
+-1,,,"Bayside Terrace, TX",,,,GEN4,0,No,29.625793000000002,-95.046726000000007,West Galveston Bay,img/gen_units.png
+-1,,,"Bayside Terrace, TX",,,,GEN1,0,No,29.625793000000002,-95.046726000000007,West Galveston Bay,img/gen_units.png

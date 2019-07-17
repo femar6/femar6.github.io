@@ -1,0 +1,14 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,,,,,,0,No,27.605304695800001,-97.208607296799997,South Corpus Christi Bay,img/cellular.png
+-1,,,,,,,,0,No,27.658104704599999,-97.308307323400001,South Corpus Christi Bay,img/cellular.png
+-1,,,,,,,,0,No,27.671104705699999,-97.354207335799998,South Corpus Christi Bay,img/cellular.png
+-1,,,,,,,,0,No,27.671704707800000,-97.280007317100001,South Corpus Christi Bay,img/cellular.png
+-1,,,,,,,,0,No,27.671904708100001,-97.288307319099999,South Corpus Christi Bay,img/cellular.png
+-1,,,,,,,,0,No,27.673104706499998,-97.345007333200002,South Corpus Christi Bay,img/cellular.png
+-1,,,,,,,,0,No,27.685604707900001,-97.385807343799996,South Corpus Christi Bay,img/cellular.png
+-1,,,,,,,,0,No,27.699204710299998,-97.421707353499997,South Corpus Christi Bay,img/cellular.png
+-1,,,,,,,,0,No,27.703104712100000,-97.355507336299993,South Corpus Christi Bay,img/cellular.png
+-1,,,,,,,,1,Yes,27.746404727700000,-97.121907279300004,South Corpus Christi Bay,img/cellular.png
+-1,,,,,,,,1,Yes,27.751904729000000,-97.124707280400003,South Corpus Christi Bay,img/cellular.png
+-1,,,,,,,,1,Yes,27.832504747300000,-97.064707268299998,South Corpus Christi Bay,img/cellular.png
+-1,,,,,,,,1,Yes,27.836904748900000,-97.057207266299997,South Corpus Christi Bay,img/cellular.png

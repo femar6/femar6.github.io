@@ -1,0 +1,3 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,,,,,Lower Neches,1,Yes,30.333499998699999,-94.181778000199998,Lower Neches,img/wastewater.png
+-1,,,,,,,Lower Neches,0,No,30.914971999300001,-94.009999999800002,Lower Neches,img/wastewater.png

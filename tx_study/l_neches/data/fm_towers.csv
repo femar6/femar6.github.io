@@ -1,0 +1,13 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,GROVES,,,,,0,No,30.061900000000001,-93.980599999999995,Lower Neches,img/fm_towers.png
+-1,,,BEAUMONT,,,,,0,No,30.061900000000001,-93.980599999999995,Lower Neches,img/fm_towers.png
+-1,,,BEAUMONT,,,,,1,Yes,30.109700000000000,-94.028300000000002,Lower Neches,img/fm_towers.png
+-1,,,BEAUMONT,,,,,1,Yes,30.111100000000000,-94.052800000000005,Lower Neches,img/fm_towers.png
+-1,,,SILSBEE,,,,,0,No,30.114999999999998,-93.998900000000006,Lower Neches,img/fm_towers.png
+-1,,,BEAUMONT,,,,,0,No,30.115600000000001,-94.000000000000000,Lower Neches,img/fm_towers.png
+-1,,,BEAUMONT,,,,,1,Yes,30.133700000000001,-94.119299999999996,Lower Neches,img/fm_towers.png
+-1,,,JASPER,,,,,0,No,30.975300000000001,-93.989999999999995,Lower Neches,img/fm_towers.png
+-1,,,JASPER,,,,,0,No,30.975300000000001,-93.989999999999995,Lower Neches,img/fm_towers.png
+-1,,,JASPER,,,,,0,No,30.975300000000001,-93.989999999999995,Lower Neches,img/fm_towers.png
+-1,,,JASPER,,,,,0,No,30.975300000000001,-93.989999999999995,Lower Neches,img/fm_towers.png
+-1,,,JASPER,,,,,0,No,31.000000000000000,-93.982200000000006,Lower Neches,img/fm_towers.png

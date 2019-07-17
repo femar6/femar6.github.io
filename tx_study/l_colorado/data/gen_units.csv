@@ -1,0 +1,6 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,"Buckeye, TX",,,,2,0,No,28.821701000000001,-96.058047000000002,Lower Colorado,img/gen_units.png
+-1,,,"Buckeye, TX",,,,1,0,No,28.821701000000001,-96.058047000000002,Lower Colorado,img/gen_units.png
+-1,,,"Wharton, TX",,,,CC2,0,No,29.288160000000001,-96.069067000000004,Lower Colorado,img/gen_units.png
+-1,,,"Wharton, TX",,,,CC3,0,No,29.288160000000001,-96.069067000000004,Lower Colorado,img/gen_units.png
+-1,,,"Wharton, TX",,,,CC1,0,No,29.288160000000001,-96.069067000000004,Lower Colorado,img/gen_units.png

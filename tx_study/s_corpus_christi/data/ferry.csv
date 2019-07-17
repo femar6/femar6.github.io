@@ -1,0 +1,3 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,Port Aransas,,,,,1,No,27.837620000000001,-97.051329999999993,South Corpus Christi Bay,img/ferry.png
+-1,,,Port Aransas,,,,,1,No,27.839230000000001,-97.068500000000000,South Corpus Christi Bay,img/ferry.png

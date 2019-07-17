@@ -1,0 +1,235 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,0,No,29.263469506000000,-94.850172291999996,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,0,No,29.264841328999999,-94.838381060000003,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,0,No,29.265076552000000,-94.839030149999999,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,0,No,29.273467007000001,-94.839129427000003,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,1,Yes,29.280523538000001,-94.805640613999998,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,1,Yes,29.280575098000000,-94.806315847999997,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,1,Yes,29.280775279000000,-94.805741483999995,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,1,Yes,29.287518133999999,-94.811616689000004,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,0,No,29.292132154000001,-94.805995648000007,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,0,No,29.295290000000001,-94.799009999999996,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,0,No,29.297505893000000,-94.781730319000005,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,0,No,29.297578672000000,-94.781687022000000,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,0,No,29.299050275999999,-94.801619865999996,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,0,No,29.299478284999999,-94.788626269000005,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,0,No,29.303731797000001,-94.781092254000001,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,0,No,29.306115265999999,-94.778427414999996,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,0,No,29.306135785999999,-94.778330748000002,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,GALVESTON,,,,West Galveston Bay,0,No,29.306165857000000,-94.778200705000003,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,HITCHCOCK,,,,West Galveston Bay,0,No,29.346408103000002,-95.016449186000003,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,HITCHCOCK,,,,West Galveston Bay,0,No,29.346526814000001,-95.022956589000003,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,HITCHCOCK,,,,West Galveston Bay,0,No,29.349114616000001,-95.030246093000002,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,HITCHCOCK,,,,West Galveston Bay,0,No,29.350313228000001,-95.020945072000004,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,HITCHCOCK,,,,West Galveston Bay,0,No,29.360218000000000,-95.030454000000006,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,TEXAS CITY,,,,West Galveston Bay,0,No,29.363103683999999,-94.970247944999997,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,La Marque,,,,West Galveston Bay,0,No,29.363233361999999,-94.971342362000001,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,HITCHCOCK,,,,West Galveston Bay,0,No,29.363838259000001,-95.029799443000002,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LA MARQUE,,,,West Galveston Bay,0,No,29.364104946000001,-94.977940996000001,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LA MARQUE,,,,West Galveston Bay,0,No,29.364174678000001,-94.969247194000005,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LA MARQUE,,,,West Galveston Bay,0,No,29.366463559000000,-94.971102134000006,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LA MARQUE,,,,West Galveston Bay,0,No,29.366540000000001,-94.971099303000003,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LA MARQUE,,,,West Galveston Bay,0,No,29.366540000000001,-94.970670999999996,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LA MARQUE,,,,West Galveston Bay,0,No,29.366551897000001,-94.970456849000001,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LA MARQUE,,,,West Galveston Bay,0,No,29.370500878000001,-94.992140896999999,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LAMARQUE,,,,West Galveston Bay,0,No,29.374310639000001,-95.000598002999993,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,ALVIN,,,,West Galveston Bay,1,Yes,29.375146276999999,-95.231039246999998,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LA MARQUE,,,,West Galveston Bay,0,No,29.375513531999999,-94.994329769999993,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LA MARQUE,,,,West Galveston Bay,0,No,29.375881972999998,-94.994317535999997,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,La Marque,,,,West Galveston Bay,0,No,29.377711510000001,-94.980167527000006,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LA MARQUE,,,,West Galveston Bay,0,No,29.378542382999999,-94.959673148999997,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,ALVIN,,,,West Galveston Bay,0,No,29.380153078999999,-95.230925649000000,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LA MARQUE,,,,West Galveston Bay,0,No,29.380866132000001,-95.018351879999997,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,TOMBALL,,,,West Galveston Bay,0,No,29.380920267000000,-95.018366174999997,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,SANTA FE,,,,West Galveston Bay,0,No,29.381712010000001,-95.107412546000006,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,SANTA FE,,,,West Galveston Bay,0,No,29.381896018999999,-95.105722869999994,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,SANTA FE,,,,West Galveston Bay,1,Yes,29.382977833000002,-95.105785135000005,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,TEXAS CITY,,,,West Galveston Bay,0,No,29.387625000000000,-94.929050000000004,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,TEXAS CITY,,,,West Galveston Bay,0,No,29.388196223000001,-94.989350161999994,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,TEXAS CITY,,,,West Galveston Bay,0,No,29.390270557000001,-94.922079338000003,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,TEXAS CITY,,,,West Galveston Bay,0,No,29.391342880000000,-94.916510513000006,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,SANTA FE,,,,West Galveston Bay,0,No,29.392105987000001,-95.141171364000002,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,TEXAS CITY,,,,West Galveston Bay,0,No,29.392668158999999,-94.915393738000006,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,SANTA FE,,,,West Galveston Bay,0,No,29.393460917999999,-95.105778450000003,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,TEXAS CITY,,,,West Galveston Bay,0,No,29.393926237999999,-94.921408838999994,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,TEXAS CITY,,,,West Galveston Bay,0,No,29.396565743000000,-94.920743829000003,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,TEXAS CITY,,,,West Galveston Bay,0,No,29.398551854000001,-94.898745063999996,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,TEXAS CITY,,,,West Galveston Bay,0,No,29.398552473999999,-94.898683775999999,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,TEXAS CITY,,,,West Galveston Bay,0,No,29.398559676000001,-94.898722918000004,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,SANTA FE,,,,West Galveston Bay,0,No,29.398575469000001,-94.898742716000001,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,SANTA FE,,,,West Galveston Bay,0,No,29.398605206999999,-94.898723993999994,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,TEXAS CITY,,,,West Galveston Bay,0,No,29.398953484000000,-94.901001321999999,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,TEXAS CITY,,,,West Galveston Bay,0,No,29.399635492000002,-94.898778872999998,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,ALVIN,,,,West Galveston Bay,0,No,29.401472431999998,-95.262699296999998,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,ALVIN,,,,West Galveston Bay,0,No,29.404219205000000,-95.264110711000001,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,ALVIN,,,,West Galveston Bay,0,No,29.405350544000001,-95.266620837000005,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,TEXAS CITY,,,,West Galveston Bay,0,No,29.405739626999999,-94.924073715999995,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,ALVIN,,,,West Galveston Bay,0,No,29.414927226000000,-95.237411498000000,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,ALVIN,,,,West Galveston Bay,0,No,29.417431897000000,-95.252149814999996,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,ALVIN,,,,West Galveston Bay,0,No,29.417567779999999,-95.230201272000002,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,ALVIN,,,,West Galveston Bay,0,No,29.418172007999999,-95.249270250999999,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,ALVIN,,,,West Galveston Bay,0,No,29.419203953000000,-95.262391086999997,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,ALVIN,,,,West Galveston Bay,0,No,29.419394230000002,-95.241192181000002,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,DICKINSON,,,,West Galveston Bay,0,No,29.427103386999999,-94.980246984000004,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,DICKINSON,,,,West Galveston Bay,0,No,29.427103961000000,-94.980237047000003,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,DICKINSON,,,,West Galveston Bay,0,No,29.427114807999999,-94.980223854000002,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,DICKINSON,,,,West Galveston Bay,0,No,29.427193470999999,-94.980251779000000,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,ALVIN,,,,West Galveston Bay,0,No,29.429870999999999,-95.271749999999997,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,ALVIN,,,,West Galveston Bay,0,No,29.436990999999999,-95.255788999999993,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,ALVIN,,,,West Galveston Bay,1,Yes,29.438120999999999,-95.257109999999997,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,DICKINSON,,,,West Galveston Bay,0,No,29.445778000000001,-95.104429999999994,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,DICKINSON,,,,West Galveston Bay,0,No,29.446671668000000,-95.048889877999997,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,DICKINSON,,,,West Galveston Bay,0,No,29.448823821000001,-95.043101933000003,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,DICKINSON,,,,West Galveston Bay,0,No,29.454143999999999,-95.094830000000002,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,DICKINSON,,,,West Galveston Bay,0,No,29.464541326999999,-95.052684095000004,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,DICKINSON,,,,West Galveston Bay,0,No,29.467942176000001,-95.031473695000003,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,DICKINSON,,,,West Galveston Bay,0,No,29.469211999999999,-95.022289999999998,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,MANVEL,,,,West Galveston Bay,1,Yes,29.471613539000000,-95.350406934999995,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,MANVEL,,,,West Galveston Bay,1,Yes,29.472079999999998,-95.365139999999997,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,MANVEL,,,,West Galveston Bay,0,No,29.472448539999998,-95.353832670000003,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.474181000000002,-95.088870000000000,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,DICKINSON,,,,West Galveston Bay,0,No,29.477248617000001,-95.063396065999996,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,DICKINSON,,,,West Galveston Bay,0,No,29.479183195000001,-95.045827743999993,West Galveston Bay,img/public_schools.png
+-1,,FORT BEND,ROSHARON,,,,West Galveston Bay,0,No,29.481356999999999,-95.463099000000000,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.483810999999999,-95.138729999999995,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.484847388999999,-95.155383850999996,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.485069286000002,-95.116388158999996,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,FRIENDSWOOD,,,,West Galveston Bay,0,No,29.488054114000001,-95.215254234000000,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.494328863000000,-95.085131391999994,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,DICKINSON,,,,West Galveston Bay,0,No,29.495097000000001,-94.955423999999994,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.495671000000002,-95.141289999999998,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.499434004000001,-95.142762746000002,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.500291697000002,-95.122938672999993,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,ROSHARON,,,,West Galveston Bay,0,No,29.505523338000000,-95.413491953999994,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.507717481000000,-95.024694279000002,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.508601327000001,-95.094479843000002,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.508603837999999,-95.094524050999993,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.509115999999999,-95.023770999999996,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.509496004999999,-95.087554777999998,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,BACLIFF,,,,West Galveston Bay,0,No,29.509653956000001,-94.992126987999995,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.509824307999999,-95.086417646000001,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.510328000000001,-95.023522000000000,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.510357286000001,-95.062280027000000,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.510871089999998,-95.065540659999996,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,ALVIN,,,,West Galveston Bay,0,No,29.511819582000001,-95.433990795000000,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,FRIENDSWOOD,,,,West Galveston Bay,0,No,29.512150763000001,-95.208903032999999,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,ROSHARON,,,,West Galveston Bay,0,No,29.512776591000002,-95.415079047999996,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,FRIENDSWOOD,,,,West Galveston Bay,0,No,29.512860384000000,-95.195560467999996,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,FRIENDSWOOD,,,,West Galveston Bay,0,No,29.520706494999999,-95.165879746000002,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.525105370999999,-95.071981964000003,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.525887622999999,-95.071867628000007,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.526795000000000,-95.041054000000003,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,WEBSTER,,,,West Galveston Bay,0,No,29.526897271999999,-95.166174581000007,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,FRIENDSWOOD,,,,West Galveston Bay,0,No,29.527174370000001,-95.202795494000000,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,FRIENDSWOOD,,,,West Galveston Bay,0,No,29.527451231000001,-95.203132221000004,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,FRIENDSWOOD,,,,West Galveston Bay,0,No,29.528054928000000,-95.213341623999995,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.528082053999999,-95.072556362000000,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,FRIENDSWOOD,,,,West Galveston Bay,0,No,29.528301440000000,-95.212982855000007,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,FRIENDSWOOD,,,,West Galveston Bay,0,No,29.529242562000000,-95.181899375000000,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,WEBSTER,,,,West Galveston Bay,0,No,29.531692531000001,-95.120164947000006,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,West Galveston Bay,0,No,29.532371696999999,-95.048884677999993,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.532475021000000,-95.294653472999997,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.532533040000001,-95.291105474999995,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.532745336000001,-95.294648514000002,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.532750000000000,-95.293311000000003,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,WEBSTER,,,,West Galveston Bay,0,No,29.534439436000000,-95.119525009000000,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.534771622000001,-95.232941526999994,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.534819254999999,-95.332370925999996,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,FRIENDSWOOD,,,,West Galveston Bay,0,No,29.536732736000001,-95.169122651999999,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.538787280000001,-95.270268294999994,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,MANVEL,,,,West Galveston Bay,0,No,29.540242728999999,-95.396364484000003,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,MANVEL,,,,West Galveston Bay,0,No,29.540311066000001,-95.396114967000003,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,MANVEL,,,,West Galveston Bay,0,No,29.540313852000001,-95.396115831000003,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,MANVEL,,,,West Galveston Bay,0,No,29.540339431000000,-95.396260974000000,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,MANVEL,,,,West Galveston Bay,0,No,29.540363061000001,-95.396127789999994,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,MANVEL,,,,West Galveston Bay,0,No,29.540373181000000,-95.395981489999997,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.540588000000000,-95.271510000000006,West Galveston Bay,img/public_schools.png
+-1,,GALVESTON,KEMAH,,,,West Galveston Bay,0,No,29.540949999999999,-95.024799999999999,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.542562202999999,-95.302518694000000,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,FRIENDSWOOD,,,,West Galveston Bay,0,No,29.545748827000001,-95.163616308000002,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.546430999999998,-95.329390000000004,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,FRIENDSWOOD,,,,West Galveston Bay,0,No,29.548051676000000,-95.186897625000000,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.548056225000000,-95.255611935000005,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.549956912999999,-95.368327429000004,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.550002054000000,-95.372640888999996,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.550488341000001,-95.329362106000005,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.551227999999998,-95.275859999999994,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.553170732000002,-95.315277839999993,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.556183337000000,-95.106799546999994,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.560078318999999,-95.129674065000003,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.560467374000002,-95.276809795000005,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.560814051000001,-95.418844308000004,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.561392929000000,-95.301663848999993,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.564343096000002,-95.279050753000007,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.564976053999999,-95.276557765999996,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.564989331000000,-95.280740292999994,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,SEABROOK,,,,West Galveston Bay,0,No,29.565853123000000,-95.023959224999999,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.566628496000000,-95.281016969000007,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.566933682999998,-95.121005405000005,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.569097869000000,-95.132488272000003,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.569860749000000,-95.223142956999993,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,SEABROOK,,,,West Galveston Bay,0,No,29.570062620000002,-95.067747034999996,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.570228000000000,-95.366574999999997,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,SEABROOK,,,,West Galveston Bay,0,No,29.571069541000000,-95.059984995999997,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.571543999999999,-95.416740000000004,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,SEABROOK,,,,West Galveston Bay,0,No,29.572012053000002,-95.017891558000002,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.576333430999998,-95.397574434999996,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.576352214000000,-95.244819054000004,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.576454078000001,-95.111468098000003,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.578216000000001,-95.396919999999994,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.578738000000001,-95.203890000000001,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,SEABROOK,,,,West Galveston Bay,0,No,29.578794516999999,-95.036520558000007,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,EL LAGO,,,,West Galveston Bay,0,No,29.579728470999999,-95.036308198000000,West Galveston Bay,img/public_schools.png
+-1,,FORT BEND,HOUSTON,,,,West Galveston Bay,0,No,29.581468637000000,-95.475528507000007,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.581547000000000,-95.276120000000006,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.582281563999999,-95.136195959000005,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,PASADENA,,,,West Galveston Bay,0,No,29.582369716999999,-95.248875702999996,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.582454305999999,-95.105820555999998,West Galveston Bay,img/public_schools.png
+-1,,BRAZORIA,PEARLAND,,,,West Galveston Bay,0,No,29.587397741000000,-95.320268284999997,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.588921321000001,-95.227215411000003,West Galveston Bay,img/public_schools.png
+-1,,FORT BEND,MISSOURI CITY,,,,West Galveston Bay,0,No,29.590437032000001,-95.532595936000007,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.591330527000000,-95.200870499999994,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.591501218000001,-95.250140216000005,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.593727653999998,-95.114461990999999,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.594130789000001,-95.246367230000004,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.595444458999999,-95.217267335000003,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.595907279999999,-95.215508499999999,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.603081864000000,-95.106675410999998,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.603739962999999,-95.135701757999996,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.606972488000000,-95.227077295000001,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.607473887000001,-95.275903873999994,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.608620238000000,-95.239800000000002,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.612454540000002,-95.229532500000005,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.614569891999999,-95.227608500000002,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.616067909000002,-95.252693246999996,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,LA PORTE,,,,West Galveston Bay,0,No,29.624031557999999,-95.014652154999993,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,HOUSTON,,,,West Galveston Bay,0,No,29.627962259000000,-95.250988360999997,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,PASADENA,,,,West Galveston Bay,0,No,29.632065983000000,-95.174403495999996,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,PASADENA,,,,West Galveston Bay,0,No,29.637929260000000,-95.179612766999995,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,PASADENA,,,,West Galveston Bay,0,No,29.639086648999999,-95.174455214000005,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,PASADENA,,,,West Galveston Bay,0,No,29.639772743000002,-95.179969650999993,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,PASADENA,,,,West Galveston Bay,0,No,29.639782804999999,-95.129716450999993,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,PASADENA,,,,West Galveston Bay,0,No,29.644469158000000,-95.166215988999994,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,PASADENA,,,,West Galveston Bay,0,No,29.644659944000001,-95.163657405999999,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,PASADENA,,,,West Galveston Bay,0,No,29.645326089000001,-95.137430714000004,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,PASADENA,,,,West Galveston Bay,0,No,29.651925370000001,-95.145138028999995,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,LA PORTE,,,,West Galveston Bay,0,No,29.652586071999998,-95.081528351000003,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,LA PORTE,,,,West Galveston Bay,0,No,29.654691235000001,-95.014793002000005,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,LA PORTE,,,,West Galveston Bay,0,No,29.654700565999999,-95.014747094000001,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,LA PORTE,,,,West Galveston Bay,0,No,29.655255808000000,-95.013691651000002,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,LA PORTE,,,,West Galveston Bay,0,No,29.657179794000001,-95.018023552000002,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,LA PORTE,,,,West Galveston Bay,0,No,29.661137012000001,-95.018622929000003,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,LA PORTE,,,,West Galveston Bay,0,No,29.662796702000001,-95.085263600999994,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,LA PORTE,,,,West Galveston Bay,0,No,29.663068366000001,-95.069389642999994,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,DEER PARK,,,,West Galveston Bay,0,No,29.668361767000000,-95.120506497999997,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,PASADENA,,,,West Galveston Bay,0,No,29.669663396000001,-95.160830000000004,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,DEER PARK,,,,West Galveston Bay,0,No,29.672442029999999,-95.111699999999999,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,DEER PARK,,,,West Galveston Bay,0,No,29.673294838000000,-95.097190115999993,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,DEER PARK,,,,West Galveston Bay,0,No,29.680297129000000,-95.136503234000003,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,DEER PARK,,,,West Galveston Bay,0,No,29.680808520999999,-95.134407632999995,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,LA PORTE,,,,West Galveston Bay,0,No,29.680855715000000,-95.083739139000002,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,PASADENA,,,,West Galveston Bay,0,No,29.682900000000000,-95.155400000000000,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,PASADENA,,,,West Galveston Bay,0,No,29.683167052000002,-95.156133373000003,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,PASADENA,,,,West Galveston Bay,0,No,29.683186973000002,-95.156107821999996,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,DEER PARK,,,,West Galveston Bay,0,No,29.684349999999998,-95.125489999999999,West Galveston Bay,img/public_schools.png
+-1,,HARRIS,DEER PARK,,,,West Galveston Bay,0,No,29.685597109000000,-95.114472160999995,West Galveston Bay,img/public_schools.png

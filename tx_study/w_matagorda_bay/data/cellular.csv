@@ -1,0 +1,8 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,,,,,,1,Yes,28.440804891799999,-96.443007132800005,West Matagorda Bay,img/cellular.png
+-1,,,,,,,,0,No,28.545304904100000,-96.764707218300003,West Matagorda Bay,img/cellular.png
+-1,,,,,,,,0,No,28.595304918499998,-96.621407184399999,West Matagorda Bay,img/cellular.png
+-1,,,,,,,,0,No,28.598104918000001,-96.648907190700001,West Matagorda Bay,img/cellular.png
+-1,,,,,,,,0,No,28.692504932300000,-96.831707240900002,West Matagorda Bay,img/cellular.png
+-1,,,,,,,,1,Yes,28.841704958899999,-96.977507283500003,West Matagorda Bay,img/cellular.png
+-1,,,,,,,,0,No,28.896404975599999,-96.794407239199998,West Matagorda Bay,img/cellular.png

@@ -1,0 +1,19 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,,,,,,1,Yes,29.033905044400001,-95.472206907900002,Lower Brazos,img/cellular.png
+-1,,,,,,,,1,Yes,29.072805049399999,-95.578306936900006,Lower Brazos,img/cellular.png
+-1,,,,,,,,0,No,29.110005054599998,-95.645506955000002,Lower Brazos,img/cellular.png
+-1,,,,,,,,0,No,29.314405094200001,-95.741706988199994,Lower Brazos,img/cellular.png
+-1,,,,,,,,0,No,29.325005097100000,-95.716706982500000,Lower Brazos,img/cellular.png
+-1,,,,,,,,0,No,29.525305135499998,-95.827207018999999,Lower Brazos,img/cellular.png
+-1,,,,,,,,0,No,29.571405144800000,-95.830607021999995,Lower Brazos,img/cellular.png
+-1,,,,,,,,0,No,29.577805146300001,-95.830807022000002,Lower Brazos,img/cellular.png
+-1,,,,,,,,0,No,29.749205170700002,-96.146907110599997,Lower Brazos,img/cellular.png
+-1,,,,,,,,0,No,29.783305183900001,-95.967207065599993,Lower Brazos,img/cellular.png
+-1,,,,,,,,0,No,29.849505196500001,-95.996707076600003,Lower Brazos,img/cellular.png
+-1,,,,,,,,0,No,29.953105207699998,-96.282507154200005,Lower Brazos,img/cellular.png
+-1,,,,,,,,0,No,29.953105207699998,-96.282507154200005,Lower Brazos,img/cellular.png
+-1,,,,,,,,0,No,29.953105207699998,-96.282507154200005,Lower Brazos,img/cellular.png
+-1,,,,,,,,0,No,29.953105207699998,-96.282507154200005,Lower Brazos,img/cellular.png
+-1,,,,,,,,0,No,30.095305246300001,-96.000607088199999,Lower Brazos,img/cellular.png
+-1,,,,,,,,0,No,30.131105251099999,-96.073307108099996,Lower Brazos,img/cellular.png
+-1,,,,,,,,0,No,30.153105236199998,-96.634207251999996,Lower Brazos,img/cellular.png

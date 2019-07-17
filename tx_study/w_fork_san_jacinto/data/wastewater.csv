@@ -1,0 +1,7 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,,,,,West Fork San Jacinto,1,Yes,30.044916998800002,-95.189639000000000,West Fork San Jacinto,img/wastewater.png
+-1,,,,,,,West Fork San Jacinto,1,Yes,30.073527998900001,-95.239360999699997,West Fork San Jacinto,img/wastewater.png
+-1,,,,,,,West Fork San Jacinto,1,Yes,30.194638999199999,-95.446028000100000,West Fork San Jacinto,img/wastewater.png
+-1,,,,,,,West Fork San Jacinto,1,Yes,30.271860999000001,-95.496860999700004,West Fork San Jacinto,img/wastewater.png
+-1,,,,,,,West Fork San Jacinto,0,No,30.645139998900000,-95.553277999700001,West Fork San Jacinto,img/wastewater.png
+-1,,,,,,,West Fork San Jacinto,1,Yes,30.646305998700001,-95.595499999699996,West Fork San Jacinto,img/wastewater.png

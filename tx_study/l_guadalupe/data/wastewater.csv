@@ -1,0 +1,3 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,,,,,Lower Guadalupe,1,Yes,28.752360999400000,-97.006582999900004,Lower Guadalupe,img/wastewater.png
+-1,,,,,,,Lower Guadalupe,1,Yes,28.784443998600000,-97.008879999700000,Lower Guadalupe,img/wastewater.png

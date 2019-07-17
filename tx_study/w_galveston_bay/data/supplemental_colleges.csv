@@ -1,0 +1,7 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,GALVESTON,LA MARQUE,,,,,0,No,29.364989538000000,-94.960496770000006,West Galveston Bay,img/supplemental_colleges.png
+-1,,GALVESTON,LA MARQUE,,,,,0,No,29.384860743000001,-95.021523256999998,West Galveston Bay,img/supplemental_colleges.png
+-1,,GALVESTON,LEAGUE CITY,,,,,0,No,29.480909869000001,-95.098937348000007,West Galveston Bay,img/supplemental_colleges.png
+-1,,GALVESTON,LEAGUE CITY,,,,,0,No,29.502236588999999,-95.123513027000001,West Galveston Bay,img/supplemental_colleges.png
+-1,,HARRIS,HOUSTON,,,,,0,No,29.579808774000000,-95.203900648000001,West Galveston Bay,img/supplemental_colleges.png
+-1,,BRAZORIA,PEARLAND,,,,,0,No,29.587221922000001,-95.269198642999996,West Galveston Bay,img/supplemental_colleges.png

@@ -1,0 +1,7 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,HPY,Harris,Baytown,Baytown,Pr,Montgomery County,North Galveston Bay,0,No,29.786083333499999,-94.952666666799999,North Galveston Bay,img/airports.png
+-1,25TA,Harris,Baytown,Ferris,Pr,Montgomery County,North Galveston Bay,0,No,29.836612501000001,-94.967426667200002,North Galveston Bay,img/airports.png
+-1,9TA3,Harris,Crosby,Rogers,Pr,Montgomery County,North Galveston Bay,1,Yes,29.873000278199999,-94.989649444299999,North Galveston Bay,img/airports.png
+-1,1XS1,Harris,Crosby,Dunham Field,Pr,Montgomery County,North Galveston Bay,0,No,29.938275001200001,-95.046594444099995,North Galveston Bay,img/airports.png
+-1,TA07,Liberty,Dayton,Jet Ag Inc,Pr,Montgomery County,North Galveston Bay,0,No,30.007162223100000,-94.966870833100003,North Galveston Bay,img/airports.png
+-1,TS35,Liberty,Dayton,West Liberty,Pr,Montgomery County,North Galveston Bay,0,No,30.058333334099999,-94.978055556000001,North Galveston Bay,img/airports.png

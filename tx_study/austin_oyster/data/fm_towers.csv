@@ -1,0 +1,7 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,FREEPORT,,,,,0,No,28.966799999999999,-95.333299999999994,Austin-Oyster,img/fm_towers.png
+-1,,,FREEPORT,,,,,0,No,28.978300000000001,-95.311700000000002,Austin-Oyster,img/fm_towers.png
+-1,,,LAKE JACKSON,,,,,1,Yes,29.011099999999999,-95.309399999999997,Austin-Oyster,img/fm_towers.png
+-1,,,LAKE JACKSON,,,,,1,Yes,29.043600000000001,-95.336399999999998,Austin-Oyster,img/fm_towers.png
+-1,,,SEABROOK,,,,,0,No,29.275800000000000,-95.379199999999997,Austin-Oyster,img/fm_towers.png
+-1,,,ANGLETON,,,,,0,No,29.275900000000000,-95.379199999999997,Austin-Oyster,img/fm_towers.png

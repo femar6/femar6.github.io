@@ -1,0 +1,23 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,GLS,Galveston,Galveston,Scholes Intl At Galveston,Pu,Montgomery County,West Galveston Bay,1,Yes,29.265333333600001,-94.860416667300001,West Galveston Bay,img/airports.png
+-1,15XS,Brazoria,Liverpool,Toy Airpark,Pr,Montgomery County,West Galveston Bay,0,No,29.332738612200000,-95.334103055800000,West Galveston Bay,img/airports.png
+-1,TE09,Brazoria,Alvin,Minard Pegasus,Pr,Montgomery County,West Galveston Bay,0,No,29.331905556599999,-95.276041666599994,West Galveston Bay,img/airports.png
+-1,3TX4,Galveston,Santa Fe,Westwind Helicopters,Pr,Montgomery County,West Galveston Bay,0,No,29.327097222999999,-95.059333333500007,West Galveston Bay,img/airports.png
+-1,5TA5,Galveston,Santa Fe,Creasy,Pr,Montgomery County,West Galveston Bay,0,No,29.336069445500002,-95.115206666199995,West Galveston Bay,img/airports.png
+-1,91TS,Brazoria,Rosharon,Songbird Ranch,Pr,Montgomery County,West Galveston Bay,1,Yes,29.367408333699998,-95.340555555700007,West Galveston Bay,img/airports.png
+-1,37TE,Galveston,Hitchcock,Freyer Field,Pr,Montgomery County,West Galveston Bay,0,No,29.360234167100000,-95.009925555600006,West Galveston Bay,img/airports.png
+-1,3TS3,Brazoria,Alvin,J-D Ranch,Pr,Montgomery County,West Galveston Bay,0,No,29.374681668000001,-95.290490833700005,West Galveston Bay,img/airports.png
+-1,TS90,Brazoria,Rosharon,Bayless,Pr,Montgomery County,West Galveston Bay,1,Yes,29.402460556299999,-95.431884999600001,West Galveston Bay,img/airports.png
+-1,TX66,Galveston,Alta Loma,Rebel Field,Pr,Montgomery County,West Galveston Bay,0,No,29.398845278900001,-95.078539444699999,West Galveston Bay,img/airports.png
+-1,6R5,Brazoria,Alvin,Alvin Airpark,Pr,Montgomery County,West Galveston Bay,0,No,29.414750000300000,-95.288916666899993,West Galveston Bay,img/airports.png
+-1,5TA7,Galveston,Santa Fe,Kami-Kazi,Pr,Montgomery County,West Galveston Bay,1,Yes,29.420790279100000,-95.159098055499996,West Galveston Bay,img/airports.png
+-1,TS50,Galveston,Texas City,Austinia,Pr,Montgomery County,West Galveston Bay,0,No,29.417454445499999,-94.998259166400004,West Galveston Bay,img/airports.png
+-1,8TA4,Galveston,Texas City,Laseair,Pr,Montgomery County,West Galveston Bay,0,No,29.445509444900001,-95.007704444300003,West Galveston Bay,img/airports.png
+-1,3T2,Brazoria,Manvel,Wolfe Air Park,Pr,Montgomery County,West Galveston Bay,0,No,29.479083334399999,-95.326555555699997,West Galveston Bay,img/airports.png
+-1,7XS0,Galveston,Friendswood,Polly Ranch,Pr,Montgomery County,West Galveston Bay,0,No,29.504677500700002,-95.175488333999994,West Galveston Bay,img/airports.png
+-1,21XS,Brazoria,Houston,Houston Airpark,Pr,Montgomery County,West Galveston Bay,1,Yes,29.519678612200000,-95.275213611200002,West Galveston Bay,img/airports.png
+-1,LVJ,Brazoria,Houston,Pearland Rgnl,Pr,Montgomery County,West Galveston Bay,0,No,29.521277778300000,-95.242138889200007,West Galveston Bay,img/airports.png
+-1,39R,Brazoria,Houston,Flyin' B,Pr,Montgomery County,West Galveston Bay,0,No,29.537611111699999,-95.423638889100005,West Galveston Bay,img/airports.png
+-1,T79,Brazoria,Pearland,Skyway Manor,Pr,Montgomery County,West Galveston Bay,0,No,29.555789444700000,-95.327993055899995,West Galveston Bay,img/airports.png
+-1,EFD,Harris,Houston,Ellington,Pu,Montgomery County,West Galveston Bay,0,No,29.607333333800000,-95.158749999899996,West Galveston Bay,img/airports.png
+-1,T41,Harris,La Porte,La Porte Muni,Pu,Montgomery County,West Galveston Bay,0,No,29.669250001300000,-95.064194443999995,West Galveston Bay,img/airports.png

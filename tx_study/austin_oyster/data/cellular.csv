@@ -1,0 +1,7 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,,,,,,0,No,29.002205040800000,-95.383906883999998,Austin-Oyster,img/cellular.png
+-1,,,,,,,,0,No,29.011705041599999,-95.406406889899998,Austin-Oyster,img/cellular.png
+-1,,,,,,,,1,Yes,29.065805055500000,-95.321406870299995,Austin-Oyster,img/cellular.png
+-1,,,,,,,,0,No,29.213905083000000,-95.430806904500002,Austin-Oyster,img/cellular.png
+-1,,,,,,,,0,No,29.655605167499999,-95.654406980499999,Austin-Oyster,img/cellular.png
+-1,,,,,,,,0,No,29.663105163200001,-95.839407028099998,Austin-Oyster,img/cellular.png

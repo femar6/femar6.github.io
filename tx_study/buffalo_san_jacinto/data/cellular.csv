@@ -1,0 +1,27 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,,,,,,0,No,29.619405166699998,-95.456106927700006,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,0,No,29.623305174900000,-95.232506870600005,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,0,No,29.634205171200001,-95.398906913100006,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,0,No,29.638105174900002,-95.325006894900000,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,1,Yes,29.642505177200000,-95.265806879199999,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,1,Yes,29.680005176300000,-95.541706951799995,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,1,Yes,29.687505177100000,-95.554206956000002,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,0,No,29.700005184900000,-95.400806916400001,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,0,No,29.703305178299999,-95.633906976500000,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,1,Yes,29.722805183500000,-95.603606970000001,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,0,No,29.748305196200000,-95.353106906600004,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,1,Yes,29.787505215700001,-95.008606819299999,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,0,No,29.788905205399999,-95.336906904399996,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,0,No,29.788905205399999,-95.336906904399996,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,0,No,29.793305199900001,-95.525006952699997,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,1,Yes,29.803905205700001,-95.422806927200000,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,0,No,29.814405216600001,-95.144206855600004,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,1,Yes,29.833605198299999,-95.837507034699996,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,1,Yes,29.833605206100000,-95.600006974199999,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,0,No,29.844405200800001,-95.815007029699998,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,0,No,29.862805225700001,-95.188606869200001,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,0,No,29.879205219199999,-95.482206945599998,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,1,Yes,29.890805229700000,-95.238606883200006,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,1,Yes,29.897805227700001,-95.348606912099996,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,0,No,29.900005227299999,-95.371106917999995,Buffalo-San Jacinto,img/cellular.png
+-1,,,,,,,,1,Yes,29.941705235099999,-95.382806923000004,Buffalo-San Jacinto,img/cellular.png

@@ -1,0 +1,14 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,SEADRIFT,,,,,1,Yes,28.438099999999999,-96.448499999999996,West Matagorda Bay,img/fm_towers.png
+-1,,,PORT LAVACA,,,,,0,No,28.624700000000001,-96.683300000000003,West Matagorda Bay,img/fm_towers.png
+-1,,,PORT LAVACA,,,,,0,No,28.706099999999999,-96.800799999999995,West Matagorda Bay,img/fm_towers.png
+-1,,,BLOOMINGTON,,,,,0,No,28.706700000000001,-96.834999999999994,West Matagorda Bay,img/fm_towers.png
+-1,,,VICTORIA,,,,,0,No,28.706700000000001,-96.834999999999994,West Matagorda Bay,img/fm_towers.png
+-1,,,VICTORIA,,,,,0,No,28.706700000000001,-96.834999999999994,West Matagorda Bay,img/fm_towers.png
+-1,,,VICTORIA,,,,,0,No,28.772200000000002,-96.954700000000003,West Matagorda Bay,img/fm_towers.png
+-1,,,VICTORIA,,,,,0,No,28.772200000000002,-96.954700000000003,West Matagorda Bay,img/fm_towers.png
+-1,,,VICTORIA,,,,,0,No,28.781900000000000,-96.941699999999997,West Matagorda Bay,img/fm_towers.png
+-1,,,VICTORIA,,,,,0,No,28.781900000000000,-96.941400000000002,West Matagorda Bay,img/fm_towers.png
+-1,,,VICTORIA,,,,,0,No,28.781900000000000,-96.941400000000002,West Matagorda Bay,img/fm_towers.png
+-1,,,GANADO,,,,,0,No,28.926900000000000,-96.781700000000001,West Matagorda Bay,img/fm_towers.png
+-1,,,BLOOMINGTON,,,,,0,No,29.001100000000001,-97.001400000000004,West Matagorda Bay,img/fm_towers.png

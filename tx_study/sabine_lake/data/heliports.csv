@@ -1,0 +1,16 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,,Evergreen Helicopters,Pr,Montgomery County,,1,Yes,29.693274723300000,-93.966835832699999,Sabine Lake,img/heliports.png
+-1,,,,Era Helicopters Sabine Base,Pr,Montgomery County,,1,Yes,29.696330278400001,-93.956557777300006,Sabine Lake,img/heliports.png
+-1,,,,Petroleum Helicopters Inc,Pr,Montgomery County,,1,Yes,29.703333334300002,-93.945022222199995,Sabine Lake,img/heliports.png
+-1,,,,Tenneco Shorebase,Pr,Montgomery County,,1,Yes,29.700220278900002,-93.864053889199994,Sabine Lake,img/heliports.png
+-1,,,,Hhi-Sabine,Pr,Montgomery County,,1,Yes,29.714107778599999,-93.912944722800006,Sabine Lake,img/heliports.png
+-1,,,,Air Logistics Sabine,Pr,Montgomery County,,1,Yes,29.714663334299999,-93.912111111200005,Sabine Lake,img/heliports.png
+-1,,,,Arco Sabine,Pr,Montgomery County,,1,Yes,29.712719722599999,-93.859608888799997,Sabine Lake,img/heliports.png
+-1,,,,Mfs Sabine Pass,Pr,Montgomery County,,1,Yes,29.720277778400000,-93.868333333799995,Sabine Lake,img/heliports.png
+-1,,,,St Mary Hospital Of Port Arthur,Pr,Montgomery County,,0,No,29.908547778700001,-93.921003611600000,Sabine Lake,img/heliports.png
+-1,,,,Patco,Pr,Montgomery County,,1,Yes,29.917158611900000,-93.887391388799998,Sabine Lake,img/heliports.png
+-1,,,,Medical Center Of Southeast Texas,Pr,Montgomery County,,1,Yes,29.936561112600000,-93.988877778299994,Sabine Lake,img/heliports.png
+-1,,,,Texaco Chemical Company-East,Pr,Montgomery County,,0,No,29.962435834299999,-93.932116111100001,Sabine Lake,img/heliports.png
+-1,,,,Baptist Hospital Of Se Texas,Pr,Montgomery County,,0,No,30.068546111500002,-94.125735832800004,Sabine Lake,img/heliports.png
+-1,,,,Kbmt-Tv,Pr,Montgomery County,,0,No,30.073268612700002,-94.133791667099999,Sabine Lake,img/heliports.png
+-1,,,,Sheraton Spindletop Hotel,Pr,Montgomery County,,0,No,30.101323334200000,-94.131013889599998,Sabine Lake,img/heliports.png

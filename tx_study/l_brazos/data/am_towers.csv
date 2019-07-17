@@ -1,0 +1,6 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,ROSENBURG/RICHMOND,,,,Lower Brazos,0,No,29.553100000000001,-95.783900000000003,Lower Brazos,img/am_towers.png
+-1,,,MISSOURI,,,,Lower Brazos,0,No,29.564399999999999,-95.701700000000002,Lower Brazos,img/am_towers.png
+-1,,,PECAN GROVE,,,,Lower Brazos,0,No,29.643899999999999,-96.096100000000007,Lower Brazos,img/am_towers.png
+-1,,,BROOKSHIRE,,,,Lower Brazos,0,No,29.879200000000001,-96.035600000000002,Lower Brazos,img/am_towers.png
+-1,,,BELLVILLE,,,,Lower Brazos,0,No,29.947199999999999,-96.265000000000001,Lower Brazos,img/am_towers.png

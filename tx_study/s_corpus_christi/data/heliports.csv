@@ -1,0 +1,7 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,,Christus Spohn South,Pr,San Angelo,,0,No,27.684833334099999,-97.377166666099995,South Corpus Christi Bay,img/heliports.png
+-1,,,,Industrial Helicopters Inc,Pr,San Angelo,,1,Yes,27.723333334500001,-97.573333333999997,South Corpus Christi Bay,img/heliports.png
+-1,,,,Mustang Island,Pr,San Angelo,,1,Yes,27.715865833799999,-97.173044167399993,South Corpus Christi Bay,img/heliports.png
+-1,,,,Texas Dept. Of Public Safety,Pu,San Angelo,,1,Yes,27.741140556500000,-97.434992222299996,South Corpus Christi Bay,img/heliports.png
+-1,,,,Shoreline Hospital,Pr,San Angelo,,0,No,27.777833333600000,-97.394374999799993,South Corpus Christi Bay,img/heliports.png
+-1,,,,Christus Spohn Hospital Memorial,Pu,San Angelo,,0,No,27.779750000800000,-97.414158889000007,South Corpus Christi Bay,img/heliports.png

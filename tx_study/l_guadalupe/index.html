@@ -1,0 +1,434 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>TSPWS | Lower Guadalupe</title>
+<!--STYLES-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<!--Leaflet CSS-->
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display|Overlock" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+<!--leaflet Cluster-->
+<link data-require="leaflet.markercluster@1.0.4" data-semver="1.0.4" rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.4/dist/MarkerCluster.css" />
+<link data-require="leaflet.markercluster@1.0.4" data-semver="1.0.4" rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.4/dist/MarkerCluster.Default.css" />
+<!--leaflet styles plugins-->
+<link rel="stylesheet" href="assets/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.css">
+<link rel="stylesheet" href="assets/css/Control.MiniMap.css" />
+<link rel="stylesheet" href="assets/css/L.Control.Basemaps.css" />
+<!--
+	  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon-76.png">
+	  <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon-120.png">
+	  <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon-152.png">
+	  <link rel="icon" sizes="196x196" href="assets/img/favicon-196.png">
+	  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+-->
+<style>
+html,body,#container{font-family: 'Playfair Display', serif;height: 100%;width: 100%;overflow: hidden;box-shadow: 0 0 10px rgba(0,0,0,0.5);}
+a:hover{color:rgba(31,56,100,1.0);}
+#sidebar{overflow-y: scroll;color: rgba(31,56,100,1.0);}
+.huc10labelClass {
+	background: transparent;
+	border: transparent;
+	color: rgba(255,255,255,1.0);
+	font-size: 16px;
+	opacity: 0.5;
+	white-space: nowrap;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.0);
+    letter-spacing: 5px;
+    font-family: 'Anton', sans-serif;
+	text-shadow: -1px 0 black, 0 1px black,  1px 0 black, 0 -1px black;
+    -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 3s; /* Firefox < 16 */
+        -ms-animation: fadein 3s; /* Internet Explorer */
+         -o-animation: fadein 3s; /* Opera < 12.1 */
+            animation: fadein 3s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+.huc12labelClass {
+	background: transparent;
+	border: transparent;
+	color: rgba(26,26,116,1.00);
+	font-size: 12px;
+	font-style: oblique;
+    word-wrap: break-word;
+    font-weight: 500;
+/*	opacity: 0.5;*/
+/*	white-space: nowrap; */
+	box-shadow: 0 1px 1px rgba(0,0,0,0.0);
+/*    letter-spacing: 5px;*/
+    font-family: Constantia, "Lucida Bright", "DejaVu Serif", Georgia, "serif";
+	text-shadow: -1px 0 white, 0 1px white,  1px 0 white, 0 -1px white;
+    -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 3s; /* Firefox < 16 */
+        -ms-animation: fadein 3s; /* Internet Explorer */
+         -o-animation: fadein 3s; /* Opera < 12.1 */
+            animation: fadein 3s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+.watershedtoolClass {
+	background: transparent;
+	border: transparent;
+	text-shadow: -1.5px 0 black, 0 1.5px black,  1.5px 0 black, 0 -1.5px black;
+	color: cyan;
+	font-size: 14px;
+	white-space: nowrap;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.0);
+	font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", "monospace";
+}
+.leaflet-marker-icon span {
+	font-size: 24px;
+	font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif";
+	color: white;
+	text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
+}
+h1, h2, h3, h4, h5, h6 {
+	color: rgba(0,81,135,1.0);
+}
+.dropdown {
+	color: white;
+}
+button {
+	position: relative;
+}
+#home-btn:link{color:gray;}#about-btn:link{color:gray;}#toolsDrop:link{color:gray;}#list-btn:link{color:gray;}
+.btn-lg{margin-bottom:15%;margin-left:20%;}
+.selected{background-color:white;}
+.btn-md{margin:2.5%;}
+#waterShed{border-style: solid;}
+#soils{border-style: solid;}
+#demo{border-style: solid;}
+#ci_sectors{border-style: solid;}
+#section1{}
+#section2{}
+#section3{}
+#section4{}
+.section_tray{position:absolute;bottom:4%;left:0%;z-index:800;}
+.section_btn{border-radius:90%;padding:0.5%;}
+.not_selected{display:none;}
+.not_selectedBtn{opacity:0.5;}
+
+</style>
+</head>
+
+<body>
+<!--<button id="hider">hide</button><button id="shower">show1</button><button id="Button1">show2</button><button id="Button2">show3</button>-->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <div class="navbar-icon-container"> <a href="javascript:void(0)" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a> <a href="javascript:void(0)" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a> </div>
+      <a class="navbar-brand" href="javascript:void(0)">Texas Strategic Phased Watershed Study (TSPWS) | Lower Guadalupe</a> </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="http://r6gis.fema.net/tx_study" data-toggle="collapse"data-target=".navbar-collapse.in" id="home-btn"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a></li>
+        <li><a href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;About</a></li>
+        <!-- <li class="dropdown"> <a id="toolsDrop" href="javascript:void(0)" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe white"></i>&nbsp;&nbsp;Tools <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
+            <li><a href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse.in" id="legend-btn"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;Show Legend</a></li>
+          </ul>
+        </li> -->
+        <li class="hidden-xs"><a href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;Open/Close Side Bar</a></li>
+      </ul>
+    </div>
+    <!--/.navbar-collapse -->
+  </div>
+</div>
+<div id="container">
+<div id="sidebar">
+
+	<div id="waterShed" style="padding:5%;">
+	<span style="font-size:21px;"><b>Harvey Flood Related Datasets and Watershed Characteristics</b><br><br></span>
+	<ul>
+<h4><b>Watersheds</b></h4>
+<p>A watershed is an area or ridge of land that separates waters flowing to different rivers, basins, or seas. <br><br>Source: <a target="_blank" href="https://www.usgs.gov/core-science-systems/ngp/national-hydrography/about-national-hydrography-products">USGS</a></p><br><img height=125 width=150 src="./img/legend_watershed.png"><button id="waterShedbtn" class="btn-lg">Watershed</button>
+<h4><b>Special Flood Hazard Area (SFHA)</b></h4>
+<p>A Special Flood Hazard Area (SFHA) is an area identified by the United States Federal Emergency Management Agency (FEMA) as an area with a special flood or mudflow, and/or flood related erosion hazard, as shown on a flood hazard boundary map or flood insurance rate map.<br><br>Source: <a href="https://msc.fema.gov/">FEMA Flood Map Service Center</a></p><br><img height=125 width=150 src="./img/legend_sfha.png"><button id="sfhabtn" class="btn-lg">SFHA</button>
+<h4><b>Harvey Flood Extent</b></h4>
+<p>This is a preliminary product, and is subject to updates as new data becomes available. This flood inundation product is derived from a wide range of federal, state, local, and private sector resources. High water marks were provided from the United States Geological Survey (USGS), Harris County Flood Control District (USGS), Federal Contractors, and FEMA's Recovery Division to compile a collaborative tapestry of known depth found throughout the impacted areas. <br><br>Source:<a target="_blank" href="https://fema.maps.arcgis.com/apps/MapJournal/index.html?appid=70204cf2762d45409553fd9642700b7f"> Hurricane Harvey Mitigation Portfolio</a></p><br><img height=125 width=150 src="./img/harvey_extent.png"><button id="harvey_fldbtn" class="btn-lg">Harvey Flood<br> Extent</button>
+<h4><b>Concentration of National Flood Insurance Program (NFIP) claims</b></h4>
+<p>This layer uses a color gradient to show the concentration of National Flood Insurance Program (NFIP) claims within the watershed.</p><img height=125 width=125 src="./img/legend_nfip_claims.png"><button id="nfip_claimsbtn" class="btn-lg">NFIP Claims</button><br>
+<h4><b>Concentration of IA-Real Property FEMA Verified Loss claims</b></h4>
+<p>This layer uses a color gradient to show the concentration of IA-Real Property FEMA Verified Loss claims.</p><img height=125 width=125 src="./img/legend_ia_verfied_dmg.png"><button id="iaAppbtn" class="btn-lg">IA Applicants</button>
+<h4><b>NOAA Remote Sensing for Hurricane Harvey</b></h4>
+<p>This imagery was acquired by the NOAA Remote Sensing Division to support NOAA homeland security and emergency response requirements. In addition, it will be used for ongoing research efforts for testing and developing standards for airborne digital imagery.<br><br>Source: <a href="https://storms.ngs.noaa.gov/">Emergency Response Imagery | National Geodetic Survey</a></p>		<button id="noaaImgbtn" class="btn-lg">Harvey Imagery 8/29-9/02</button>
+
+	</ul>
+	</div>
+	<div id="soils"  class="not_selected" style="padding:5%;margin-top:-5%;">
+	<span style="font-size:24px"><br><b>Geology and Soil Series</b></span><br><br>
+	<ul>
+	<p>Flooding is the temporary inundation of an area caused by overflowing streams, by runoff from adjacent slopes, or by tides. Water standing for short periods after rainfall or snowmelt is not considered flooding, and water standing in swamps and marshes is considered ponding rather than flooding.
+  <br><br>Frequency is expressed as none, very rare, rare, occasional, frequent, and very frequent.<br><br>Source: <a target="_blank" href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=2ahUKEwisk8no6IDfAhWmo4MKHUShC2YQFjAAegQICRAC&url=https%3A%2F%2Fwww.nrcs.usda.gov%2Fwps%2FPA_NRCSConsumption%2Fdownload%3Fcid%3Dnrcseprd1296627%26ext%3Dpdf&usg=AOvVaw26-PTcbN6i_-TxsEjb8-Xy">Flooding Frequency Class - NRCS - USDA</a></p>
+	<img height=120 width=200 src="./img/legend_frequ_class.png"><button id="fldFreqClassbtn" class="btn-lg">Flood Frequency</button><br>
+	<h4><b>Drainage Class</b></h4>
+	<p>Drainage class (natural)" refers to the frequency and duration of wet periods in conditions similar to those under which the soil formed. Alterations of the water regime by human activities, either through drainage or irrigation, are not a consideration unless they have significantly changed the morphology of the soil. Seven classes of natural soil drainage are recognized-excessively drained, somewhat excessively drained, well drained, moderately well drained, somewhat poorly drained, poorly drained, and very poorly drained. <br><br>Source: <a target="_blank" href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=2ahUKEwji57LG5oDfAhWD24MKHUS3D4gQFjAAegQICxAC&url=https%3A%2F%2Fwww.nrcs.usda.gov%2Fwps%2FPA_NRCSConsumption%2Fdownload%3Fcid%3Dnrcseprd1296622%26ext%3Dpdf&usg=AOvVaw0D3S7Kz0YHrsu5ANotwIvc">Drainage Class - NRCS - USDA</a></p><img height=120 width=225 src="./img/legend_soil_drainage.png"><button id="drainClassbtn" class="btn-lg">Drainage Class</button><br>
+	<h4><b>Hydrologic Soil Groups</b></h4>
+	<p>Hydrologic soil groups are based on estimates of runoff potential. Soils are assigned to one of four groups according to the rate of water infiltration when the soils are not protected by vegetation, are thoroughly wet, and receive precipitation from long-duration storms.<br><br>Source: <a href="https://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/office/ssr12/tr/?cid=nrcs144p2_027279">USDA | Hydrologic Soil Groups</a></p><img height=120 width=175 src="./img/legend_hydrologic.png"><button id="hydrogrpbtn" class="btn-lg">Hydrologic Group <br>- Dominant Conditions</button><br>
+	<h4><b>Hydric Soil Rating</b></h4>
+	<p>A hydric soil is a soil that formed under conditions of saturation, flooding, or ponding long enough during the growing season to develop anaerobic conditions in the upper part. Hydric soils along with hydrophytic vegetation and wetland hydrology are used to define wetlands. <br><br>Source: <a target="_blank" href="https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/use/hydric/">Natural Resources Conservation Service Soils</a></p><img height=100 width=150 src="./img/legend_hydric.png"><button id="hydricbtn" class="btn-lg">Hydric Rating</button><br>
+		<h4><b>Geology</b></h4>
+	<p>Source: <a href="https://txpub.usgs.gov/txgeology/">USGS | Texas Geology</a><br><br><img height=150 width=300 src="./img/legend_geology.png"><button id="geologybtn" class="btn-lg">Geology</button><br>
+	<!-- <button id="parksbtn" class="btn-lg">Forest Parks</button> -->
+	</ul>
+	</div>
+	<div id="demo" class="not_selected" style="padding:5%;">
+	<span style="font-size:24px"><b>Demographics and Land Use</b></span><br><br>
+	<ul>
+	<h4><b>Population (Night)</b></h4>
+    <p>ORNL’s LandScan™ is a community standard for global population distribution data.  At approximately 1 km (30″ X 30″) spatial resolution, it represents an ambient population (average over 24 hours) distribution.  The database is refreshed annually and released to the broader user community around October.<br><br>Source: <a target="_blank" href="https://landscan.ornl.gov/">Oak Ridge National Laboratory</a></p><img height=150 width=175 src="./img/legend_pop.png"><button id="pop1kmbtn" class="btn-lg">Population</button><br>
+	<h4><b>Social Vulnerability Index (SoVI)</b></h4>
+	<p>The Social Vulnerability Index (SoVI) describes a community’s resilience to adverse impacts such as natural or human-caused disasters. Reducing SoVI decreases human suffering and economic loss.<br>Source: <a target="_blank" href="http://artsandsciences.sc.edu/geog/hvri/sovi%C2%AE-0">SoVI®</a></p><img height=125 width=225 src="./img/legend_sovi.png"><button id="sovibtn" class="btn-lg">SOVI</button><br>
+	<h4><b>Land Cover</b></h4>
+	<p>he Multi-Resolution Land Characteristics (MRLC) consortium is a group of federal agencies who coordinate and generate consistent and relevant land cover information at the national scale for a wide variety of environmental, land management, and modeling applications.<br><br> Source: <a href="https://catalog.data.gov/dataset/national-land-cover-database-nlcd-land-cover-collection">National Land Cover Database 2011</a></p>
+	<img height=200 width=350 src="./img/legend_landcover.png"><button id="lndcoverbtn" class="btn-lg">Land Cover</button>
+	</ul>
+	</div>
+	<div id="ci_sectors" class="not_selected" style="padding:5%;">
+	<span style="font-size:24px"><b>Critical Infrastructure Sectors</b></span><br><br>
+	<p>There are 16 critical infrastructure sectors whose assets, systems, and networks, whether physical or virtual, are considered so vital to the United States that their incapacitation or destruction would have a debilitating effect on security, national economic security, national public health or safety, or any combination thereof.<a target="_blank" href="https://obamawhitehouse.archives.gov/the-press-office/2013/02/12/presidential-policy-directive-critical-infrastructure-security-and-resil"> Presidential Policy Directive 21 (PPD-21): Critical Infrastructure Security and Resilience</a> advances a national policy to strengthen and maintain secure, functioning, and resilient critical infrastructure. This directive supersedes <a target="_blank" href="https://www.dhs.gov/homeland-security-presidential-directive-7">Homeland Security Presidential Directive 7.</a><br><br>Source: <a target="_blank" href="https://hifld-geoplatform.opendata.arcgis.com/">Homeland Infrastructure Foundation-Level Data (HIFLD)</a></p>
+
+	<div class="row">
+	<div class="col-md-6 energy">
+	<h5><b>Energy Sector</b></h5>
+	<button id="elecGroup1"class="btn-md">Substations</button><img height=20 width=20 src="./img/substations.png"><br>
+	<button id="elecGroup2"class="btn-md">Generator Units</button><img height=25 width=25 src="./img/gen_units.png"><br>
+	<button id="elecGroup3"class="btn-md">Power Plants</button><img height=20 width=20 src="./img/power_plants.png">
+	</div>
+	<div class="col-md-6 chemical">
+	<h5><b>Chemical Sector</b></h5>
+	<button id="chemGroup1"class="btn-md">Toxic Substances Control <br>Act Facilities</button><img height=20 width=20 src="./img/tsca.png">
+
+	</div>
+</div>
+	<div class="row">
+	<div class="col-md-6 emerg">
+	<h5><b>Emergency Service Sector</b></h5>
+		<button id="emGroup1"class="btn-md">Local EOCs</button><img height=20 width=20 src="./img/eoc.png"><br>
+		<button id="emGroup2"class="btn-md">Police Stations</button><img height=20 width=20 src="./img/police.png"><br>
+		<button id="emGroup3"class="btn-md">Fire Stations</button><img height=20 width=20 src="./img/fire.png"><br>
+		<button id="emGroup4"class="btn-md">EMS</button><img height=20 width=20 src="./img/ems.png"><br>
+		<button id="emGroup5"class="btn-md">Hospitals</button><img height=20 width=20 src="./img/hospitals.png"><br>
+		<button id="emGroup6"class="btn-md">Shelters</button><img height=20 width=20 src="./img/shelters.png"><br>
+		<button id="emGroup7"class="btn-md">Evac Route</button>  <svg style="padding-top:5%;"  width='150' height='15'><rect width='100' height='5' style='fill:darkblue;'/></svg><br>
+</div>
+<div class="col-md-6 emerg">
+<h5><b>Transportation Sector</b></h5>
+	<button id="transGroup4"class="btn-md">Airport</button><img height=15 width=25 src="./img/airports.png"><br>
+	<button id="transGroup5"class="btn-md">Ferry</button><img height=25 width=25 src="./img/ferry.png"><br>
+	<button id="transGroup6"class="btn-md">Secondary Bridges</button><img height=15 width=25 src="./img/s_bridge.png"><br>
+	<button id="transGroup7"class="btn-md">Heliports</button><img height=25 width=25 src="./img/heliport.png"><br>
+	<button id="transGroup8"class="btn-md">Major Ports</button><img height=25 width=25 src="./img/ports.png"><br>
+	<button id="transGroup9"class="btn-md">Primary Bridges</button><img height=15 width=25 src="./img/p_bridge.png"><br>
+	</div>
+</div>
+	<div class="row">
+<div class="col-md-6 emerg">
+<h5><b>Government Facilities Sector</b></h5>
+	<button id="govGroup1"class="btn-md">Public Schools</button><img  height=20 width=20 src="./img/public_schools.png">
+	<button id="govGroup2"class="btn-md">Private Schools</button><img  height=20 width=20 src="./img/private_schools.png">
+	<button id="govGroup3"class="btn-md">Government Buildings</button><img  height=20 width=20 src="./img/private_schools.png">
+	<button id="govGroup4"class="btn-md">Supplemental Colleges</button><img  height=20 width=20 src="./img/supplemental_colleges.png">
+	</div>
+	<div class="col-md-6 emerg">
+	<h5><b>Communications Sector</b></h5>
+  <button id="comGroup1"class="btn-md">Celluar Tower</button><img  height=20 width=20 src="./img/cellular.png"><br>
+	<button id="comGroup2"class="btn-md">AM Tower</button><img  height=24 width=20 src="./img/am_towers.png"><br>
+	<button id="comGroup3"class="btn-md">FM Tower</button><img  height=24 width=20 src="./img/fm_towers.png"><br>
+	<button id="comGroup4"class="btn-md">Antennas over 200 ft. tall</button><img  height=20 width=20 src="./img/antenna.png">
+</div>
+	</div>
+	<div class="row">
+<div class="col-md-6 emerg">
+		<h5><b>Water and Wastewater Systems Sector</b></h5>
+	<button id="wastGroup1"class="btn-md">Waste Water Treatment Plants</button><img  height=20 width=20 src="./img/wastewater.png"><br>
+	<button id="wastGroup2"class="btn-md">Landfills</button><img  height=20 width=20 src="./img/landfills.png">
+</div>
+</div>
+	</div>
+</div>
+  <div id="map">
+		<div class="col-md-12 section_tray">
+		<span id="section1" class="section_btn not_selectedBtn"><a href="javascript:void(0)" data-placement="right" data-toggle="tooltip" title="Harvey Flood Related Datasets and Watershed Characteristics"><img height=50 width=50 src="./img/section1.png"></a>
+</span><br>
+		<span id="section2"  class="section_btn not_selectedBtn"><a href="javascript:void(0)" data-placement="right" data-toggle="tooltip" title="Geology and Soil Series"><img height=50 width=50 src="./img/section2.png"></a></span><br>
+		<span id="section3"  class="section_btn not_selectedBtn"><a href="javascript:void(0)" data-placement="right" data-toggle="tooltip" title="Demographics and Land Use"><img height=50 width=50 src="./img/section3.png"></a></span><br>
+		<span id="section4"  class="section_btn not_selectedBtn"><a href="javascript:void(0)" data-placement="right" data-toggle="tooltip" title="Critical Infrastructure Sectors"><img height=50 width=50 src="./img/section4.png"></a></span>
+	</div>
+</div>
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Texas Strategic Phased Watershed Study - Aransas Bay</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs nav-justified" id="aboutTabs">
+          <li class="active"><a href="#about" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;About the project</a></li>
+          <li><a href="#disclaimer" data-toggle="tab"><i class="fa fa-exclamation-circle"></i>&nbsp;Disclaimer</a></li>
+        </ul>
+        <div class="tab-content" id="aboutTabsContent">
+          <div class="tab-pane fade active in" id="about">
+            <div class="panel panel-primary">
+              <div class="panel-heading">Features</div>
+              <p>Steven Robinson<br>
+                FEMA, HPA, BUilding Science, IM-C</p>
+            </div>
+          </div>
+          <div id="disclaimer" class="tab-pane fade text-danger">
+            <p>The data provided on this site is for informational and planning purposes only.</p>
+            <p>Absolutely no accuracy or completeness guarantee is implied or intended. All information on this map is subject to such variations and corrections as might result from a complete title search and/or accurate field survey.</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="legendModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Map Legend</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title text-primary" id="feature-title"></h4>
+      </div>
+      <div class="modal-body" id="feature-info"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="attributionModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"> Created by <a href="mailto: Derek.Duskin@fema.dhs.gov">Derek Duskin</a>, Steven Robinson, Jessica Dozier and William Henry Snow</h4>
+      </div>
+      <div class="modal-body">
+        <div id="attribution"></div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+<!--leaflet plugins-->
+<!--<script data-require="leaflet.markercluster@1.0.4" data-semver="1.0.4" src="assets/js/leaflet.markercluster.js"></script> -->
+<script src="assets/js/Control.MiniMap.js"></script>
+<!--<script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script> -->
+<script src="assets/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.js"></script>
+<script src="assets/js/wms.js"></script>
+<script src="assets/js/mapbox.omnivore.js"></script>
+<script src="assets/js/L.Control.Basemaps-min.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/layers.js"></script>
+<script src="assets/js/ci_sectors.js"></script>
+<script src="assets/js/scroll_btn_2.js"></script>
+</body>
+</html>

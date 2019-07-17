@@ -1,0 +1,8 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,BUCKEYE,,,,,0,No,28.867986745000000,-96.015526042000005,,img/substations.png
+-1,,,LANE CITY,,,,,0,No,29.194920956000001,-96.015576319999994,,img/substations.png
+-1,,,WHARTON,,,,,0,No,29.289229256999999,-96.070355594000006,,img/substations.png
+-1,,,WHARTON,,,,,0,No,29.313626796000001,-96.107627343999994,,img/substations.png
+-1,,,WHARTON,,,,,1,Yes,29.324698819000002,-96.118578188000001,,img/substations.png
+-1,,,GLIDDEN,,,,,0,No,29.696864214000001,-96.571958547999998,,img/substations.png
+-1,,,COLUMBUS,,,,,1,Yes,29.698411844999999,-96.542895337000004,,img/substations.png

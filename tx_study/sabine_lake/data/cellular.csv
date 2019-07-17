@@ -1,0 +1,23 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,,,,,,1,Yes,29.726405239200002,-93.897806527100002,Sabine Lake,img/cellular.png
+-1,,,,,,,,1,Yes,29.726705239299999,-93.885606524300002,Sabine Lake,img/cellular.png
+-1,,,,,,,,1,Yes,29.726905239000001,-93.885806524299994,Sabine Lake,img/cellular.png
+-1,,,,,,,,1,Yes,29.726905239000001,-93.885806524299994,Sabine Lake,img/cellular.png
+-1,,,,,,,,1,Yes,29.726905239000001,-93.885806524299994,Sabine Lake,img/cellular.png
+-1,,,,,,,,0,No,29.815605242200000,-94.379406656699999,Sabine Lake,img/cellular.png
+-1,,,,,,,,0,No,29.849205256400001,-94.143606596799998,Sabine Lake,img/cellular.png
+-1,,,,,,,,0,No,29.858305252299999,-94.348606650600004,Sabine Lake,img/cellular.png
+-1,,,,,,,,0,No,29.858305252299999,-94.348606650600004,Sabine Lake,img/cellular.png
+-1,,,,,,,,0,No,29.858605252299999,-94.348906651099995,Sabine Lake,img/cellular.png
+-1,,,,,,,,0,No,29.884705270800001,-93.933306543000000,Sabine Lake,img/cellular.png
+-1,,,,,,,,1,Yes,29.930305269300000,-94.274206634600006,Sabine Lake,img/cellular.png
+-1,,,,,,,,1,Yes,29.934205280099999,-93.959206551899996,Sabine Lake,img/cellular.png
+-1,,,,,,,,0,No,29.939405282100001,-93.940806547700006,Sabine Lake,img/cellular.png
+-1,,,,,,,,1,Yes,29.941105283700001,-93.896706536400004,Sabine Lake,img/cellular.png
+-1,,,,,,,,0,No,29.955605275800000,-94.243106627100005,Sabine Lake,img/cellular.png
+-1,,,,,,,,0,No,29.967205285700000,-94.021406569600003,Sabine Lake,img/cellular.png
+-1,,,,,,,,0,No,30.040805298900001,-94.070306585799997,Sabine Lake,img/cellular.png
+-1,,,,,,,,0,No,30.046905291800002,-94.332806654699993,Sabine Lake,img/cellular.png
+-1,,,,,,,,0,No,30.048605299399998,-94.122206599500004,Sabine Lake,img/cellular.png
+-1,,,,,,,,0,No,30.066705300900001,-94.188606617600001,Sabine Lake,img/cellular.png
+-1,,,,,,,,1,Yes,30.120605312500000,-94.159706612999997,Sabine Lake,img/cellular.png

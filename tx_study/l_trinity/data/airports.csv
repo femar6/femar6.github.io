@@ -1,0 +1,8 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,54T,Chambers,Baytown,Rwj Airpark,Pr,Montgomery County,Lower Trinity,0,No,29.761894445399999,-94.847938889299996,Lower Trinity,img/airports.png
+-1,4TX0,Chambers,Mont Belvieu,Slack,Pr,Montgomery County,Lower Trinity,0,No,29.863554167499998,-94.834367222799997,Lower Trinity,img/airports.png
+-1,3TE1,Liberty,Dayton,Gum Island,Pr,Montgomery County,Lower Trinity,0,No,29.951607778100001,-94.904369166300000,Lower Trinity,img/airports.png
+-1,3TS7,Liberty,Dayton,Pavlat,Pr,Montgomery County,Lower Trinity,1,Yes,30.021050556100001,-94.946036944100001,Lower Trinity,img/airports.png
+-1,XS58,Liberty,Raywood,Tri-County Air Service,Pr,Montgomery County,Lower Trinity,0,No,30.044103889599999,-94.705753889199997,Lower Trinity,img/airports.png
+-1,T78,Liberty,Liberty,Liberty Muni,Pu,Montgomery County,Lower Trinity,0,No,30.077805556000001,-94.698555555599995,Lower Trinity,img/airports.png
+-1,3TE9,Liberty,Dayton,Pinoak,Pr,Montgomery County,Lower Trinity,0,No,30.105770556700001,-94.958815833800003,Lower Trinity,img/airports.png

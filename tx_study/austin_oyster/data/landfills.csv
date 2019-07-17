@@ -1,0 +1,3 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,BRAZORIA,ANGLETON,,,,,0,No,29.089646380000001,-95.366557069999999,Austin-Oyster,img/landfills.png
+-1,,FORT BEND,SUGAR LAND,,,,,0,No,29.666448740000000,-95.667309709999998,Austin-Oyster,img/landfills.png

@@ -1,0 +1,4 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,VICTORIA,VICTORIA,,,,Lower Guadalupe,0,No,28.800279000000000,-97.008505400000004,Lower Guadalupe,img/eoc.png
+-1,,VICTORIA,VICTORIA,,,,Lower Guadalupe,0,No,28.804618999999999,-97.003341899999995,Lower Guadalupe,img/eoc.png
+-1,,DE WITT,CUERO,,,,Lower Guadalupe,0,No,29.092397999999999,-97.288440300000005,Lower Guadalupe,img/eoc.png

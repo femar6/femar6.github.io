@@ -1,0 +1,3 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,CLEVELAND,,,,SECURITY,0,No,30.322992547999998,-95.268504508000007,East Fork San Jacinto,img/power_plants.png
+-1,,,SHEPHERD,,,,SAN JACINTO COUNTY PEAKING FACILITY,0,No,30.419300000000000,-95.011799999999994,East Fork San Jacinto,img/power_plants.png

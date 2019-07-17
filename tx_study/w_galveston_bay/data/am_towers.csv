@@ -1,0 +1,5 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,GALVESTON,,,,West Galveston Bay,0,No,29.315300000000001,-94.805300000000003,West Galveston Bay,img/am_towers.png
+-1,,,ALVIN,,,,West Galveston Bay,0,No,29.380800000000001,-95.237499999999997,West Galveston Bay,img/am_towers.png
+-1,,,TEXAS CITY,,,,West Galveston Bay,0,No,29.417500000000000,-94.936700000000002,West Galveston Bay,img/am_towers.png
+-1,,,LEAGUE CITY,,,,West Galveston Bay,0,No,29.426400000000001,-95.133300000000006,West Galveston Bay,img/am_towers.png

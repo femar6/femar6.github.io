@@ -1,0 +1,3 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,4TE8,Jasper,Evadale,Ben Bruce Memorial Airpark,Pr,Montgomery County,Lower Neches,0,No,30.321041667199999,-94.073513610500001,Lower Neches,img/airports.png
+-1,JAS,Jasper,Jasper,Jasper County-Bell Field,Pu,Montgomery County,Lower Neches,0,No,30.885694444999999,-94.034944444100006,Lower Neches,img/airports.png

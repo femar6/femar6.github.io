@@ -1,0 +1,9 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,,St. Luke's Hospital At The Village,Pr,Montgomery County,,1,Yes,29.990069444900001,-95.568069445199995,Spring,img/heliports.png
+-1,,,,Goodson Honda,Pr,Montgomery County,,0,No,30.000000000499998,-95.425833333900002,Spring,img/heliports.png
+-1,,,,Houston Northwest Medical Center,Pr,Montgomery County,,0,No,30.020277778600001,-95.441222222700006,Spring,img/heliports.png
+-1,,,,Strack Farms,Pr,Montgomery County,,0,No,30.032997778100000,-95.501328888700002,Spring,img/heliports.png
+-1,,,,H.S.I.,Pr,Montgomery County,,0,No,30.061000000500002,-95.557777778399995,Spring,img/heliports.png
+-1,,,,Tomball Rgnl Medical Center,Pr,Montgomery County,,0,No,30.086734723500001,-95.621402222200004,Spring,img/heliports.png
+-1,,,,Helicopter Express,Pr,Montgomery County,,0,No,30.095217778300000,-95.544941389200005,Spring,img/heliports.png
+-1,,,,Memorial Hospital-The Woodlands,Pr,Montgomery County,,0,No,30.174472223500000,-95.452986111100003,Spring,img/heliports.png

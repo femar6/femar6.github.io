@@ -1,0 +1,6 @@
+severity,descriptio,location,lat,lng,logo_url
+critical,Closed between Commercial St and Johnson Ave - Closed due to flooding.,Intersection of Commercial St and Commercial St,27.90241,-97.14615,https://data.femadata.com/Region6/tspws/img/logo/closed.png
+critical,Closed between Johnson Ave and Commercial St - Closed due to flooding.,Intersection of Commercial St and Johnson Ave,27.88789,-97.1587,https://data.femadata.com/Region6/tspws/img/logo/closed.png
+critical,Closed past Aransas Pass - Closed due to flooding.,Intersection of State Highway 188 and Aransas Pass,27.97793,-97.14134,https://data.femadata.com/Region6/tspws/img/logo/closed.png
+critical,Closed approaching Aransas Pass - Closed due to flooding., ,28.031308,-97.088975,https://data.femadata.com/Region6/tspws/img/logo/closed.png
+critical,Closed past Aransas Pass - Closed due to flooding.,Intersection of Rockport and Aransas Pass,28.01838,-97.12046,https://data.femadata.com/Region6/tspws/img/logo/closed.png

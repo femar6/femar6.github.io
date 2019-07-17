@@ -1,0 +1,5 @@
+NAME,CITY,STATE,ZIPCODE,LINES,MAX_VOLT,MIN_VOLT,LATITUDE,LONGITUDE,NAME_12,In_SFHA,lat,lng,logo_url
+UNKNOWN306110,NOT AVAILABLE,TX,78336,1,69,-999999,27.89995604,-97.14538681,Aransas Bay,No,27.89995604,-97.14538681,https://data.femadata.com/Region6/tspws/img/logo/Electric_Substation.PNG
+UNKNOWN305698,INGLESIDE,TX,78374,6,138,69,27.90027016,-97.24678986,Aransas Bay,No,27.90027016,-97.24678986,https://data.femadata.com/Region6/tspws/img/logo/Electric_Substation.PNG
+UNKNOWN305729,ARANSAS PASS,TX,78336,2,138,-999999,27.92665657,-97.18157108,Aransas Bay,Yes,27.92665657,-97.18157108,https://data.femadata.com/Region6/tspws/img/logo/Electric_Substation.PNG
+UNKNOWN305728,ESTES,TX,78336,3,138,-999999,27.9777901,-97.14186547,Aransas Bay,No,27.9777901,-97.14186547,https://data.femadata.com/Region6/tspws/img/logo/Electric_Substation.PNG

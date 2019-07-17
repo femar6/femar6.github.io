@@ -1,0 +1,4 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,COLORADO,GARWOOD,,,,,0,No,29.449326500000002,-96.395913699999994,Lower Colorado,img/fire.png
+-1,,COLORADO,EAGLE LAKE,,,,,0,No,29.589308500000001,-96.333062799999993,Lower Colorado,img/fire.png
+-1,,COLORADO,COLUMBUS,,,,,0,No,29.705605800000001,-96.542145199999993,Lower Colorado,img/fire.png

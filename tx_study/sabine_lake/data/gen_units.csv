@@ -1,0 +1,29 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,"Port Arthur, TX",,,,GN26,0,No,29.860251999999999,-93.969581000000005,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,GN31,0,No,29.860251999999999,-93.969581000000005,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,GN32,0,No,29.860251999999999,-93.969581000000005,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,GN33,0,No,29.860251999999999,-93.969581000000005,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,GN34,0,No,29.860251999999999,-93.969581000000005,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,GN35,0,No,29.860251999999999,-93.969581000000005,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,GN41,0,No,29.860251999999999,-93.969581000000005,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,GN42,0,No,29.860251999999999,-93.969581000000005,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,GN43,0,No,29.860251999999999,-93.969581000000005,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,GN44,0,No,29.860251999999999,-93.969581000000005,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,CC,0,No,29.860251999999999,-93.969581000000005,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,GEN1,0,No,29.868900000000000,-93.933920000000001,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,GEN2,0,No,29.880253000000000,-93.965455000000006,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,GEN3,0,No,29.880253000000000,-93.965455000000006,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,GEN4,0,No,29.880253000000000,-93.965455000000006,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,GEN5,0,No,29.880253000000000,-93.965455000000006,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,GEN6,0,No,29.880253000000000,-93.965455000000006,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,GEN7,0,No,29.880253000000000,-93.965455000000006,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,CC,0,No,29.880253000000000,-93.965455000000006,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,CC2,0,No,29.890447999999999,-93.957400000000007,Sabine Lake,img/gen_units.png
+-1,,,"Port Arthur, TX",,,,CC1,0,No,29.890447999999999,-93.957400000000007,Sabine Lake,img/gen_units.png
+-1,,,"Fannett, TX",,,,CC,0,No,29.973890000000001,-94.218294000000000,Sabine Lake,img/gen_units.png
+-1,,,"Fannett, TX",,,,3N80,0,No,29.973890000000001,-94.218294000000000,Sabine Lake,img/gen_units.png
+-1,,,"Nederland, TX",,,,WT,0,No,29.974764000000000,-93.992607000000007,Sabine Lake,img/gen_units.png
+-1,,,"Nederland, TX",,,,PV,0,No,29.974764000000000,-93.992607000000007,Sabine Lake,img/gen_units.png
+-1,,,"Port Neches, TX",,,,GCG2,0,No,29.978562000000000,-93.951573999999994,Sabine Lake,img/gen_units.png
+-1,,,"Port Neches, TX",,,,GCG1,0,No,29.978562000000000,-93.951573999999994,Sabine Lake,img/gen_units.png
+-1,,,"Beaumont, TX",,,,PV,0,No,30.106992000000002,-94.156121999999996,Sabine Lake,img/gen_units.png

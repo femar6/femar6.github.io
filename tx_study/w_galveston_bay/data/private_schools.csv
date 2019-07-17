@@ -1,0 +1,44 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,GALVESTON,GALVESTON,,,,,0,No,29.294527273000000,-94.794009091000007,West Galveston Bay,img/private_schools.png
+-1,,GALVESTON,GALVESTON,,,,,0,No,29.297226897000002,-94.790678693999993,West Galveston Bay,img/private_schools.png
+-1,,GALVESTON,GALVESTON,,,,,0,No,29.301771093999999,-94.792264712000005,West Galveston Bay,img/private_schools.png
+-1,,GALVESTON,GALVESTON,,,,,0,No,29.303234619000001,-94.804606767999999,West Galveston Bay,img/private_schools.png
+-1,,GALVESTON,HITCHCOCK,,,,,0,No,29.360543874000001,-95.047598038000004,West Galveston Bay,img/private_schools.png
+-1,,GALVESTON,TEXAS CITY,,,,,0,No,29.390502444999999,-94.922197883999999,West Galveston Bay,img/private_schools.png
+-1,,GALVESTON,TEXAS CITY,,,,,0,No,29.406361860000001,-94.936588534999999,West Galveston Bay,img/private_schools.png
+-1,,GALVESTON,DICKINSON,,,,,0,No,29.450863636000001,-95.073336363999999,West Galveston Bay,img/private_schools.png
+-1,,BRAZORIA,ALVIN,,,,,0,No,29.453134727999998,-95.228479629000006,West Galveston Bay,img/private_schools.png
+-1,,BRAZORIA,PEARLAND,,,,,0,No,29.475630197000001,-95.353310355999994,West Galveston Bay,img/private_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,,0,No,29.494903915999998,-95.149778621999999,West Galveston Bay,img/private_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,,0,No,29.506209090999999,-95.106627273000001,West Galveston Bay,img/private_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,,0,No,29.514272528999999,-95.078127773999995,West Galveston Bay,img/private_schools.png
+-1,,GALVESTON,FRIENDSWOOD,,,,,0,No,29.514438899999998,-95.190596013999993,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,FRIENDSWOOD,,,,,0,No,29.517296987000002,-95.163972525000005,West Galveston Bay,img/private_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,,0,No,29.525632000000002,-95.047420000000002,West Galveston Bay,img/private_schools.png
+-1,,GALVESTON,FRIENDSWOOD,,,,,0,No,29.527509090999999,-95.212836363999998,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,WEBSTER,,,,,0,No,29.536425864999998,-95.117622385999994,West Galveston Bay,img/private_schools.png
+-1,,GALVESTON,LEAGUE CITY,,,,,0,No,29.540264511000000,-95.061541680000005,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,WEBSTER,,,,,0,No,29.547800607999999,-95.115156435000003,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,HOUSTON,,,,,0,No,29.547849411000001,-95.089400019999999,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,HOUSTON,,,,,0,No,29.550289649000000,-95.116666813999998,West Galveston Bay,img/private_schools.png
+-1,,BRAZORIA,PEARLAND,,,,,0,No,29.550370630000000,-95.347227951999997,West Galveston Bay,img/private_schools.png
+-1,,BRAZORIA,PEARLAND,,,,,0,No,29.551357513999999,-95.366769812000001,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,FRIENDSWOOD,,,,,0,No,29.551742344000001,-95.185156089000003,West Galveston Bay,img/private_schools.png
+-1,,BRAZORIA,PEARLAND,,,,,0,No,29.553665037999998,-95.378420294999998,West Galveston Bay,img/private_schools.png
+-1,,BRAZORIA,PEARLAND,,,,,0,No,29.558803312999999,-95.332242062999995,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,HOUSTON,,,,,0,No,29.564061054000000,-95.283309117000002,West Galveston Bay,img/private_schools.png
+-1,,BRAZORIA,PEARLAND,,,,,0,No,29.567103150000001,-95.258157462000000,West Galveston Bay,img/private_schools.png
+-1,,BRAZORIA,PEARLAND,,,,,0,No,29.567158338999999,-95.276846614999997,West Galveston Bay,img/private_schools.png
+-1,,BRAZORIA,PEARLAND,,,,,0,No,29.567765301000001,-95.283530678000005,West Galveston Bay,img/private_schools.png
+-1,,BRAZORIA,PEARLAND,,,,,0,No,29.574516213999999,-95.407456574999998,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,HOUSTON,,,,,0,No,29.578458000000001,-95.122702000000004,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,HOUSTON,,,,,0,No,29.579793405000000,-95.151294566000004,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,HOUSTON,,,,,0,No,29.586716040999999,-95.189937555000000,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,WEBSTER,,,,,0,No,29.590060509000001,-95.175541546000005,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,HOUSTON,,,,,0,No,29.591271721999998,-95.119123525000006,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,HOUSTON,,,,,0,No,29.594348893999999,-95.112842541000006,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,HOUSTON,,,,,0,No,29.595882690000000,-95.228244328000002,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,HOUSTON,,,,,0,No,29.617340572000000,-95.229647459999995,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,PASADENA,,,,,0,No,29.632603626000002,-95.143571369000000,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,PASADENA,,,,,0,No,29.648680643999999,-95.123740687999998,West Galveston Bay,img/private_schools.png
+-1,,HARRIS,LA PORTE,,,,,0,No,29.654210153000001,-95.034192417000000,West Galveston Bay,img/private_schools.png

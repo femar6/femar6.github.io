@@ -1,0 +1,6 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,T84,Matagorda,Bay City,Fehmel Dusting Service,Pr,Montgomery County,East Matagorda Bay,0,No,28.952479722400000,-95.973569166299995,East Matagorda Bay,img/airports.png
+-1,BYY,Matagorda,Bay City,Bay City Muni,Pu,Montgomery County,East Matagorda Bay,0,No,28.973250001400000,-95.863444444400002,East Matagorda Bay,img/airports.png
+-1,7TS9,Matagorda,Bay City,Ag Aviation,Pr,Montgomery County,East Matagorda Bay,0,No,29.054143056400001,-95.962456389200000,East Matagorda Bay,img/airports.png
+-1,08XS,Brazoria,Old Ocean,Peterson,Pr,Montgomery County,East Matagorda Bay,1,Yes,29.108055556600000,-95.777500000200007,East Matagorda Bay,img/airports.png
+-1,94R,Wharton,Wharton,Lackey Aviation,Pr,Montgomery County,East Matagorda Bay,0,No,29.264395834500000,-96.007245833200002,East Matagorda Bay,img/airports.png

@@ -1,0 +1,9 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,NOME,,,,,0,No,30.010250423999999,-94.485419621000005,,img/substations.png
+-1,,,CHINA,,,,,0,No,30.046932792000000,-94.374137891000004,,img/substations.png
+-1,,,SOUR LAKE,,,,,1,Yes,30.134747219000001,-94.412029539000002,,img/substations.png
+-1,,,LOEB,,,,,0,No,30.156248973000000,-94.157231421000006,,img/substations.png
+-1,,,BEVIL OAKS,,,,,0,No,30.159541882999999,-94.236071409000004,,img/substations.png
+-1,,,LUMBERTON,,,,,0,No,30.303634049999999,-94.257202434999996,,img/substations.png
+-1,,,VOTAW,,,,,0,No,30.432990884999999,-94.582834910000003,,img/substations.png
+-1,,,VOTAW,,,,,0,No,30.433055192000001,-94.583283691000005,,img/substations.png

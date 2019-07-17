@@ -1,0 +1,8 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,5XS3,Jefferson,Winnie,Wilber Farms,Pr,Montgomery County,Sabine Lake,1,Yes,29.769665834000001,-94.261296944400002,Sabine Lake,img/airports.png
+-1,TE73,Jefferson,Winnie,Griffith Ranch,Pr,Montgomery County,Sabine Lake,0,No,29.858550000800001,-94.354075000500004,Sabine Lake,img/airports.png
+-1,7TE0,Jefferson,Fannett,Kelley Crop Service,Pr,Montgomery County,Sabine Lake,0,No,29.913828056100002,-94.208238610999999,Sabine Lake,img/airports.png
+-1,BPT,Jefferson,Beaumont/Port Arthur,Jack Brooks Rgnl,Pu,Montgomery County,Sabine Lake,0,No,29.950833334599999,-94.020694445000004,Sabine Lake,img/airports.png
+-1,88XS,Jefferson,Nome,Bogan & Fontenot,Pr,Montgomery County,Sabine Lake,0,No,30.019103611700000,-94.387689167000005,Sabine Lake,img/airports.png
+-1,XS27,Jefferson,Nome,Farm Air Service,Pr,Montgomery County,Sabine Lake,0,No,30.037714167600001,-94.396022777499994,Sabine Lake,img/airports.png
+-1,BMT,Jefferson,Beaumont,Beaumont Muni,Pu,Montgomery County,Sabine Lake,0,No,30.070204389800001,-94.215096722200002,Sabine Lake,img/airports.png

@@ -1,0 +1,25 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,,,,,,1,Yes,29.415500000000002,-94.713200000000001,East Galveston Bay,img/antenna.png
+-1,,,,,,,,1,Yes,29.458300000000001,-94.641599999999997,East Galveston Bay,img/antenna.png
+-1,,,,,,,,1,Yes,29.468200000000000,-94.616699999999994,East Galveston Bay,img/antenna.png
+-1,,,,,,,,1,Yes,29.491700000000002,-94.546899999999994,East Galveston Bay,img/antenna.png
+-1,,,,,,,,1,Yes,29.565000000000001,-94.400000000000006,East Galveston Bay,img/antenna.png
+-1,,,,,,,,1,Yes,29.565200000000001,-94.399900000000002,East Galveston Bay,img/antenna.png
+-1,,,,,,,,0,No,29.565700000000000,-94.388800000000003,East Galveston Bay,img/antenna.png
+-1,,,,,,,,0,No,29.568700000000000,-94.393400000000000,East Galveston Bay,img/antenna.png
+-1,,,,,,,,0,No,29.674700000000001,-94.613399999999999,East Galveston Bay,img/antenna.png
+-1,,,,,,,,0,No,29.697900000000001,-94.402600000000007,East Galveston Bay,img/antenna.png
+-1,,,,,,,,0,No,29.699600000000000,-94.373699999999999,East Galveston Bay,img/antenna.png
+-1,,,,,,,,0,No,29.715100000000000,-94.375500000000002,East Galveston Bay,img/antenna.png
+-1,,,,,,,,0,No,29.728899999999999,-94.633399999999995,East Galveston Bay,img/antenna.png
+-1,,,,,,,,0,No,29.734900000000000,-94.384799999999998,East Galveston Bay,img/antenna.png
+-1,,,,,,,,0,No,29.769100000000002,-94.684899999999999,East Galveston Bay,img/antenna.png
+-1,,,,,,,,1,Yes,29.789000000000001,-94.631900000000002,East Galveston Bay,img/antenna.png
+-1,,,,,,,,0,No,29.792200000000001,-94.570200000000000,East Galveston Bay,img/antenna.png
+-1,,,,,,,,0,No,29.792999999999999,-94.517200000000003,East Galveston Bay,img/antenna.png
+-1,,,,,,,,0,No,29.829300000000000,-94.497399999999999,East Galveston Bay,img/antenna.png
+-1,,,,,,,,0,No,29.831700000000001,-94.540199999999999,East Galveston Bay,img/antenna.png
+-1,,,,,,,,0,No,29.837700000000002,-94.481399999999994,East Galveston Bay,img/antenna.png
+-1,,,,,,,,0,No,29.844000000000001,-94.500600000000006,East Galveston Bay,img/antenna.png
+-1,,,,,,,,1,Yes,29.859100000000002,-94.559600000000003,East Galveston Bay,img/antenna.png
+-1,,,,,,,,0,No,29.936100000000000,-94.510900000000007,East Galveston Bay,img/antenna.png

@@ -1,0 +1,8 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,GALVESTON,PORT BOLIVAR,,,,East Galveston Bay,1,Yes,29.427665000000001,-94.689869999999999,East Galveston Bay,img/public_schools.png
+-1,,GALVESTON,HIGH ISLAND,,,,East Galveston Bay,0,No,29.563345436999999,-94.390664835999999,East Galveston Bay,img/public_schools.png
+-1,,GALVESTON,HIGH ISLAND,,,,East Galveston Bay,0,No,29.563392095000001,-94.390606332999994,East Galveston Bay,img/public_schools.png
+-1,,GALVESTON,HIGH ISLAND,,,,East Galveston Bay,0,No,29.563403898000001,-94.390616879000007,East Galveston Bay,img/public_schools.png
+-1,,CHAMBERS,ANAHUAC,,,,East Galveston Bay,0,No,29.763500877999999,-94.671959571000002,East Galveston Bay,img/public_schools.png
+-1,,CHAMBERS,ANAHUAC,,,,East Galveston Bay,0,No,29.770658198000000,-94.679343195000001,East Galveston Bay,img/public_schools.png
+-1,,CHAMBERS,ANAHUAC,,,,East Galveston Bay,0,No,29.770691781000000,-94.676058514000005,East Galveston Bay,img/public_schools.png

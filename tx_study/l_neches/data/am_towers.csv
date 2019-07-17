@@ -1,0 +1,6 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,BEAUMONT,,,,Lower Neches,0,No,30.045300000000001,-93.870800000000003,Lower Neches,img/am_towers.png
+-1,,,BEAUMONT,,,,Lower Neches,0,No,30.045600000000000,-93.868600000000001,Lower Neches,img/am_towers.png
+-1,,,NEDERLAND,,,,Lower Neches,0,No,30.061100000000000,-93.980000000000004,Lower Neches,img/am_towers.png
+-1,,,PORT NECHES,,,,Lower Neches,0,No,30.079200000000000,-93.951400000000007,Lower Neches,img/am_towers.png
+-1,,,JASPER,,,,Lower Neches,0,No,30.919699999999999,-93.970299999999995,Lower Neches,img/am_towers.png

@@ -1,0 +1,26 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,46TX,Brazoria,Angleton,Phillips Corporation,Pr,Montgomery County,Lower Brazos,1,Yes,29.150799722999999,-95.495220555299994,Lower Brazos,img/airports.png
+-1,XS21,Fort Bend,Damon,H & S Airfield,Pr,Montgomery County,Lower Brazos,0,No,29.331076945200000,-95.704669999800004,Lower Brazos,img/airports.png
+-1,4TA0,Fort Bend,Damon,Prairie Aire Field,Pr,Montgomery County,Lower Brazos,0,No,29.355520000100000,-95.663835833299999,Lower Brazos,img/airports.png
+-1,TA33,Fort Bend,Rosharon,Meyer Field,Pr,Montgomery County,Lower Brazos,0,No,29.358019722600002,-95.635223888599995,Lower Brazos,img/airports.png
+-1,XS25,Fort Bend,Needville,Flying C Ranch,Pr,Montgomery County,Lower Brazos,0,No,29.384686112499999,-95.683003055100002,Lower Brazos,img/airports.png
+-1,87TE,Fort Bend,Needville,Rose Field,Pr,Montgomery County,Lower Brazos,0,No,29.451908612099999,-95.865508333199998,Lower Brazos,img/airports.png
+-1,2H5,Fort Bend,Houston,Houston Fort Bend,Pr,Montgomery County,Lower Brazos,0,No,29.499166667400001,-95.898388889000003,Lower Brazos,img/airports.png
+-1,T54,Fort Bend,Rosenberg,Lane Airpark,Pr,Montgomery County,Lower Brazos,0,No,29.524405556500000,-95.775228056000003,Lower Brazos,img/airports.png
+-1,TA97,Fort Bend,Orchard,White Wing Ranch,Pr,Montgomery County,Lower Brazos,0,No,29.637458889200001,-95.968844444599995,Lower Brazos,img/airports.png
+-1,1XA7,Austin,Sealy,Gloster Aerodrome,Pr,Montgomery County,Lower Brazos,0,No,29.733391667900001,-96.059180555400005,Lower Brazos,img/airports.png
+-1,3TA2,Austin,Sealy,Clark Sky Ranch,Pr,Montgomery County,Lower Brazos,0,No,29.736622500799999,-96.064124999599997,Lower Brazos,img/airports.png
+-1,93TS,Austin,Sealy,Longbird,Pr,Montgomery County,Lower Brazos,1,Yes,29.748288889900000,-96.114681944200001,Lower Brazos,img/airports.png
+-1,TA28,Waller,Brookshire,Woods Nr 2,Pr,Montgomery County,Lower Brazos,1,Yes,29.793563612000000,-95.925231944399997,Lower Brazos,img/airports.png
+-1,TS44,Waller,Pattison,Dry Branch Ranch,Pr,Montgomery County,Lower Brazos,0,No,29.839951388900001,-96.023290555100004,Lower Brazos,img/airports.png
+-1,27XS,Waller,Brookshire,Sport Flyers,Pr,Montgomery County,Lower Brazos,0,No,29.838006390000000,-95.949399445099999,Lower Brazos,img/airports.png
+-1,1XA4,Waller,Brookshire,Mikeska Field,Pr,Montgomery County,Lower Brazos,0,No,29.873838611899998,-96.004401110900005,Lower Brazos,img/airports.png
+-1,1TS1,Waller,Pattison,Laas Farm,Pr,Montgomery County,Lower Brazos,0,No,29.912725834800000,-95.994123056000006,Lower Brazos,img/airports.png
+-1,4XS0,Waller,Waller,Pfeffer & Son Farms,Pr,Montgomery County,Lower Brazos,0,No,29.929669444999998,-95.964121944300004,Lower Brazos,img/airports.png
+-1,06R,Austin,Bellville,Grawunder Field,Pr,Montgomery County,Lower Brazos,0,No,29.940972222500001,-96.245249999799995,Lower Brazos,img/airports.png
+-1,TX42,Waller,Monaville,Fair Weather Field,Pr,Montgomery County,Lower Brazos,0,No,29.936530556400001,-96.036527777600000,Lower Brazos,img/airports.png
+-1,4TA4,Waller,Hempstead,Pea Patch,Pr,Montgomery County,Lower Brazos,0,No,29.939386112299999,-96.060466666500005,Lower Brazos,img/airports.png
+-1,61TX,Austin,Bellville,Traylor Tick Farm,Pr,Montgomery County,Lower Brazos,0,No,29.972446389800002,-96.307186944199998,Lower Brazos,img/airports.png
+-1,6TS8,Austin,Industry,Rabb And Nobra,Pr,Montgomery County,Lower Brazos,0,No,30.003333333899999,-96.581111110400002,Lower Brazos,img/airports.png
+-1,60TX,Austin,Bellville,P-K Ranch,Pr,Montgomery County,Lower Brazos,0,No,30.033555001000000,-96.263574444400007,Lower Brazos,img/airports.png
+-1,TX70,Austin,Chappell Hill,Eberly Ranch,Pr,Montgomery County,Lower Brazos,0,No,30.051888890099999,-96.218238888200005,Lower Brazos,img/airports.png

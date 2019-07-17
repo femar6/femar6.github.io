@@ -1,0 +1,10 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,HANKAMER,,,,,0,No,29.841979105000000,-94.671140890999993,,img/substations.png
+-1,,,HANKAMER,,,,,0,No,29.907775238999999,-94.679688781999999,,img/substations.png
+-1,,,DEVERS,,,,,1,Yes,29.963781500000000,-94.669799472999998,,img/substations.png
+-1,,,AMES,,,,,1,Yes,29.978075620999999,-94.738394051000000,,img/substations.png
+-1,,,AMES,,,,,0,No,30.027437695000000,-94.672830320000003,,img/substations.png
+-1,,,DAYTON,,,,,0,No,30.035476011000000,-94.890541595000002,,img/substations.png
+-1,,,DAYTON,,,,,0,No,30.037092913999999,-94.892750594000006,,img/substations.png
+-1,,,LIBERTY,,,,,1,Yes,30.046072995999999,-94.804595797999994,,img/substations.png
+-1,,,KENEFICK,,,,,0,No,30.120034603000001,-94.925364947999995,,img/substations.png

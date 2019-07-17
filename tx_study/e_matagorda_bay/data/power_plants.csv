@@ -1,0 +1,3 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,OLD OCEAN,,,,SWEENY IGCC PLANT,1,Yes,29.066380543000001,-95.748370045000001,East Matagorda Bay,img/power_plants.png
+-1,,,OLD OCEAN,,,,SWEENY COGEN FACILITY,1,Yes,29.072704821999999,-95.745171321000001,East Matagorda Bay,img/power_plants.png

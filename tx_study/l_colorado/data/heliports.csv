@@ -1,0 +1,5 @@
+OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
+-1,,,,Matagorda Rgnl Medical Center,Pr,Montgomery County,,0,No,28.979888889200002,-95.992330555899997,Lower Colorado,img/heliports.png
+-1,,,,Cig 809,Pr,Montgomery County,,0,No,28.982479167800001,-96.028847777500005,Lower Colorado,img/heliports.png
+-1,,,,Eagle Lake Community Hospital,Pr,Montgomery County,,0,No,29.586905834800000,-96.345521666099998,Lower Colorado,img/heliports.png
+-1,,,,Columbus Community Hospital,Pu,Montgomery County,,1,Yes,29.695236112200000,-96.543819444799993,Lower Colorado,img/heliports.png
