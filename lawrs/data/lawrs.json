@@ -6228,7 +6228,7 @@ var lawrs =
         "hmwa13": "1,086",
         "hmwa14": 4,
         "hmwa15": "N/A",
-        "win_url": "http://fema.maps.arcgis.com/sharing/rest/content/items/d6d6a95916044913812482823a41adfe/dataa",
+        "win_url": "http://fema.maps.arcgis.com/sharing/rest/content/items/d6d6a95916044913812482823a41adfe/data",
         "report_url": "<img class='imgLawrs' src='http://fema.maps.arcgis.com/sharing/rest/content/items/ccf907e8f97b44bba93d7ef8548e5af2/data'>"
       }
     },
