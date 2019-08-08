@@ -1,15 +1,124 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>FEMA Region 6</title>
-      <style>
-    </style>
-
+  <title>Test Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+  body{background-color:#2c5283;}
+  .container{width:100%;}
+  .carousel-inner > .item,
+  .carousel-inner > .item > a {
+    width: 100%;
+    margin: auto;
+  }
+  .frames{width:100%;height:90vh;}
+  </style>
 </head>
 <body>
-FEMA Region 6
-<button>test</button>
-</body>
+<div class="container">
+  <br>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+      <li data-target="#myCarousel" data-slide-to="4"></li>
+      <li data-target="#myCarousel" data-slide-to="5"></li>
+      <li data-target="#myCarousel" data-slide-to="6"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <iframe id="slide1" class="slide frames" src="http://fema.maps.arcgis.com/apps/webappviewer/index.html?id=80245fa3c4f64658ba750aa63c5d9ed9"></iframe>
+        <div class="carousel-caption">
+          <h3>Transportation</h3>
+          <p>Transportation Stuff</p>
+        </div>
+      </div>
 
+      <div class="item">
+        <iframe id="slide2" class="slide frames" src="https://fema.maps.arcgis.com/apps/webappviewer/index.html?id=b119f01b20a944efa6c6223c1ea34092"></iframe>
+        <div class="carousel-caption">
+          <h3>Communication</h3>
+          <p>Communication Stuff</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <iframe id="slide3" class="slide frames"src="https://fema.maps.arcgis.com/apps/webappviewer/index.html?id=fab4f4dceddc4e30b4ee87395f0afd8d"></iframe>
+        <div class="carousel-caption">
+          <h3>Safety and Security</h3>
+          <p>Safety and Security Stuff</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <iframe id="slide4" class="slide frames"src="https://fema.maps.arcgis.com/apps/webappviewer/index.html?id=51177a1b0c7846ad835a9fc2d80dab27"></iframe>
+        <div class="carousel-caption">
+          <h3>Food, Water and Sheltering</h3>
+          <p>Food, Water and Sheltering Stuff</p>
+        </div>
+      </div>
+      <div class="item">
+        <iframe id="slide5" class="slide frames"src="https://fema.maps.arcgis.com/apps/webappviewer/index.html?id=1765db7e8212460e822c552c9d0c5256"></iframe>
+        <div class="carousel-caption">
+          <h3>Health and Medical</h3>
+          <p>Health and Medical Stuff</p>
+        </div>
+      </div>
+      <div class="item">
+        <iframe id="slide6" class="slide frames"src="https://fema.maps.arcgis.com/apps/webappviewer/index.html?id=c6ce0ebaaa3b49338642df2da62f82c7"></iframe>
+        <div class="carousel-caption">
+          <h3>Hazardous Waste</h3>
+          <p>Hazardous Waste Stuff</p>
+        </div>
+      </div>
+      <div class="item">
+        <iframe id="slide7" class="slide frames"src="https://fema.maps.arcgis.com/apps/webappviewer/index.html?id=dacc4a6e0cec412eb995b4de0beefe32"></iframe>
+        <div class="carousel-caption">
+          <h3>Energy</h3>
+          <p>Energy Stuff</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  <button id="play">Play</button>
+  <button id="pause">Pause</button>
+</div>
+<script>
+
+$('.carousel').carousel({
+  interval:3000
+});
+var play = document.getElementById("play");
+
+function play_(){
+  $('.carousel').carousel({
+    interval:3000
+  })
+}
+var pause = document.getElementById("pause");
+
+function pause_(){
+  $('.carousel').carousel({
+    pause:'mouseenter'
+  })
+}
+
+</script>
+</body>
 </html>
