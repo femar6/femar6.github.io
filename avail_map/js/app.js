@@ -23,10 +23,6 @@ const mCover = new L.map("coverMap", {
     results.clearLayers();
     for (var i = data.results.length - 1; i >= 0; i--) {
       var latlng = data.results[i].latlng;
-        document.getElementById('lat').innerHTML =
-            '<b>Latitude: <b>'+data.latlng.lat
-          document.getElementById('long').innerHTML =
-            '<b>Longitude: <b>'+data.latlng.lng;
       const marker1 = L.marker([data.latlng.lat,data.latlng.lng],{draggable:true}).addTo(results);
       marker1.on("click", function(){
         document.getElementById("commit_div").classList.remove("hide");
@@ -50,6 +46,11 @@ const mCover = new L.map("coverMap", {
               var getLng = getLatLng.lng;
                document.getElementById("cover").classList.add("hide");
                document.getElementById("printBtn").classList.remove("hide");
+
+               document.getElementById('lat').innerHTML =
+                   '<b>Latitude: <b>'+getLatLng.lat;
+                 document.getElementById('long').innerHTML =
+                   '<b>Longitude: <b>'+getLatLng.lng;               
                geocodeService.reverse().latlng(getLatLng).run(function(error, result){document.getElementById('address').innerHTML = '<b>Address: <b>'+result.address.Match_addr;});
                // geocodeService.reverse().latlng(dragmarkerLatlng).run(function(error, result2){console.log(result2.address.Match_addr)});
                setTimeout(function () {const marker2 = L.marker([getLat,getLng], {bounceOnAdd: true}).addTo(m);},2000);
