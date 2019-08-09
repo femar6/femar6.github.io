@@ -10,6 +10,19 @@
 <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
 <link href="./css/app.css" rel="stylesheet" type="text/css" media="all" title="no title" charset="utf-8" >
+
+<style>
+/* #pixelValue {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  background: white;
+  padding: 1em;
+} */
+
+
+</style>
 </head>
 <body>
 <div id="cover">
@@ -22,8 +35,11 @@
     <br>
     <img style="margin-left:20%;" height=160 width=200 src="./img/dhs.png"> </div>
   <!-- <button id="printBtn" class="btns hide" style="position:absolute;top:1%;left:1%;z-index:1001;" onclick="printDiv('printableArea');">PRINT</button> -->
-  <div id="coverMap"> <img id="test" height=60 width=120 style="position:absolute;top:5%;left:7%;z-index:700;" src="./img/arrow.png"> </div>
+  <div id="coverMap"> <img id="test" height=60 width=120 style="position:absolute;top:5%;left:7%;z-index:700;" src="./img/arrow.png">
+    <!-- <div id="pixelValue" class="leaflet-bar">Click map for elevation</div> -->
+  </div>
 </div>
+
 <button class="btns hide" style="position:absolute;top:50%;left:3.5%;z-index:1005;font-size:7rem;background-color:white;" id="restart" onclick="location.reload()">Restart</button>
 <!-- <page size="A4"></page>
     <page size="A4"></page> -->
@@ -45,7 +61,7 @@
   <div class="container-fluid" style="padding-right:35px;">
     <div class="title col-md-12"><span id="title_"></span><b>Available Flood Maps</b>
       <div id = "address" style="font-size:2rem;font-family:monospace;">Physical Address:</div>
-      <div style="font-size:2rem;font-family:monospace;"><span id="lat">Latitude</span>,<span id="long"> Longitude:</span></div>
+      <div style="font-size:2rem;font-family:monospace;"><span id="lat">Latitude</span>,<span id="long"> Longitude:</span><span id="pixelValue"><b>, Elevation:</b></span></div>
     </div>
     <div class="row">
       <div class="col-md-3">
