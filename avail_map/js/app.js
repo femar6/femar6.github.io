@@ -1,3 +1,45 @@
+
+    L.Marker.prototype.animateDragging = function () {
+
+
+
+      var iconMargin, shadowMargin;
+
+
+
+      this.on('dragstart', function () {
+
+        if (!iconMargin) {
+
+          iconMargin = parseInt(L.DomUtil.getStyle(this._icon, 'marginTop'));
+
+          shadowMargin = parseInt(L.DomUtil.getStyle(this._shadow, 'marginLeft'));
+
+        }
+
+
+
+        this._icon.style.marginTop = (iconMargin - 15)  + 'px';
+
+        this._shadow.style.marginLeft = (shadowMargin + 8) + 'px';
+
+      });
+
+
+
+      return this.on('dragend', function () {
+
+        this._icon.style.marginTop = iconMargin + 'px';
+
+        this._shadow.style.marginLeft = shadowMargin + 'px';
+
+      });
+
+    };
+
+
+
+
 setTimeout(function(){let splash_ = document.getElementById("splash");splash_.classList.add("hide");},3000);
 function restart_(){
 setTimeout(function () {
@@ -12,9 +54,43 @@ var map1 = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {m
 var map2 = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {maxZoom: 21,attribution: '&copy; <a href="http://www.google.com">Google</a>',subdomains: ['mt0', 'mt1', 'mt2', 'mt3']});
 var map3 = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {maxZoom: 21,attribution: '&copy; <a href="http://www.google.com">Google</a>',subdomains: ['mt0', 'mt1', 'mt2', 'mt3']});
 var map4 = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {maxZoom: 21,attribution: '&copy; <a href="http://www.google.com">Google</a>',subdomains: ['mt0', 'mt1', 'mt2', 'mt3']});
+
+var renderingRule = {
+    "rasterFunction":"Hillshade",
+    "rasterFunctionArguments": {
+        "Azimuth":215,
+        "Altitude":60,
+        "ZFactor":1
+    },"variableName":"DEM"
+};
+L.esri.get = L.esri.get.JSONP;
+
 const mCover = new L.map("coverMap", {
   layers:[mapC],
   zoom: 5,center: [38, -96],zoomControl: false,minZoom: 1,maxZoom: 21,attributionControl: false});
+
+  // const elevation = L.https://elevation.arcgis.com/arcgis/rest/services/NED30m/ImageServer
+
+  var hillshade = L.esri.imageMapLayer({
+    url: 'https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer',
+    // url: 'https://elevation.arcgis.com/arcgis/rest/services/NED30m/ImageServer',
+    renderingRule: renderingRule,
+    useCors: false,
+    opacity:0.5
+  });
+  // var identifiedPixel;
+  // var pane = document.getElementById('pixelValue');
+  // mCover.on('mousemove', function (e) {
+  //     if(identifiedPixel){
+  //         pane.innerHTML = 'Loading';
+  //     }
+  //     hillshade.identify().at(e.latlng).run(function(error, results){
+  //         identifiedPixel = results.pixel;
+  //         pane.innerHTML = identifiedPixel.properties.value + 'm';
+  //     });
+  // });
+
+
   const results = L.layerGroup().addTo(mCover);
   var geocodeService = L.esri.Geocoding.geocodeService();
   var searchControl = L.esri.Geocoding.geosearch({expanded:true,collapseAfterResult:false,searchBounds:L.latLngBounds([ 48.904331,-124.503294],[  24.489948,-66.885886])}).addTo(mCover);
@@ -23,6 +99,7 @@ const mCover = new L.map("coverMap", {
     results.clearLayers();
     for (var i = data.results.length - 1; i >= 0; i--) {
       var latlng = data.results[i].latlng;
+
       const marker1 = L.marker([data.latlng.lat,data.latlng.lng],{draggable:true}).addTo(results);
       marker1.on("click", function(){
         document.getElementById("commit_div").classList.remove("hide");
@@ -31,15 +108,27 @@ const mCover = new L.map("coverMap", {
         }, 250 );
       });
 
+
+
+
       var distance = marker1.getLatLng().distanceTo([data.latlng.lat,data.latlng.lng]).toFixed(0);
       marker1.bindTooltip("Drag and Click<br>to Commit",{className:'test1'});
       marker1.on('dragend', function(){
       var distance = marker1.getLatLng().distanceTo([data.latlng.lat,data.latlng.lng]).toFixed(0);
-      marker1.setTooltipContent("Current Location: "+marker1.getLatLng().toString()+"<br>"+"Distance to first Located Point: "+marker1.getLatLng().distanceTo([data.latlng.lat,data.latlng.lng]).toFixed(0)+" meters");
+
+      var getLatLng_ = marker1.getLatLng();
+      var getLat_ = getLatLng_.lat;
+      var getLng_ = getLatLng_.lng;
+
+
+
+      marker1.setTooltipContent("Current Location: "+getLat_+","+getLng_ +"<br>"+"Distance to first Located Point: "+marker1.getLatLng().distanceTo([data.latlng.lat,data.latlng.lng]).toFixed(0)+" meters<br>");
       document.getElementById("commit_div").classList.add("hide");
-      });
+      }).animateDragging();
 
-
+      setTimeout(function(){
+        mCover.flyTo([data.latlng.lat,data.latlng.lng],18);
+      },500);
        document.getElementById("commit").onclick = function(){
               var getLatLng = marker1.getLatLng();
               var getLat = getLatLng.lat;
@@ -47,10 +136,22 @@ const mCover = new L.map("coverMap", {
                document.getElementById("cover").classList.add("hide");
                document.getElementById("printBtn").classList.remove("hide");
 
+               var identifiedPixel;
+               var pane = document.getElementById('pixelValue');
+                   if(identifiedPixel){
+                       pane.innerHTML = 'Loading';
+                   }
+               hillshade.identify().at(marker1.getLatLng()).run(function(error, results){
+                   identifiedPixel = results.pixel;
+                   var pixValueNum = identifiedPixel.properties.value* 3.28084;
+                   var rounded = Math.round( pixValueNum * 10 ) / 10;
+                   var elevationResult = "<b>, Elevation: "+rounded.toFixed(1) + ' feet</b>';
+                   pane.innerHTML = elevationResult;
+               });
                document.getElementById('lat').innerHTML =
                    '<b>Latitude: <b>'+getLatLng.lat;
                  document.getElementById('long').innerHTML =
-                   '<b>Longitude: <b>'+getLatLng.lng;               
+                   '<b>Longitude: <b>'+getLatLng.lng;
                geocodeService.reverse().latlng(getLatLng).run(function(error, result){document.getElementById('address').innerHTML = '<b>Address: <b>'+result.address.Match_addr;});
                // geocodeService.reverse().latlng(dragmarkerLatlng).run(function(error, result2){console.log(result2.address.Match_addr)});
                setTimeout(function () {const marker2 = L.marker([getLat,getLng], {bounceOnAdd: true}).addTo(m);},2000);
