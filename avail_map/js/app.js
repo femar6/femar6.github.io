@@ -135,6 +135,7 @@ const mCover = new L.map("coverMap", {
               var getLng = getLatLng.lng;
                document.getElementById("cover").classList.add("hide");
                document.getElementById("printBtn").classList.remove("hide");
+               m.setView([getLat,getLng],18);
 
                var identifiedPixel;
                var pane = document.getElementById('pixelValue');
