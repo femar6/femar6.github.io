@@ -136,7 +136,7 @@ const mCover = new L.map("coverMap", {
                document.getElementById("cover").classList.add("hide");
                document.getElementById("printBtn").classList.remove("hide");
                m.setView([getLat,getLng],18);
-
+               setTimeout(function(){
                var identifiedPixel;
                var pane = document.getElementById('pixelValue');
                    if(identifiedPixel){
@@ -303,6 +303,7 @@ const mCover = new L.map("coverMap", {
                     document.getElementById('draft_bfe').innerHTML =''
                   }
                 });
+                },1000);
       } // Commit Button
 
 
