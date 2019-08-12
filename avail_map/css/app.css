@@ -12,7 +12,13 @@ html, body {background: #2c5283;font-family: 'Oswald', sans-serif;overflow:hidde
 #commit_div{z-index:700;bottom:3%;left:0%;width:250px;height:250px;background-color:white;position:absolute;background-color:#2c5283;opacity:0.9;border-color:white;box-shadow: 0 0 10px rgba(0,0,0,0.5);border-style:solid;border-width:thin;overflow: hidden;}
 #commit{padding:0.25em;background-color:red;color:white;border-radius:0.25em;margin:0.015em;opacity:1;width:100%;overflow: hidden;}
 .test1{background-color:#2c5283;color:white;font-family: 'Oswald', sans-serif;}
-
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+  -webkit-transition: margin 0.2s;
+     -moz-transition: margin 0.2s;
+       -o-transition: margin 0.2s;
+          transition: margin 0.2s;
+}
 page {
   background: white;
   display: block;
