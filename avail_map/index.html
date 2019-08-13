@@ -25,20 +25,22 @@
 </style>
 </head>
 <body>
-<div id="cover">
-  <div id="commit_div" class="hide">
-    <span style="font-size:1em;color:white;padding:1em;overflow: hidden;">Press Button to Print Map (Draft, Pending,)</span>
-    <span style="font-size:1em;color:white;padding:1em;overflow: hidden;">Preliminary and Effective)</span>
-    <button id="commit">COMMIT</button></div>
-  <div id="splash">
-    <h3>FEMA Region 6 AVAILABLE FLOOD MAPS</h3>
-    <br>
-    <img style="margin-left:20%;" height=160 width=200 src="./img/dhs.png"> </div>
-  <!-- <button id="printBtn" class="btns hide" style="position:absolute;top:1%;left:1%;z-index:1001;" onclick="printDiv('printableArea');">PRINT</button> -->
-  <div id="coverMap"> <img id="test" height=60 width=120 style="position:absolute;top:5%;left:7%;z-index:700;" src="./img/arrow.png">
-    <!-- <div id="pixelValue" class="leaflet-bar">Click map for elevation</div> -->
+  <div id="cover">
+    <div id="commit_div" class="hide">
+      <span style="font-size:1em;color:white;padding:1em;overflow: hidden;">Press Button to Print Map (Draft, Pending,)</span>
+      <span style="font-size:1em;color:white;padding:1em;overflow: hidden;">Preliminary and Effective)</span>
+      <button id="commit">COMMIT</button></div>
+    <div id="splash">
+      <h3>FEMA Region 6 AVAILABLE FLOOD MAPS</h3>
+      <br>
+      <img style="margin-left:20%;" height=160 width=200 src="./img/dhs.png"> </div>
+    <!-- <button id="printBtn" class="btns hide" style="position:absolute;top:1%;left:1%;z-index:1001;" onclick="printDiv('printableArea');">PRINT</button> -->
+    <div id="coverMap"> <img id="arrow_addr" height=60 width=120 style="position:absolute;top:5%;left:7%;z-index:700;" src="./img/arrow.png">
+      <span id="text_step2" class="hide" style="position:absolute;top:2%;right:-5%;z-index:700;font-size:3em;color:red;font-family: 'Oswald', sans-serif;text-shadow: -1.5px 0 white, 0 1.5px white,  1.5px 0 white, 0 -1.5px white;"><b>Drag Marker and L-click to Open</b></span>
+      <img id="step2" class="hide" height=320 width=420 src="./img/step2.gif">
+      <!-- <div id="pixelValue" class="leaflet-bar">Click map for elevation</div> -->
+    </div>
   </div>
-</div>
 
 <button class="btns hide" style="position:absolute;top:50%;left:3.5%;z-index:1005;font-size:7rem;background-color:white;" id="restart" onclick="location.reload()">Restart</button>
 <!-- <page size="A4"></page>

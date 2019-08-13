@@ -36,10 +36,6 @@
       });
 
     };
-
-
-
-
 setTimeout(function(){let splash_ = document.getElementById("splash");splash_.classList.add("hide");},3000);
 function restart_(){
 setTimeout(function () {
@@ -95,7 +91,15 @@ const mCover = new L.map("coverMap", {
   var geocodeService = L.esri.Geocoding.geocodeService();
   var searchControl = L.esri.Geocoding.geosearch({expanded:true,collapseAfterResult:false,searchBounds:L.latLngBounds([ 48.904331,-124.503294],[  24.489948,-66.885886])}).addTo(mCover);
   searchControl.on('results', function(data){
-    document.getElementById("test").classList.add("hide");
+    document.getElementById("arrow_addr").classList.add("hide");
+   document.getElementById("step2").classList.remove("hide");
+   document.getElementById("text_step2").classList.remove("hide");
+   $( "#step2" ).animate({
+     right:150
+   }, 1250 );
+   $( "#text_step2" ).animate({
+     right:150
+   }, 1250 );
     results.clearLayers();
     for (var i = data.results.length - 1; i >= 0; i--) {
       var latlng = data.results[i].latlng;
@@ -106,13 +110,23 @@ const mCover = new L.map("coverMap", {
         $( "#commit_div" ).animate({
           left:150
         }, 250 );
+
+        $( "#text_step2" ).animate({
+          right:-1000
+        }, 250 );
+        $( "#step2" ).animate({
+          right:-1000
+        }, 250 );
+        setTimeout(function(){
+        document.getElementById("step2").classList.add("hide");
+        document.getElementById("text_step2").classList.add("hide");},1250);
       });
 
 
 
 
       var distance = marker1.getLatLng().distanceTo([data.latlng.lat,data.latlng.lng]).toFixed(0);
-      marker1.bindTooltip("Drag and Click<br>to Commit",{className:'test1'});
+      marker1.bindTooltip("Drag and Click<br>to Commit",{className:'tooltip_blue'});
       marker1.on('dragend', function(){
       var distance = marker1.getLatLng().distanceTo([data.latlng.lat,data.latlng.lng]).toFixed(0);
 
@@ -161,6 +175,8 @@ const mCover = new L.map("coverMap", {
                setTimeout(function () {const marker5 = L.marker([getLat,getLng], {bounceOnAdd: true}).addTo(m4);},3500);
                m.setView([getLat,getLng],18);
              setTimeout(function () {
+
+
              var pending = L.esri.featureLayer({url:'https://hazards.fema.gov/gis/nfhl/rest/services/PrelimPending/Pending_NFHL/MapServer/24',where:"FLD_ZONE IN ('A','AE','A99','V','VE')",
                  style: function (feature) {
                    if(feature.properties.FLD_ZONE === 'VE'){
@@ -200,6 +216,7 @@ const mCover = new L.map("coverMap", {
            document.getElementById('effect_date').innerHTML = '';
            document.getElementById('effect_panel').innerHTML = "";
            document.getElementById('effect_bfe').innerHTML = '';
+
              L.esri.query({
                url: "https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28"
              }).intersects(getLatLng).run(function(error, nfhl) {
@@ -303,6 +320,15 @@ const mCover = new L.map("coverMap", {
                     document.getElementById('draft_bfe').innerHTML =''
                   }
                 });
+                L.esri.query({
+                   url: "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/UnMapped_R6/FeatureServer/0" }).intersects(getLatLng).run(function(error,unmapped){
+                   if (unmapped.features.length > 0) {
+                     document.getElementById('effect_source').innerHTML ='';
+                     document.getElementById('effect_panel').innerHTML ='';
+                     document.getElementById('effect_date').innerHTML ='';
+                     document.getElementById('effect_fld').innerHTML ="<span style='color:red;margin-left:1em;'>THIS AREA IS UNMAPPED</span>";
+                     document.getElementById('effect_bfe').innerHTML ='';}
+                   });
                 },1000);
       } // Commit Button
 
