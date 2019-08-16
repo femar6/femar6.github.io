@@ -1,46 +1,22 @@
-
     L.Marker.prototype.animateDragging = function () {
-
-
-
       var iconMargin, shadowMargin;
-
-
-
       this.on('dragstart', function () {
-
         if (!iconMargin) {
-
           iconMargin = parseInt(L.DomUtil.getStyle(this._icon, 'marginTop'));
-
           shadowMargin = parseInt(L.DomUtil.getStyle(this._shadow, 'marginLeft'));
-
         }
-
-
-
         this._icon.style.marginTop = (iconMargin - 15)  + 'px';
-
         this._shadow.style.marginLeft = (shadowMargin + 8) + 'px';
-
       });
-
-
-
       return this.on('dragend', function () {
-
         this._icon.style.marginTop = iconMargin + 'px';
-
         this._shadow.style.marginLeft = shadowMargin + 'px';
-
       });
-
     };
 setTimeout(function(){let splash_ = document.getElementById("splash");splash_.classList.add("hide");},3000);
 function restart_(){
 setTimeout(function () {
 var restart = document.getElementById("restart");
-restart.classList.remove("hide");
 restart.onclick = function(){
 location.reload()}
 },2000);

@@ -1,0 +1,203 @@
+html, body {background: #2c5283;font-family: 'Oswald', sans-serif;overflow:hidden;}
+#splash{background-color:#2c5283;position:absolute;width:400px;height:350px;z-index:1000;top:35%;left:40%;border-radius:3px;box-shadow: 0 0 10px rgba(0,0,0,0.5);padding:15px;color:white;opacity:0.85;}
+#cover{background-color:white;margin:0;padding:0;z-index:1100;height:100vh;width:100%;position:absolute;}
+#coverMap{margin:0;width:100%;height:100%;background-color:#2c5283;align-content:center;}
+#m{height:2.5in;width:2.5in;margin:0.5em;padding-bottom:3px;border-style:solid;border-width:thin;border-color:black;background-color:gray;}.title{font-size:3em;background-color:white;color:black;font-family: 'Oswald', sans-serif;}
+#m2{height:2.5in;width:2.5in;margin:0.5em;padding-bottom:3px;border-style:solid;border-width:thin;border-color:black;background-color:gray;}
+#m3{height:2.5in;width:2.5in;margin:0.5em;padding-bottom:3px;border-style:solid;border-width:thin;border-color:black;background-color:gray;}
+#m4{height:2.5in;width:2.5in;margin:0.5em;padding-bottom:3px;border-style:solid;border-width:thin;border-color:black;background-color:gray;}
+#source{font-size:0.75rem;position:fixed;left:1%;bottom:1%;}
+#nfhl_site{padding:25px;}
+.agol{-webkit-filter: grayscale(100%);filter: grayscale(100%);}.agol:hover{-webkit-filter: grayscale(0%);filter: grayscale(0%);}
+#commit_div{z-index:700;bottom:3%;left:0%;width:250px;height:250px;background-color:white;position:absolute;background-color:#2c5283;opacity:0.9;border-color:white;box-shadow: 0 0 10px rgba(0,0,0,0.5);border-style:solid;border-width:thin;overflow: hidden;}
+#commit{padding:0.25em;background-color:red;color:white;border-radius:0.25em;margin:0.015em;opacity:1;width:100%;overflow: hidden;}
+.test1{background-color:#2c5283;color:white;font-family: 'Oswald', sans-serif;}
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+  -webkit-transition: margin 0.2s;
+     -moz-transition: margin 0.2s;
+       -o-transition: margin 0.2s;
+          transition: margin 0.2s;
+}
+page {
+  background: white;
+  display: block;
+  margin: 0 auto;
+  /* margin-bottom: 0.5cm; */
+  /* margin-top:5%; */
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+}
+page[size="A4"] {
+  width: 11.6929134in;
+  height: 8.26772in;
+}
+page[size="A4"][layout="landscape"] {
+  width: 11.6929134in;
+  height: 8.26772in;
+  margin-bottom:0%;
+}
+page[size="A3"] {
+  width: 11.6929134in;
+  height: 42cm;
+}
+page[size="A3"][layout="landscape"] {
+  width: 42cm;
+  height: 11.6929134in;
+}
+page[size="A5"] {
+  width: 14.8cm;
+  height: 8.26772in;
+}
+page[size="A5"][layout="landscape"] {
+  width: 8.26772in;
+  height: 14.8cm;
+}
+/* @media print {
+  body, page {
+    margin: 0;
+    box-shadow: 0;
+  }
+  * {
+      -webkit-print-color-adjust: exact !important;
+              print-color-adjust: exact !important;
+  }
+  .btns{visibility: hidden;}
+  .print-hide {
+      display: none !important;
+  }
+} */
+
+@media print {
+    @page {
+        size: 11.6929134in 8.26772in; !important;
+        margin: 0px !important;
+        width: 11.6929134in;
+        height: 8.26772in;
+        size: landscape;
+    }
+    page {
+        margin: 0px !important;
+        page-break-after: always !important;
+        box-shadow: none !important;
+        width: 100%;
+        height: 8.26772in;
+        size: landscape;
+        /* margin: 30px auto;
+        background: white;
+        overflow: hidden;
+        z-index: 1;
+        align-content:center; */
+        /* white-space: nowrap; */
+    }
+    /* .print-hide {
+        display: none !important;
+    }
+    * {
+        -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+    } */
+    .btns{visibility: hidden;}
+    #m{border-width:medium;}#m2{border-width:medium;}#m3{border-width:medium;}#m4{border-width:medium;}
+/* .title{font-family: 'Oswald', sans-serif;font-size:3em;background-color:white;color:black;} */
+}
+.label{color:cyan;opacity:0.4;font-size:1.5em;}
+/* .print:last-child {
+     page-break-after: auto;
+} */
+.info{padding-left:5%;}
+.util-ui-error-banner{position:fixed;width:100%;height:25%;top:0;background-color:yellow;font-weight:bold;padding:50px;color:red;visibility:visible;z-index:1150;text-align:center;font-size:4rem;font-family: 'Oswald', sans-serif;}
+@keyframes rotation {
+	to { transform: rotate(1turn); }
+}
+.loading {
+	display: block;
+	position: relative;
+	width 8em;
+	margin: 4em auto;
+	padding-top: 4.5em;
+	color: rgba(0,0,0,1);
+	text-align: center;
+	text-transform: uppercase;
+}
+.loading::before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	height: 4em;
+	width: 4em;
+	margin-left: -2em;
+	border: .375em solid currentColor;
+	border-right-style: double;
+	border-radius: 50%;
+	animation: rotation .8s linear infinite;
+}
+.geocoder-control-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-image: url("img/search.png");
+  background-size: 26px;
+  border: none;
+  padding: 0;
+  font-family: 'Oswald', sans-serif;
+  text-indent: 6px;
+  font-size: 13px;
+  line-height: normal;
+  height: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 100%;
+  background-position: right center;
+  cursor: pointer;
+  box-sizing: border-box
+}
+.geocoder-control-suggestions .geocoder-control-suggestion {
+  font-size: 13px;
+  padding: 7px;
+  background: white;
+  font-family:monospace;
+  border-top: 1px solid #f1f1f1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer
+}
+/* .test{-webkit-filter: brightness(150%) contrast(75%);filter: brightness(150%) contrast(75%);opacity:0.25;} */
+#test{-webkit-filter: brightness(100%) contrast(100%);filter: brightness(100%) contrast(100%);transform: scale(1.0);opacity:1;-webkit-animation: pulse 3s infinite;}
+@-webkit-keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.25, 1.25, 1.25);
+    transform: scale3d(1.25, 1.25, 1.25);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.25, 1.25, 1.25);
+    transform: scale3d(1.25, 1.25, 1.25);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}

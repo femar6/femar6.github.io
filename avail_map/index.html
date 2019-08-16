@@ -42,12 +42,11 @@
     </div>
   </div>
 
-<button class="btns hide" style="position:absolute;top:50%;left:3.5%;z-index:1005;font-size:7rem;background-color:white;" id="restart" onclick="location.reload()">Restart</button>
+
 <!-- <page size="A4"></page>
     <page size="A4"></page> -->
 <!-- <button class="btns" style="position:absolute;top:1%;left:1%;" onclick="printDiv('printableArea');">PRINT</button> -->
-<a id="printBtn" class="hide" style="top:55%;margin-left:5%;background-color:white;color:black;font-size:4rem;" href="javascript:printDiv('printableArea');restart_()">Print</a>
-<div style="top:10%;margin-left:1%;width:10%;background-color:white;color:black;font-size:1.5rem;position:absolute;padding:10px;">*PRINT RULES -<br>
+<div style="top:0;margin-left:0;width:10%;background-color:white;color:black;font-size:1em;position:absolute;padding:10px;">*PRINT RULES -<br>
   1# Please Print Landscape<br>
   <b>For Adobe</b><br>
   SELECT *>properties<br>
@@ -55,8 +54,10 @@
   <br>
   <b>Not a rule</b> but<br>
   after you press print, a restart button will appear.<br>
-  or press ctrl+R (whatvr..)
+  or press ctrl+R.
   <div id="nfhl_site"></div>
+  <a id="printBtn" class="hide" style="margin-left:20%;background-color:white;color:black;font-size:3rem;" href="javascript:printDiv('printableArea');restart_()">Print</a>
+  <a class="btns" style="margin-left:20%;background-color:white;color:black;font-size:3rem;" id="restart" onclick="location.reload()">Back</a>
 </div>
 <!-- <button class="btns" style="position:absolute;top:1%;left:1%;" onclick="print()">PRINT</button> -->
 <page id="printableArea" size="A4" layout="landscape">
