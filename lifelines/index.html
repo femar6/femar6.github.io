@@ -1,0 +1,312 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>FEMA R6 Lifelines</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="refresh" content="30">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+    <script src="https://unpkg.com/esri-leaflet@2.2.1/dist/esri-leaflet.js" integrity="sha512-6BBVttv13OVrrUSoGmy9/aIVHateyIEGFaQxqnzCgXT9LNCAQ1Cxxj43R6Eq0ynydS7a7bLLfmEWwXFiO6lW2g==" crossorigin=""></script>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+      <style>
+      html{font-family: 'Oswald', sans-serif;}
+      body {margin: 0;padding: 0;background-color:#2c5283;font-family: 'Oswald', sans-serif;}
+      .title{text-align:center;font-size:7em;color:white;font-family: 'Oswald', sans-serif;text-shadow: -1.5px 0 black, 0 1.5px black,  1.5px 0 black, 0 -1.5px black;letter-spacing:-0.055em;}
+      .subtitle{color:white;font-family: 'Oswald', sans-serif;text-align:center;font-size:1.2em;margin-top:-1.25em;}
+      .mid_text{position:absolute;left:46%;top:47.5%;font-size:3em;color:white;letter-spacing:-0.055em;
+      }
+      .circle{
+      width: 225px;
+      height: 225px;
+      position:absolute;
+      top:-95%;
+      left:-25%;
+      border-style:solid;
+      border-width:medium;
+      border-color:white;
+      border-radius: 50%;}
+      .hide{display:none;}
+
+      img{width:65%;height:65%;
+        -webkit-filter: drop-shadow(5px 5px 5px #000);
+        filter: drop-shadow(5px 5px 5px #000);
+      }
+      .pulse{-webkit-animation: pulse 15s infinite;}
+      #transportation{position:absolute;left:44.5%;top:18%;}
+      #communication{position:absolute;left:55%;top:30%;}
+      #safety-and-security{position:absolute;left:57%;top:50%;}
+      #food-water-sheltering{position:absolute;left:51%;top:68%;}
+      #health-and-medical{position:absolute;left:38.5%;top:68%;}
+      #hazardous-materials{position:absolute;left:32.5%;top:50%;}
+      #energy{position:absolute;left:33.5%;top:30%;}
+
+  @-webkit-keyframes pulse {
+  from {
+    opacity:0.75;
+    -webkit-filter: brightness(0.75);
+  }
+
+  50% {
+    opacity:1;
+    -webkit-filter: brightness(1.5);
+  }
+
+  to {
+    opacity:0.75;
+    -webkit-filter: brightness(0.75);
+  }
+}
+
+@keyframes pulse {
+  from {
+     opacity:0.75;
+    filter: brightness(0.75);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+    opacity:1;
+
+    filter: brightness(1.5);
+  }
+
+  to {
+     opacity:0.75;
+    filter: brightness(0.75);
+  }
+}
+@media screen and (max-width: 1700px) {
+  img {width:55%;height:55%;}
+  .circle{width: 200px;height: 200px;}
+  .mid_text{font-size:2.5em;}
+  .title{font-size:6em;}
+  .subtitle{}
+}
+@media screen and (max-height: 950px) {
+  img {width:55%;height:55%;}
+  .circle{width: 200px;height: 200px;}
+  .mid_text{font-size:2.5em;}
+  .title{font-size:6em;}
+  .subtitle{}
+}
+@media screen and (max-width: 1500px) {
+  img {width:52%;height:52%;}
+  .circle{width: 175px;height: 175px;}
+  .mid_text{font-size:2.25em;}
+  .title{font-size:5em;}
+  .subtitle{}
+}
+@media screen and (max-height: 900px) {
+  img {width:52%;height:52%;}
+  .circle{width: 175px;height: 175px;}
+  .mid_text{font-size:2.25em;}
+  .title{font-size:5em;}
+  .subtitle{}
+}
+@media screen and (max-width: 1300px) {
+  img {width:47%;height:47%;}
+  .circle{width: 150px;height: 150px;}
+  .mid_text{font-size:2em;}
+  .title{font-size:4em;}
+  .subtitle{font-size:0.9em;}
+}
+@media screen and (max-height: 850px) {
+  img {width:47%;height:47%;}
+  .circle{width: 150px;height: 150px;}
+  .mid_text{font-size:2em;}
+  .title{font-size:4em;}
+  .subtitle{font-size:0.9em;}
+}
+@media screen and (max-width: 1200px) {
+  img {width:40%;height:40%;}
+  .circle{width: 150px;height: 150px;}
+  .mid_text{font-size:2em;}
+  .title{font-size:4em;}
+  .subtitle{font-size:0.9em;}
+}
+@media screen and (max-height: 800px) {
+  img {width:40%;height:40%;}
+  .circle{width: 150px;height: 150px;}
+  .mid_text{font-size:2em;}
+  .title{font-size:4em;}
+  .subtitle{font-size:0.9em;}
+}
+@media screen and (max-width: 900px) {
+  img {width:37%;height:37%;}
+  .circle{width: 125px;height: 125px;}
+  .mid_text{font-size:1.57em;}
+  .title{font-size:4em;}
+  .subtitle{font-size:0.9em;}
+}
+@media screen and (max-height: 700px) {
+  img {width:37%;height:37%;}
+  .circle{width: 125px;height: 125px;}
+  .mid_text{font-size:1.57em;}
+  .title{font-size:4em;}
+  .subtitle{font-size:0.9em;}
+}
+@media screen and (max-width: 800px) {
+  img {width:32%;height:32%;}
+  .circle{width: 100px;height: 100px;}
+  .mid_text{font-size:1.25em;}
+  .title{font-size:4em;}
+  .subtitle{font-size:0.9em;}
+}
+@media screen and (max-height: 600px) {
+  img {width:32%;height:32%;}
+  .circle{width: 100px;height: 100px;}
+  .mid_text{font-size:1.25em;}
+  .title{font-size:4em;}
+  .subtitle{font-size:0.9em;}
+}
+@media screen and (max-width: 600px) {
+  img {width:25%;height:25%;}
+  .circle{width: 100px;height: 100px;}
+  .mid_text{font-size:1.25em;}
+  .title{font-size:4em;}
+  .subtitle{font-size:0.9em;}
+}
+@media screen and (max-height: 500px) {
+  img {width:25%;height:25%;}
+  .circle{width: 100px;height: 100px;}
+  .mid_text{font-size:1em;}
+  .title{font-size:3em;}
+  .subtitle{font-size:0.9em;}
+}
+@media screen and (max-width: 500px) {
+  img {width:20%;height:20%;}
+  .circle{width: 50px;height: 50px;}
+  .mid_text{font-size:0.75em;}
+  .title{font-size:3em;}
+  .subtitle{font-size:0.5em;}
+}
+@media screen and (max-height: 400px) {
+  img {width:20%;height:20%;}
+  .circle{width: 50px;height: 50px;}
+  .mid_text{font-size:0.75em;}
+  .title{font-size:4em;}
+  .subtitle{font-size:0.5em;}
+}
+
+      </style>
+  </head>
+  <body>
+    <div class="title">LIFELINES</div>
+    <div class="subtitle">OUTCOME DRIVEN STABILIZATION</div>
+    <div class="container">
+    <div class="mid_text">STABILITY
+      <div class="circle"></div>
+
+    </div>
+    <div id="communication" class="pulse">
+      <img id="comm_amber" class="hide" src="./img/communications-amber.png">
+      <img id="comm_red" class="hide" src="./img/communications-red.png">
+      <img id="comm_green" class="hide" src="./img/communications-green.png">
+      <img id="comm_gray" class="hide" src="./img/communications-gray.png">
+    </div>
+    <div id="energy" class="pulse">
+      <img id="energy_amber" class="hide" src="./img/energy-amber.png">
+      <img id="energy_red" class="hide" src="./img/energy-red.png">
+      <img id="energy_green" class="hide" src="./img/energy-green.png">
+      <img id="energy_gray" class="hide" src="./img/energy-gray.png">
+    </div>
+    <div id="food-water-sheltering" class="pulse">
+      <img id="foodwater_amber" class="hide" src="./img/food-water-sheltering-amber.png">
+      <img id="foodwater_red" class="hide" src="./img/food-water-sheltering-red.png">
+      <img id="foodwater_green" class="hide" src="./img/food-water-sheltering-green.png">
+      <img id="foodwater_gray" class="hide" src="./img/food-water-sheltering-gray.png">
+    </div>
+    <div id="hazardous-materials" class="pulse">
+      <img id="haz_amber" class="hide" src="./img/hazardous-materials-amber.png">
+      <img id="haz_red" class="hide" src="./img/hazardous-materials-red.png">
+      <img id="haz_green" class="hide" src="./img/hazardous-materials-green.png">
+      <img id="haz_gray" class="hide" src="./img/hazardous-materials-gray.png">
+    </div>
+    <div id="health-and-medical" class="pulse">
+      <img id="health_amber" class="hide" src="./img/health-and-medical-amber.png">
+      <img id="health_red" class="hide" src="./img/health-and-medical-red.png">
+      <img id="health_green" class="hide" src="./img/health-and-medical-green.png">
+      <img id="health_gray" class="hide" src="./img/health-and-medical-gray.png">
+    </div>
+    <div id="safety-and-security" class="pulse">
+      <img id="safety_amber" class="hide" src="./img/safety-and-security-amber.png">
+      <img id="safety_red" class="hide" src="./img/safety-and-security-red.png">
+      <img id="safety_green" class="hide" src="./img/safety-and-security-green.png">
+      <img id="safety_gray" class="hide" src="./img/safety-and-security-gray.png">
+    </div>
+    <div id="transportation" class="pulse">
+      <img id="trans_amber" class="hide" src="./img/transportation-amber.png">
+      <img id="trans_red" class="hide" src="./img/transportation-red.png">
+      <img id="trans_green" class="hide" src="./img/transportation-green.png">
+      <img id="trans_gray" class="hide" src="./img/transportation-gray.png">
+    </div>
+  </div>
+
+<script>
+  const SWITCH = L.esri.query({
+    url:'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/r6_lifelineswitch/FeatureServer/0'
+  }).run(function(error, featureCollection) {
+
+  if(featureCollection.features[1].properties.color == 'red'){
+      document.getElementById("comm_red").classList.remove("hide");
+  } else if (featureCollection.features[1].properties.color == 'yellow'){
+        document.getElementById("comm_amber").classList.remove("hide");
+      } else if (featureCollection.features[1].properties.color == 'gray'){
+            document.getElementById("comm_gray").classList.remove("hide");
+  } else {document.getElementById("comm_green").classList.remove("hide");}
+
+  if(featureCollection.features[6].properties.color == 'red'){
+      document.getElementById("energy_red").classList.remove("hide");
+  } else if (featureCollection.features[6].properties.color == 'yellow'){
+        document.getElementById("energy_amber").classList.remove("hide");
+      } else if (featureCollection.features[6].properties.color == 'gray'){
+            document.getElementById("energy_gray").classList.remove("hide");
+  } else {document.getElementById("energy_green").classList.remove("hide"); }
+
+ if(featureCollection.features[3].properties.color == 'red'){
+    document.getElementById("foodwater_red").classList.remove("hide");
+} else if (featureCollection.features[3].properties.color == 'yellow'){
+      document.getElementById("foodwater_amber").classList.remove("hide");
+    } else if (featureCollection.features[3].properties.color == 'gray'){
+          document.getElementById("foodwater_gray").classList.remove("hide");
+} else {document.getElementById("foodwater_green").classList.remove("hide"); }
+
+ if(featureCollection.features[5].properties.color == 'red'){
+    document.getElementById("haz_red").classList.remove("hide");
+} else if (featureCollection.features[5].properties.color == 'yellow'){
+      document.getElementById("haz_amber").classList.remove("hide");
+    } else if (featureCollection.features[5].properties.color == 'gray'){
+          document.getElementById("haz_gray").classList.remove("hide");
+} else {document.getElementById("haz_green").classList.remove("hide"); }
+
+if(featureCollection.features[4].properties.color == 'red'){
+  document.getElementById("health_red").classList.remove("hide");
+} else if (featureCollection.features[4].properties.color == 'yellow'){
+    document.getElementById("health_amber").classList.remove("hide");
+  } else if (featureCollection.features[4].properties.color == 'gray'){
+        document.getElementById("health_gray").classList.remove("hide");
+} else {document.getElementById("health_green").classList.remove("hide"); }
+
+if(featureCollection.features[2].properties.color == 'red'){
+  document.getElementById("safety_red").classList.remove("hide");
+} else if (featureCollection.features[2].properties.color == 'yellow'){
+    document.getElementById("safety_amber").classList.remove("hide");
+  } else if (featureCollection.features[2].properties.color == 'gray'){
+        document.getElementById("safety_gray").classList.remove("hide");
+} else {document.getElementById("safety_green").classList.remove("hide"); }
+
+  if(featureCollection.features[0].properties.color == 'red'){
+      document.getElementById("trans_red").classList.remove("hide");
+  } else if (featureCollection.features[0].properties.color == 'yellow'){
+        document.getElementById("trans_amber").classList.remove("hide");
+      } else if (featureCollection.features[0].properties.color == 'gray'){
+            document.getElementById("trans_gray").classList.remove("hide");
+  } else {document.getElementById("trans_green").classList.remove("hide"); }
+  }.bind(this));
+</script>
+</body>
+</html>
