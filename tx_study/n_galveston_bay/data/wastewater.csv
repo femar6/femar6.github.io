@@ -1,4 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,,,,,,,North Galveston Bay,1,Yes,29.758055999200000,-94.919443999999999,North Galveston Bay,img/wastewater.png
--1,,,,,,,North Galveston Bay,0,No,29.805555998900001,-94.921110999600003,North Galveston Bay,img/wastewater.png
--1,,,,,,,North Galveston Bay,1,Yes,30.035749998800000,-95.069083000199996,North Galveston Bay,img/wastewater.png

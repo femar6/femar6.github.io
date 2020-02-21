@@ -1,8 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,,,SIMONTON,,,,,1,Yes,29.675699999999999,-96.003200000000007,Lower Brazos,img/fm_towers.png
--1,,,SEALY,,,,,0,No,29.766700000000000,-96.191699999999997,Lower Brazos,img/fm_towers.png
--1,,,BROOKSHIRE,,,,,0,No,29.811399999999999,-95.981099999999998,Lower Brazos,img/fm_towers.png
--1,,,BRENHAM,,,,,0,No,30.054700000000000,-96.507199999999997,Lower Brazos,img/fm_towers.png
--1,,,PRAIRIE VIEW,,,,,0,No,30.089200000000002,-95.996099999999998,Lower Brazos,img/fm_towers.png
--1,,,PRAIRIE VIEW,,,,,0,No,30.089200000000002,-95.996099999999998,Lower Brazos,img/fm_towers.png
--1,,,BRENHAM,,,,,0,No,30.141900000000000,-96.416700000000006,Lower Brazos,img/fm_towers.png

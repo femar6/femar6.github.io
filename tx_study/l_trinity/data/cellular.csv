@@ -1,8 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,,,,,,,,0,No,29.841905231999998,-94.866406785099997,Lower Trinity,img/cellular.png
--1,,,,,,,,0,No,29.845605237899999,-94.703106742399996,Lower Trinity,img/cellular.png
--1,,,,,,,,0,No,29.971405267100000,-94.596906720099994,Lower Trinity,img/cellular.png
--1,,,,,,,,1,Yes,30.021705271500000,-94.792506773100001,Lower Trinity,img/cellular.png
--1,,,,,,,,0,No,30.030605279800000,-94.591706721500003,Lower Trinity,img/cellular.png
--1,,,,,,,,0,No,30.040005272100000,-94.895306800499995,Lower Trinity,img/cellular.png
--1,,,,,,,,0,No,30.320005334299999,-94.749406775400004,Lower Trinity,img/cellular.png

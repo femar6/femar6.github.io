@@ -1,7 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,,NUECES,CORPUS CHRISTI,,,,,0,No,27.685039544399999,-97.363145463699993,South Corpus Christi Bay,img/college_univ.png
--1,,NUECES,CORPUS CHRISTI,,,,,0,No,27.713532747700000,-97.324675643899994,South Corpus Christi Bay,img/college_univ.png
--1,,NUECES,CORPUS CHRISTI,,,,,0,No,27.739648511399999,-97.433269144299999,South Corpus Christi Bay,img/college_univ.png
--1,,NUECES,CORPUS CHRISTI,,,,,1,Yes,27.743306541599999,-97.439616014300000,South Corpus Christi Bay,img/college_univ.png
--1,,NUECES,CORPUS CHRISTI,,,,,0,No,27.754867904699999,-97.417155765399997,South Corpus Christi Bay,img/college_univ.png
--1,,NUECES,CORPUS CHRISTI,,,,,0,No,27.763623380399999,-97.407627070600000,South Corpus Christi Bay,img/college_univ.png

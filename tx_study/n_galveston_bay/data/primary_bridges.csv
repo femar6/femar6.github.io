@@ -1,9 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,,,,,,,,0,No,29.808119000800001,-94.964805999899994,North Galveston Bay,img/p_bridge.png
--1,,,,,,,,0,No,29.812894001299998,-94.938167000000007,North Galveston Bay,img/p_bridge.png
--1,,,,,,,,1,Yes,29.813808001200002,-94.934788999600002,North Galveston Bay,img/p_bridge.png
--1,,,,,,,,1,Yes,29.820842000300001,-94.910410999600003,North Galveston Bay,img/p_bridge.png
--1,,,,,,,,1,Yes,29.821286000800001,-94.909080999699995,North Galveston Bay,img/p_bridge.png
--1,,,,,,,,1,Yes,29.821483001000001,-94.909255999199999,North Galveston Bay,img/p_bridge.png
--1,,,,,,,,0,No,29.821767000600001,-94.898488999300000,North Galveston Bay,img/p_bridge.png
--1,,,,,,,,0,No,29.823619000499999,-94.872228000000007,North Galveston Bay,img/p_bridge.png

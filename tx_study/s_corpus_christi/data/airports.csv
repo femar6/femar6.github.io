@@ -1,9 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,69TA,Nueces,Corpus Christi,Dean,Pr,San Angelo,South Corpus Christi Bay,0,No,27.655031667700001,-97.525271389300002,South Corpus Christi Bay,img/airports.png
--1,NGP,Nueces,Corpus Christi,Corpus Christi Nas/Truax Field,Mn,San Angelo,South Corpus Christi Bay,0,No,27.692700834299998,-97.290375834100004,South Corpus Christi Bay,img/airports.png
--1,NGW,Nueces,Corpus Christi,Cabaniss Field Nolf,Mn,San Angelo,South Corpus Christi Bay,0,No,27.702712139900001,-97.438900166899998,South Corpus Christi Bay,img/airports.png
--1,07TE,Nueces,Corpus Christi,Cuddihy Field,Pr,San Angelo,South Corpus Christi Bay,0,No,27.721140278800000,-97.512771110900005,South Corpus Christi Bay,img/airports.png
--1,CRP,Nueces,Corpus Christi,Corpus Christi Intl,Pu,San Angelo,South Corpus Christi Bay,0,No,27.770780250900000,-97.501011083099996,South Corpus Christi Bay,img/airports.png
--1,RBO,Nueces,Robstown,Nueces County,Pu,San Angelo,South Corpus Christi Bay,1,Yes,27.778138889699999,-97.690111111199997,South Corpus Christi Bay,img/airports.png
--1,RAS,Nueces,Port Aransas,Mustang Beach,Pu,San Angelo,South Corpus Christi Bay,1,Yes,27.811833333900001,-97.088750000399997,South Corpus Christi Bay,img/airports.png
--1,TE62,Nueces,Robstown,High Man Tower Airstrip,Pr,San Angelo,South Corpus Christi Bay,0,No,27.854265833500001,-97.682274722000002,South Corpus Christi Bay,img/airports.png

@@ -1,7 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,,CHAMBERS,BEACH CITY,,,,,0,No,29.722168600000000,-94.854256800000002,North Galveston Bay,img/fire.png
--1,,HARRIS,BAYTOWN,,,,,0,No,29.735445100000000,-94.954795200000007,North Galveston Bay,img/fire.png
--1,,HARRIS,BAYTOWN,,,,,0,No,29.767504200000001,-94.927375200000000,North Galveston Bay,img/fire.png
--1,,CHAMBERS,MONT BELVIEU,,,,,0,No,29.857199900000001,-94.865612600000006,North Galveston Bay,img/fire.png
--1,,HARRIS,CROSBY,,,,,0,No,29.870715100000002,-95.016104400000003,North Galveston Bay,img/fire.png
--1,,HARRIS,CROSBY,,,,,0,No,29.952243400000000,-95.024738299999996,North Galveston Bay,img/fire.png

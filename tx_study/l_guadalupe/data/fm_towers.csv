@@ -1,9 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,,,VICTORIA,,,,,1,Yes,28.768599999999999,-96.986099999999993,Lower Guadalupe,img/fm_towers.png
--1,,,VICTORIA,,,,,0,No,28.778300000000002,-96.968900000000005,Lower Guadalupe,img/fm_towers.png
--1,,,VICTORIA,,,,,0,No,28.778600000000001,-97.047499999999999,Lower Guadalupe,img/fm_towers.png
--1,,,VICTORIA,,,,,0,No,28.812799999999999,-97.062500000000000,Lower Guadalupe,img/fm_towers.png
--1,,,VICTORIA,,,,,0,No,28.812799999999999,-96.995800000000003,Lower Guadalupe,img/fm_towers.png
--1,,,VICTORIA,,,,,0,No,28.816700000000001,-97.065600000000003,Lower Guadalupe,img/fm_towers.png
--1,,,CUERO,,,,,0,No,29.039700000000000,-97.323300000000003,Lower Guadalupe,img/fm_towers.png
--1,,,CUERO,,,,,0,No,29.110299999999999,-97.276899999999998,Lower Guadalupe,img/fm_towers.png

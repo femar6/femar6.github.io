@@ -1,4 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,,,,,,,,1,Yes,29.359205093000000,-96.087807078300003,San Bernard,img/cellular.png
--1,,,,,,,,0,No,29.738105161699998,-96.342807159600000,San Bernard,img/cellular.png
--1,,,,,,,,0,No,29.766905171400001,-96.237207133799998,San Bernard,img/cellular.png

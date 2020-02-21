@@ -1,5 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,,,,Columbia Lakes,Pr,Montgomery County,,0,No,29.168023889499999,-95.621335000299993,Lower Brazos,img/heliports.png
--1,,,,Community Hospital,Pr,Montgomery County,,0,No,29.562735556100002,-95.564111388699999,Lower Brazos,img/heliports.png
--1,,,,Oak Bend Medical Center,Pr,Montgomery County,,0,No,29.575555556800001,-95.770833333499994,Lower Brazos,img/heliports.png
--1,,,,Diamond E Ranch,Pr,Montgomery County,,1,Yes,29.786064723399999,-96.043291110699997,Lower Brazos,img/heliports.png

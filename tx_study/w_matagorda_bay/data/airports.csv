@@ -1,7 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,5TS9,Calhoun,Indianola,Big Duke's Place,Pr,Montgomery County,West Matagorda Bay,1,Yes,28.530277500800000,-96.527475833200000,West Matagorda Bay,img/airports.png
--1,9TE4,Calhoun,Port Lavaca,Tanner's,Pr,Montgomery County,West Matagorda Bay,1,Yes,28.569720278700000,-96.629700555599996,West Matagorda Bay,img/airports.png
--1,PKV,Calhoun,Port Lavaca,Calhoun County,Pu,Montgomery County,West Matagorda Bay,0,No,28.653305556399999,-96.682722221899994,West Matagorda Bay,img/airports.png
--1,10XA,Calhoun,Port Lavaca,Sterling,Pr,Montgomery County,West Matagorda Bay,0,No,28.679947222399999,-96.660897221799999,West Matagorda Bay,img/airports.png
--1,VCT,Victoria,Victoria,Victoria Rgnl,Pu,Montgomery County,West Matagorda Bay,0,No,28.852545834400001,-96.918488721800003,West Matagorda Bay,img/airports.png
--1,9XS0,Lavaca,Yoakum,Dobbs Ranch,Pr,Montgomery County,West Matagorda Bay,0,No,29.098033056700000,-96.955261666900000,West Matagorda Bay,img/airports.png

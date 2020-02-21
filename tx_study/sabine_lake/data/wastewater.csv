@@ -1,8 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,,,,,,,Sabine Lake,0,No,29.804916999100001,-94.370999999999995,Sabine Lake,img/wastewater.png
--1,,,,,,,Sabine Lake,1,Yes,29.901894999000000,-93.971505999900003,Sabine Lake,img/wastewater.png
--1,,,,,,,Sabine Lake,1,Yes,29.921602998600001,-93.881835999800003,Sabine Lake,img/wastewater.png
--1,,,,,,,Sabine Lake,1,Yes,29.938250000000000,-93.886555999899997,Sabine Lake,img/wastewater.png
--1,,,,,,,Sabine Lake,0,No,29.954166999300000,-93.941944000000007,Sabine Lake,img/wastewater.png
--1,,,,,,,Sabine Lake,0,No,29.958388998899999,-93.999167000300005,Sabine Lake,img/wastewater.png
--1,,,,,,,Sabine Lake,0,No,29.994305998600002,-94.131972000199994,Sabine Lake,img/wastewater.png

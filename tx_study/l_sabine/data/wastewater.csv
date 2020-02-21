@@ -1,5 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,,,,,,,Lower Sabine,1,Yes,30.040211998600000,-93.817669000400002,Lower Sabine,img/wastewater.png
--1,,,,,,,Lower Sabine,1,Yes,30.084805999200000,-93.745194000100000,Lower Sabine,img/wastewater.png
--1,,,,,,,Lower Sabine,1,Yes,30.087527998799999,-93.734693999699999,Lower Sabine,img/wastewater.png
--1,,,,,,,Lower Sabine,0,No,30.227318999000001,-93.807196000399998,Lower Sabine,img/wastewater.png

@@ -1,5 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,,MATAGORDA,MATAGORDA,,,,,0,No,28.691781200000001,-95.968603099999996,East Matagorda Bay,img/ems.png
--1,,MATAGORDA,SARGENT,,,,,0,No,28.813104100000000,-95.646606199999994,East Matagorda Bay,img/ems.png
--1,,MATAGORDA,BAY CITY,,,,,0,No,28.982573400000000,-95.974460699999995,East Matagorda Bay,img/ems.png
--1,,WHARTON,WHARTON,,,,,0,No,29.313557100000001,-96.098556500000001,East Matagorda Bay,img/ems.png

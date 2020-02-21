@@ -1,6 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,,,BAY CITY,,,,,0,No,29.001100000000001,-95.977199999999996,Lower Colorado,img/fm_towers.png
--1,,,EL CAMPO,,,,,0,No,29.225000000000001,-96.263099999999994,Lower Colorado,img/fm_towers.png
--1,,,EAGLE LAKE,,,,,0,No,29.599399999999999,-96.497500000000002,Lower Colorado,img/fm_towers.png
--1,,,COLUMBUS,,,,,0,No,29.698100000000000,-96.600600000000000,Lower Colorado,img/fm_towers.png
--1,,,COLUMBUS,,,,,0,No,29.700800000000001,-96.573300000000003,Lower Colorado,img/fm_towers.png

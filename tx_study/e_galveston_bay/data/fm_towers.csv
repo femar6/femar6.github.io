@@ -1,6 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,,,GALVESTON,,,,,1,Yes,29.415299999999998,-94.713099999999997,East Galveston Bay,img/fm_towers.png
--1,,,CRYSTAL BEACH,,,,,1,Yes,29.501899999999999,-94.520799999999994,East Galveston Bay,img/fm_towers.png
--1,,,BEAUMONT,,,,,1,Yes,29.697800000000001,-94.402500000000003,East Galveston Bay,img/fm_towers.png
--1,,,LA PORTE,,,,,0,No,29.935800000000000,-94.510800000000003,East Galveston Bay,img/fm_towers.png
--1,,,LA PORTE,,,,,0,No,29.935800000000000,-94.510800000000003,East Galveston Bay,img/fm_towers.png

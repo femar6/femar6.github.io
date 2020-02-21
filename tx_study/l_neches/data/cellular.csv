@@ -1,9 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,,,,,,,,1,Yes,30.025305302600000,-93.856906529499994,Lower Neches,img/cellular.png
--1,,,,,,,,1,Yes,30.026105303400001,-93.857206529099997,Lower Neches,img/cellular.png
--1,,,,,,,,1,Yes,30.026405303400001,-93.857506529600002,Lower Neches,img/cellular.png
--1,,,,,,,,0,No,30.082205307100001,-94.098906595399995,Lower Neches,img/cellular.png
--1,,,,,,,,1,Yes,30.109405314699998,-94.030006578400005,Lower Neches,img/cellular.png
--1,,,,,,,,0,No,30.343605358800001,-94.180006627699996,Lower Neches,img/cellular.png
--1,,,,,,,,0,No,30.975305495600001,-93.990006607500007,Lower Neches,img/cellular.png
--1,,,,,,,,0,No,30.978605496299998,-93.990806607500005,Lower Neches,img/cellular.png

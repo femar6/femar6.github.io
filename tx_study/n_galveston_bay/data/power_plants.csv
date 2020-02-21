@@ -1,7 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,,,BAYTOWN,,,,BAYTOWN,0,No,29.674514213999998,-94.914166499999993,North Galveston Bay,img/power_plants.png
--1,,,BAYTOWN,,,,CEDAR BAYOU,0,No,29.750000000000000,-94.925600000000003,North Galveston Bay,img/power_plants.png
--1,,,ELDON,,,,CEDAR BAYOU 4,0,No,29.751650000000001,-94.923119999999997,North Galveston Bay,img/power_plants.png
--1,,,BAYTOWN,,,,BAYTOWN ENERGY CENTER,0,No,29.771793676000001,-94.903270570000004,North Galveston Bay,img/power_plants.png
--1,,,MONT BELVIEU,,,,ENTERPRISE PRODUCTS OPERATING,0,No,29.824700000000000,-94.919700000000006,North Galveston Bay,img/power_plants.png
--1,,,MONT BELVIEU,,,,MONT BELVIEU COGENERATION UNIT,0,No,29.839453462000002,-94.901040714000004,North Galveston Bay,img/power_plants.png

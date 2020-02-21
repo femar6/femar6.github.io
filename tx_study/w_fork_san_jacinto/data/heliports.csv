@@ -1,6 +1,0 @@
-OID,LocationID,County,City,FullName,OwnerType,FSSName,Name_1,SFHA,In_SFHA,lat,lng,Watershed,logo_url
--1,,,,Montgomery County Medical Center Hospital,Pr,Montgomery County,,0,No,30.284933333900000,-95.467717777499999,West Fork San Jacinto,img/heliports.png
--1,,,,Montgomery Co Law Enforcement Cntr,Pu,Montgomery County,,0,No,30.335209167199999,-95.452995834099994,West Fork San Jacinto,img/heliports.png
--1,,,,Lawrence Administrative Services Inc,Pr,Montgomery County,,0,No,30.345208612499999,-95.477718611399993,West Fork San Jacinto,img/heliports.png
--1,,,,Sartor,Pr,Montgomery County,,1,Yes,30.375762500600000,-95.557443055700006,West Fork San Jacinto,img/heliports.png
--1,,,,Huntsville Memorial Hospital,Pu,Montgomery County,,0,No,30.697416112100001,-95.557999167000006,West Fork San Jacinto,img/heliports.png
