@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>CLOCK</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.1.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.1/jquery.fittext.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:700'>
+
+      <style>
+      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+      body {
+/*   font-family: 'Amatic SC', cursive; */
+font-family: 'Oswald', sans-serif;
+  user-select: none;
+  user-drag: none;
+  background-color:white;
+}
+
+.clock {
+  width: 100%;
+  line-height: 100px;
+  margin-top: 8%;
+  background: white;
+  color: black;
+  text-align: center;
+}
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+</head>
+<body>
+  <div id="clock" class="clock"></div>
+    <script>
+    $('#clock').fitText(1.25);
+
+    function update() {
+      $('#clock').html(moment().format('MMMM D, YYYY H:mm:ss').toUpperCase());
+    }
+
+    setInterval(update, 1000);
+    </script>
+</body>
+
+</html>
