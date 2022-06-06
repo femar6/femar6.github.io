@@ -175,7 +175,7 @@ const mCover = new L.map("coverMap", {
                    }
                  }
                  }).addTo(m3);
-             var draft = L.esri.featureLayer({url:'https://hazards.fema.gov/gis/nfhl/rest/services/AFHI/Draft_FIRM_DB/MapServer/11',where:"FLD_ZONE IN ('A','AE','A99','V','VE')",
+             var draft = L.esri.featureLayer({url:'https://hazards.fema.gov/gis/nfhl/rest/services/AFHI/Draft_FIRM_DB/MapServer/10',where:"FLD_ZONE IN ('A','AE','A99','V','VE')",
                  style: function (feature) {
                    if(feature.properties.FLD_ZONE === 'VE'){
                      return {color: 'darkpurple', weight: 0,fillOpacity:0.5 };
