@@ -350,7 +350,7 @@ footer>a:hover {
 
 }
 
-.table-container > table {
+#table > table {
     border: 1px solid black;
     width: 100%;
     text-align: center;
