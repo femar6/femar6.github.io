@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>FEMA's CNMS Map Viewer</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.css"
+        integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ=="
+        crossorigin="">
+        <link rel="stylesheet" href="app.css"/>
+
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="splash-bg">
+    </div>
+    <div class="splash">
+        <div>
+            <h1 style="background-color:#00264c;color:white;padding:1rem;margin:0;">Welcome to FEMA’s CNMS | NVUE
+                Initiation</h1>
+            <p style="padding:0.5rem;">FEMA’s Coordinated Needs Management Strategy (CNMS) uses a geospatial database to
+                identify and track flood hazard study lifecycle and mapping needs within the flood hazard mapping
+                program. CNMS
+                supports community officials and FEMA personnel in analyzing and depicting the validity of flood studies
+                to
+                enhance the understanding of flood hazard risk and make informed decisions on community planning and
+                flood
+                mitigation.</p>
+            <p style="padding:0.5rem;">FEMA administers the National Flood Insurance Program (NFIP) and provides flood
+                hazard
+                data and maps nationwide. As floodplains are constantly changing, Flood Insurance Rate Maps (FIRMs) are
+                updated
+                to reflect physiological, climatological, and engineering methodology (PCE) changes.</p>
+            <p style="padding:0.5rem;">The CNMS Viewer provides users a single interactive map view of riverine studies,
+                coastal studies, unmapped stream reaches, and mapping request information. In addition, users can view
+                the
+                validity of a flood hazard study to understand if an area is New, Valid, and Updated Engineering (NVUE)
+                compliant. NVUE compliance means the studies were completed using up-to-date engineering methodology
+                and/or
+                conducted in areas where significant PCE changes have not occurred since the date of the original study.
+                Below is an image of data populated in the CNMS Viewer. Colored stream and coast lines display the
+                validation
+                status of flood hazard studies in the FEMA CNMS.</p>
+            <h3 style="margin-left:2.5rem;">Select a Geography Query:</h3>
+            <div style="height:100%;margin-left:5rem;">
+                <a href="javascript:void(0)" id="queryCnty"
+                    style="border:#00264c solid 1px;display:inline-block;padding:0.5rem;height:29%;width:18%;">Query by
+                    <br>County</a>
+                <!-- <a href="javascript:void(0)" id="queryHuc8"
+                    style="border:#00264c solid 1px;display:inline-block;padding:0.5rem;height:29%;width:18%;">Query by
+                    <br>Subbasin
+                    (HUC-8)</a> -->
+            </div>
+        </div>
+    </div>
+    <header><span> FEMA Region 6 Coordinated Needs Management Strategy (CNMS) | NVUE Initiation</span><a target="_blank"
+            href="http://r6gis.fema.net/"><img height=50 width=135 src="./img/logo_fema.png" /></a><img
+            style="float:right;margin-top:0.75rem;margin-right:0.75rem;" height=45 width=125 src="./img/RISKMAP.png" />
+    </header>
+    <div class="sidebar">
+        <div class="content">
+
+            <button class="sidebar-btn hide" id="btnClickReport_cnty">
+                <span aria-hidden="true"></span>&nbsp;
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-hand-index-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M8.5 4.466V1.75a1.75 1.75 0 0 0-3.5 0v5.34l-1.199.24a1.5 1.5 0 0 0-1.197 1.636l.345 3.106a2.5 2.5 0 0 0 .405 1.11l1.433 2.15A1.5 1.5 0 0 0 6.035 16h6.385a1.5 1.5 0 0 0 1.302-.756l1.395-2.441a3.5 3.5 0 0 0 .444-1.389l.272-2.715a2 2 0 0 0-1.99-2.199h-.582a5.184 5.184 0 0 0-.195-.248c-.191-.229-.51-.568-.88-.716-.364-.146-.846-.132-1.158-.108l-.132.012a1.26 1.26 0 0 0-.56-.642 2.634 2.634 0 0 0-.738-.288c-.31-.062-.739-.058-1.05-.046l-.048.002z" />
+                </svg>
+                County Click
+            </button>
+            <div class="well">
+                Click this button and then the map.
+                A report table is generated if there is CNMS data are available there.<br><br>
+                <div aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                    </svg>
+                    <b>Tip: </b>
+                    Click on a County or Parish to get report.
+                </div>
+            </div><br><span class="titleTotalAll" style="color:black"></span><br><span class="validATotal" style="color:black"></span><br>
+            <span class="validAeTotal" style="color:black"></span><br><span class="compATotal" style="color:black"></span><br>
+            <br><span class="compAeTotal" style="color:black"></span><br>
+            <span class="effAeFldwayTotal" style="color:black"></span><br><span class="effAeFldwayTotal" style="color:black"></span>
+            <br><span class="effAeCompFldwayTotal" style="color:black"></span><br><span class="unmappedTotal" style="color:black"></span>
+        </div>
+
+        </div>
+    </div>
+    <div id="map" class="map-content">
+
+
+
+
+
+
+
+        <div class="hide table-container" style="background-color:#337ab7;position:absolute;z-index:700;width:700px;height:215px;bottom:0;right:0;color:white;padding:0.8rem;font-size:0.9rem;">
+            <span style="margin-left:1.25rem;"><b>Study Type</b></span><span style="margin-left:6rem;">Effective Miles
+                (miles)</span><span style="margin-left:4.5rem;">At Completion (miles)</span><span
+                style="margin-left:2rem;">Delta (miles)</span>           
+            <table>
+                <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>Valid</th>
+                        <th>Unk/Unv</th>
+                        <th>Valid</th>
+                        <th>Unk/Unv</th>
+                        <th>Valid</th>
+                        <th>Unk/Unv</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Not Mapped</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td id="notmapped_table_atcomp_valid">0</td>
+                        <td></td>
+                        <td id="notmapped_table_delta_valid">0</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Zone A</td>
+                        <td id="a_table_valid">0</td>
+                        <td id="a_table_unk_unv">0</td>
+                        <td id="a_table_atcomp_valid">0</td>
+                        <td></td>
+                        <td id="a_table_delta_valid">0</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Zone AE</td>
+                        <td id="ae_table_valid">0</td>
+                        <td id="ae_table_unk_unv">0</td>
+                        <td id="ae_table_atcomp_valid">0</td>
+                        <td>0</td>
+                        <td id="ae_table_delta_valid">0</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Zone AE w/FW</td>
+                        <td id="aewFw_table_valid">0</td>
+                        <td id="aewFw_table_unk_unv">0</td>
+                        <td id="aewFw_table_atcomp_valid">0</td>
+                        <td></td>
+                        <td id="aewFw_table_delta_valid">0</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>        
+        </div>
+
+
+    </div>
+    <footer>
+        <a href="https://www.dhs.gov/" target="_blank"><b>U.S. Department of Homeland
+                Security</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://www.oig.dhs.gov/" target="_blank"><b>DHS Inspector General</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://www.whitehouse.gov/" target="_blank"><b>White House</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <!-- <a href="https://www.whitehouse.gov/open/" target="_blank"><b>Open Government</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;   -->
+        <a href="https://www.dhs.gov/homeland-security-no-fear-act-reporting/" target="_blank"><b>No Fear
+                Act</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://www.fema.gov/foia/" target="_blank"><b>FOIA</b></a>
+    </footer>
+</body>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+
+<!-- Load Esri Leaflet from CDN -->
+<script src="https://unpkg.com/esri-leaflet@2.5.3/dist/esri-leaflet.js"
+    integrity="sha512-K0Vddb4QdnVOAuPJBHkgrua+/A9Moyv8AQEWi0xndQ+fqbRfAFd47z4A9u1AW/spLO0gEaiE1z98PK1gl5mC5Q=="
+    crossorigin=""></script>
+<script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js"
+    integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A=="
+    crossorigin=""></script>
+<script src="app.js"></script>
+
+</html>

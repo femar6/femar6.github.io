@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>FEMA's CNMS Map Viewer</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.css"
+        integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ=="
+        crossorigin="">
+
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+        /*
+#############################   GLOBAL   ####################################################
+*/
+        :root {
+            --femablue: #00264c;
+            --mainBtn: #337ab7;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Libre Franklin', sans-serif;
+            /* font-family: Arial, sans-serif; */
+            /* font-family: Volkhov,serif; */
+            /* font-family: 'Archivo Black', sans-serif; */
+            /* font-family: 'Oswald', sans-serif; */
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            display: grid;
+            min-height: 100vh;
+            max-height: 100vh;
+            grid-template-rows: 4.5rem 1fr 2.25rem;
+            grid-template-areas:
+                "header header"
+                "sidebar map-content"
+                "footer footer";
+            overflow: hidden;
+            grid-template-columns: 27.5rem 1fr;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .splash-bg {
+            background-color: black;
+            opacity: 0.75;
+            height: 100vh;
+            width: 100%;
+            z-index: 1001;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .splash {
+            background-color: white;
+            z-index: 1002;
+            width: 1200px;
+            height: 750px;
+            position: absolute;
+            top: 5%;
+            left: 20%;
+            padding: 2rem;
+            border: #00264c solid 2px;
+        }
+
+        .splash>div {
+            border-style: solid;
+            border-width: thin;
+            border-color: #31708f;
+            color: #31708f;
+            background-color: #cde6f0;
+            padding: 0.5em;
+            height: 100%;
+            width: 100%;
+        }
+
+        .splash-img {
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            padding: 2rem;
+            z-index: 700;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        /*
+###########################   HEADER  #######################################################
+*/
+        header,
+        .map-content,
+        footer {
+            background-color: var(--femablue);
+            color: white;
+        }
+
+        header {
+            grid-area: header;
+            padding-top: 0.25rem;
+
+        }
+
+        header>a>img {
+            float: right;
+            margin-right: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        header>span {
+            margin-left: 1.75rem;
+            font-size: 2.15rem;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        /*
+##########################  MAP CONTENT  ###########################################
+*/
+        .map-content {
+            grid-area: map-content;
+            border-style: solid;
+            border-width: thin;
+            border-color: #ccc;
+            background-color: rgb(177, 177, 177);
+        }
+
+        .sidebar {
+            grid-area: sidebar;
+        }
+
+        /*
+##########################  FOOTER CONTENT  ###########################################
+*/
+        footer {
+            grid-area: footer;
+            text-align: center;
+            padding-top: 0.35rem;
+        }
+
+        footer>a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.7rem;
+        }
+
+        footer>a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="splash-bg">
+    </div>
+    <div class="splash">
+        <div>
+            <h1 style="background-color:#00264c;color:white;padding:1rem;margin:0;">Welcome to FEMA’s CNMS | NVUE
+                Initiation</h1>
+            <p style="padding:0.5rem;">FEMA’s Coordinated Needs Management Strategy (CNMS) uses a geospatial database to
+                identify and track flood hazard study lifecycle and mapping needs within the flood hazard mapping
+                program. CNMS
+                supports community officials and FEMA personnel in analyzing and depicting the validity of flood studies
+                to
+                enhance the understanding of flood hazard risk and make informed decisions on community planning and
+                flood
+                mitigation.</p>
+            <p style="padding:0.5rem;">FEMA administers the National Flood Insurance Program (NFIP) and provides flood
+                hazard
+                data and maps nationwide. As floodplains are constantly changing, Flood Insurance Rate Maps (FIRMs) are
+                updated
+                to reflect physiological, climatological, and engineering methodology (PCE) changes.</p>
+            <p style="padding:0.5rem;">The CNMS Viewer provides users a single interactive map view of riverine studies,
+                coastal studies, unmapped stream reaches, and mapping request information. In addition, users can view
+                the
+                validity of a flood hazard study to understand if an area is New, Valid, and Updated Engineering (NVUE)
+                compliant. NVUE compliance means the studies were completed using up-to-date engineering methodology
+                and/or
+                conducted in areas where significant PCE changes have not occurred since the date of the original study.
+                Below is an image of data populated in the CNMS Viewer. Colored stream and coast lines display the
+                validation
+                status of flood hazard studies in the FEMA CNMS.</p>
+            <h3 style="margin-left:2.5rem;">Select a Geography Query:</h3>
+            <div style="height:100%;margin-left:5rem;">
+                <a href="javascript:void(0)" id="queryCnty"
+                    style="border:#00264c solid 1px;display:inline-block;padding:0.5rem;height:29%;width:18%;">Query by
+                    <br>County</a>
+                <a href="javascript:void(0)" id="queryHuc8"
+                    style="border:#00264c solid 1px;display:inline-block;padding:0.5rem;height:29%;width:18%;">Query by
+                    <br>Subbasin
+                    (HUC-8)</a></div>
+        </div>
+    </div>
+    <header><span> FEMA Region 6 Coordinated Needs Management Strategy (CNMS) | NVUE Initiation</span><a target="_blank"
+            href="http://r6gis.fema.net/"><img height=50 width=135 src="./img/logo_fema.png" /></a><img
+            style="float:right;margin-top:0.75rem;margin-right:0.75rem;" height=45 width=125 src="./img/RISKMAP.png" />
+    </header>
+    <div class="sidebar">
+        <div class="content">
+            
+        </div>
+    </div>
+    <div id="map" class="map-content"></div>
+    <footer>
+        <a href="https://www.dhs.gov/" target="_blank"><b>U.S. Department of Homeland
+                Security</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://www.oig.dhs.gov/" target="_blank"><b>DHS Inspector General</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://www.whitehouse.gov/" target="_blank"><b>White House</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <!-- <a href="https://www.whitehouse.gov/open/" target="_blank"><b>Open Government</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;   -->
+        <a href="https://www.dhs.gov/homeland-security-no-fear-act-reporting/" target="_blank"><b>No Fear
+                Act</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://www.fema.gov/foia/" target="_blank"><b>FOIA</b></a>
+    </footer>
+</body>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+
+<!-- Load Esri Leaflet from CDN -->
+<script src="https://unpkg.com/esri-leaflet@2.5.3/dist/esri-leaflet.js"
+    integrity="sha512-K0Vddb4QdnVOAuPJBHkgrua+/A9Moyv8AQEWi0xndQ+fqbRfAFd47z4A9u1AW/spLO0gEaiE1z98PK1gl5mC5Q=="
+    crossorigin=""></script>
+<script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js"
+    integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A=="
+    crossorigin=""></script>
+<script>
+    document.getElementById("queryCnty").addEventListener("click", function (e) {
+        document.querySelector(".splash").classList.add("hide");
+        document.querySelector(".splash-bg").classList.add("hide");
+    });
+    document.getElementById("queryHuc8").addEventListener("click", function (e) {
+        document.querySelector(".splash").classList.add("hide");
+        document.querySelector(".splash-bg").classList.add("hide");
+    });
+    const map = L.map('map', {
+        attributionControl: false,
+        zoomSnap: 0.1,
+        zoomDelta: 0.1
+    }).setView([32, -99], 6);
+    var google_hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+        maxZoom: 21,
+        attribution: '&copy; <a href="http://www.google.com">Google</a>',
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    }).addTo(map);
+</script>
+
+</html>
