@@ -107,15 +107,15 @@ a{
     
 }
 #queryHuc8{
-    background-image:url(huc8.png);
+    background-image:url(huc8.PNG);
     background-size:cover;
 }
 #queryCnty{
-    background-image:url(cnty.png);
+    background-image:url(cnty.PNG);
     background-size:cover;
 }
 #queryCom{
-    background-image:url(com.png);
+    background-image:url(com.PNG);
     background-size:cover;    
 }
 
