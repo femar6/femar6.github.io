@@ -5,30 +5,30 @@ var _originalBeforeAdd = L.Path.prototype.beforeAdd;
 
 L.Path.include({
 
-	beforeAdd: function (m) {
-		_originalBeforeAdd.bind(this)(m);
+    beforeAdd: function (m) {
+        _originalBeforeAdd.bind(this)(m);
 
-		if (this.options.dashSpeed) {
-			this._lastDashFrame = performance.now();
-			this._dashFrame = L.Util.requestAnimFrame(this._onDashFrame.bind(this));
-		}
-	},
+        if (this.options.dashSpeed) {
+            this._lastDashFrame = performance.now();
+            this._dashFrame = L.Util.requestAnimFrame(this._onDashFrame.bind(this));
+        }
+    },
 
-	_onDashFrame: function () {
-		if (!this._renderer) {
-			return;
-		}
+    _onDashFrame: function () {
+        if (!this._renderer) {
+            return;
+        }
 
-		var now = performance.now();
-		var dashOffsetDelta = (now - this._lastDashFrame) * this.options.dashSpeed / 1000;
+        var now = performance.now();
+        var dashOffsetDelta = (now - this._lastDashFrame) * this.options.dashSpeed / 1000;
 
-		this.options.dashOffset = Number(this.options.dashOffset || 0) + dashOffsetDelta;
-		this._renderer._updateStyle(this);
+        this.options.dashOffset = Number(this.options.dashOffset || 0) + dashOffsetDelta;
+        this._renderer._updateStyle(this);
 
-		this._lastDashFrame = performance.now();
+        this._lastDashFrame = performance.now();
 
-		this._dashFrame = L.Util.requestAnimFrame(this._onDashFrame.bind(this));
-	}
+        this._dashFrame = L.Util.requestAnimFrame(this._onDashFrame.bind(this));
+    }
 
 });
 const cntyUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/watch_designated_cnty/FeatureServer/0";
@@ -61,7 +61,12 @@ const pending = L.esri.dynamicMapLayer({
 const draft = L.esri.dynamicMapLayer({
     url: "https://hazards.fema.gov/gis/nfhl/rest/services/AFHI/Draft_FIRM_DB/MapServer"
 });
-
+const ble_1per = L.esri.dynamicMapLayer({
+    // group  : "ble_primary",
+    url: "https://txgeo.usgs.gov/arcgis/rest/services/FEMA_EBFE/EBFE/MapServer",
+    layers: [12],
+    opacity: 0.35,
+});
 const baseMapLayers = L.layerGroup([]).addTo(map);
 const groupLayers = L.layerGroup([]).addTo(map);
 const supportLayers = L.layerGroup([]).addTo(map);
@@ -69,46 +74,55 @@ const selectedAoi = L.layerGroup([]).addTo(map);
 const selectedData = L.layerGroup([]).addTo(map);
 const results = L.layerGroup().addTo(map);
 const googleRoad = L.tileLayer('http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}', {
-	maxZoom: 21,
-	attribution: '&copy; <a href="http://www.google.com">Google</a>',
-	subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    maxZoom: 21,
+    attribution: '&copy; <a href="http://www.google.com">Google</a>',
+    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
 });
 const google_terrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
-	maxZoom: 21,
-	attribution: '&copy; <a href="http://www.google.com">Google</a>',
-	subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    // maxZoom: 21,
+    attribution: '&copy; <a href="http://www.google.com">Google</a>',
+    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
 });
 var google_hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-	maxZoom: 21,
-	attribution: '&copy; <a href="http://www.google.com">Google</a>',
-	subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    // maxZoom: 21,
+    attribution: '&copy; <a href="http://www.google.com">Google</a>',
+    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
 }).addTo(baseMapLayers);
-// const Esri_WorldImagery = L.tileLayer('https://servicesbeta.arcgisonline.com/arcgis/rest/services/Firefly_World_Imagery/MapServer/tile/{z}/{y}/{x}');
 const Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
 
-const CartoDB_PositronNoLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png');
-// const Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png').addTo(basemapLayers);
-const Stadia_AlidadeSmoothDark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png');
-
-
-const NASAGIBS_ViirsEarthAtNight2012 = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {
-	bounds: [
-		[-85.0511287776, -179.999999975],
-		[85.0511287776, 179.999999975]
-	],
-	minZoom: 1,
-	maxZoom: 8,
-	format: 'jpg',
-	time: '',
-	tilematrixset: 'GoogleMapsCompatible_Level'
+var USGS_USTopo = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {
+    // maxZoom: 20,
+    attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
 });
-var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png');
-var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png');
+var USGS_USImageryTopo = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}', {
+    // maxZoom: 20,
+    attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
+});
+const OPNVKarte = L.tileLayer('https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: 'Map <a href="https://memomaps.de/">memomaps.de</a> <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});
+const Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+});
+map.createPane('labels');
+map.getPane('labels').style.zIndex = 675;
+map.getPane('labels').style.pointerEvents = 'none';
+
+const Stamen_TerrainLabels = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-labels/{z}/{x}/{y}{r}.{ext}', {
+    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    subdomains: 'abcd',
+    minZoom: 0,
+    maxZoom: 18,
+    ext: 'png',
+    pane: 'labels'
+});
+const OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png');
 var legendCtrl = L.control({
-	position: 'bottomright'
+    position: 'bottomright'
 });
 const baseMaps = document.createElement("div");
-baseMaps.innerHTML = `<div id='baseMapsid' class='basemapsContainer basemapTray hide'><div style='padding:3px;margin-bottom: 10px;background-color: lightgray;'><p style='margin:0px 0px 5px 0px;font-size:0.8rem;'>Select a base map:</p><div id='basemap1' class='basemaps'><img class='basemapImg' src='google_imagery.png'><div class='basemapLabel'>Google Imagery</div></div><div id='basemap2' class='basemaps'><img class='basemapImg' src='google_terrain.png'><div class='basemapLabel'>Google Terrain</div></div><div id='basemap3' class='basemaps'><img class='basemapImg' src='google_roads.PNG'><div class='basemapLabel'>Google Roads</div></div><br><div id='basemap4' class='basemaps'><img class='basemapImg' src='esri_imagery.PNG'><div class='basemapLabel'>ESRI Imagery</div></div><div id='basemap5' class='basemaps'><img class='basemapImg' src='cartodb_positron.PNG'><div class='basemapLabel'>CartoDB Positron</div></div><div id='basemap6' class='basemaps basemapSelected'><img class='basemapImg' src='stadia_dark.PNG'><div class='basemapLabel'>Stadia Dark</div></div><br><div id='basemap7' class='basemaps'><img class='basemapImg' src='nasa_night.png'><div class='basemapLabel'>NASA GIBS (Night)</div></div><div id='basemap8' class='basemaps'><img class='basemapImg' src='osm_hot.PNG'><div class='basemapLabel'>OSM HOT</div></div><div id='basemap9' class='basemaps'><img class='basemapImg' src='open_topo.PNG'><div class='basemapLabel'>OSM OpenTopo</div></div></div><button id='closeBasemaps' class='baseMapClose'>Close</button></div></div>`;
+baseMaps.innerHTML = `<div id='baseMapsid' class='basemapsContainer basemapTray hide'><div style='width:100%;height:100%;background-color:rgb(196, 192, 192);padding:0.3rem;'><p style='margin:0px 0px 5px 0px;'><b>Select a base map:</b></p><hr><div id='basemap1' class='basemaps basemapSelected'><img class='basemapImg' src='http://mt1.google.com/vt/lyrs=s,h&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Imagery</div></div><div id='basemap2' class='basemaps'><img class='basemapImg' src='http://mt1.google.com/vt/lyrs=p&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Terrain</div></div><div id='basemap3' class='basemaps'><img class='basemapImg' src='http://mt0.google.com/vt/lyrs=m&hl=en&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Roads</div></div><br><div id='basemap4' class='basemaps'><img class='basemapImg' src='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/105398/60373'><div class='basemapLabel'>ESRI Imagery</div></div><div id='basemap5' class='basemaps'><img class='basemapImg' src='https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/16/26349/15093'><div class='basemapLabel'>USGS Topo</div></div><div id='basemap6' class='basemaps'><img class='basemapImg' src='https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/16/26349/15093'><div class='basemapLabel'>USGS Imagery</div></div><br><div id='basemap7' class='basemaps'><img class='basemapImg' src='https://tileserver.memomaps.de/tilegen/17/30186/52699.png'><div class='basemapLabel'>ÖPNVKarte</div></div><div id='basemap8' class='basemaps'><img class='basemapImg' src='https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/17/30186/52699.png'><div class='basemapLabel'>Stadia Dark</div></div><div id='basemap9' class='basemaps'><img class='basemapImg' src='https://c.tile.opentopomap.org/15/7546/13174.png'><div class='basemapLabel'>OSM OpenTopo</div></div><hr><button id='closeBasemaps' class='baseMap-layersClose'>X</button></div></div></div>`;
 document.body.appendChild(baseMaps);
 var style1 = {
     color: 'white',
@@ -210,39 +224,32 @@ var queryAoi = function queryaoi(feature) {
     } else if (query == 2) {
         aoiUrl = comUrl;
     }
-
-
-
-
     L.esri.query({
         url: aoiUrl
     }).where(objectid_).run(function (error, featureCollection) {
-        // var stripes = new L.StripePattern({
-        //     spaceColor: 'yellow',
-        //     spaceOpacity: 1,
-        //     fillOpacity: 0,
-        //     weight: 4,
-        //     angle: 45
-        // });
-        // stripes.addTo(map);
         console.log(objectid_2)
-        L.esri.featureLayer({url:aoiUrl,where:objectid_2,
-            style:{color: 'black',
-            fillColor: 'black',
-            simplifyFactor: 0.35,
-            precision: 5,
-            fillOpacity: 0.65,
-            weight: 0} 
-            }).addTo(selectedAoi);
-            map.createPane('aoiIndex');
-            map.getPane('aoiIndex').style.zIndex = 750;
+        L.esri.featureLayer({
+            url: aoiUrl,
+            where: objectid_2,
+            style: {
+                color: 'black',
+                fillColor: 'black',
+                simplifyFactor: 0.35,
+                precision: 5,
+                fillOpacity: 0.65,
+                interactive: false,
+                weight: 0
+            }
+        }).addTo(selectedAoi);
+        map.createPane('aoiIndex');
+        map.getPane('aoiIndex').style.zIndex = 750;
         var aoi_select = L.geoJSON(featureCollection).setStyle({
             color: 'yellow',
-                dashArray: "3,12",
+            dashArray: "3,12",
             dashSpeed: -35,
             fillOpacity: 0,
             // fillPattern: stripes,
-             weight: 3.5,
+            weight: 3.5,
             pane: 'aoiIndex',
             interactive: false,
         }).addTo(selectedAoi);
@@ -339,10 +346,11 @@ var queryCnmsMapped = function (feature) {
             },
             onEachFeature: onEachFeature
         }).addTo(groupLayers);
+
         function resetHighlight(e) {
             cnms_.resetStyle(e.target);
         }
-        
+
         function highlightFeature(e) {
             var layer = e.target;
             layer.setStyle({
@@ -350,6 +358,7 @@ var queryCnmsMapped = function (feature) {
                 color: 'yellow',
             });
         }
+
         function onEachFeature(feature, layer) {
 
             layer.bindPopup("<span style='font-size:0.99rem;text-decoration: underline;position:absolute;top:0;left:0;padding:1px;background-color:#00264c;color:white;'>Existing Studies (Line): " + feature.properties.REACH_ID + "</span><br>" +
@@ -401,221 +410,214 @@ var queryCnmsMapped = function (feature) {
         document.getElementById("table-title").innerHTML = "<b>" + titleName + " | Total Mapped Miles: " + sumTotal.toFixed(1) + "</b>";
 
     });
-    setTimeout(function(e){
+    setTimeout(function (e) {
+        L.esri.query({
+            url: streamsUrl
+        }).where(query +
+            "AND VALIDATION = 'ASSESSED' AND STATUS_TYP = 'BEING STUDIED'"
+        ).run(function (error, featureCollection) {
+            var assessedBeingStudied = 0;
 
-    
-	L.esri.query({
-		url: streamsUrl
-	}).where(query
-		+"AND VALIDATION = 'ASSESSED' AND STATUS_TYP = 'BEING STUDIED'"
-	).run(function (error, featureCollection) {
-		var assessedBeingStudied = 0;
+            for (var i = 0; i < featureCollection.features.length; i++) {
+                if (featureCollection.features[i].properties.MILES > 0) {
+                    assessedBeingStudied += featureCollection.features[i].properties.MILES;
+                } else {
+                    assessedBeingStudied = 0;
+                }
+            }
+            var assessedBeingStudied_ = document.getElementById("legendNum1");
+            assessedBeingStudied_.innerHTML = assessedBeingStudied.toFixed(1);
+        });
+        L.esri.query({
+            url: streamsUrl
+        }).where(query +
+            "AND VALIDATION = 'ASSESSED' AND STATUS_TYP = 'DEFERRED'"
+        ).run(function (error, featureCollection) {
+            var assessedDefered = 0;
 
-		for (var i = 0; i < featureCollection.features.length; i++) {
-			if (featureCollection.features[i].properties.MILES > 0) {
-				assessedBeingStudied += featureCollection.features[i].properties.MILES;
-			} else {
-				assessedBeingStudied = 0;
-			}
-		}
-		var assessedBeingStudied_ = document.getElementById("legendNum1");
-		assessedBeingStudied_.innerHTML = assessedBeingStudied.toFixed(1);
-	});
-	L.esri.query({
-		url: streamsUrl
-	}).where(query
-		+"AND VALIDATION = 'ASSESSED' AND STATUS_TYP = 'DEFERRED'"
-	).run(function (error, featureCollection) {
-		var assessedDefered = 0;
+            for (var i = 0; i < featureCollection.features.length; i++) {
+                if (featureCollection.features[i].properties.MILES > 0) {
+                    assessedDefered += featureCollection.features[i].properties.MILES;
+                } else {
+                    assessedDefered = 0;
+                }
+            }
+            var assessedDefered_ = document.getElementById("legendNum2");
+            assessedDefered_.innerHTML = assessedDefered.toFixed(1);
+        });
+        L.esri.query({
+            url: streamsUrl
+        }).where(query +
+            "AND VALIDATION = 'ASSESSED' AND STATUS_TYP = 'TO BE STUDIED'"
+        ).run(function (error, featureCollection) {
+            var assessedTobestudied = 0;
 
-		for (var i = 0; i < featureCollection.features.length; i++) {
-			if (featureCollection.features[i].properties.MILES > 0) {
-				assessedDefered += featureCollection.features[i].properties.MILES;
-			} else {
-				assessedDefered = 0;
-			}
-		}
-		var assessedDefered_ = document.getElementById("legendNum2");
-		assessedDefered_.innerHTML = assessedDefered.toFixed(1);
-	});
-	L.esri.query({
-		url: streamsUrl
-	}).where(query
-		+"AND VALIDATION = 'ASSESSED' AND STATUS_TYP = 'TO BE STUDIED'"
-	).run(function (error, featureCollection) {
-		var assessedTobestudied = 0;
+            for (var i = 0; i < featureCollection.features.length; i++) {
+                if (featureCollection.features[i].properties.MILES > 0) {
+                    assessedTobestudied += featureCollection.features[i].properties.MILES;
+                } else {
+                    assessedTobestudied = 0;
+                }
+            }
+            var assessedTobestudied_ = document.getElementById("legendNum3");
+            assessedTobestudied_.innerHTML = assessedTobestudied.toFixed(1);
 
-		for (var i = 0; i < featureCollection.features.length; i++) {
-			if (featureCollection.features[i].properties.MILES > 0) {
-				assessedTobestudied += featureCollection.features[i].properties.MILES;
-			} else {
-				assessedTobestudied = 0;
-			}
-		}
-		var assessedTobestudied_ = document.getElementById("legendNum3");
-		assessedTobestudied_.innerHTML = assessedTobestudied.toFixed(1);
+        });
+        L.esri.query({
+            url: streamsUrl
+        }).where(query +
+            "AND VALIDATION = 'UNKNOWN' AND STATUS_TYP = 'BEING STUDIED'"
+        ).run(function (error, featureCollection) {
+            var unkBeingstudied = 0;
 
-	});
-	L.esri.query({
-		url: streamsUrl
-	}).where(query
-		+"AND VALIDATION = 'UNKNOWN' AND STATUS_TYP = 'BEING STUDIED'"
-	).run(function (error, featureCollection) {
-		var unkBeingstudied = 0;
+            for (var i = 0; i < featureCollection.features.length; i++) {
+                if (featureCollection.features[i].properties.MILES > 0) {
+                    unkBeingstudied += featureCollection.features[i].properties.MILES;
+                } else {
+                    unkBeingstudied = 0;
+                }
+            }
+            var unkBeingstudied_ = document.getElementById("legendNum4");
+            unkBeingstudied_.innerHTML = unkBeingstudied.toFixed(1);
+        });
+        L.esri.query({
+            url: streamsUrl
+        }).where(query +
+            "AND VALIDATION = 'UNKNOWN' AND STATUS_TYP = 'BEING ASSESSED'"
+        ).run(function (error, featureCollection) {
+            var unkBeingassessed = 0;
 
-		for (var i = 0; i < featureCollection.features.length; i++) {
-			if (featureCollection.features[i].properties.MILES > 0) {
-				unkBeingstudied += featureCollection.features[i].properties.MILES;
-			} else {
-				unkBeingstudied = 0;
-			}
-		}
-		var unkBeingstudied_ = document.getElementById("legendNum4");
-		unkBeingstudied_.innerHTML = unkBeingstudied.toFixed(1);
-	});
-	L.esri.query({
-		url: streamsUrl
-	}).where(query
-		+"AND VALIDATION = 'UNKNOWN' AND STATUS_TYP = 'BEING ASSESSED'"
-	).run(function (error, featureCollection) {
-		var unkBeingassessed = 0;
+            for (var i = 0; i < featureCollection.features.length; i++) {
+                if (featureCollection.features[i].properties.MILES > 0) {
+                    unkBeingassessed += featureCollection.features[i].properties.MILES;
+                } else {
+                    unkBeingassessed = 0;
+                }
+            }
+            var unkBeingassessed_ = document.getElementById("legendNum5");
+            unkBeingassessed_.innerHTML = unkBeingassessed.toFixed(1);
 
-		for (var i = 0; i < featureCollection.features.length; i++) {
-			if (featureCollection.features[i].properties.MILES > 0) {
-				unkBeingassessed += featureCollection.features[i].properties.MILES;
-			} else {
-				unkBeingassessed = 0;
-			}
-		}
-		var unkBeingassessed_ = document.getElementById("legendNum5");
-		unkBeingassessed_.innerHTML = unkBeingassessed.toFixed(1);
+        });
+        L.esri.query({
+            url: streamsUrl
+        }).where(query +
+            "AND VALIDATION = 'UNKNOWN' AND STATUS_TYP = 'TO BE ASSESSED'"
+        ).run(function (error, featureCollection) {
+            var unkTobeassessed = 0;
 
-	});
-	L.esri.query({
-		url: streamsUrl
-	}).where(query
-		+"AND VALIDATION = 'UNKNOWN' AND STATUS_TYP = 'TO BE ASSESSED'"
-	).run(function (error, featureCollection) {
-		var unkTobeassessed = 0;
+            for (var i = 0; i < featureCollection.features.length; i++) {
+                if (featureCollection.features[i].properties.MILES > 0) {
+                    unkTobeassessed += featureCollection.features[i].properties.MILES;
+                } else {
+                    unkTobeassessed = 0;
+                }
+            }
+            var unkTobeassessed_ = document.getElementById("legendNum6");
+            unkTobeassessed_.innerHTML = unkTobeassessed.toFixed(1);
+        });
+        L.esri.query({
+            url: streamsUrl
+        }).where(query +
+            "AND VALIDATION = 'UNKNOWN' AND STATUS_TYP = 'DEFERRED'"
+        ).run(function (error, featureCollection) {
+            var unkDeferred = 0;
 
-		for (var i = 0; i < featureCollection.features.length; i++) {
-			if (featureCollection.features[i].properties.MILES > 0) {
-				unkTobeassessed += featureCollection.features[i].properties.MILES;
-			} else {
-				unkTobeassessed = 0;
-			}
-		}
-		var unkTobeassessed_ = document.getElementById("legendNum6");
-		unkTobeassessed_.innerHTML = unkTobeassessed.toFixed(1);
-	});
-	L.esri.query({
-		url: streamsUrl
-	}).where(query
-		+"AND VALIDATION = 'UNKNOWN' AND STATUS_TYP = 'DEFERRED'"
-	).run(function (error, featureCollection) {
-		var unkDeferred = 0;
+            for (var i = 0; i < featureCollection.features.length; i++) {
+                if (featureCollection.features[i].properties.MILES > 0) {
+                    unkDeferred += featureCollection.features[i].properties.MILES;
+                } else {
+                    unkDeferred = 0;
+                }
+            }
+            var unkDeferred_ = document.getElementById("legendNum7");
+            unkDeferred_.innerHTML = unkDeferred.toFixed(1);
+        });
+        L.esri.query({
+            url: streamsUrl
+        }).where(query +
+            "AND VALIDATION = 'UNVERIFIED' AND STATUS_TYP = 'BEING STUDIED'"
+        ).run(function (error, featureCollection) {
+            var unverfiedBeingstudied = 0;
 
-		for (var i = 0; i < featureCollection.features.length; i++) {
-			if (featureCollection.features[i].properties.MILES > 0) {
-				unkDeferred += featureCollection.features[i].properties.MILES;
-			} else {
-				unkDeferred = 0;
-			}
-		}
-		var unkDeferred_ = document.getElementById("legendNum7");
-		unkDeferred_.innerHTML = unkDeferred.toFixed(1);
-	});
-	L.esri.query({
-		url: streamsUrl
-	}).where(query
-		+"AND VALIDATION = 'UNVERIFIED' AND STATUS_TYP = 'BEING STUDIED'"
-	).run(function (error, featureCollection) {
-		var unverfiedBeingstudied = 0;
+            for (var i = 0; i < featureCollection.features.length; i++) {
+                if (featureCollection.features[i].properties.MILES > 0) {
+                    unverfiedBeingstudied += featureCollection.features[i].properties.MILES;
+                } else {
+                    unverfiedBeingstudied = 0;
+                }
+            }
+            var unverfiedBeingstudied_ = document.getElementById("legendNum8");
+            unverfiedBeingstudied_.innerHTML = unverfiedBeingstudied.toFixed(1);
+        });
+        L.esri.query({
+            url: streamsUrl
+        }).where(query +
+            "AND VALIDATION = 'UNVERIFIED' AND STATUS_TYP = 'TO BE STUDIED'"
+        ).run(function (error, featureCollection) {
+            var unverfiedTobe = 0;
 
-		for (var i = 0; i < featureCollection.features.length; i++) {
-			if (featureCollection.features[i].properties.MILES > 0) {
-				unverfiedBeingstudied += featureCollection.features[i].properties.MILES;
-			} else {
-				unverfiedBeingstudied = 0;
-			}
-		}
-		var unverfiedBeingstudied_ = document.getElementById("legendNum8");
-		unverfiedBeingstudied_.innerHTML = unverfiedBeingstudied.toFixed(1);
-	});
-	L.esri.query({
-		url: streamsUrl
-	}).where(query
-		+"AND VALIDATION = 'UNVERIFIED' AND STATUS_TYP = 'TO BE STUDIED'"
-	).run(function (error, featureCollection) {
-		var unverfiedTobe = 0;
+            for (var i = 0; i < featureCollection.features.length; i++) {
+                if (featureCollection.features[i].properties.MILES > 0) {
+                    unverfiedTobe += featureCollection.features[i].properties.MILES;
+                } else {
+                    unverfiedTobe = 0;
+                }
+            }
+            var unverfiedTobe_ = document.getElementById("legendNum9");
+            unverfiedTobe_.innerHTML = unverfiedTobe.toFixed(1);
+        });
+        L.esri.query({
+            url: streamsUrl
+        }).where(query +
+            "AND VALIDATION = 'VALID' AND STATUS_TYP = 'BEING ASSESSED'"
+        ).run(function (error, featureCollection) {
+            var validBeingassessed = 0;
 
-		for (var i = 0; i < featureCollection.features.length; i++) {
-			if (featureCollection.features[i].properties.MILES > 0) {
-				unverfiedTobe += featureCollection.features[i].properties.MILES;
-			} else {
-				unverfiedTobe = 0;
-			}
-		}
-		var unverfiedTobe_ = document.getElementById("legendNum9");
-		unverfiedTobe_.innerHTML = unverfiedTobe.toFixed(1);
-	});	
-	L.esri.query({
-		url: streamsUrl
-	}).where(query
-		+"AND VALIDATION = 'VALID' AND STATUS_TYP = 'BEING ASSESSED'"
-	).run(function (error, featureCollection) {
-		var validBeingassessed = 0;
+            for (var i = 0; i < featureCollection.features.length; i++) {
+                if (featureCollection.features[i].properties.MILES > 0) {
+                    validBeingassessed += featureCollection.features[i].properties.MILES;
+                } else {
+                    validBeingassessed = 0;
+                }
+            }
+            var validBeingassessed_ = document.getElementById("legendNum10");
+            validBeingassessed_.innerHTML = validBeingassessed.toFixed(1);
+        });
+        L.esri.query({
+            url: streamsUrl
+        }).where(query +
+            "AND VALIDATION = 'VALID' AND STATUS_TYP = 'BEING STUDIED'"
+        ).run(function (error, featureCollection) {
+            var validBeingstudied = 0;
 
-		for (var i = 0; i < featureCollection.features.length; i++) {
-			if (featureCollection.features[i].properties.MILES > 0) {
-				validBeingassessed += featureCollection.features[i].properties.MILES;
-			} else {
-				validBeingassessed = 0;
-			}
-		}
-		var validBeingassessed_ = document.getElementById("legendNum10");
-		validBeingassessed_.innerHTML = validBeingassessed.toFixed(1);
-	});
-	L.esri.query({
-		url: streamsUrl
-	}).where(query
-		+"AND VALIDATION = 'VALID' AND STATUS_TYP = 'BEING STUDIED'"
-	).run(function (error, featureCollection) {
-		var validBeingstudied = 0;
+            for (var i = 0; i < featureCollection.features.length; i++) {
+                if (featureCollection.features[i].properties.MILES > 0) {
+                    validBeingstudied += featureCollection.features[i].properties.MILES;
+                } else {
+                    validBeingstudied = 0;
+                }
+            }
+            var validBeingstudied_ = document.getElementById("legendNum11");
+            validBeingstudied_.innerHTML = validBeingstudied.toFixed(1);
+        });
+        L.esri.query({
+            url: streamsUrl
+        }).where(query +
+            "AND VALIDATION = 'VALID' AND STATUS_TYP = 'NVUE COMPLIANT'"
+        ).run(function (error, featureCollection) {
+            var validNvuecompliant = 0;
 
-		for (var i = 0; i < featureCollection.features.length; i++) {
-			if (featureCollection.features[i].properties.MILES > 0) {
-				validBeingstudied += featureCollection.features[i].properties.MILES;
-			} else {
-				validBeingstudied = 0;
-			}
-		}
-		var validBeingstudied_ = document.getElementById("legendNum11");
-		validBeingstudied_.innerHTML = validBeingstudied.toFixed(1);
-	});			
-	L.esri.query({
-		url: streamsUrl
-	}).where(query
-		+"AND VALIDATION = 'VALID' AND STATUS_TYP = 'NVUE COMPLIANT'"
-	).run(function (error, featureCollection) {
-		var validNvuecompliant = 0;
-
-		for (var i = 0; i < featureCollection.features.length; i++) {
-			if (featureCollection.features[i].properties.MILES > 0) {
-				validNvuecompliant += featureCollection.features[i].properties.MILES;
-			} else {
-				validNvuecompliant = 0;
-			}
-		}
-		var validNvuecompliant_ = document.getElementById("legendNum12");
-		validNvuecompliant_.innerHTML = validNvuecompliant.toFixed(1);
-	});
-},7000)	
-
-
-
-
-
+            for (var i = 0; i < featureCollection.features.length; i++) {
+                if (featureCollection.features[i].properties.MILES > 0) {
+                    validNvuecompliant += featureCollection.features[i].properties.MILES;
+                } else {
+                    validNvuecompliant = 0;
+                }
+            }
+            var validNvuecompliant_ = document.getElementById("legendNum12");
+            validNvuecompliant_.innerHTML = validNvuecompliant.toFixed(1);
+        });
+    }, 7000)
 }
 
 const queryValidA = function (feature) {
@@ -679,7 +681,7 @@ var queryCompA = function (feature) {
 
 }
 var queryCompAe = function (feature) {
-L.esri.query({
+    L.esri.query({
         url: streamsUrl
     }).where(query +
         " AND FLD_ZONE = 'AE'"
@@ -758,10 +760,11 @@ var queryUnmapped = function (feature) {
             },
             onEachFeature: onEachFeature
         }).addTo(groupLayers);
+
         function resetHighlight(e) {
             unmapped_.resetStyle(e.target);
         }
-        
+
         function highlightFeature(e) {
             var layer = e.target;
             layer.setStyle({
@@ -769,6 +772,7 @@ var queryUnmapped = function (feature) {
                 color: 'yellow',
             });
         }
+
         function onEachFeature(feature, layer) {
 
             layer.bindPopup("<span style='font-size:0.99rem;text-decoration: underline;position:absolute;top:0;left:0;padding:1px;background-color:#00264c;color:white;'>Existing Studies (Line): " + feature.properties.REACH_ID + "</span><br>" +
@@ -821,28 +825,29 @@ var queryUnmapped = function (feature) {
         // .toLocaleString("en-US").slice(0, -2);
         document.getElementById("notmapped_table_delta_valid").innerHTML = "+" + sumTotal.toFixed(1);
         // .toLocaleString("en-US").slice(0, -2);
-        setTimeout(function(e){
-        document.getElementById("legendNum13").innerHTML = sumTotal.toFixed(1);
-    },7000);
+        setTimeout(function (e) {
+            document.getElementById("legendNum13").innerHTML = sumTotal.toFixed(1);
+        }, 7000);
     });
 
 
 }
-function calculations_(evt){
-     document.querySelector(".splash-bg").classList.remove("hide");
+
+function calculations_(evt) {
     legendCtrl.addTo(map);
+    document.querySelector(".splash-bg").classList.remove("hide");
+
     map.removeControl(infoCtrl);
 
     var loading = document.createElement("DIV");
-    loading.innerHTML = 
-    `<div class="loadnm bounded-wave-loader">
+    loading.innerHTML =
+        `<div class="loadnm bounded-wave-loader">
     
   <svg xmlns="http://www.w3.org/2000/svg" width="960" height="80" fill="#00264c" viewbox="0 0 120 10">
   <path d="M0,5 C20,-10 40,20 60,5 v5 H0"/>
   <path transform="translate(60)" d="M0,5 C20,-10 40,20 60,5 v5 H0"/>
   </svg><span class="loadLadel"></span>
-</div>
-`
+</div>`
     document.body.appendChild(loading);
     document.querySelector(".loadLadel").innerHTML = "Calculating CNMS...";
     queryAoi(evt.layer.feature);
@@ -855,7 +860,7 @@ function calculations_(evt){
         selectedData.clearLayers();
     }
     groupLayers.clearLayers();
-    results.clearLayers(); 
+    results.clearLayers();
     queryCnmsMapped(evt.layer.feature);
     queryValidA(evt.layer.feature);
     queryValidAe(evt.layer.feature);
@@ -864,7 +869,7 @@ function calculations_(evt){
     queryEffAeFldway(evt.layer.feature);
     queryEffAeCompFldway(evt.layer.feature);
     queryUnmapped(evt.layer.feature);
-    setTimeout(function(e){
+    setTimeout(function (e) {
         document.querySelector(".loadLadel").innerHTML = "Calculating Zone A Validation";
         let aTableAtValid_value = document.getElementById("a_table_valid").innerHTML;
         document.querySelector(".loadLadel").innerHTML = "Calculating Zone A COMP";
@@ -879,129 +884,48 @@ function calculations_(evt){
         let aewFwTableAtValid_value = document.getElementById("aewFw_table_valid").innerHTML;
         document.querySelector(".loadLadel").innerHTML = "Calculating Zone AE Floodways";
         let aewFwTableAtComp_value = document.getElementById("aewFw_table_atcomp_valid").innerHTML;
-        
+
         let aZoneValue = aTableAtCompValid_value - aTableAtValid_value;
         let aeZoneValue = aeTableAtCompValid_value - aeTableAtValid_value;
         let aewFwValue = aewFwTableAtComp_value - aewFwTableAtValid_value;
-        setTimeout(function(e){
-            document.getElementById("a_table_delta_valid").innerHTML = "+"+aZoneValue.toFixed(1);;
+
+        setTimeout(function (e) {
+            document.getElementById("a_table_delta_valid").innerHTML = "+" + aZoneValue.toFixed(1);;
             document.getElementById("a_table_unk_unv").innerHTML = aZoneValue.toFixed(1);;
             document.getElementById("ae_table_unk_unv").innerHTML = aeZoneValue.toFixed(1);;
-            document.getElementById("ae_table_delta_valid").innerHTML = "+"+aeZoneValue.toFixed(1);;
+            document.getElementById("ae_table_delta_valid").innerHTML = "+" + aeZoneValue.toFixed(1);;
             document.getElementById("aewFw_table_unk_unv").innerHTML = aewFwValue.toFixed(1);
-            document.getElementById("aewFw_table_delta_valid").innerHTML = "+"+aewFwValue.toFixed(1);
-
+            document.getElementById("aewFw_table_delta_valid").innerHTML = "+" + aewFwValue.toFixed(1);
             let newaZoneValue = aTableAtValid_value;
             document.getElementById("a_table_valid").innerHTML = aTableAtValid_value;
             document.querySelector(".loadnm").innerHTML = "Calculating Unmapped";
-            document.querySelector(".table-container").classList.remove("hide");
             document.querySelector(".splash-bg").classList.add("hide");
-            
             document.body.removeChild(loading);
-        },3000);
-    },5000);   
+            document.querySelector(".table-container").classList.remove("hide");
+
+            document.querySelector(".legend").style.left = 0;
+            document.querySelector(".legend").style.transition = "all 0.25s";
+            document.getElementById("legendNum1").style.transition = "all 0.25s";
+            document.getElementById("legendNum2").style.transition = "all 0.5s";
+            document.getElementById("legendNum3").style.transition = "all 0.75s";
+            document.getElementById("legendNum4").style.transition = "all 1s";
+            document.getElementById("legendNum5").style.transition = "all 1.25s";
+            document.getElementById("legendNum6").style.transition = "all 1.5s";
+            document.getElementById("legendNum7").style.transition = "all 1.75s";
+            document.getElementById("legendNum8").style.transition = "all 2s";
+            document.getElementById("legendNum9").style.transition = "all 2.25s";
+            document.getElementById("legendNum10").style.transition = "all 2.5s";
+            document.getElementById("legendNum11").style.transition = "all 2.75s";
+            document.getElementById("legendNum12").style.transition = "all 3s";
+            document.getElementById("legendNum13").style.transition = "all 3.25s";
+            const nodeList = document.querySelectorAll(".legendNum");
+            for (i = 0; i < nodeList.length; i++) {
+                nodeList[i].style.right = 0;
+            }
+        }, 3000);
+
+    }, 5000);
 }
-// function calculationsSearch_(data){
-//     legendCtrl.addTo(map);
-//     var loading = document.createElement("DIV");
-//     loading.innerHTML = '<span class="loadnm" style="position:absolute;z-index:1005;bottom:50%;left:25%;color:white;font-size:6rem;"></span>'
-//     document.body.appendChild(loading);
-//     document.querySelector(".loadnm").innerHTML = "Calculating CNMS...";
-//     query = 1;
-//     aoiUrl = 1;
-//     objectid_ = 1;
-//     selectTable.classList.add("hide");
-//     results.clearLayers();
-//     groupLayers.clearLayers();
-//     selectedData.clearLayers();
-//     selectedAoi.clearLayers();
-//     groupLayers.addLayer(huc8Layer);
-//     let aoiId = data.results[0].geojson.properties.HUC8;
-//     L.esri.query({
-//         url: huc8Url
-//     }).where("HUC8 = " + aoiId).run(function (error, featureCollection) {
-//         L.esri.featureLayer({url:huc8Url,where:"HUC8 <> " + aoiId,
-//         style:{color: 'black',
-//         fillColor: 'black',
-//         simplifyFactor: 0.35,
-//         precision: 5,
-//         fillOpacity: 0.65,
-//         interactive: false,
-//         weight: 0} 
-//         }).addTo(selectedAoi);
-//         var aoi_select = L.geoJSON(featureCollection).setStyle({
-//             color: 'yellow',
-//                 dashArray: "3,12",
-//             dashSpeed: -35,
-//             fillOpacity: 0,
-//             pane: 'aoiIndex',
-//               weight: 3.5,
-//             interactive: false,
-//         }).addTo(selectedAoi);
-//         map.fitBounds(aoi_select.getBounds().pad(0.05));
-//     });
-//     queryCnmsMapped(data.results[0].geojson);
-//     queryValidA(data.results[0].geojson);
-//     queryValidAe(data.results[0].geojson);
-//     queryCompA(data.results[0].geojson);
-//     queryCompAe(data.results[0].geojson);
-//     queryEffAeFldway(data.results[0].geojson);
-//     queryEffAeCompFldway(data.results[0].geojson);
-//     queryUnmapped(data.results[0].geojson); 
-
-
-//     setTimeout(function () {
-//         document.querySelector(".table-container").classList.remove("hide");
-//     }, 2000);
-
-//     var selectedGroupnumbersAoi = selectedAoi.getLayers();
-//     if (selectedGroupnumbersAoi.length >= 1) {
-//         selectedAoi.clearLayers();
-//     }
-//     var selectedGroupnumbersData = selectedData.getLayers();
-//     if (selectedGroupnumbersData.length >= 1) {
-//         selectedData.clearLayers();
-//     }
-//     groupLayers.clearLayers();
-//     results.clearLayers();
-
-//     setTimeout(function(data){
-//         document.querySelector(".loadnm").innerHTML = "Calculating Zone A Validation";
-//         let aTableAtValid_value = document.getElementById("a_table_valid").innerHTML;
-//         document.querySelector(".loadnm").innerHTML = "Calculating Zone A COMP";
-//         let aTableAtCompValid_value = document.getElementById("a_table_atcomp_valid").innerHTML;
-
-//         document.querySelector(".loadnm").innerHTML = "Calculating Zone AE Validation";
-//         let aeTableAtValid_value = document.getElementById("ae_table_valid").innerHTML;
-//         document.querySelector(".loadnm").innerHTML = "Calculating Zone AE COMP";
-//         let aeTableAtCompValid_value = document.getElementById("ae_table_atcomp_valid").innerHTML;
-
-//         document.querySelector(".loadnm").innerHTML = "Calculating Zone AE COMP Floodways";
-//         let aewFwTableAtValid_value = document.getElementById("aewFw_table_valid").innerHTML;
-//         document.querySelector(".loadnm").innerHTML = "Calculating Zone AE Floodways";
-//         let aewFwTableAtComp_value = document.getElementById("aewFw_table_atcomp_valid").innerHTML;
-        
-//         let aZoneValue = aTableAtCompValid_value - aTableAtValid_value;
-//         let aeZoneValue = aeTableAtCompValid_value - aeTableAtValid_value;
-//         let aewFwValue = aewFwTableAtComp_value - aewFwTableAtValid_value;
-//         setTimeout(function(data){
-//             document.getElementById("a_table_delta_valid").innerHTML = "+"+aZoneValue.toFixed(1);;
-//             document.getElementById("a_table_unk_unv").innerHTML = aZoneValue.toFixed(1);;
-//             document.getElementById("ae_table_unk_unv").innerHTML = aeZoneValue.toFixed(1);;
-//             document.getElementById("ae_table_delta_valid").innerHTML = "+"+aeZoneValue.toFixed(1);;
-//             document.getElementById("aewFw_table_unk_unv").innerHTML = aewFwValue.toFixed(1);
-//             document.getElementById("aewFw_table_delta_valid").innerHTML = "+"+aewFwValue.toFixed(1);
-
-//             let newaZoneValue = aTableAtValid_value;
-//             document.getElementById("a_table_valid").innerHTML = aTableAtValid_value;
-//             document.querySelector(".loadnm").innerHTML = "Calculating Unmapped";
-//             document.querySelector(".table-container").classList.remove("hide");
-//             document.querySelector(".splash-bg").classList.add("hide");
-            
-//             document.body.removeChild(loading);
-//         },3000);
-//     },5000);   
-// }
 cntyLayer.on('click', function (evt) {
     calculations_(evt);
     searchControlCnty.remove(map);
@@ -1017,92 +941,71 @@ comLayer.on('click', function (evt) {
 
 
 var infoCtrl = L.control({
-	position: 'topright'
+    position: 'topright'
 });
 infoCtrl.onAdd = function (map) {
-	this._div = L.DomUtil.create('div', 'info-pane'); // create a div with a class "info"
-	this.addinfoCtrl();
-	return this._div;
+    this._div = L.DomUtil.create('div', 'info-pane'); // create a div with a class "info"
+    this.addinfoCtrl();
+    return this._div;
 };
 infoCtrl.addinfoCtrl = function (props) {
-	this._div.innerHTML =
-		`<div id="info-pane"></div>`;
+    this._div.innerHTML =
+        `<div id="info-pane"></div>`;
 };
 huc8Layer.on('mouseout', function (e) {
-	document.getElementById('info-pane').innerHTML = '';
-	document.getElementById('info-pane').style.padding = 0;
-	huc8Layer.resetFeatureStyle(oldId);
+    document.getElementById('info-pane').innerHTML = '';
+    document.getElementById('info-pane').style.padding = 0;
+    huc8Layer.resetFeatureStyle(oldId);
 });
 huc8Layer.on('mouseover', function (e) {
-	document.getElementById('info-pane').style.padding = '0.95rem';
-	oldId = e.layer.feature.id;
-	document.getElementById('info-pane').innerHTML = "<span class='hucTitle'>" + e.layer.feature.properties.HUC_NM + ' (' + e.layer.feature.properties.HUC8 + ')</span><span style="font-size:0.95rem;margin-left:1rem;padding:-bottom:0.75rem;padding:-top:0.75rem;">Population: ' + e.layer.feature.properties.RM_POP.toLocaleString("en-US") + ' | SQ. Miles: ' + e.layer.feature.properties.AR_SQMI.toLocaleString("en-US") + '</span<br>';
-	huc8Layer.setFeatureStyle(e.layer.feature.id, {
-		color: 'white',
-		fillColor: 'red',
-		fillOpacity: 0.75,
-		dashArray: 1,
-		weight: 3,
-		opacity: 1
-	});
+    document.getElementById('info-pane').style.padding = '0.95rem';
+    oldId = e.layer.feature.id;
+    document.getElementById('info-pane').innerHTML = "<span class='hucTitle'>" + e.layer.feature.properties.HUC_NM + ' (' + e.layer.feature.properties.HUC8 + ')</span><span style="font-size:0.95rem;margin-left:1rem;padding:-bottom:0.75rem;padding:-top:0.75rem;">Population: ' + e.layer.feature.properties.RM_POP.toLocaleString("en-US") + ' | SQ. Miles: ' + e.layer.feature.properties.AR_SQMI.toLocaleString("en-US") + '</span<br>';
+    huc8Layer.setFeatureStyle(e.layer.feature.id, {
+        color: 'white',
+        fillColor: 'red',
+        fillOpacity: 0.75,
+        dashArray: 1,
+        weight: 3,
+        opacity: 1
+    });
 });
 cntyLayer.on('mouseout', function (e) {
-	document.getElementById('info-pane').innerHTML = '';
-	document.getElementById('info-pane').style.padding = 0;
-	cntyLayer.resetFeatureStyle(oldId);
+    document.getElementById('info-pane').innerHTML = '';
+    document.getElementById('info-pane').style.padding = 0;
+    cntyLayer.resetFeatureStyle(oldId);
 });
 cntyLayer.on('mouseover', function (e) {
-	document.getElementById('info-pane').style.padding = '0.95rem';
-	oldId = e.layer.feature.id;
-	document.getElementById('info-pane').innerHTML = "<span class='hucTitle'>" + e.layer.feature.properties.NAME+"</span>";
-	cntyLayer.setFeatureStyle(e.layer.feature.id, {
-		color: 'white',
-		fillColor: 'red',
-		fillOpacity: 0.75,
-		dashArray: 1,
-		weight: 3,
-		opacity: 1
-	});
+    document.getElementById('info-pane').style.padding = '0.95rem';
+    oldId = e.layer.feature.id;
+    document.getElementById('info-pane').innerHTML = "<span class='hucTitle'>" + e.layer.feature.properties.NAME + "</span>";
+    cntyLayer.setFeatureStyle(e.layer.feature.id, {
+        color: 'white',
+        fillColor: 'red',
+        fillOpacity: 0.75,
+        dashArray: 1,
+        weight: 3,
+        opacity: 1
+    });
 });
 comLayer.on('mouseout', function (e) {
-	document.getElementById('info-pane').innerHTML = '';
-	document.getElementById('info-pane').style.padding = 0;
-	comLayer.resetFeatureStyle(oldId);
+    document.getElementById('info-pane').innerHTML = '';
+    document.getElementById('info-pane').style.padding = 0;
+    comLayer.resetFeatureStyle(oldId);
 });
 comLayer.on('mouseover', function (e) {
-	document.getElementById('info-pane').style.padding = '0.95rem';
-	oldId = e.layer.feature.id;
-	document.getElementById('info-pane').innerHTML = "<span class='hucTitle'>" + e.layer.feature.properties.COMMUNITY_+"</span>";
-	comLayer.setFeatureStyle(e.layer.feature.id, {
-		color: 'white',
-		fillColor: 'red',
-		fillOpacity: 0.75,
-		dashArray: 1,
-		weight: 3,
-		opacity: 1
-	});
+    document.getElementById('info-pane').style.padding = '0.95rem';
+    oldId = e.layer.feature.id;
+    document.getElementById('info-pane').innerHTML = "<span class='hucTitle'>" + e.layer.feature.properties.COMMUNITY_ + "</span>";
+    comLayer.setFeatureStyle(e.layer.feature.id, {
+        color: 'white',
+        fillColor: 'red',
+        fillOpacity: 0.75,
+        dashArray: 1,
+        weight: 3,
+        opacity: 1
+    });
 });
-
-
-
-///////////// SEARCH CONTROL
-// document.querySelector(".geocoder-control").addEventListener("click", function(e){
-//     document.querySelector(".layerTray").classList.add("hide");
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var cntyProvider = L.esri.Geocoding.featureLayerProvider({
     url: cntyUrl,
     searchFields: ['NAME'],
@@ -1121,18 +1024,18 @@ var searchControlCnty = L.esri.Geocoding.geosearch({
 });
 searchControlCnty.on('results', function (data) {
     results.clearLayers();
-	if (groupLayers.hasLayer(cntyLayer)) {
+    if (groupLayers.hasLayer(cntyLayer)) {
 
-	} else {
-		groupLayers.addLayer(cntyLayer);
-		groupLayers.removeLayer(huc8Layer);
+    } else {
+        groupLayers.addLayer(cntyLayer);
+        groupLayers.removeLayer(huc8Layer);
         groupLayers.removeLayer(comLayer);
-		infoCtrl.addTo(map);
-	}
-	for (var i = data.results.length - 1; i >= 0; i--) {
-		results.addLayer(L.marker(data.results[i].latlng));
-	}
-    });
+        infoCtrl.addTo(map);
+    }
+    for (var i = data.results.length - 1; i >= 0; i--) {
+        results.addLayer(L.marker(data.results[i].latlng));
+    }
+});
 var huc8Provider = L.esri.Geocoding.featureLayerProvider({
     url: huc8Url,
     searchFields: ['HUC8', 'HUC_NM'],
@@ -1152,17 +1055,17 @@ var searchControlHuc8 = L.esri.Geocoding.geosearch({
 });
 searchControlHuc8.on('results', function (data) {
     results.clearLayers();
-	if (groupLayers.hasLayer(huc8Layer)) {
+    if (groupLayers.hasLayer(huc8Layer)) {
         // groupLayers.removeLayer(huc8Layer);
-	} else {
-		groupLayers.removeLayer(cntyLayer);
-		groupLayers.addLayer(huc8Layer);
+    } else {
+        groupLayers.removeLayer(cntyLayer);
+        groupLayers.addLayer(huc8Layer);
         groupLayers.removeLayer(comLayer);
-		infoCtrl.addTo(map);
-	}
-	for (var i = data.results.length - 1; i >= 0; i--) {
-		results.addLayer(L.marker(data.results[i].latlng));
-	}
+        infoCtrl.addTo(map);
+    }
+    for (var i = data.results.length - 1; i >= 0; i--) {
+        results.addLayer(L.marker(data.results[i].latlng));
+    }
 });
 
 
@@ -1171,7 +1074,7 @@ searchControlHuc8.on('results', function (data) {
 
 const comProvider = L.esri.Geocoding.featureLayerProvider({
     url: comUrl,
-    searchFields: ['COMMUNITY_','STATE','CID'],
+    searchFields: ['COMMUNITY_', 'STATE', 'CID'],
     label: 'Enter Community Name',
     bufferRadius: 5,
     maxResults: 100,
@@ -1186,43 +1089,27 @@ const searchControlCom = L.esri.Geocoding.geosearch({
     expanded: true,
 });
 searchControlCom.on('results', function (data) {
-	// selectedData.clearLayers();
-	// selectedAoi.clearLayers();
-	results.clearLayers();
-	if (groupLayers.hasLayer(huc8Layer)) {
+    results.clearLayers();
+    if (groupLayers.hasLayer(huc8Layer)) {
 
-	} else {
-		groupLayers.removeLayer(cntyLayer);
-		groupLayers.removeLayer(huc8Layer);
+    } else {
+        groupLayers.removeLayer(cntyLayer);
+        groupLayers.removeLayer(huc8Layer);
         groupLayers.addLayer(comLayer);
-		infoCtrl.addTo(map);
-	}
-	for (var i = data.results.length - 1; i >= 0; i--) {
-		results.addLayer(L.marker(data.results[i].latlng));
-	}
+        infoCtrl.addTo(map);
+    }
+    for (var i = data.results.length - 1; i >= 0; i--) {
+        results.addLayer(L.marker(data.results[i].latlng));
+    }
 });
 let selectTable = document.querySelector(".table-container");
-selectTable.addEventListener("mouseover", function(e){
+selectTable.addEventListener("mouseover", function (e) {
     document.getElementById("copyTable").classList.remove("hide");
 });
-selectTable.addEventListener("mouseout", function(e){
+selectTable.addEventListener("mouseout", function (e) {
     document.getElementById("copyTable").classList.add("hide");
 });
 selectTable.onclick = function (e) {
-    // function CopyToClipboard(containerid) {
-    //     if (document.selection) {
-    //         var range = document.body.createTextRange();
-    //         range.moveToElementText(document.getElementById(containerid));
-    //         range.select().createTextRange();
-    //         document.execCommand("copy");
-    //     } else if (window.getSelection) {
-    //         var range = document.createRange();
-    //         range.selectNode(document.getElementById(containerid));
-    //         window.getSelection().addRange(range);
-    //         document.execCommand("copy");
-    //     }
-    // }
-    // CopyToClipboard('table');
     function jscut() {
         var txt = document.getElementById("table").innerText;
         navigator.clipboard.writeText(txt);
@@ -1232,17 +1119,6 @@ selectTable.onclick = function (e) {
     alert("YOU HAVE CLIPPED TABLE - CTRL V to Paste");
 }
 document.querySelector(".splashBtn").onclick = function (e) {
-    // map.setView([31.6, -99], 6);
-    // document.querySelector(".splash").classList.remove("hide");
-    // document.querySelector(".splash-bg").classList.remove("hide");
-    // map.removeControl(legendCtrl);
-    // groupLayers.clearLayers();
-    // selectedAoi.clearLayers();
-    // selectedData.clearLayers();
-    // results.clearLayers();
-    // selectTable.classList.add("hide");
-    // document.querySelector(".layersTray").classList.add("hide");
-    // document.querySelector(".basemapTray").classList.add("hide");
     window.location.reload();
 }
 document.querySelector(".layersTrayBtn").onclick = function (e) {
@@ -1295,51 +1171,70 @@ document.querySelector(".leaflet-control-container").addEventListener("mouseover
     document.querySelector(".basemapTray").classList.add("hide");
 });
 document.getElementById("nfhl").onclick = function (e) {
-    if(supportLayers.hasLayer(nfhl)){
+    if (supportLayers.hasLayer(nfhl)) {
         supportLayers.removeLayer(nfhl);
         document.getElementById("nfhl").classList.remove("selected");
-    }else {
+    } else {
         supportLayers.addLayer(nfhl);
         document.getElementById("nfhl").classList.add("selected");
     }
 }
 document.getElementById("prelim").onclick = function (e) {
 
-    if(supportLayers.hasLayer(prelim)){
+    if (supportLayers.hasLayer(prelim)) {
         supportLayers.removeLayer(prelim);
         document.getElementById("prelim").classList.remove("selected");
-    }else {
+    } else {
         supportLayers.addLayer(prelim);
         document.getElementById("prelim").classList.add("selected");
     }
 }
-// document.getElementById("pending").onclick = function (e) {
-//     if(supportLayers.hasLayer(pending)){
-//         supportLayers.removeLayer(pending);
-//         document.getElementById("pending").classList.remove("selected");
-//     }else {
-//         supportLayers.addLayer(pending);
-//         document.getElementById("pending").classList.add("selected");
-//     }
-// }
+
 document.getElementById("draft").onclick = function (e) {
-    if(supportLayers.hasLayer(draft)){
+    if (supportLayers.hasLayer(draft)) {
         supportLayers.removeLayer(draft);
         document.getElementById("draft").classList.remove("selected");
-    }else {
+    } else {
         supportLayers.addLayer(draft);
         document.getElementById("draft").classList.add("selected");
     }
 }
+document.getElementById("ble_1per").onclick = function (e) {
+    document.getElementById("map").classList.remove("crosshair");
+    if (supportLayers.hasLayer(ble_1per)) {
+        supportLayers.removeLayer(ble_1per);
+        document.getElementById("ble_1per").classList.remove("selected");
+        document.querySelector(".layers-container > button").classList.add("hide");
+        map.off("click", getbleReport);
+        document.querySelector(".layers-container > button").style.background = "steelblue";
+
+    } else {
+        supportLayers.addLayer(ble_1per);
+        document.getElementById("ble_1per").classList.add("selected");
+        document.querySelector(".layers-container > button").classList.remove("hide");
+    }
+}
+
+function getbleReport(e) {
+    window.open("https:webapps.usgs.gov/infrm/estBFE/report.html?lat=" + e.latlng.lat + "&lng=" + e.latlng.lng);
+    map.off("click", getbleReport);
+    document.querySelector(".layers-container > button").style.background = "steelblue";
+    document.getElementById("map").classList.remove("crosshair");
+}
+document.querySelector(".layers-container > button").onclick = function (e) {
+    document.querySelector(".layers-container > button").style.background = "red";
+    document.getElementById("map").classList.add("crosshair");
+    map.on("click", getbleReport);
+}
 ///// LEGEND
 legendCtrl.onAdd = function (map) {
-	this._div = L.DomUtil.create('div', 'legend'); // create a div with a class "info"
-	this.addlegendCtrl();
-	return this._div;
+    this._div = L.DomUtil.create('div', 'legend'); // create a div with a class "info"
+    this.addlegendCtrl();
+    return this._div;
 };
 legendCtrl.addlegendCtrl = function (props) {
-	this._div.innerHTML =
-		`<div class="legend"><span style="font-size:1rem;">EXPLANATION<span style='float:right;font-size:0.65rem;margin-top:1rem;'>(miles)</span><hr></span><span style='font-size:0.75rem;'>ASSESSED, BEING STUDIED&nbsp;&nbsp;<svg style="margin-left:0.9rem;" height='12' width='75'><line x1='0' y1='5' x2='75' y2='5' style='stroke:#76FCED;stroke-width:5' /></svg></span><span class='legendNum' id='legendNum1'></span>
+    this._div.innerHTML =
+        `<div class="legend"><span style="font-size:1rem;">EXPLANATION<span style='float:right;font-size:0.65rem;margin-top:1rem;'>(miles)</span><hr></span><span style='font-size:0.75rem;'>ASSESSED, BEING STUDIED&nbsp;&nbsp;<svg style="margin-left:0.9rem;" height='12' width='75'><line x1='0' y1='5' x2='75' y2='5' style='stroke:#76FCED;stroke-width:5' /></svg></span><span class='legendNum' id='legendNum1'></span>
 		<span style='font-size:0.75rem;'>ASSESSED, DEFERED&nbsp;&nbsp;<svg style="margin-left:3.15rem;" height='10' width='75'><line x1='0' y1='5' x2='75' y2='5' style='stroke:#0AC4F8;stroke-width:5' /></svg></span><span class='legendNum' id='legendNum2'></span>	
 		<span style='font-size:0.75rem;'>ASSESSED, TO BE STUDIED&nbsp;&nbsp;<svg style="margin-left:1.05rem;" height='10' width='75'><line x1='0' y1='5' x2='75' y2='5' style='stroke:#008EF8;stroke-width:5' /></svg></span><span class='legendNum' id='legendNum3'></span>
 		<span style='font-size:0.75rem;'>UNKNOWN, BEING STUDIED&nbsp;&nbsp;<svg style="margin-left:0.69rem;" height='10' width='75'><line x1='0' y1='5' x2='75' y2='5' style='stroke:#680397;stroke-width:5' /></svg></span><span class='legendNum' id='legendNum4'></span>			
@@ -1355,3 +1250,6 @@ legendCtrl.addlegendCtrl = function (props) {
 		</div>`;
 };
 
+
+//document.getElementById('nfhl_site').innerHTML = `<a target="_blank" href="https://hazards-fema.maps.arcgis.com/apps/webappviewer/index.html?id=8b0adb51996444d4879338b5529aa9cd&level=13&marker=`+getLatLng.lng+`;`+getLatLng.lat+
+//`;"><img height=50 width=125 class="agol" src="./img/agol.png"></a>`

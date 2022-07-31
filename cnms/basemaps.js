@@ -24,8 +24,8 @@ basemap1_.onclick = function () {
 		basemap7_.classList.remove("basemapSelected");
 		basemap8_.classList.remove("basemapSelected");
 		basemap9_.classList.remove("basemapSelected");
-		huc8Layer.setStyle(style1);
 	}
+	huc8Layer.setStyle(style1);
 }
 var basemap2_ = document.getElementById("basemap2");
 basemap2_.onclick = function () {
@@ -42,7 +42,7 @@ basemap2_.onclick = function () {
 		basemap8_.classList.remove("basemapSelected");
 		basemap9_.classList.remove("basemapSelected");
 	}
-	huc8Layer.setStyle(style2);
+    huc8Layer.setStyle(style2);
 }
 var basemap3_ = document.getElementById("basemap3");
 basemap3_.onclick = function () {
@@ -66,6 +66,7 @@ var basemap4_ = document.getElementById("basemap4");
 basemap4_.onclick = function () {
 	if (!baseMapLayers.hasLayer(Esri_WorldImagery)) {
 		baseMapLayers.clearLayers();
+		baseMapLayers.addLayer(Stamen_TerrainLabels);
 		baseMapLayers.addLayer(Esri_WorldImagery);
 		basemap1_.classList.remove("basemapSelected");
 		basemap2_.classList.remove("basemapSelected");
@@ -81,9 +82,9 @@ basemap4_.onclick = function () {
 }
 var basemap5_ = document.getElementById("basemap5");
 basemap5_.onclick = function () {
-	if (!baseMapLayers.hasLayer(CartoDB_PositronNoLabels)) {
+	if (!baseMapLayers.hasLayer(USGS_USTopo)) {
 		baseMapLayers.clearLayers();
-		baseMapLayers.addLayer(CartoDB_PositronNoLabels);
+		baseMapLayers.addLayer(USGS_USTopo);
 		basemap1_.classList.remove("basemapSelected");
 		basemap2_.classList.remove("basemapSelected");
 		basemap3_.classList.remove("basemapSelected");
@@ -98,9 +99,9 @@ basemap5_.onclick = function () {
 }
 var basemap6_ = document.getElementById("basemap6");
 basemap6_.onclick = function () {
-	if (!baseMapLayers.hasLayer(Stadia_AlidadeSmoothDark)) {
+	if (!baseMapLayers.hasLayer(USGS_USImageryTopo)) {
 		baseMapLayers.clearLayers();
-		baseMapLayers.addLayer(Stadia_AlidadeSmoothDark);
+		baseMapLayers.addLayer(USGS_USImageryTopo);
 		basemap1_.classList.remove("basemapSelected");
 		basemap2_.classList.remove("basemapSelected");
 		basemap3_.classList.remove("basemapSelected");
@@ -115,9 +116,9 @@ basemap6_.onclick = function () {
 }
 var basemap7_ = document.getElementById("basemap7");
 basemap7_.onclick = function () {
-	if (!baseMapLayers.hasLayer(NASAGIBS_ViirsEarthAtNight2012)) {
+	if (!baseMapLayers.hasLayer(OPNVKarte)) {
 		baseMapLayers.clearLayers();
-		baseMapLayers.addLayer(NASAGIBS_ViirsEarthAtNight2012);
+		baseMapLayers.addLayer(OPNVKarte);
 		basemap1_.classList.remove("basemapSelected");
 		basemap2_.classList.remove("basemapSelected");
 		basemap3_.classList.remove("basemapSelected");
@@ -128,13 +129,13 @@ basemap7_.onclick = function () {
 		basemap8_.classList.remove("basemapSelected");
 		basemap9_.classList.remove("basemapSelected");
 	}
-	huc8Layer.setStyle(style1);
+	huc8Layer.setStyle(style2);
 }
 var basemap8_ = document.getElementById("basemap8");
 basemap8_.onclick = function () {
-	if (!baseMapLayers.hasLayer(OpenStreetMap_HOT)) {
+	if (!baseMapLayers.hasLayer(Stadia_AlidadeSmoothDark)) {
 		baseMapLayers.clearLayers();
-		baseMapLayers.addLayer(OpenStreetMap_HOT);
+		baseMapLayers.addLayer(Stadia_AlidadeSmoothDark);
 		basemap1_.classList.remove("basemapSelected");
 		basemap2_.classList.remove("basemapSelected");
 		basemap3_.classList.remove("basemapSelected");
@@ -145,7 +146,7 @@ basemap8_.onclick = function () {
 		basemap8_.classList.add("basemapSelected");
 		basemap9_.classList.remove("basemapSelected");
 	}
-	huc8Layer.setStyle(style2);
+
 }
 var basemap9_ = document.getElementById("basemap9");
 basemap9_.onclick = function () {
@@ -161,7 +162,6 @@ basemap9_.onclick = function () {
 		basemap7_.classList.remove("basemapSelected");
 		basemap8_.classList.remove("basemapSelected");
 		basemap9_.classList.add("basemapSelected");
-
 	}
 	huc8Layer.setStyle(style2);
 }

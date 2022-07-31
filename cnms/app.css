@@ -128,22 +128,26 @@ a{
     padding: 2rem;
     z-index: 700;
 }
+
 .layersTray {
-    background-color: white;
-    z-index: 1002;
-    width: 450px;
-    height: 400px;
-    position: absolute;
-    top: 22.5%;
-    left: 2.15%;
-    padding: 0.25rem;
-    border: #00264c solid 2px;
+  background-color: white;
+  z-index: 1002;
+  width: 450px;
+  height: 400px;
+  position: absolute;
+  top: 22.5%;
+  left: 2.15%;
+  padding: 0.25rem;
+  border: #00264c solid 2px;
 }
 
 .layersTray > span {
-    padding:0.25rem;
-    font-size:1.5rem;
+  padding:0.25rem;
+  font-size:1.5rem;
 
+}
+.layers-container{
+height:30px;width:100%;
 }
 .layersTray>span {
 border:red solid 0.15rem;
@@ -391,7 +395,7 @@ thead th {
     height: calc(100vh - 9rem);
   }
   .legend{
-    font-weight:900;padding:3px;color:white;background-color: transparent;display:inline;text-shadow: -1.5px 0 black, 0 1.5px black,  1.5px 0 black, 0 -1.5px black;
+    left:300px;font-weight:900;padding:3px;color:white;background-color: transparent;display:inline;text-shadow: -1.5px 0 black, 0 1.5px black,  1.5px 0 black, 0 -1.5px black;
     /* border:white solid 1px; */
     width:17rem;
   }
@@ -399,43 +403,43 @@ thead th {
     display: block;
   }
   #legendNum1{
-    position:absolute;right:0rem;z-index:700;top:3.75rem;font-size:0.9rem;
+    position:absolute;right:-10rem;z-index:700;top:3.75rem;font-size:0.9rem;
   }
   #legendNum2{
-    position:absolute;right:0rem;z-index:700;top:4.85rem;font-size:0.9rem;
+    position:absolute;right:-20rem;z-index:700;top:4.85rem;font-size:0.9rem;
   }
   #legendNum3{
-    position:absolute;right:0rem;z-index:700;top:6rem;font-size:0.9rem;
+    position:absolute;right:-30rem;z-index:700;top:6rem;font-size:0.9rem;
   }
   #legendNum4{
-    position:absolute;right:0rem;z-index:700;top:7.15rem;font-size:0.9rem;
+    position:absolute;right:-40rem;z-index:700;top:7.15rem;font-size:0.9rem;
   }
   #legendNum5{
-    position:absolute;right:0rem;z-index:700;top:8.3rem;font-size:0.9rem;
+    position:absolute;right:-50rem;z-index:700;top:8.3rem;font-size:0.9rem;
   }
   #legendNum6{
-    position:absolute;right:0rem;z-index:700;top:9.5rem;font-size:0.9rem;
+    position:absolute;right:-60rem;z-index:700;top:9.5rem;font-size:0.9rem;
   }
   #legendNum7{
-    position:absolute;right:0rem;z-index:700;top:10.65rem;font-size:0.9rem;
+    position:absolute;right:-70rem;z-index:700;top:10.65rem;font-size:0.9rem;
   }
   #legendNum8{
-    position:absolute;right:0rem;z-index:700;top:11.75rem;font-size:0.9rem;
+    position:absolute;right:-80rem;z-index:700;top:11.75rem;font-size:0.9rem;
   }
   #legendNum9{
-    position:absolute;right:0rem;z-index:700;top:12.8rem;font-size:0.9rem;
+    position:absolute;right:-90rem;z-index:700;top:12.8rem;font-size:0.9rem;
   }
   #legendNum10{
-    position:absolute;right:0rem;z-index:700;top:14rem;font-size:0.9rem;
+    position:absolute;right:-100rem;z-index:700;top:14rem;font-size:0.9rem;
   }
   #legendNum11{
-    position:absolute;right:0rem;z-index:700;top:15.1rem;font-size:0.9rem;
+    position:absolute;right:-110rem;z-index:700;top:15.1rem;font-size:0.9rem;
   }
   #legendNum12{
-    position:absolute;right:0rem;z-index:700;top:16.2rem;font-size:0.9rem;
+    position:absolute;right:-120rem;z-index:700;top:16.2rem;font-size:0.9rem;
   }
   #legendNum13{
-    position:absolute;right:0rem;z-index:700;top:17.5rem;font-size:0.9rem;
+    position:absolute;right:-130rem;z-index:700;top:17.5rem;font-size:0.9rem;
   }
 
 
@@ -453,26 +457,11 @@ thead th {
     display: block;
     
   }
-
-
-  
-  /* .basemapsMainContainer,
-  .splashMainContainer {
-    font-family: 'Oswald', sans-serif;
-    background-color: white;
-    color: black;
-    width: auto;
-    border: 1px solid #777;
-    padding: 10px;
-    background-color: #f5f5f5;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
-    padding-bottom: 30px;
-  } */
   .basemapTray {
     background-color: white;
     z-index: 1002;
     width: 320px;
-    height: 325px;
+    height: 425px;
     position: absolute;
     top: 18%;
     left: 2.15%;
@@ -497,8 +486,10 @@ thead th {
   }
   
   .basemapImg {
-    border: 1px solid #e3e3e3;
+    border: 1px solid #4b4a4a;
     box-sizing: border-box;
+    border-radius:3px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
     display: block;
     max-width: 100%;
     height: auto;
@@ -510,18 +501,27 @@ thead th {
     font-size: 0.65rem
   }
   
-  .baseMapClose {
+  .baseMap-layersClose {
     float: right;
     border-width: thin;
     border-style: solid;
     color: #333;
     background-color: #e6e6e6;
     border-color: #adadad;
-    padding: 1px 5px;
-    font-size: 12px;
-    line-height: 1.5;
+    font-size: 15px;
     cursor: pointer;
+    position:absolute;
+    top:1%;
+    right:1%;
+    font-weight:bold;
+    border-radius:90px;
   }
+
+  
+
+
+  
+ 
   .majorRiversClass {
     background: transparent;
     border: transparent;
@@ -585,6 +585,16 @@ thead th {
     font-size:2rem;
 
 }
+#ble_1per{
+  background-image: url("ble.JPG");
+  background-size: cover;
+  color:white;
+  font-weight:bold;
+  text-shadow: -1.5px 0 black, 0 1.5px black,  1.5px 0 black, 0 -1.5px black;
+    font-size:2rem;
+
+}
+.crosshair { cursor:crosshair;}
 #copyTable{
   font-size:3rem;
   font-weight:bold;
@@ -626,7 +636,6 @@ position:absolute;
 z-index:1500;
 top:25%;left:25%;
 }
-
 
 
 

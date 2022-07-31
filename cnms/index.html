@@ -65,32 +65,37 @@
             </div>
         </div>
     </div>   
-    <div class="layersTray hide">
-        <div style="width:100%;height:100%;background-color:gray;padding:0.25rem;">
-        <span>
-            <b>Layers:</b>
-        </span><hr>
-        <div class="layerContainer" style="width:100%;height:85%;background-color:rgb(196, 192, 192);padding:0.3rem;">
-            <div id="nfhl" class="supBtns">
-                NFHL<svg style="float:right;padding-top:2px;" id="svgelem" width="100" height="75" opacity="0.5" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="75" height="50" fill="red"/>
-                 </svg>
-            </div><br>
-            <div id="prelim" class="supBtns">
-                Preliminary  <svg style="float:right;padding-top:2px;" id="svgelem" width="100" height="75" opacity="0.5" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="75" height="50" fill="#AD0CF5"/>
-                 </svg>
-            </div><br>
-            <div id="draft" class="supBtns">
-                Draft  <svg style="float:right;padding-top:2px;" id="svgelem" width="100" height="75" opacity="0.5" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="75" height="50" fill="#8E73BD"/>
-                 </svg>
-            </div> 
-                                                                                             
-        </div>
-        <button id="closeLayers" style="float:right;margin-top:0.25rem;">Close</button>
-    </div>
-    </div>    
+    <div class='layersTray hide'>
+        <div style='width:100%;height:100%;background-color:rgb(196, 192, 192);padding:0.3rem;'>
+            <p style='margin:0px 0px 5px 0px;'><b>Select layers:</b></p>
+            <hr>
+            <div class="layers-container">
+                <div id="nfhl" class="supBtns">
+                    NFHL<svg style="float:right;padding-top:2px;" id="svgelem" width="100" height="75" opacity="0.5" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="75" height="50" fill="red"/>
+                     </svg>
+                </div><br>
+                <div id="prelim" class="supBtns">
+                    Preliminary  <svg style="float:right;padding-top:2px;" id="svgelem" width="100" height="75" opacity="0.5" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="75" height="50" fill="#AD0CF5"/>
+                     </svg>
+                </div><br>
+                <div id="draft" class="supBtns">
+                    Draft  <svg style="float:right;padding-top:2px;" id="svgelem" width="100" height="75" opacity="0.5" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="75" height="50" fill="#8E73BD"/>
+                     </svg>
+                </div>
+                <div id="ble_1per" class="supBtns">
+                    BLE 1% 
+                </div>
+                <button style="position:absolute;bottom:4%;right:2%;background:steelblue;color:white;" class="hide">Create BLE Report</button>                
+            </div>
+                <hr>
+            </div><button id='closeLayers' class='baseMap-layersClose'>X</button>
+        </div>   
+    
+
+
     <header><span> FEMA Region 6 Coordinated Needs Management Strategy (CNMS) | NVUE Initiated Calculator -- 06/30/2022 FY22Q3</span><img style="float:right;padding-top:0.5rem;padding-right:0.5rem;" height=50 width=135 src="logo_fema.png" />
     </header>
     <div class="sidebar">
