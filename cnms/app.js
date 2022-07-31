@@ -1216,7 +1216,7 @@ document.getElementById("ble_1per").onclick = function (e) {
 }
 
 function getbleReport(e) {
-    window.open("https:webapps.usgs.gov/infrm/estBFE/report.html?lat=" + e.latlng.lat + "&lng=" + e.latlng.lng);
+    window.open("https://webapps.usgs.gov/infrm/estBFE/report.html?lat=" + e.latlng.lat + "&lng=" + e.latlng.lng);
     map.off("click", getbleReport);
     document.querySelector(".layers-container > button").style.background = "steelblue";
     document.getElementById("map").classList.remove("crosshair");
