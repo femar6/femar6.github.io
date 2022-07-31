@@ -636,7 +636,40 @@ position:absolute;
 z-index:1500;
 top:25%;left:25%;
 }
+.legend > span > svg{
+  animation: test2 2.25s infinite;
+  /* filter: url(#red-glow); */
+  
+}
+line {
+  filter: url(#red-glow);
+}
 
+@keyframes test2 {
+
+0% {
+
+-webkit-filter: brightness(95%) blur(1px) contrast(100%);
+
+filter: brightness(95%) blur(1px) contrast(100%);
+
+}
+50% {
+
+-webkit-filter: brightness(150%) blur(0px) contrast(110%);
+
+filter: brightness(150%) blur(0px) contrast(110%);
+
+}
+100% {
+
+-webkit-filter: brightness(95%) blur(1px) contrast(100%);
+
+filter: brightness(95%) blur(1px) contrast(100%);
+
+}
+
+}
 
 
 

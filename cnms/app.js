@@ -1234,11 +1234,40 @@ legendCtrl.onAdd = function (map) {
 };
 legendCtrl.addlegendCtrl = function (props) {
     this._div.innerHTML =
-        `<div class="legend"><span style="font-size:1rem;">EXPLANATION<span style='float:right;font-size:0.65rem;margin-top:1rem;'>(miles)</span><hr></span><span style='font-size:0.75rem;'>ASSESSED, BEING STUDIED&nbsp;&nbsp;<svg style="margin-left:0.9rem;" height='12' width='75'><line x1='0' y1='5' x2='75' y2='5' style='stroke:#76FCED;stroke-width:5' /></svg></span><span class='legendNum' id='legendNum1'></span>
+        `<div class="legend"><span style="font-size:1rem;">EXPLANATION<span style='float:right;font-size:0.65rem;margin-top:1rem;'>(miles)</span><hr></span><span style='font-size:0.75rem;'>ASSESSED, BEING STUDIED&nbsp;&nbsp;
+        <svg style="margin-left:0.9rem;" height='12' width='75'>
+        <defs>
+        <filter id="red-glow" filterUnits="userSpaceOnUse"
+                x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur5"/>
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur10"/>
+          <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur20"/>
+          <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur30"/>
+          <feGaussianBlur in="SourceGraphic" stdDeviation="50" result="blur50"/>
+          <feMerge result="blur-merged">
+            <feMergeNode in="blur10"/>
+            <feMergeNode in="blur20"/>
+            <feMergeNode in="blur30"/>
+            <feMergeNode in="blur50"/>
+          </feMerge>
+          <feColorMatrix result="red-blur" in="blur-merged" type="matrix"
+                         values="1 0 0 0 0
+                                 0 0.06 0 0 0
+                                 0 0 0.44 0 0
+                                 0 0 0 1 0" />
+          <feMerge>
+            <feMergeNode in="red-blur"/>
+            <feMergeNode in="blur5"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>   
+        <line x1='0' y1='5' x2='75' y2='5' style='stroke:#76FCED;stroke-width:5' /></svg>
+        </span><span class='legendNum' id='legendNum1'></span>
 		<span style='font-size:0.75rem;'>ASSESSED, DEFERED&nbsp;&nbsp;<svg style="margin-left:3.15rem;" height='10' width='75'><line x1='0' y1='5' x2='75' y2='5' style='stroke:#0AC4F8;stroke-width:5' /></svg></span><span class='legendNum' id='legendNum2'></span>	
 		<span style='font-size:0.75rem;'>ASSESSED, TO BE STUDIED&nbsp;&nbsp;<svg style="margin-left:1.05rem;" height='10' width='75'><line x1='0' y1='5' x2='75' y2='5' style='stroke:#008EF8;stroke-width:5' /></svg></span><span class='legendNum' id='legendNum3'></span>
 		<span style='font-size:0.75rem;'>UNKNOWN, BEING STUDIED&nbsp;&nbsp;<svg style="margin-left:0.69rem;" height='10' width='75'><line x1='0' y1='5' x2='75' y2='5' style='stroke:#680397;stroke-width:5' /></svg></span><span class='legendNum' id='legendNum4'></span>			
-		<span style='font-size:0.75rem;'>UNKNOWN, BEING ASSESSED&nbsp;&nbsp;<svg style="" height='10' width='75'><line x1='0' y1='5' x2='75' y2='5' style='stroke:#A012E2;stroke-width:5' /></svg></span><span class='legendNum' id='legendNum5'></span>			
+		<span style='font-size:0.75rem;'>UNKNOWN, BEING ASSESSED&nbsp;&nbsp;<svg style="margin-left:0.15rem" height='10' width='75'><line x1='0' y1='5' x2='75' y2='5' style='stroke:#A012E2;stroke-width:5' /></svg></span><span class='legendNum' id='legendNum5'></span>			
 		<span style='font-size:0.75rem;'>UNKNOWN, TO BE ASSESSED&nbsp;&nbsp;<svg style="margin-left:0.15rem;" height='10' width='75'><line x1='0' y1='5' x2='75' y2='5' style='stroke:#AF4DDD;stroke-width:5' /></svg></span><span class='legendNum' id='legendNum6'></span>			
 		<span style='font-size:0.75rem;'>UNKNOWN, DEFERED&nbsp;&nbsp;<svg style="margin-left:2.9rem;" height='10' width='75'><line x1='0' y1='5' x2='75' y2='5' style='stroke:#CB96E3;stroke-width:5' /></svg></span><span class='legendNum' id='legendNum7'></span>			
 		<span style='font-size:0.75rem;'>UNVERIFIED, BEING STUDIED&nbsp;&nbsp;<svg style="margin-left:0.3rem;" height='10' width='75'><line x1='0' y1='5' x2='75' y2='5' style='stroke:orange;stroke-width:5' /></svg></span><span class='legendNum' id='legendNum8'></span>			
