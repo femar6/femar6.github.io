@@ -73,19 +73,19 @@ const supportLayers = L.layerGroup([]).addTo(map);
 const selectedAoi = L.layerGroup([]).addTo(map);
 const selectedData = L.layerGroup([]).addTo(map);
 const results = L.layerGroup().addTo(map);
-const googleRoad = L.tileLayer('http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}', {
+const googleRoad = L.tileLayer('https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}', {
     maxZoom: 21,
-    attribution: '&copy; <a href="http://www.google.com">Google</a>',
+    attribution: '&copy; <a href="https://www.google.com">Google</a>',
     subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
 });
-const google_terrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+const google_terrain = L.tileLayer('https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
     // maxZoom: 21,
-    attribution: '&copy; <a href="http://www.google.com">Google</a>',
+    attribution: '&copy; <a href="https://www.google.com">Google</a>',
     subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
 });
-var google_hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+var google_hybrid = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
     // maxZoom: 21,
-    attribution: '&copy; <a href="http://www.google.com">Google</a>',
+    attribution: '&copy; <a href="https://www.google.com">Google</a>',
     subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
 }).addTo(baseMapLayers);
 const Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
