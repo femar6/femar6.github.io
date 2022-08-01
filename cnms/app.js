@@ -1235,7 +1235,7 @@ legendCtrl.onAdd = function (map) {
 legendCtrl.addlegendCtrl = function (props) {
     this._div.innerHTML =
         `<div class="legend"><span style="font-size:1rem;">EXPLANATION<span style='float:right;font-size:0.65rem;margin-top:1rem;'>(miles)</span><hr></span><span style='font-size:0.75rem;'>ASSESSED, BEING STUDIED&nbsp;&nbsp;
-        <svg style="margin-left:0.9rem;" height='12' width='75'>
+        <svg style="margin-left:0.8rem;" height='12' width='75'>
         <defs>
         <filter id="red-glow" filterUnits="userSpaceOnUse"
                 x="-50%" y="-50%" width="200%" height="200%">
