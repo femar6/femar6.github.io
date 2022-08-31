@@ -1214,6 +1214,20 @@ document.getElementById("ble_1per").onclick = function (e) {
         document.querySelector(".layers-container > button").classList.remove("hide");
     }
 }
+const stateCityGroup = L.layerGroup([]);
+const okCity = L.esri.featureLayer({url:"https://owrb.csa.ou.edu/server/rest/services/Base/SDE_State_County_PLSS/MapServer/1"}).addTo(stateCityGroup);
+const txCity = L.esri.featureLayer({url:"https://services.arcgis.com/KTcxiTD9dsQw4r7Z/arcgis/rest/services/TxDOT_City_Boundaries/FeatureServer/0"}).addTo(stateCityGroup);
+
+
+document.getElementById("ok_tx_city").onclick = function (e) {
+    if (supportLayers.hasLayer(stateCityGroup)) {
+        supportLayers.removeLayer(stateCityGroup);
+
+
+    } else {
+        supportLayers.addLayer(stateCityGroup);
+    }
+}
 
 function getbleReport(e) {
     window.open("https://webapps.usgs.gov/infrm/estBFE/report.html?lat=" + e.latlng.lat + "&lng=" + e.latlng.lng);
