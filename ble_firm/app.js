@@ -237,7 +237,7 @@ opacity:0.85,pane:"labels2",
             c = '#377EB8';
             break;
           default:
-            c = 'black';
+            c = 'red';
         }
         return { color: c};
 }
@@ -245,7 +245,18 @@ opacity:0.85,pane:"labels2",
 const profileBasln = L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Choctaw_S_Profil_Basln_web/FeatureServer/0",
 simplifyFactor: 0.75,
 precision: 5
-,opacity:0.85,pane:"labels2"
+,opacity:0.85,pane:"labels2",
+style: function (feature) {
+    var c;
+    switch (feature.properties.D_BI_RT_NAME) {
+      case 'Bluegrass Bike Tour':
+        c = '#377EB8';
+        break;
+      default:
+        c = 'yellow';
+    }
+    return { color: c};
+}
 });
 
 const firmPanels = L.esri.tiledMapLayer({
