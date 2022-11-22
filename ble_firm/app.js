@@ -208,7 +208,7 @@ map.getPane('labels2').style.zIndex = 680;
 // const firm13 = L.imageOverlay(panel13Url, imageBounds13).addTo(firmPanels);
 
 const polLayer = L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Choctaw_S_Pol_Ar/FeatureServer/0",
-simplifyFactor: 0.25,
+simplifyFactor: 0.85,
 precision: 5,
 opacity:0.85,pane:"labels2",
 style: function (feature) {
@@ -227,7 +227,7 @@ polLayer.bindPopup(function (layer) {
     return L.Util.template('<p><strong>Community Name:<br> {POL_NAME1}</strong></p>', layer.feature.properties);
   });
 const scopingLines = L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Choctaw_ScopingLines_web/FeatureServer/0",
-simplifyFactor: 0.25,
+simplifyFactor: 0.85,
 precision: 5,
 opacity:0.85,pane:"labels2",
     style: function (feature) {
