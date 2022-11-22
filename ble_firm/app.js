@@ -261,7 +261,7 @@ style: function (feature) {
 
 const firmPanels = L.esri.tiledMapLayer({
     url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Choctaw_firmPanels/MapServer',opacity:0.85,pane:"labels"
-  });
+  }).addTo(groupLayers);
 
 const bleSfhaData = L.esri.tiledMapLayer({
     url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/S_Fld_Haz_Ar_web_/MapServer',opacity:0.5,pane:"labels"
