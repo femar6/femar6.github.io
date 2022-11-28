@@ -38,21 +38,34 @@
             <hr>
             <div class="layers-container">
                 <div><b>BLE SFHA data</b><br>
-                    1% annual chance flood
+                    <span>1% annual chance flood</span>
                     <svg width="55" height="15" style="padding-left:0.5em;">
-                        <rect width="50" height="10" style="fill:rgb(44, 101, 224);stroke-width:3;stroke:rgb(0,0,0)" />
+                        <rect width="25" height="25" style="fill:rgb(44, 101, 224);stroke-width:1;stroke:rgb(255, 255, 255)" />
                       </svg><br>
-                    0.2% annual chance
+                    <span style="padding-right:25px" >0.2% annual chance</span>
                       <svg width="55" height="15" style="padding-left:0.5em;">
-                        <rect width="50" height="10" style="fill:rgb(81, 2, 128);stroke-width:3;stroke:rgb(0,0,0)" />
-                      </svg><br>                  
+                        <rect width="25" height="25" style="fill:rgb(185, 0, 209);stroke-width:1;stroke:rgb(255, 255, 255)" />
+                      </svg><br><br>      
                     <button id="layer1">ON</button>
                 </div><hr> 
-                <div><b>County and incorporated political </b><br><button id="layer2">ON</button>
+                <div><b>County and incorporated political </b><br>
+                    <svg width="35" height="30" style="padding-left:0.5em;">
+                        <rect width="25" height="20" style="fill:rgba(185, 0, 209, 0);stroke-width:2;stroke:rgb(231, 146, 34)" />
+                      </svg>                   
+                    <br>
+                    <button id="layer2">ON</button>
                 </div><hr> 
-                <div><b>Effective Scoping Stream Data</b><br><button id="layer3" class="button-off" class="button-off">OFF</button>
+                <div><b>Effective Scoping Stream Data</b>
+                    <svg height="30" width="100" style="padding-left:0.5em;">
+                        <line x1="0" y1="30" x2="50" y2="30" style="stroke:rgb(243, 0, 0);stroke-width:15" />
+                      </svg>                       
+                    <br><button id="layer3" class="button-off" class="button-off">OFF</button>
                 </div><hr> 
-                <div><b>BLE Stream data</b><br><button id="layer4" class="button-off">OFF</button>
+                <div><b>BLE Stream data</b>
+                    <svg height="30" width="100" style="padding-left:0.5em;">
+                        <line x1="0" y1="30" x2="50" y2="30" style="stroke:rgb(10, 8, 8);stroke-width:15" />
+                      </svg>                      
+                    <br><button id="layer4" class="button-off">OFF</button>
                 </div><hr> 
                 <div><b>Georeferenced Effective FIRMs</b><br><button id="layer5">ON</button>
                 </div>  <hr>              
