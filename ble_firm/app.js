@@ -253,7 +253,7 @@ style: function (feature) {
         c = '#377EB8';
         break;
       default:
-        c = 'steelblue';
+        c = '#2354da';
     }
     return { color: c};
 }
