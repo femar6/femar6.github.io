@@ -34,7 +34,7 @@ L.Path.include({
 const cntyUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/watch_designated_cnty/FeatureServer/0";
 const huc8Url = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/r6_huc8_cnms/FeatureServer/0";
 const comUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_census_community/FeatureServer/0";
-const streamsUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/S_Studies_Ln06302022/FeatureServer/0";
+const streamsUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/S_Study_Ln12312022/FeatureServer/0";
 const UnmappedStreamsUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/S_Unmapped_Ln06302022/FeatureServer/0";
 let query = null;
 let aoiUrl = null;
