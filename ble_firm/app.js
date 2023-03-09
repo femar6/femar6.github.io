@@ -64,15 +64,20 @@ const baseMaps = document.createElement("div");
 baseMaps.innerHTML = `<div id='baseMapsid' class='basemapsContainer basemapTray hide'><div style='width:100%;height:100%;background-color:rgb(196, 192, 192);padding:0.3rem;'><p style='margin:0px 0px 5px 0px;'><b>Select a base map:</b></p><hr><div id='basemap1' class='basemaps basemapSelected'><img class='basemapImg' src='http://mt1.google.com/vt/lyrs=s,h&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Imagery</div></div><div id='basemap2' class='basemaps'><img class='basemapImg' src='http://mt1.google.com/vt/lyrs=p&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Terrain</div></div><div id='basemap3' class='basemaps'><img class='basemapImg' src='http://mt0.google.com/vt/lyrs=m&hl=en&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Roads</div></div><br><div id='basemap4' class='basemaps'><img class='basemapImg' src='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/105398/60373'><div class='basemapLabel'>ESRI Imagery</div></div><div id='basemap5' class='basemaps'><img class='basemapImg' src='https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/16/26349/15093'><div class='basemapLabel'>USGS Topo</div></div><div id='basemap6' class='basemaps'><img class='basemapImg' src='https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/16/26349/15093'><div class='basemapLabel'>USGS Imagery</div></div><br><div id='basemap7' class='basemaps'><img class='basemapImg' src='https://tileserver.memomaps.de/tilegen/17/30186/52699.png'><div class='basemapLabel'>ÖPNVKarte</div></div><div id='basemap8' class='basemaps'><img class='basemapImg' src='https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/17/30186/52699.png'><div class='basemapLabel'>Stadia Dark</div></div><div id='basemap9' class='basemaps'><img class='basemapImg' src='https://c.tile.opentopomap.org/15/7546/13174.png'><div class='basemapLabel'>OSM OpenTopo</div></div><hr><button id='closeBasemaps' class='baseMap-layersClose'>X</button></div></div></div>`;
 document.body.appendChild(baseMaps);
 
-document.getElementById("queryCnty").onclick = function (e) {
+document.getElementById("queryChoctaw").onclick = function (e) {
     document.querySelector(".splash-bg").classList.add("hide");
 
     document.querySelector(".splash").classList.add("hide");
     // L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/watch_designated_cnty/FeatureServer/0",where:"NAME = 'Choctaw'"}).addTo(map);
     map.setView([34,-95.55],11.5);
 }
+document.getElementById("queryHarper").onclick = function (e) {
+    document.querySelector(".splash-bg").classList.add("hide");
 
-
+    document.querySelector(".splash").classList.add("hide");
+    // L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/watch_designated_cnty/FeatureServer/0",where:"NAME = 'Choctaw'"}).addTo(map);
+    map.setView([36.82959180923689, -99.63055335115429],11);
+}
 
 
 document.querySelector(".splashBtn").onclick = function (e) {
@@ -207,7 +212,7 @@ map.getPane('labels2').style.zIndex = 680;
 
 // const firm13 = L.imageOverlay(panel13Url, imageBounds13).addTo(firmPanels);
 
-const polLayer = L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Choctaw_S_Pol_Ar/FeatureServer/0",
+const polLayerChoctaw = L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Choctaw_S_Pol_Ar/FeatureServer/0",
 simplifyFactor: 0.85,
 precision: 5,
 opacity:0.85,pane:"labels2",
@@ -223,7 +228,7 @@ style: function (feature) {
     return { color: c,fillOpacity:0};
 }
 }).addTo(groupLayers);
-polLayer.bindPopup(function (layer) {
+polLayerChoctaw.bindPopup(function (layer) {
     return L.Util.template('<p><strong>Community Name:<br> {POL_NAME1}</strong></p>', layer.feature.properties);
   });
 const scopingLines = L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Choctaw_ScopingLines_web/FeatureServer/0",
@@ -242,6 +247,23 @@ opacity:0.85,pane:"labels2",
         return { color: c};
 }
 });
+const scopingLinesHarper = L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Harper_Scoping_lines/FeatureServer/0",
+simplifyFactor: 0.85,
+precision: 5,
+opacity:0.85,pane:"labels2",
+    style: function (feature) {
+        var c;
+        switch (feature.properties.D_BI_RT_NAME) {
+          case 'Bluegrass Bike Tour':
+            c = '#377EB8';
+            break;
+          default:
+            c = 'red';
+        }
+        return { color: c};
+}
+});
+
 const profileBasln = L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Choctaw_S_Profil_Basln_web/FeatureServer/0",
 simplifyFactor: 0.75,
 precision: 5
@@ -263,28 +285,43 @@ const firmPanels = L.esri.tiledMapLayer({
     url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Choctaw_firmPanels/MapServer',opacity:0.85,pane:"labels"
   }).addTo(groupLayers);
 
+  const polLayerHarper = L.esri.tiledMapLayer({
+    url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Harper_S_Pol_Ar/MapServer',pane:"labels"
+  }).addTo(groupLayers);
+
 const bleSfhaData = L.esri.tiledMapLayer({
     url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/S_Fld_Haz_Ar_web_/MapServer',opacity:0.5,pane:"labels"
-  }).addTo(groupLayers);  
-  
+  }).addTo(groupLayers);
+
+const bleSfhaData_harper = L.esri.tiledMapLayer({
+    url:"https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Harper_BLE_SFHA/MapServer",opacity:0.5,pane:"labels"
+}).addTo(groupLayers);
+const firmPanels_harper = L.esri.tiledMapLayer({
+    url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/c400351B/MapServer',opacity:0.75,pane:"labels"
+  }).addTo(groupLayers);
+
 document.getElementById("layer1").onclick = function (e) {
     if (groupLayers.hasLayer(bleSfhaData)) {
         groupLayers.removeLayer(bleSfhaData);
+        groupLayers.removeLayer(bleSfhaData_harper);
         document.getElementById("layer1").innerHTML = "OFF";
         document.getElementById("layer1").classList.add("button-off");
     } else {
         groupLayers.addLayer(bleSfhaData);
+        groupLayers.addLayer(bleSfhaData_harper);
         document.getElementById("layer1").innerHTML = "ON";
         document.getElementById("layer1").classList.remove("button-off");
     }
 }
 document.getElementById("layer2").onclick = function (e) {
-    if (groupLayers.hasLayer(polLayer)) {
-        groupLayers.removeLayer(polLayer);
+    if (groupLayers.hasLayer(polLayerChoctaw)) {
+        groupLayers.removeLayer(polLayerChoctaw);
+        groupLayers.removeLayer(polLayerHarper);
         document.getElementById("layer2").innerHTML = "OFF";
         document.getElementById("layer2").classList.add("button-off");
     } else {
-        groupLayers.addLayer(polLayer);
+        groupLayers.addLayer(polLayerChoctaw);
+        groupLayers.addLayer(polLayerHarper);
         document.getElementById("layer2").innerHTML = "ON";
         document.getElementById("layer2").classList.remove("button-off");
     }
@@ -292,10 +329,12 @@ document.getElementById("layer2").onclick = function (e) {
 document.getElementById("layer3").onclick = function (e) {
     if (groupLayers.hasLayer(scopingLines)) {
         groupLayers.removeLayer(scopingLines);
+        groupLayers.removeLayer(scopingLinesHarper);
         document.getElementById("layer3").innerHTML = "OFF";
         document.getElementById("layer3").classList.add("button-off");
     } else {
         groupLayers.addLayer(scopingLines);
+        groupLayers.addLayer(scopingLinesHarper);
         document.getElementById("layer3").innerHTML = "ON";
         document.getElementById("layer3").classList.remove("button-off");
     }
@@ -314,10 +353,12 @@ document.getElementById("layer4").onclick = function (e) {
 document.getElementById("layer5").onclick = function (e) {
     if (groupLayers.hasLayer(firmPanels)) {
         groupLayers.removeLayer(firmPanels);
+        groupLayers.removeLayer(firmPanels_harper);
         document.getElementById("layer5").innerHTML = "OFF";
         document.getElementById("layer5").classList.add("button-off");
     } else {
         groupLayers.addLayer(firmPanels);
+        groupLayers.addLayer(firmPanels_harper);
         document.getElementById("layer5").innerHTML = "ON";
         document.getElementById("layer5").classList.remove("button-off");
     }

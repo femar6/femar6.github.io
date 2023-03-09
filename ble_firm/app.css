@@ -53,10 +53,16 @@ button{
   background-color:red;
   color:white;
 }
-a {
-    text-decoration: none;
-}
 
+#queryChoctaw{
+  background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Map_of_Oklahoma_highlighting_Choctaw_County.svg/7730px-Map_of_Oklahoma_highlighting_Choctaw_County.svg.png);
+  background-size:contain;background-repeat:no-repeat;
+}
+#queryHarper{
+  background-image:url(https://www.earthondrive.com/image/cache/data/aerials/USA/OK/naip-aerial-imagery-2006-2018-harper-county-ok-usa-9136-500x500.png);
+  background-size:cover;background-repeat:no-repeat;background-position-y:center;
+
+}
 .splash-bg {
     background-color: black;
     opacity: 0.75;
@@ -102,7 +108,8 @@ a {
     width: 100%;
 }
 a{
-    color:white;border:#00264c solid 5px;border-radius:12px;    text-shadow: -1.5px 0 black, 0 1.5px black,  1.5px 0 black, 0 -1.5px black;
+    color:black;border:#00264c solid 5px;border-radius:3px;    text-shadow: -1px 0 white, 0 1px white,  1px 0 white, 0 -1px white;
+        text-decoration: none;
 }
 .loading{position:absolute;z-index:750;top:50%;left:50%;font-size:5rem;color:white;border:#00264c solid 5px;border-radius:12px;    text-shadow: -1.5px 0 black, 0 1.5px black,  1.5px 0 black, 0 -1.5px black;}
 .queryItems > a:hover{
@@ -304,6 +311,7 @@ footer>a {
     color: white;
     text-decoration: none;
     font-size: 0.7rem;
+    text-shadow: -1px 0 rgb(0, 0, 0), 0 1px rgb(0, 0, 0),  1px 0 rgb(0, 0, 0), 0 -1px black;
 }
 
 footer>a:hover {
