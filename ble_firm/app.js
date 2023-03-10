@@ -296,7 +296,7 @@ style: function (feature) {
     }
     return { color: c};
 }
-}).addTo(groupLayers);
+});
 
 const firmPanels = L.esri.tiledMapLayer({
     url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Choctaw_firmPanels/MapServer',opacity:0.85,pane:"labels"
