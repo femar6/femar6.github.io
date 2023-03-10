@@ -281,6 +281,23 @@ style: function (feature) {
 }
 });
 
+const profileBasln_Harper = L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL_harper/FeatureServer/0",
+simplifyFactor: 0.75,
+precision: 5
+,opacity:0.85,pane:"labels2",
+style: function (feature) {
+    var c;
+    switch (feature.properties.D_BI_RT_NAME) {
+      case 'Bluegrass Bike Tour':
+        c = '#377EB8';
+        break;
+      default:
+        c = '#2354da';
+    }
+    return { color: c};
+}
+});
+
 const firmPanels = L.esri.tiledMapLayer({
     url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Choctaw_firmPanels/MapServer',opacity:0.85,pane:"labels"
   }).addTo(groupLayers);
@@ -342,10 +359,14 @@ document.getElementById("layer3").onclick = function (e) {
 document.getElementById("layer4").onclick = function (e) {
     if (groupLayers.hasLayer(profileBasln)) {
         groupLayers.removeLayer(profileBasln);
+        groupLayers.removeLayer(profileBasln_Harper);
+
+        
         document.getElementById("layer4").innerHTML = "OFF";
         document.getElementById("layer4").classList.add("button-off");
     } else {
         groupLayers.addLayer(profileBasln);
+        groupLayers.addLayer(profileBasln_Harper);
         document.getElementById("layer4").innerHTML = "ON";
         document.getElementById("layer4").classList.remove("button-off");
     }
