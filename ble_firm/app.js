@@ -11,9 +11,7 @@ map.setMaxBounds(map.getBounds().pad(0.2));
 
 
 const baseMapLayers = L.layerGroup([]).addTo(map);
-const groupLayers = L.layerGroup([]).addTo(map);
-// const supportLayers = L.layerGroup([]).addTo(map);
-// const selectedAoi = L.layerGroup([]).addTo(map);
+
 
 const googleRoad = L.tileLayer('https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}', {
     maxZoom: 21,
@@ -61,326 +59,276 @@ const Stamen_TerrainLabels = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.
 });
 const OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png');
 const baseMaps = document.createElement("div");
-baseMaps.innerHTML = `<div id='baseMapsid' class='basemapsContainer basemapTray hide'><div style='width:100%;height:100%;background-color:rgb(196, 192, 192);padding:0.3rem;'><p style='margin:0px 0px 5px 0px;'><b>Select a base map:</b></p><hr><div id='basemap1' class='basemaps basemapSelected'><img class='basemapImg' src='http://mt1.google.com/vt/lyrs=s,h&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Imagery</div></div><div id='basemap2' class='basemaps'><img class='basemapImg' src='http://mt1.google.com/vt/lyrs=p&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Terrain</div></div><div id='basemap3' class='basemaps'><img class='basemapImg' src='http://mt0.google.com/vt/lyrs=m&hl=en&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Roads</div></div><br><div id='basemap4' class='basemaps'><img class='basemapImg' src='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/105398/60373'><div class='basemapLabel'>ESRI Imagery</div></div><div id='basemap5' class='basemaps'><img class='basemapImg' src='https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/16/26349/15093'><div class='basemapLabel'>USGS Topo</div></div><div id='basemap6' class='basemaps'><img class='basemapImg' src='https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/16/26349/15093'><div class='basemapLabel'>USGS Imagery</div></div><br><div id='basemap7' class='basemaps'><img class='basemapImg' src='https://tileserver.memomaps.de/tilegen/17/30186/52699.png'><div class='basemapLabel'>ÖPNVKarte</div></div><div id='basemap8' class='basemaps'><img class='basemapImg' src='https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/17/30186/52699.png'><div class='basemapLabel'>Stadia Dark</div></div><div id='basemap9' class='basemaps'><img class='basemapImg' src='https://c.tile.opentopomap.org/15/7546/13174.png'><div class='basemapLabel'>OSM OpenTopo</div></div><hr><button id='closeBasemaps' class='baseMap-layersClose'>X</button></div></div></div>`;
+baseMaps.innerHTML = `<div id='baseMapsid' class='basemapsContainer basemapTray hide'><div style='width:100%;height:100%;background-color:rgb(255, 255, 255);padding:0.3rem;'><p style='margin:0px 0px 5px 0px;'><b>Select a base map:</b></p><hr><div id='basemap1' class='basemaps basemapSelected'><img class='basemapImg' src='http://mt1.google.com/vt/lyrs=s,h&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Imagery</div></div><div id='basemap2' class='basemaps'><img class='basemapImg' src='http://mt1.google.com/vt/lyrs=p&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Terrain</div></div><div id='basemap3' class='basemaps'><img class='basemapImg' src='http://mt0.google.com/vt/lyrs=m&hl=en&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Roads</div></div><br><div id='basemap4' class='basemaps'><img class='basemapImg' src='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/105398/60373'><div class='basemapLabel'>ESRI Imagery</div></div><div id='basemap5' class='basemaps'><img class='basemapImg' src='https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/16/26349/15093'><div class='basemapLabel'>USGS Topo</div></div><div id='basemap6' class='basemaps'><img class='basemapImg' src='https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/16/26349/15093'><div class='basemapLabel'>USGS Imagery</div></div><br><div id='basemap7' class='basemaps'><img class='basemapImg' src='https://tileserver.memomaps.de/tilegen/17/30186/52699.png'><div class='basemapLabel'>ÖPNVKarte</div></div><div id='basemap8' class='basemaps'><img class='basemapImg' src='https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/17/30186/52699.png'><div class='basemapLabel'>Stadia Dark</div></div><div id='basemap9' class='basemaps'><img class='basemapImg' src='https://c.tile.opentopomap.org/15/7546/13174.png'><div class='basemapLabel'>OSM OpenTopo</div></div><hr><button id='closeBasemaps' class='baseMap-layersClose'>X</button></div></div></div>`;
 document.body.appendChild(baseMaps);
 
-document.getElementById("queryChoctaw").onclick = function (e) {
-    document.querySelector(".splash-bg").classList.add("hide");
-
-    document.querySelector(".splash").classList.add("hide");
-    // L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/watch_designated_cnty/FeatureServer/0",where:"NAME = 'Choctaw'"}).addTo(map);
-    map.setView([34,-95.55],11.5);
-}
-document.getElementById("queryHarper").onclick = function (e) {
-    document.querySelector(".splash-bg").classList.add("hide");
-
-    document.querySelector(".splash").classList.add("hide");
-    // L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/watch_designated_cnty/FeatureServer/0",where:"NAME = 'Choctaw'"}).addTo(map);
-    map.setView([36.82959180923689, -99.63055335115429],11);
-}
 
 
 document.querySelector(".splashBtn").onclick = function (e) {
-    // map.setView([31.6, -99], 6);
-    // document.querySelector(".splash").classList.remove("hide");
-    // document.querySelector(".splash-bg").classList.remove("hide");
-    // map.removeControl(legendCtrl);
-    // groupLayers.clearLayers();
-    // selectedAoi.clearLayers();
-    // selectedData.clearLayers();
-    // results.clearLayers();
-    // selectTable.classList.add("hide");
-    // document.querySelector(".layersTray").classList.add("hide");
-    // document.querySelector(".basemapTray").classList.add("hide");
     window.location.reload();
 }
 document.querySelector(".layersTrayBtn").onclick = function (e) {
-    document.querySelector(".layersTray").classList.remove("hide");
+    document.getElementById("layerTray").classList.remove("hide");
     document.querySelector(".basemapTray").classList.add("hide");
 }
-document.querySelector(".layersTrayBtn").addEventListener("mouseover", function (e) {
-    var layerTooltip = document.createElement("div");
-    layerTooltip.innerHTML = `<div id="layersTooltip" style="border-radius: 6px;padding:0.25rem 2rem 0.25rem 2rem;font-size:1.25rem;position:absolute;z-index:750;top:22.35%;left:2.5%;background-color:#337ab7;color:white;"><b>Layers</b></div>`;
-    document.body.appendChild(layerTooltip);
+// document.querySelector(".layersTrayBtn").addEventListener("mouseover", function (e) {
+//     var layerTooltip = document.createElement("div");
+//     layerTooltip.innerHTML = `<div id="layersTooltip" style="border-radius: 6px;padding:0.25rem 2rem 0.25rem 2rem;font-size:1.25rem;position:absolute;z-index:750;top:22.35%;left:2.5%;background-color:#337ab7;color:white;"><b>Layers</b></div>`;
+//     document.body.appendChild(layerTooltip);
 
-});
-document.querySelector(".layersTrayBtn").addEventListener("mouseout", function (e) {
-    document.getElementById("layersTooltip").remove();
-});
-document.querySelector(".basemapTrayBtn").addEventListener("mouseover", function (e) {
-    var basemapTooltip = document.createElement("div");
-    basemapTooltip.innerHTML = `<div id="basemapTooltip" style="border-radius: 6px;padding:0.25rem 2rem 0.25rem 2rem;font-size:1.25rem;position:absolute;z-index:750;top:17.5%;left:2.5%;background-color:#337ab7;color:white;"><b>Base Maps</b></div>`;
-    document.body.appendChild(basemapTooltip);
-});
-document.querySelector(".basemapTrayBtn").addEventListener("mouseout", function (e) {
-    document.getElementById("basemapTooltip").remove();
-});
+// });
+// document.querySelector(".layersTrayBtn").addEventListener("mouseout", function (e) {
+//     document.getElementById("layersTooltip").remove();
+// });
+// document.querySelector(".basemapTrayBtn").addEventListener("mouseover", function (e) {
+//     var basemapTooltip = document.createElement("div");
+//     basemapTooltip.innerHTML = `<div id="basemapTooltip" style="border-radius: 6px;padding:0.25rem 2rem 0.25rem 2rem;font-size:1.25rem;position:absolute;z-index:750;top:17.5%;left:2.5%;background-color:#337ab7;color:white;"><b>Base Maps</b></div>`;
+//     document.body.appendChild(basemapTooltip);
+// });
+// document.querySelector(".basemapTrayBtn").addEventListener("mouseout", function (e) {
+//     document.getElementById("basemapTooltip").remove();
+// });
 
-document.querySelector(".splashBtn").addEventListener("mouseover", function (e) {
-    var splashTooltip = document.createElement("div");
-    splashTooltip.innerHTML = `<div id="splashTooltip" style="border-radius: 6px;padding:0.25rem 2rem 0.25rem 2rem;font-size:1.25rem;position:absolute;z-index:750;bottom:25%;left:2.5%;background-color:#337ab7;color:white;"><b>Queries</b></div>`;
-    document.body.appendChild(splashTooltip);
+// document.querySelector(".splashBtn").addEventListener("mouseover", function (e) {
+//     var splashTooltip = document.createElement("div");
+//     splashTooltip.innerHTML = `<div id="splashTooltip" style="border-radius: 6px;padding:0.25rem 2rem 0.25rem 2rem;font-size:1.25rem;position:absolute;z-index:750;bottom:25%;left:2.5%;background-color:#337ab7;color:white;"><b>Queries</b></div>`;
+//     document.body.appendChild(splashTooltip);
 
-});
-document.querySelector(".splashBtn").addEventListener("mouseout", function (e) {
-    document.getElementById("splashTooltip").remove();
-});
+// });
+// document.querySelector(".splashBtn").addEventListener("mouseout", function (e) {
+//     document.getElementById("splashTooltip").remove();
+// });
 document.querySelector(".basemapTrayBtn").onclick = function (e) {
     document.querySelector(".basemapTray").classList.remove("hide");
-    document.querySelector(".layersTray").classList.add("hide");
+    document.getElementById("layerTray").classList.add("hide");
 }
-document.getElementById("closeLayers").onclick = function (e) {
-    document.querySelector(".layersTray").classList.add("hide");
-    document.querySelector(".basemapTray").classList.add("hide");
-}
+// document.getElementById("closeLayers2").onclick = function (e) {
+//     document.querySelector(".layersTray").classList.add("hide");
+//     document.querySelector(".basemapTray").classList.add("hide");
+// }
 document.getElementById("closeBasemaps").onclick = function (e) {
-    document.querySelector(".layersTray").classList.add("hide");
+    document.getElementById("layerTray").classList.add("hide");
     document.querySelector(".basemapTray").classList.add("hide");
 }
-document.querySelector(".leaflet-control-container").addEventListener("mouseover", function (e) {
-    document.querySelector(".layersTray").classList.add("hide");
-    document.querySelector(".basemapTray").classList.add("hide");
-});
-
-///// LEGEND
-var legendCtrl = L.control({
-    position: 'bottomright'
-});
-legendCtrl.onAdd = function (map) {
-	this._div = L.DomUtil.create('div', 'legend'); // create a div with a class "info"
-	this.addlegendCtrl();
-	return this._div;
-};
-legendCtrl.addlegendCtrl = function (props) {
-	this._div.innerHTML =
-		`<span>I'm a Legend or something</span>`;
-};
+// document.querySelector(".leaflet-control-container").addEventListener("mouseover", function (e) {
+//     document.querySelector(".layersTray").classList.add("hide");
+//     document.querySelector(".basemapTray").classList.add("hide");
+// });
 
 
+// map.createPane('labels');
+// map.getPane('labels').style.zIndex = 675;
+// map.createPane('labels2');
+// map.getPane('labels2').style.zIndex = 680;
+const items = ["Choctaw", "Harper", "Latimer", "Love", "Pushmataha", "Trinity"];
+function search() {
+  var query = document.getElementById('search-box').value.toLowerCase();
+  document.getElementById('results-list').innerHTML = '';
+  for (var i = 0; i < items.length; i++) {
+    var item = items[i];
+    if (item.toLowerCase().indexOf(query) !== -1) {
+      var resultItem = document.createElement('li');
+      resultItem.textContent = item;
+      resultItem.setAttribute('id', item);
+      document.getElementById('results-list').appendChild(resultItem);
+      (function (text) {
+        document.querySelector('#' + text).addEventListener('click', function () {
+          if (text == "Choctaw") {
+            map.setView([34, -95.55], 11);
+            document.getElementById("UtilDialog").classList.remove("show");
+            setTimeout(function () {
+              document.querySelector(".modal").style = "display:none";
+            }, 750)
 
-map.createPane('labels');
-map.getPane('labels').style.zIndex = 675;
-map.createPane('labels2');
-map.getPane('labels2').style.zIndex = 680;
-
-
-// const firmPanels = L.layerGroup([]).addTo(groupLayers);
-// var panel1Url = "https://fema.maps.arcgis.com/sharing/rest/content/items/d87d3228970245b7a71711dbc0f757d3/data";
-// imageBounds1 = [[33.9358333912523, -95.3703997207588], [33.7887557129813, -95.1921616572141]];
-// var panel2Url = "https://fema.maps.arcgis.com/sharing/rest/content/items/46e701f2edb04c2eb853636158c3bc11/data";
-// imageBounds2 = [[33.9376888995433, -95.585523091363], [33.7879441927954, -95.3333821464634]];
-// var panel3Url = "https://fema.maps.arcgis.com/sharing/rest/content/items/61cb98bced154747b00eb81d6b7fdc61/data";
-// imageBounds3 = [[33.9378874391243, -95.8026222715161], [33.786787245669, -95.5455264661366]];
-// var panel4Url = "https://fema.maps.arcgis.com/sharing/rest/content/items/c181f7f6ec294bc39e0904af7a4d8157/data";
-// imageBounds4 = [[33.9352318067832, -95.9419040223619], [33.7888531851597, -95.7642718585257]];
-// var panel5Url = "https://fema.maps.arcgis.com/sharing/rest/content/items/a878ec55b50f4a1cb3b790e334e1c0ec/data";
-// imageBounds5 = [[34.0727312430507, -96.0166251304936], [33.9233683837236, -95.7648595551692]];
-// var panel6Url = "https://fema.maps.arcgis.com/sharing/rest/content/items/5a535643a49c4baa98d3bad331abc244/data";
-// imageBounds6 = [[34.0741017981388, -95.8015113285925], [33.9239658378863, -95.5481221584213]];
-// var panel7Url = "https://fema.maps.arcgis.com/sharing/rest/content/items/8236b65f16924188997bd65541b410d0/data";
-// imageBounds7 = [[34.0750298143344, -95.5872511761848], [33.9236561188783, -95.3323175451596]];
-// var panel8Url = "https://fema.maps.arcgis.com/sharing/rest/content/items/74068202f99e473187a661695e9e5ac0/data";
-// imageBounds8 = [[34.0689022295341, -95.3665409878844], [33.9282929162981, -95.1215979329325]];
-// var panel9Url = "https://fema.maps.arcgis.com/sharing/rest/content/items/687bc697111d475b807b6f5a9ace5852/data";
-// imageBounds9 = [[34.2085134229022, -96.0155397639112], [34.0642524913613, -95.7695077527486]];
-// var panel10Url = "https://fema.maps.arcgis.com/sharing/rest/content/items/ef120e00126d4005879ea8e9a8b5a20a/data";
-// imageBounds10 = [[34.2106756545142, -95.8026490517666], [34.0603485519821, -95.5491608120561]];
-// var panel11Url = "https://fema.maps.arcgis.com/sharing/rest/content/items/e463714af288446fb30e7e2f5cbd908b/data";
-// imageBounds11 = [[34.2031635778731, -95.5861228642645], [34.0646541688486, -95.3353714294737]];
-// var panel12Url = "https://fema.maps.arcgis.com/sharing/rest/content/items/5ea8add6516c4412a25685c73f188f47/data";
-// imageBounds12 = [[34.2104437613851, -95.3707460676752], [34.0596373906257, -95.115805366481]];
-
-// var panel13Url = "https://fema.maps.arcgis.com/sharing/rest/content/items/e843a9780d08426bba201150be662cbb/data";
-// imageBounds13 = [[34.0283519005225, -95.2871518892081], [34.0085443737036, -95.2520745189395]];
-
-
-
-
-
-// const firm1 = L.imageOverlay(panel4Url, imageBounds4).addTo(firmPanels);
-// const firm2 = L.imageOverlay(panel3Url, imageBounds3).addTo(firmPanels);
-// const firm3 = L.imageOverlay(panel2Url, imageBounds2).addTo(firmPanels);
-// const firm4 = L.imageOverlay(panel1Url, imageBounds1).addTo(firmPanels);
-// const firm5 = L.imageOverlay(panel5Url, imageBounds5).addTo(firmPanels);
-// const firm6 = L.imageOverlay(panel6Url, imageBounds6).addTo(firmPanels);
-// const firm7 = L.imageOverlay(panel7Url, imageBounds7).addTo(firmPanels);
-// const firm8 = L.imageOverlay(panel8Url, imageBounds8).addTo(firmPanels);
-// const firm9 = L.imageOverlay(panel9Url, imageBounds9).addTo(firmPanels);
-// const firm10 = L.imageOverlay(panel10Url, imageBounds10).addTo(firmPanels);
-// const firm11 = L.imageOverlay(panel11Url, imageBounds11).addTo(firmPanels);
-// const firm12 = L.imageOverlay(panel12Url, imageBounds12).addTo(firmPanels);
-
-// const firm13 = L.imageOverlay(panel13Url, imageBounds13).addTo(firmPanels);
-
-const polLayerChoctaw = L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Choctaw_S_Pol_Ar/FeatureServer/0",
-simplifyFactor: 0.85,
-precision: 5,
-opacity:0.85,pane:"labels2",
-style: function (feature) {
-    var c;
-    switch (feature.properties.D_BI_RT_NAME) {
-      case 'Bluegrass Bike Tour':
-        c = '#377EB8';
-        break;
-      default:
-        c = 'orange';
+          } else if (text == "Harper") {
+            map.setView([36.82959180923689, -99.63055335115429], 13);
+            document.getElementById("UtilDialog").classList.remove("show");
+            setTimeout(function () {
+              document.querySelector(".modal").style = "display:none";
+            }, 750)
+          } else if (text == "Latimer") {
+            map.setView([34.87231196866829, -95.25671380632579], 13);
+            document.getElementById("UtilDialog").classList.remove("show");
+            setTimeout(function () {
+              document.querySelector(".modal").style = "display:none";
+            }, 750)
+          } else if (text == "Love") {
+            map.setView([33.98610403918645, -97.22297071856153], 13);
+            document.getElementById("UtilDialog").classList.remove("show");
+            setTimeout(function () {
+              document.querySelector(".modal").style = "display:none";
+            }, 750)
+          } else if (text == "Pushmataha") {
+            map.setView([34.48173274712084, -95.30996464363149], 13);
+            document.getElementById("UtilDialog").classList.remove("show");
+            setTimeout(function () {
+              document.querySelector(".modal").style = "display:none";
+            }, 750)
+          } else if (text == "Trinity") {
+            map.setView([31.09792847231909, -95.11758881648315], 13);
+            document.getElementById("UtilDialog").classList.remove("show");
+            setTimeout(function () {
+              document.querySelector(".modal").style = "display:none";
+            }, 750)
+          }
+        });
+      })(item);
     }
-    return { color: c,fillOpacity:0};
+  }
 }
-}).addTo(groupLayers);
-polLayerChoctaw.bindPopup(function (layer) {
-    return L.Util.template('<p><strong>Community Name:<br> {POL_NAME1}</strong></p>', layer.feature.properties);
+document.getElementById('search-box').addEventListener('input', search);
+const searchBox = document.getElementById("search-box");
+const resultsList = document.getElementById("results-list");
+searchBox.addEventListener("input", showResultsList);
+document.addEventListener("click", hideResultsList);
+
+function showResultsList() {
+  resultsList.style.display = "block";
+}
+function hideResultsList(event) {
+  if (event.target !== searchBox && !resultsList.contains(event.target)) {
+    resultsList.style.display = "none";
+  }
+}
+const allLayers = L.layerGroup().addTo(map);
+const bleLayer = L.esri.Vector.vectorTileLayer(
+  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLEtoFIRMSFHA/VectorTileServer", {
+    style: (feature) => {
+      return {
+        "version": 8,
+        "sources": {
+          "my-vector-tiles": {
+            "type": "vector",
+            "tiles": [
+              "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLEtoFIRMSFHA/VectorTileServer/tile/{z}/{y}/{x}"
+            ]
+          }
+        },
+        "layers": [{
+          "id": "BLE_SFHA/X/1",
+          "type": "fill",
+          "source": "my-vector-tiles",
+          "source-layer": "BLE_SFHA",
+          "paint": {
+            "fill-color": "#A900E6",
+            "fill-opacity": 0.5
+          },
+          "filter": ["==", "_symbol", 1]
+        }, {
+          "id": "BLE_SFHA/<all other values>",
+          "type": "fill",
+          "source": "my-vector-tiles",
+          "source-layer": "BLE_SFHA",
+          "paint": {
+            "fill-color": "#00C5FF",
+            "fill-opacity": 0.5
+          },
+          "filter": ["!=", "_symbol", 1]
+        }]
+      };
+    }
+  }
+).addTo(allLayers);
+const Geo_Referenced_FIRMs = L.esri.tiledMapLayer({
+  url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/geo_ref_firms/MapServer',
+  opacity: 1
+}).addTo(allLayers);
+// Streams
+const eff_scop_stream = L.esri.Vector.vectorTileLayer(
+  "https://vectortileservices.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/PIR_Stream_Centerline/VectorTileServer"
+);
+const pir_stream_cent = L.esri.Vector.vectorTileLayer(
+  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL/VectorTileServer");
+const cityLimits_ = L.geoJson(cityLimits, {
+  style: {
+    color: "orange", // set line color to orange
+    weight: 5, // set line weight to 5 pixels
+    fillOpacity: 0, // set fill opacity to 0 to hide the fill
+    opacity: 1
+  }
+}).addTo(allLayers);
+const PIR_Limit_Lines = L.geoJson(pirLimitLines, {
+  style: {
+    color: "black", // set line color to orange
+    weight: 5, // set line weight to 5 pixels
+    opacity: 1 // set initial opacity to 1
+  }
+});
+var input = document.querySelector('input[type="checkbox"][data-layer-id="extent1-02"]');
+input.onchange = function () {
+  if (this.checked) {
+    bleLayer.addTo(allLayers);
+  } else {
+    bleLayer.removeFrom(allLayers);
+  }
+};
+var input2 = document.querySelector('input[type="checkbox"][data-layer-id="eff-scop-stream"]');
+input2.onchange = function () {
+  if (this.checked) {
+    eff_scop_stream.addTo(allLayers);
+  } else {
+    eff_scop_stream.removeFrom(allLayers);
+  }
+};
+eff_scop_stream.setOpacity = function (opacity) {
+  this.setStyle({
+    opacity: opacity
   });
-const scopingLines = L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Choctaw_ScopingLines_web/FeatureServer/0",
-simplifyFactor: 0.85,
-precision: 5,
-opacity:0.85,pane:"labels2",
-    style: function (feature) {
-        var c;
-        switch (feature.properties.D_BI_RT_NAME) {
-          case 'Bluegrass Bike Tour':
-            c = '#377EB8';
-            break;
-          default:
-            c = 'red';
-        }
-        return { color: c};
-}
-});
-const scopingLinesHarper = L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Harper_Scoping_lines/FeatureServer/0",
-simplifyFactor: 0.85,
-precision: 5,
-opacity:0.85,pane:"labels2",
-    style: function (feature) {
-        var c;
-        switch (feature.properties.D_BI_RT_NAME) {
-          case 'Bluegrass Bike Tour':
-            c = '#377EB8';
-            break;
-          default:
-            c = 'red';
-        }
-        return { color: c};
-}
-});
+};
+var input3 = document.querySelector('input[type="checkbox"][data-layer-id="pir-stream-cent"]');
+input3.onchange = function () {
+  if (this.checked) {
+    pir_stream_cent.addTo(allLayers);
+  } else {
+    pir_stream_cent.removeFrom(allLayers);
+  }
+};
+var input4 = document.querySelector('input[type="checkbox"][data-layer-id="PIR-Limit-Lines"]');
+input4.onchange = function () {
+  if (this.checked) {
+    PIR_Limit_Lines.addTo(allLayers);
+  } else {
+    PIR_Limit_Lines.removeFrom(allLayers);
+  }
+};
+PIR_Limit_Lines.setOpacity = function (opacity) {
+  this.setStyle({
+    opacity: opacity
+  });
+};
+var input5 = document.querySelector('input[type="checkbox"][data-layer-id="Geo-Referenced-FIRMs"]');
+input5.onchange = function () {
+  if (this.checked) {
+    Geo_Referenced_FIRMs.addTo(allLayers);
+  } else {
+    Geo_Referenced_FIRMs.removeFrom(allLayers);
+  }
+};
+var input6 = document.querySelector('input[type="checkbox"][data-layer-id="city-Limits"]');
+input6.onchange = function () {
+  if (this.checked) {
+    cityLimits_.addTo(allLayers);
+  } else {
+    cityLimits_.removeFrom(allLayers);
+  }
+};
+cityLimits_.setOpacity = function (opacity) {
+  this.setStyle({
+    opacity: opacity
+  });
+};
 
-const profileBasln = L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Choctaw_S_Profil_Basln_web/FeatureServer/0",
-simplifyFactor: 0.75,
-precision: 5
-,opacity:0.85,pane:"labels2",
-style: function (feature) {
-    var c;
-    switch (feature.properties.D_BI_RT_NAME) {
-      case 'Bluegrass Bike Tour':
-        c = '#377EB8';
-        break;
-      default:
-        c = '#2354da';
-    }
-    return { color: c};
+function clearMap() {
+  allLayers.clearLayers();
+  input.checked = false;
+  input2.checked = false;
+  input3.checked = false;
+  input4.checked = false;
+  input5.checked = false;
+  input6.checked = false;
 }
-});
 
-const profileBasln_Harper = L.esri.featureLayer({url:"https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL_harper/FeatureServer/0",
-simplifyFactor: 0.75,
-precision: 5
-,opacity:0.85,pane:"labels2",
-style: function (feature) {
-    var c;
-    switch (feature.properties.D_BI_RT_NAME) {
-      case 'Bluegrass Bike Tour':
-        c = '#377EB8';
-        break;
-      default:
-        c = '#2354da';
-    }
-    return { color: c};
+function closeLayerTray() {
+  document.querySelector(".card").classList.add("hide");
 }
-});
 
-const firmPanels = L.esri.tiledMapLayer({
-    url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Choctaw_firmPanels/MapServer',opacity:0.85,pane:"labels"
-  }).addTo(groupLayers);
-
-  const polLayerHarper = L.esri.tiledMapLayer({
-    url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Harper_S_Pol_Ar/MapServer',pane:"labels"
-  }).addTo(groupLayers);
-
-const bleSfhaData = L.esri.tiledMapLayer({
-    url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/S_Fld_Haz_Ar_web_/MapServer',opacity:0.5,pane:"labels"
-  }).addTo(groupLayers);
-
-const bleSfhaData_harper = L.esri.tiledMapLayer({
-    url:"https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Harper_BLE_SFHA/MapServer",opacity:0.5,pane:"labels"
-}).addTo(groupLayers);
-const firmPanels_harper = L.esri.tiledMapLayer({
-    url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/c400351B/MapServer',opacity:0.75,pane:"labels"
-  }).addTo(groupLayers);
-
-document.getElementById("layer1").onclick = function (e) {
-    if (groupLayers.hasLayer(bleSfhaData)) {
-        groupLayers.removeLayer(bleSfhaData);
-        groupLayers.removeLayer(bleSfhaData_harper);
-        document.getElementById("layer1").innerHTML = "OFF";
-        document.getElementById("layer1").classList.add("button-off");
-    } else {
-        groupLayers.addLayer(bleSfhaData);
-        groupLayers.addLayer(bleSfhaData_harper);
-        document.getElementById("layer1").innerHTML = "ON";
-        document.getElementById("layer1").classList.remove("button-off");
-    }
-}
-document.getElementById("layer2").onclick = function (e) {
-    if (groupLayers.hasLayer(polLayerChoctaw)) {
-        groupLayers.removeLayer(polLayerChoctaw);
-        groupLayers.removeLayer(polLayerHarper);
-        document.getElementById("layer2").innerHTML = "OFF";
-        document.getElementById("layer2").classList.add("button-off");
-    } else {
-        groupLayers.addLayer(polLayerChoctaw);
-        groupLayers.addLayer(polLayerHarper);
-        document.getElementById("layer2").innerHTML = "ON";
-        document.getElementById("layer2").classList.remove("button-off");
-    }
-}
-document.getElementById("layer3").onclick = function (e) {
-    if (groupLayers.hasLayer(scopingLines)) {
-        groupLayers.removeLayer(scopingLines);
-        groupLayers.removeLayer(scopingLinesHarper);
-        document.getElementById("layer3").innerHTML = "OFF";
-        document.getElementById("layer3").classList.add("button-off");
-    } else {
-        groupLayers.addLayer(scopingLines);
-        groupLayers.addLayer(scopingLinesHarper);
-        document.getElementById("layer3").innerHTML = "ON";
-        document.getElementById("layer3").classList.remove("button-off");
-    }
-}
-document.getElementById("layer4").onclick = function (e) {
-    if (groupLayers.hasLayer(profileBasln)) {
-        groupLayers.removeLayer(profileBasln);
-        groupLayers.removeLayer(profileBasln_Harper);
-
-        
-        document.getElementById("layer4").innerHTML = "OFF";
-        document.getElementById("layer4").classList.add("button-off");
-    } else {
-        groupLayers.addLayer(profileBasln);
-        groupLayers.addLayer(profileBasln_Harper);
-        document.getElementById("layer4").innerHTML = "ON";
-        document.getElementById("layer4").classList.remove("button-off");
-    }
-}
-document.getElementById("layer5").onclick = function (e) {
-    if (groupLayers.hasLayer(firmPanels)) {
-        groupLayers.removeLayer(firmPanels);
-        groupLayers.removeLayer(firmPanels_harper);
-        document.getElementById("layer5").innerHTML = "OFF";
-        document.getElementById("layer5").classList.add("button-off");
-    } else {
-        groupLayers.addLayer(firmPanels);
-        groupLayers.addLayer(firmPanels_harper);
-        document.getElementById("layer5").innerHTML = "ON";
-        document.getElementById("layer5").classList.remove("button-off");
-    }
-}
