@@ -141,31 +141,31 @@ function search() {
             }, 750)
 
           } else if (text == "Harper") {
-            map.setView([36.82959180923689, -99.63055335115429], 13);
+            map.setView([36.82959180923689, -99.63055335115429], 12);
             document.getElementById("UtilDialog").classList.remove("show");
             setTimeout(function () {
               document.querySelector(".modal").style = "display:none";
             }, 750)
           } else if (text == "Latimer") {
-            map.setView([34.87231196866829, -95.25671380632579], 13);
+            map.setView([34.87231196866829, -95.25671380632579], 12);
             document.getElementById("UtilDialog").classList.remove("show");
             setTimeout(function () {
               document.querySelector(".modal").style = "display:none";
             }, 750)
           } else if (text == "Love") {
-            map.setView([33.98610403918645, -97.22297071856153], 13);
+            map.setView([33.98610403918645, -97.22297071856153], 12);
             document.getElementById("UtilDialog").classList.remove("show");
             setTimeout(function () {
               document.querySelector(".modal").style = "display:none";
             }, 750)
           } else if (text == "Pushmataha") {
-            map.setView([34.48173274712084, -95.30996464363149], 13);
+            map.setView([34.48173274712084, -95.30996464363149], 12);
             document.getElementById("UtilDialog").classList.remove("show");
             setTimeout(function () {
               document.querySelector(".modal").style = "display:none";
             }, 750)
           } else if (text == "Trinity") {
-            map.setView([31.09792847231909, -95.11758881648315], 13);
+            map.setView([31.09792847231909, -95.11758881648315], 12);
             document.getElementById("UtilDialog").classList.remove("show");
             setTimeout(function () {
               document.querySelector(".modal").style = "display:none";
