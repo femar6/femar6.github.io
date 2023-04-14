@@ -14,6 +14,9 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="app.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-omnivore/0.3.4/leaflet-omnivore.min.js"
+        integrity="sha256-k1l+ouvMXT+0iRA8pc8e0dge4ZeGjXG6imrvWboFTRE=" crossorigin="anonymous"></script>
+
 </head>
 
 
@@ -136,151 +139,175 @@
                     </div>
                 </div>
             </div>
-            </div>
-            </div>
-            </div>
-            <div id="layerTray" class="card overflow-hidden rounded-0 shadow text-center util-animate hide"
-            style="z-index:750;position:absolute;top:10%;left:5rem;">
-            <div class="card-header">
-                <button onclick="closeLayerTray()"
-                    class="border-0 btn btn-outline-danger end-0 m-1 fw-bolder position-absolute rounded-0 top-0"
-                    type="button">✕</button>
-                <ul class="card-header-tabs nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-tab-index="0"> <i class="fas fa-database me-1"></i> Data
-                            Layers </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-body p-2 small tab-content">
-                <div class="fade tab-pane active show" style="font-size: 108%;">
-                    <div class="accordion text-start">
-                        <!-- ble -->
-                        <div>
-                            <div class="accordion-header">
-                                <div class="accordion-button">
-                                    <span class="flex-grow-1">EXPLANATION</span>
+        </div>
+    </div>
+</div>
+<div id="layerTray" class="card overflow-hidden rounded-0 shadow text-center util-animate hide"
+    style="z-index:750;position:absolute;top:10%;left:5rem;">
+    <div class="card-header">
+        <button onclick="closeLayerTray()"
+            class="border-0 btn btn-outline-danger end-0 m-1 fw-bolder position-absolute rounded-0 top-0"
+            type="button">✕</button>
+        <ul class="card-header-tabs nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-tab-index="0"> <i class="fas fa-database me-1"></i> Data
+                    Layers </a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body p-2 small tab-content">
+        <div class="fade tab-pane active show" style="font-size: 108%;">
+            <div class="accordion text-start">
+                <!-- ble -->
+                <div>
+                    <div class="accordion-header">
+                        <div class="accordion-button">
+                            <span class="flex-grow-1">EXPLANATION</span>
+                        </div>
+                    </div>
+                    <div class="accordion-collapse">
+                        <div class="accordion-body gap-2 px-1 py-2 vstack">
+                            <div data-insert-layer-ids="extent1-02,extent10,depth1,depth02">
+                                <div class="align-items-center d-flex justify-content-between my-1">
+                                    <label class="flex-fill util-toggle" data-color="success" data-label="right"
+                                        data-radius="pill" data-size="sm"
+                                        data-bs-original-title="Add or remove this map layer">
+                                        <input type="checkbox" data-layer-id="structures" checked>
+                                        <span><span></span></span>
+                                        <span>Structures </span>
+                                    </label><br>
+                                    <div class="gradient">
+                                        <span></span>
+                                      </div>
                                 </div>
+                                <div class="align-items-center d-flex justify-content-between my-1">
+                                    <label class="flex-fill util-toggle" data-color="success" data-label="right"
+                                        data-radius="pill" data-size="sm"
+                                        data-bs-original-title="Add or remove this map layer">
+                                        <input type="checkbox" data-layer-id="extent1-02" checked>
+                                        <span><span></span></span>
+                                        <span>Flood extent ( <svg width="1rem" height="0.75rem">
+                                                <rect x="0" y="0" width="100%" height="100%" fill="#00C5FF" />
+                                            </svg> 1% and <svg width="1rem" height="0.75rem">
+                                                <rect x="0" y="0" width="100%" height="100%" fill="#A900E6" />
+                                            </svg> 0.2%)</span>
+                                    </label>
+                                </div>
+                                <div class="align-items-center d-flex justify-content-between my-1">
+                                    <label class="flex-fill util-toggle" data-color="success" data-label="right"
+                                        data-radius="pill" data-size="sm"
+                                        data-bs-original-title="Add or remove this map layer">
+                                        <input type="checkbox" data-layer-id="eff-scop-stream">
+                                        <span><span></span></span>
+                                        <span>Effective Scoping Stream Data</span>
+                                    </label>
+                                    <svg width="5rem" height="3" style="margin-right:9.5rem;">
+                                        <line x1="0" y1="0.5" x2="3rem" y2="0.5" style="stroke:red; stroke-width:5;" />
+                                    </svg>
+                                </div>
+                                <div class="align-items-center d-flex justify-content-between my-1">
+                                    <label class="flex-fill util-toggle" data-color="success" data-label="right"
+                                        data-radius="pill" data-size="sm"
+                                        data-bs-original-title="Add or remove this map layer">
+                                        <input type="checkbox" data-layer-id="pir-stream-cent">
+                                        <span><span></span></span>
+                                        <span>PIR Stream Centerline</span>
+                                    </label>
+                                    <svg width="5rem" height="3" style="margin-right:9.5rem;">
+                                        <line x1="0" y1="0.5" x2="3rem" y2="0.5"
+                                            style="stroke:rgb(0, 17, 255); stroke-width:5;" />
+                                    </svg>
+                                </div>
+                                <div class="align-items-center d-flex justify-content-between my-1">
+                                    <label class="flex-fill util-toggle" data-color="success" data-label="right"
+                                        data-radius="pill" data-size="sm"
+                                        data-bs-original-title="Add or remove this map layer">
+                                        <input type="checkbox" data-layer-id="PIR-Limit-Lines">
+                                        <span><span></span></span>
+                                        <span>PIR Limit Lines</span>
+                                    </label>
+                                    <svg width="5rem" height="3" style="margin-right:5rem;">
+                                        <line x1="0" y1="0.5" x2="3rem" y2="0.5"
+                                            style="stroke:rgb(0, 0, 0); stroke-width:5;" />
+                                    </svg>
+                                    <input type="range" class="form-range mx-1" style="width:4rem" min="0" step="0.01"
+                                        max="1" value="1" data-layer-id="PIR-Limit-Lines"
+                                        onchange="PIR_Limit_Lines.setOpacity(Number(this.value))"
+                                        oninput="PIR_Limit_Lines.setOpacity(Number(this.value))"
+                                        aria-label="Adjust layer opacity" data-bs-original-title="Adjust layer opacity">
+                                </div>
+                                <div class="align-items-center d-flex justify-content-between my-1">
+                                    <label class="flex-fill util-toggle" data-color="success" data-label="right"
+                                        data-radius="pill" data-size="sm"
+                                        data-bs-original-title="Add or remove this map layer">
+                                        <input type="checkbox" data-layer-id="Geo-Referenced-FIRMs" checked>
+                                        <span><span></span></span>
+                                        <span>Geo-Referenced FIRMs</span>
+                                    </label>
+                                    <input type="range" class="form-range mx-1" style="width:4rem" min="0" step="0.01"
+                                        max="1" value="1" data-layer-id="Geo-Referenced-FIRMs"
+                                        onchange="Geo_Referenced_FIRMs.setOpacity(Number(this.value))"
+                                        oninput="Geo_Referenced_FIRMs.setOpacity(Number(this.value))"
+                                        aria-label="Adjust layer opacity" data-bs-original-title="Adjust layer opacity">
+                                </div>
+                                <div class="align-items-center d-flex justify-content-between my-1">
+                                    <label class="flex-fill util-toggle" data-color="success" data-label="right"
+                                        data-radius="pill" data-size="sm"
+                                        data-bs-original-title="Add or remove this map layer">
+                                        <input type="checkbox" data-layer-id="DFIRM">
+                                        <span><span></span></span>
+                                        <span>Digital FIRM</span>
+                                    </label>
+                                    <!-- <input type="range" class="form-range mx-1" style="width:4rem" min="0" step="0.01"
+                                        max="1" value="1" data-layer-id="Geo-Referenced-FIRMs"
+                                        onchange="Geo_Referenced_FIRMs.setOpacity(Number(this.value))"
+                                        oninput="Geo_Referenced_FIRMs.setOpacity(Number(this.value))"
+                                        aria-label="Adjust layer opacity" data-bs-original-title="Adjust layer opacity"> -->
+                                </div>                                
                             </div>
-                            <div class="accordion-collapse">
-                                <div class="accordion-body gap-2 px-1 py-2 vstack">
-                                    <div data-insert-layer-ids="extent1-02,extent10,depth1,depth02">
-                                        <div class="align-items-center d-flex justify-content-between my-1">
-                                            <label class="flex-fill util-toggle" data-color="success"
-                                                data-label="right" data-radius="pill" data-size="sm"
-                                                data-bs-original-title="Add or remove this map layer">
-                                                <input type="checkbox" data-layer-id="extent1-02" checked>
-                                                <span><span></span></span>
-                                                <span>Flood extent ( <svg width="1rem" height="0.75rem">
-                                                        <rect x="0" y="0" width="100%" height="100%"
-                                                            fill="#00C5FF" />
-                                                    </svg> 1% and <svg width="1rem" height="0.75rem">
-                                                        <rect x="0" y="0" width="100%" height="100%"
-                                                            fill="#A900E6" />
-                                                    </svg> 0.2%)</span>
-                                            </label>
-                                        </div>
-                                        <div class="align-items-center d-flex justify-content-between my-1">
-                                            <label class="flex-fill util-toggle" data-color="success"
-                                                data-label="right" data-radius="pill" data-size="sm"
-                                                data-bs-original-title="Add or remove this map layer">
-                                                <input type="checkbox" data-layer-id="eff-scop-stream">
-                                                <span><span></span></span>
-                                                <span>Effective Scoping Stream Data</span>
-                                            </label>
-                                            <svg width="5rem" height="3" style="margin-right:9.5rem;">
-                                                <line x1="0" y1="0.5" x2="3rem" y2="0.5"
-                                                    style="stroke:red; stroke-width:5;" />
-                                            </svg>
-                                        </div>
-                                        <div class="align-items-center d-flex justify-content-between my-1">
-                                            <label class="flex-fill util-toggle" data-color="success"
-                                                data-label="right" data-radius="pill" data-size="sm"
-                                                data-bs-original-title="Add or remove this map layer">
-                                                <input type="checkbox" data-layer-id="pir-stream-cent">
-                                                <span><span></span></span>
-                                                <span>PIR Stream Centerline</span>
-                                            </label>
-                                            <svg width="5rem" height="3" style="margin-right:9.5rem;">
-                                                <line x1="0" y1="0.5" x2="3rem" y2="0.5"
-                                                    style="stroke:rgb(0, 17, 255); stroke-width:5;" />
-                                            </svg>
-                                        </div>
-                                        <div class="align-items-center d-flex justify-content-between my-1">
-                                            <label class="flex-fill util-toggle" data-color="success"
-                                                data-label="right" data-radius="pill" data-size="sm"
-                                                data-bs-original-title="Add or remove this map layer">
-                                                <input type="checkbox" data-layer-id="PIR-Limit-Lines">
-                                                <span><span></span></span>
-                                                <span>PIR Limit Lines</span>
-                                            </label>
-                                            <svg width="5rem" height="3" style="margin-right:5rem;">
-                                                <line x1="0" y1="0.5" x2="3rem" y2="0.5"
-                                                    style="stroke:rgb(0, 0, 0); stroke-width:5;" />
-                                            </svg>
-                                            <input type="range" class="form-range mx-1" style="width:4rem" min="0"
-                                                step="0.01" max="1" value="1" data-layer-id="PIR-Limit-Lines"
-                                                onchange="PIR_Limit_Lines.setOpacity(Number(this.value))"
-                                                oninput="PIR_Limit_Lines.setOpacity(Number(this.value))"
-                                                aria-label="Adjust layer opacity"
-                                                data-bs-original-title="Adjust layer opacity">
-                                        </div>
-                                        <div class="align-items-center d-flex justify-content-between my-1">
-                                            <label class="flex-fill util-toggle" data-color="success"
-                                                data-label="right" data-radius="pill" data-size="sm"
-                                                data-bs-original-title="Add or remove this map layer">
-                                                <input type="checkbox" data-layer-id="Geo-Referenced-FIRMs" checked>
-                                                <span><span></span></span>
-                                                <span>Geo-Referenced FIRMs</span>
-                                            </label>
-                                            <input type="range" class="form-range mx-1" style="width:4rem" min="0"
-                                                step="0.01" max="1" value="1" data-layer-id="Geo-Referenced-FIRMs"
-                                                onchange="Geo_Referenced_FIRMs.setOpacity(Number(this.value))"
-                                                oninput="Geo_Referenced_FIRMs.setOpacity(Number(this.value))"
-                                                aria-label="Adjust layer opacity"
-                                                data-bs-original-title="Adjust layer opacity">
-                                        </div>
-                                    </div>
-                                    <div class="border-bottom"></div>
-                                    <div class="align-items-center d-flex justify-content-between my-1">
-                                        <label class="flex-fill util-toggle" data-color="success" data-label="right"
-                                            data-radius="pill" data-size="sm"
-                                            data-bs-original-title="Add or remove this map layer">
-                                            <input type="checkbox" data-layer-id="city-Limits" checked>
-                                            <span><span></span></span>
-                                            <span>County and incorporated political</span>
-                                        </label>
-                                        <svg width="1.5rem" height="1rem" style="margin-right:8rem;">
-                                            <rect x="0" y="0" width="100%" height="100%" fill="none" stroke="orange"
-                                                stroke-width="0.3rem" />
-                                        </svg>
+                            <div class="border-bottom"></div>
+                            <div class="align-items-center d-flex justify-content-between my-1">
+                                <label class="flex-fill util-toggle" data-color="success" data-label="right"
+                                    data-radius="pill" data-size="sm"
+                                    data-bs-original-title="Add or remove this map layer">
+                                    <input type="checkbox" data-layer-id="city-Limits" checked>
+                                    <span><span></span></span>
+                                    <span>County and incorporated political</span>
+                                </label>
+                                <svg width="1.5rem" height="1rem" style="margin-right:8rem;">
+                                    <rect x="0" y="0" width="100%" height="100%" fill="none" stroke="orange"
+                                        stroke-width="0.3rem" />
+                                </svg>
 
-                                        <input type="range" class="form-range mx-1" style="width:4rem" min="0"
-                                            step="0.01" max="1" value="1" data-layer-id="city-Limits"
-                                            onchange="cityLimits_.setOpacity(Number(this.value))"
-                                            oninput="cityLimits_.setOpacity(Number(this.value))"
-                                            aria-label="Adjust layer opacity"
-                                            data-bs-original-title="Adjust layer opacity">
-                                    </div>
-                                </div>
+                                <input type="range" class="form-range mx-1" style="width:4rem" min="0" step="0.01"
+                                    max="1" value="1" data-layer-id="city-Limits"
+                                    onchange="cityLimits_.setOpacity(Number(this.value))"
+                                    oninput="cityLimits_.setOpacity(Number(this.value))"
+                                    aria-label="Adjust layer opacity" data-bs-original-title="Adjust layer opacity">
                             </div>
                         </div>
                     </div>
-                    <!-- insert content -->
-                </div>
-                <!-- clear and close -->
-                <div class="border-top d-flex justify-content-between pt-2 px-3">
-                    <span class="text-danger" onclick="clearMap()" role="button"
-                        data-bs-original-title="Clear all data layers from the map">
-                        <i class="fas fa-trash-alt"></i> Clear Map
-                    </span>
-                    <span class="text-danger" onclick="closeLayerTray()" role="button"
-                        data-bs-original-title="Close the map layer panel">
-                        <i class="fas fa-times"></i> Close
-                    </span>
                 </div>
             </div>
+            <!-- insert content -->
         </div>
+        <!-- clear and close -->
+        <div class="border-top d-flex justify-content-between pt-2 px-3">
+            <span class="text-danger" onclick="clearMap()" role="button"
+                data-bs-original-title="Clear all data layers from the map">
+                <i class="fas fa-trash-alt"></i> Clear Map
+            </span>
+            <span class="text-danger" onclick="closeLayerTray()" role="button"
+                data-bs-original-title="Close the map layer panel">
+                <i class="fas fa-times"></i> Close
+            </span>
+        </div>
+    </div>
+</div>
+
+<div id="structureTable" style="position:absolute;z-index:650;top:5%;left:25%;font-size:1.25rem;"><button id="toggle-button">Toggle
+    Filter</button><br><br><span id="value"></span>
+</div>
 
 
 
@@ -288,20 +315,20 @@
 
 
 
+</body>
 
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" crossorigin=""></script>
+<!-- Load Esri Leaflet from CDN -->
+<script src="https://unpkg.com/esri-leaflet@3.0.10/dist/esri-leaflet.js"></script>
+<script src="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.js" crossorigin="">
+</script>
+<script src="https://unpkg.com/esri-leaflet-vector@3/dist/esri-leaflet-vector.js"></script>
+<script src="limits.js"></script>
+<script src="pir_limit_lines.js"></script>
+<script src="heat.js"></script>
+<script src="app.js"></script>
+<script src="basemaps.js"></script>
 
-            </body>
-
-            <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" crossorigin=""></script>
-            <!-- Load Esri Leaflet from CDN -->
-            <script src="https://unpkg.com/esri-leaflet@3.0.10/dist/esri-leaflet.js"></script>
-            <script src="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.js" crossorigin="">
-            </script>
-            <script src="https://unpkg.com/esri-leaflet-vector@3/dist/esri-leaflet-vector.js"></script>
-            <script src="limits.js"></script>
-            <script src="pir_limit_lines.js"></script>
-            <script src="app.js"></script>
-            <script src="basemaps.js"></script>
 
 
 

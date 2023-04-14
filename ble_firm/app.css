@@ -241,7 +241,7 @@ footer>a:hover {
   text-decoration: underline
 }
 
-.table-title {
+/* .table-title {
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
   -webkit-user-select: none;
@@ -300,8 +300,39 @@ th {
 
 thead th {
   width: 20%
+} */
+#toggle-button {
+  position: absolute;
+  z-index: 650;
+  color: white;
+  background-color:#005287;
 }
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+table td,
+table th {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
 .basemapTray {
   background-color: #fff;
@@ -448,4 +479,43 @@ thead th {
 
 .layers-container>div {
   padding: 3px
+}
+/* .structureHeat{
+  background: linear-gradient(to right, blue, cyan, lime, yellow, red);
+  -webkit-text-fill-color: transparent;
+  width:100%;
+  height:10px;margin-left:1rem;
+} */
+.gradient {
+  width: 20rem;
+  height: 15px;
+  position: relative;
+  
+}
+
+.gradient span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, blue, cyan, lime, yellow, red);border-radius: 10px;
+}
+
+.gradient span::before {
+  content: "Low";
+  color: white;
+  position: absolute;
+  left: 5px;
+  font-size:0.75rem;
+  top: 0;
+  font-weight:900;
+}
+
+.gradient span::after {
+  content: "High";
+  color: white;
+  position: absolute;
+  right: 5px;
+  font-size:0.75rem;
+  top: 0;
+  font-weight:900;
 }

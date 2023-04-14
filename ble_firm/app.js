@@ -1,11 +1,10 @@
-
 const map = L.map('map', {
-    attributionControl: false,
-    zoomControl: false,
-    zoomSnap: 0.1,
-    zoomDelta: 0.1,
-    boxZoom: true,
-    minZoom: 5
+  attributionControl: false,
+  zoomControl: false,
+  zoomSnap: 0.1,
+  zoomDelta: 0.1,
+  boxZoom: true,
+  minZoom: 5
 }).setView([31.6, -99.5], 6);
 map.setMaxBounds(map.getBounds().pad(0.2));
 
@@ -14,48 +13,48 @@ const baseMapLayers = L.layerGroup([]).addTo(map);
 
 
 const googleRoad = L.tileLayer('https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}', {
-    maxZoom: 21,
-    attribution: '&copy; <a href="https://www.google.com">Google</a>',
-    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+  maxZoom: 21,
+  attribution: '&copy; <a href="https://www.google.com">Google</a>',
+  subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
 });
 const google_terrain = L.tileLayer('https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
-    // maxZoom: 21,
-    attribution: '&copy; <a href="https://www.google.com">Google</a>',
-    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+  // maxZoom: 21,
+  attribution: '&copy; <a href="https://www.google.com">Google</a>',
+  subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
 });
 var google_hybrid = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-    // maxZoom: 21,
-    attribution: '&copy; <a href="https://www.google.com">Google</a>',
-    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+  // maxZoom: 21,
+  attribution: '&copy; <a href="https://www.google.com">Google</a>',
+  subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
 }).addTo(baseMapLayers);
 const Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
 
 var USGS_USTopo = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {
-    // maxZoom: 20,
-    attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
+  // maxZoom: 20,
+  attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
 });
 var USGS_USImageryTopo = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}', {
-    // maxZoom: 20,
-    attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
+  // maxZoom: 20,
+  attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
 });
 const OPNVKarte = L.tileLayer('https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: 'Map <a href="https://memomaps.de/">memomaps.de</a> <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  maxZoom: 18,
+  attribution: 'Map <a href="https://memomaps.de/">memomaps.de</a> <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 });
 const Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+  attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
 });
 map.createPane('labels');
 map.getPane('labels').style.zIndex = 675;
 map.getPane('labels').style.pointerEvents = 'none';
 
 const Stamen_TerrainLabels = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-labels/{z}/{x}/{y}{r}.{ext}', {
-    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    subdomains: 'abcd',
-    minZoom: 0,
-    maxZoom: 18,
-    ext: 'png',
-    pane: 'labels'
+  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  subdomains: 'abcd',
+  minZoom: 0,
+  maxZoom: 18,
+  ext: 'png',
+  pane: 'labels'
 });
 const OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png');
 const baseMaps = document.createElement("div");
@@ -65,11 +64,11 @@ document.body.appendChild(baseMaps);
 
 
 document.querySelector(".splashBtn").onclick = function (e) {
-    window.location.reload();
+  window.location.reload();
 }
 document.querySelector(".layersTrayBtn").onclick = function (e) {
-    document.getElementById("layerTray").classList.remove("hide");
-    document.querySelector(".basemapTray").classList.add("hide");
+  document.getElementById("layerTray").classList.remove("hide");
+  document.querySelector(".basemapTray").classList.add("hide");
 }
 // document.querySelector(".layersTrayBtn").addEventListener("mouseover", function (e) {
 //     var layerTooltip = document.createElement("div");
@@ -99,16 +98,16 @@ document.querySelector(".layersTrayBtn").onclick = function (e) {
 //     document.getElementById("splashTooltip").remove();
 // });
 document.querySelector(".basemapTrayBtn").onclick = function (e) {
-    document.querySelector(".basemapTray").classList.remove("hide");
-    document.getElementById("layerTray").classList.add("hide");
+  document.querySelector(".basemapTray").classList.remove("hide");
+  document.getElementById("layerTray").classList.add("hide");
 }
 // document.getElementById("closeLayers2").onclick = function (e) {
 //     document.querySelector(".layersTray").classList.add("hide");
 //     document.querySelector(".basemapTray").classList.add("hide");
 // }
 document.getElementById("closeBasemaps").onclick = function (e) {
-    document.getElementById("layerTray").classList.add("hide");
-    document.querySelector(".basemapTray").classList.add("hide");
+  document.getElementById("layerTray").classList.add("hide");
+  document.querySelector(".basemapTray").classList.add("hide");
 }
 // document.querySelector(".leaflet-control-container").addEventListener("mouseover", function (e) {
 //     document.querySelector(".layersTray").classList.add("hide");
@@ -121,6 +120,7 @@ document.getElementById("closeBasemaps").onclick = function (e) {
 // map.createPane('labels2');
 // map.getPane('labels2').style.zIndex = 680;
 const items = ["Choctaw", "Harper", "Latimer", "Love", "Pushmataha", "Trinity"];
+
 function search() {
   var query = document.getElementById('search-box').value.toLowerCase();
   document.getElementById('results-list').innerHTML = '';
@@ -185,6 +185,7 @@ document.addEventListener("click", hideResultsList);
 function showResultsList() {
   resultsList.style.display = "block";
 }
+
 function hideResultsList(event) {
   if (event.target !== searchBox && !resultsList.contains(event.target)) {
     resultsList.style.display = "none";
@@ -254,6 +255,104 @@ const PIR_Limit_Lines = L.geoJson(pirLimitLines, {
     opacity: 1 // set initial opacity to 1
   }
 });
+const nfhl = L.esri.dynamicMapLayer({
+  url: "https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/"
+});
+var heat = null;
+var data = omnivore.csv('data.csv')
+  .on('ready', function () {
+    var layer = data.toGeoJSON();
+    var filteredFeatures = [];
+    var currentFilter = 'BLE_FLD_ZO';
+
+    function updateFilteredFeatures() {
+      filteredFeatures.length = 0;
+      layer.features.forEach(function (feature) {
+        if (currentFilter === 'FLD_ZONE') {
+          if (feature.properties.FLD_ZONE === 'yes') {
+            filteredFeatures.push(feature);
+          }
+        } else if (currentFilter === 'BLE_FLD_ZO') {
+          if (feature.properties.BLE_FLD_ZO === 'yes') {
+            filteredFeatures.push(feature);
+          }
+        }
+      });
+      var popHeatPoints = jsonPointsToArray(filteredFeatures);
+      if (heat) {
+        allLayers.removeLayer(heat);
+      }
+      heat = L.heatLayer(popHeatPoints, {
+        radius: 10,
+        minOpacity: 0.5,
+        blur: 10
+      }).addTo(allLayers);
+      updateDataCount();
+    }
+    updateFilteredFeatures();
+    var filterButton = document.getElementById('toggle-button');
+    filterButton.addEventListener('click', function () {
+      if (currentFilter === 'FLD_ZONE') {
+        currentFilter = 'BLE_FLD_ZO';
+      } else if (currentFilter === 'BLE_FLD_ZO') {
+        currentFilter = 'FLD_ZONE';
+      }
+      updateFilteredFeatures();
+    });
+
+    function jsonPointsToArray(features) {
+      let featureGeometriesArray = [];
+      features.forEach(function (f) {
+        featureGeometriesArray.push([f.geometry.coordinates[1], f.geometry.coordinates[0]])
+      });
+      return featureGeometriesArray;
+    }
+
+    function updateDataCount() {
+      var bounds = map.getBounds();
+      var count1 = 0;
+      var count2 = 0;
+      filteredFeatures.forEach(function (feature) {
+        if (bounds.contains(L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]))) {
+          if (feature.properties.FLD_ZONE === 'yes') {
+            count1++;
+          }
+          if (feature.properties.BLE_FLD_ZO === 'yes') {
+            count2++;
+          }
+        }
+      });
+      var diff = count2 - count1;
+      // dataCount = count2 + " | " + count1 + " | " + diff;
+      // document.getElementById("value").innerHTML = dataCount;
+      //const svg = "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='#c0c0c0' d='M464 416h-416c-26.4 0-48-21.6-48-48v-256c0-26.4 21.6-48 48-48h128v32h-128v256h416v-256h-128v-32h128c26.4 0 48 21.6 48 48v256c0 26.4-21.6 48-48 48z'></path><path fill='#808080' d='M320 320h-128v-96h-96v128h-32v-192c0-17.6 14.4-32 32-32h192c17.6 0 32 14.4 32 32v192h-32z'></path><path fill='#fff' d='M288 288h-64v-64h-64v64h-32v-96c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16v96h-32z'></path></svg>";
+      const svg = "";
+      var tableHTML = "<table><tr><th>" + svg + " BLE</th><th>" + svg + "Paper</th><th>Increase</th></tr>";
+      tableHTML += "<tr><td>" + count2.toLocaleString() + "</td><td>" + count1.toLocaleString() + "</td><td> + " + diff.toLocaleString() + "</td></tr></table>";
+      document.getElementById("value").innerHTML = tableHTML;
+    }
+    map.on('moveend', function () {
+      updateDataCount();
+    });
+    var input7 = document.querySelector('input[type="checkbox"][data-layer-id="structures"]');
+    input7.onchange = function () {
+      if (this.checked) {
+        heat.addTo(allLayers);
+        document.getElementById("structureTable").classList.remove("hide");
+      } else {
+        heat.removeFrom(allLayers);
+        document.getElementById("structureTable").classList.add("hide");
+      }
+    };
+  });
+
+
+
+
+
+
+
+
 var input = document.querySelector('input[type="checkbox"][data-layer-id="extent1-02"]');
 input.onchange = function () {
   if (this.checked) {
@@ -317,7 +416,14 @@ cityLimits_.setOpacity = function (opacity) {
     opacity: opacity
   });
 };
-
+var input8 = document.querySelector('input[type="checkbox"][data-layer-id="DFIRM"]');
+input8.onchange = function () {
+  if (this.checked) {
+    nfhl.addTo(allLayers);
+  } else {
+    nfhl.removeFrom(allLayers);
+  }
+};
 function clearMap() {
   allLayers.clearLayers();
   input.checked = false;
@@ -326,9 +432,10 @@ function clearMap() {
   input4.checked = false;
   input5.checked = false;
   input6.checked = false;
+  input7.checked = false;
+  input8.checked = false;
 }
 
 function closeLayerTray() {
   document.querySelector(".card").classList.add("hide");
 }
-
