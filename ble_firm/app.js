@@ -331,7 +331,7 @@ var data = omnivore.csv('data.csv')
         minOpacity: 0.5,
         blur: 10
       }).addTo(allLayers);
-      updateDataCount();
+      // updateDataCount();
     }
     updateFilteredFeatures();
     // var filterButton = document.getElementById('toggle-button');
