@@ -119,78 +119,105 @@ document.getElementById("closeBasemaps").onclick = function (e) {
 // map.getPane('labels').style.zIndex = 675;
 // map.createPane('labels2');
 // map.getPane('labels2').style.zIndex = 680;
-const items = ["Choctaw", "Harper", "Latimer", "Love", "Pushmataha", "Trinity"];
+// const items = ["Choctaw", "Harper", "Latimer", "Love", "Pushmataha", "Trinity"];
 
-function search() {
-  var query = document.getElementById('search-box').value.toLowerCase();
-  document.getElementById('results-list').innerHTML = '';
-  for (var i = 0; i < items.length; i++) {
-    var item = items[i];
-    if (item.toLowerCase().indexOf(query) !== -1) {
-      var resultItem = document.createElement('li');
-      resultItem.textContent = item;
-      resultItem.setAttribute('id', item);
-      document.getElementById('results-list').appendChild(resultItem);
-      (function (text) {
-        document.querySelector('#' + text).addEventListener('click', function () {
-          if (text == "Choctaw") {
-            map.setView([34, -95.55], 11);
-            document.getElementById("UtilDialog").classList.remove("show");
-            setTimeout(function () {
-              document.querySelector(".modal").style = "display:none";
-            }, 750)
+// function search() {
+//   var query = document.getElementById('search-box').value.toLowerCase();
+//   document.getElementById('results-list').innerHTML = '';
+//   for (var i = 0; i < items.length; i++) {
+//     var item = items[i];
+//     if (item.toLowerCase().indexOf(query) !== -1) {
+//       var resultItem = document.createElement('li');
+//       resultItem.textContent = item;
+//       resultItem.setAttribute('id', item);
+//       document.getElementById('results-list').appendChild(resultItem);
+//       (function (text) {
+//         document.querySelector('#' + text).addEventListener('click', function () {
+//           if (text == "Choctaw") {
+//             map.setView([34, -95.55], 11);
+//             document.getElementById("UtilDialog").classList.remove("show");
+//             setTimeout(function () {
+//               document.querySelector(".modal").style = "display:none";
+//             }, 750)
 
-          } else if (text == "Harper") {
-            map.setView([36.82959180923689, -99.63055335115429], 12);
-            document.getElementById("UtilDialog").classList.remove("show");
-            setTimeout(function () {
-              document.querySelector(".modal").style = "display:none";
-            }, 750)
-          } else if (text == "Latimer") {
-            map.setView([34.87231196866829, -95.25671380632579], 12);
-            document.getElementById("UtilDialog").classList.remove("show");
-            setTimeout(function () {
-              document.querySelector(".modal").style = "display:none";
-            }, 750)
-          } else if (text == "Love") {
-            map.setView([33.98610403918645, -97.22297071856153], 12);
-            document.getElementById("UtilDialog").classList.remove("show");
-            setTimeout(function () {
-              document.querySelector(".modal").style = "display:none";
-            }, 750)
-          } else if (text == "Pushmataha") {
-            map.setView([34.48173274712084, -95.30996464363149], 12);
-            document.getElementById("UtilDialog").classList.remove("show");
-            setTimeout(function () {
-              document.querySelector(".modal").style = "display:none";
-            }, 750)
-          } else if (text == "Trinity") {
-            map.setView([31.09792847231909, -95.11758881648315], 12);
-            document.getElementById("UtilDialog").classList.remove("show");
-            setTimeout(function () {
-              document.querySelector(".modal").style = "display:none";
-            }, 750)
-          }
-        });
-      })(item);
-    }
+//           } else if (text == "Harper") {
+//             map.setView([36.82959180923689, -99.63055335115429], 12);
+//             document.getElementById("UtilDialog").classList.remove("show");
+//             setTimeout(function () {
+//               document.querySelector(".modal").style = "display:none";
+//             }, 750)
+//           } else if (text == "Latimer") {
+//             map.setView([34.87231196866829, -95.25671380632579], 12);
+//             document.getElementById("UtilDialog").classList.remove("show");
+//             setTimeout(function () {
+//               document.querySelector(".modal").style = "display:none";
+//             }, 750)
+//           } else if (text == "Love") {
+//             map.setView([33.98610403918645, -97.22297071856153], 12);
+//             document.getElementById("UtilDialog").classList.remove("show");
+//             setTimeout(function () {
+//               document.querySelector(".modal").style = "display:none";
+//             }, 750)
+//           } else if (text == "Pushmataha") {
+//             map.setView([34.48173274712084, -95.30996464363149], 12);
+//             document.getElementById("UtilDialog").classList.remove("show");
+//             setTimeout(function () {
+//               document.querySelector(".modal").style = "display:none";
+//             }, 750)
+//           } else if (text == "Trinity") {
+//             map.setView([31.09792847231909, -95.11758881648315], 12);
+//             document.getElementById("UtilDialog").classList.remove("show");
+//             setTimeout(function () {
+//               document.querySelector(".modal").style = "display:none";
+//             }, 750)
+//           }
+//         });
+//       })(item);
+//     }
+//   }
+// }
+// document.getElementById('search-box').addEventListener('input', search);
+// const searchBox = document.getElementById("search-box");
+// const resultsList = document.getElementById("results-list");
+// searchBox.addEventListener("input", showResultsList);
+// document.addEventListener("click", hideResultsList);
+
+// function showResultsList() {
+//   resultsList.style.display = "block";
+// }
+
+// function hideResultsList(event) {
+//   if (event.target !== searchBox && !resultsList.contains(event.target)) {
+//     resultsList.style.display = "none";
+//   }
+// }
+function zoomToCounty() {
+  var dropdown = document.getElementById('county-dropdown');
+  var selectedCounty = dropdown.value;
+
+  if (selectedCounty === "Choctaw") {
+    map.setView([34, -95.55], 11);
+  } else if (selectedCounty === "Harper") {
+    map.setView([36.82959180923689, -99.63055335115429], 12);
+  } else if (selectedCounty === "Latimer") {
+    map.setView([34.87231196866829, -95.25671380632579], 12);
+  } else if (selectedCounty === "Love") {
+    map.setView([33.98610403918645, -97.22297071856153], 12);
+  } else if (selectedCounty === "Pushmataha") {
+    map.setView([34.48173274712084, -95.30996464363149], 12);
+  } else if (selectedCounty === "Trinity") {
+    map.setView([31.09792847231909, -95.11758881648315], 12);
   }
-}
-document.getElementById('search-box').addEventListener('input', search);
-const searchBox = document.getElementById("search-box");
-const resultsList = document.getElementById("results-list");
-searchBox.addEventListener("input", showResultsList);
-document.addEventListener("click", hideResultsList);
 
-function showResultsList() {
-  resultsList.style.display = "block";
+  document.getElementById("UtilDialog").classList.remove("show");
+  setTimeout(function () {
+    document.querySelector(".modal").style = "display:none";
+  }, 750);
+
+  // Remove the "Select a County" option from the dropdown
+  dropdown.remove(0);
 }
 
-function hideResultsList(event) {
-  if (event.target !== searchBox && !resultsList.contains(event.target)) {
-    resultsList.style.display = "none";
-  }
-}
 const allLayers = L.layerGroup().addTo(map);
 const bleLayer = L.esri.Vector.vectorTileLayer(
   "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLEtoFIRMSFHA/VectorTileServer", {
@@ -290,15 +317,15 @@ var data = omnivore.csv('data.csv')
       updateDataCount();
     }
     updateFilteredFeatures();
-    var filterButton = document.getElementById('toggle-button');
-    filterButton.addEventListener('click', function () {
-      if (currentFilter === 'FLD_ZONE') {
-        currentFilter = 'BLE_FLD_ZO';
-      } else if (currentFilter === 'BLE_FLD_ZO') {
-        currentFilter = 'FLD_ZONE';
-      }
-      updateFilteredFeatures();
-    });
+    // var filterButton = document.getElementById('toggle-button');
+    // filterButton.addEventListener('click', function () {
+    //   if (currentFilter === 'FLD_ZONE') {
+    //     currentFilter = 'BLE_FLD_ZO';
+    //   } else if (currentFilter === 'BLE_FLD_ZO') {
+    //     currentFilter = 'FLD_ZONE';
+    //   }
+    //   updateFilteredFeatures();
+    // });
 
     function jsonPointsToArray(features) {
       let featureGeometriesArray = [];
@@ -308,32 +335,32 @@ var data = omnivore.csv('data.csv')
       return featureGeometriesArray;
     }
 
-    function updateDataCount() {
-      var bounds = map.getBounds();
-      var count1 = 0;
-      var count2 = 0;
-      filteredFeatures.forEach(function (feature) {
-        if (bounds.contains(L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]))) {
-          if (feature.properties.FLD_ZONE === 'yes') {
-            count1++;
-          }
-          if (feature.properties.BLE_FLD_ZO === 'yes') {
-            count2++;
-          }
-        }
-      });
-      var diff = count2 - count1;
+    // function updateDataCount() {
+    //   var bounds = map.getBounds();
+    //   var count1 = 0;
+    //   var count2 = 0;
+    //   filteredFeatures.forEach(function (feature) {
+    //     if (bounds.contains(L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]))) {
+    //       if (feature.properties.FLD_ZONE === 'yes') {
+    //         count1++;
+    //       }
+    //       if (feature.properties.BLE_FLD_ZO === 'yes') {
+    //         count2++;
+    //       }
+    //     }
+    //   });
+    //   var diff = count2 - count1;
       // dataCount = count2 + " | " + count1 + " | " + diff;
       // document.getElementById("value").innerHTML = dataCount;
       //const svg = "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='#c0c0c0' d='M464 416h-416c-26.4 0-48-21.6-48-48v-256c0-26.4 21.6-48 48-48h128v32h-128v256h416v-256h-128v-32h128c26.4 0 48 21.6 48 48v256c0 26.4-21.6 48-48 48z'></path><path fill='#808080' d='M320 320h-128v-96h-96v128h-32v-192c0-17.6 14.4-32 32-32h192c17.6 0 32 14.4 32 32v192h-32z'></path><path fill='#fff' d='M288 288h-64v-64h-64v64h-32v-96c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16v96h-32z'></path></svg>";
-      const svg = "";
-      var tableHTML = "<table><tr><th>" + svg + " BLE</th><th>" + svg + "Paper</th><th>Increase</th></tr>";
-      tableHTML += "<tr><td>" + count2.toLocaleString() + "</td><td>" + count1.toLocaleString() + "</td><td> + " + diff.toLocaleString() + "</td></tr></table>";
-      document.getElementById("value").innerHTML = tableHTML;
-    }
-    map.on('moveend', function () {
-      updateDataCount();
-    });
+    //   const svg = "";
+    //   var tableHTML = "<table><tr><th>" + svg + " BLE</th><th>" + svg + "Paper</th><th>Increase</th></tr>";
+    //   tableHTML += "<tr><td>" + count2.toLocaleString() + "</td><td>" + count1.toLocaleString() + "</td><td> + " + diff.toLocaleString() + "</td></tr></table>";
+    //   document.getElementById("value").innerHTML = tableHTML;
+    // }
+    // map.on('moveend', function () {
+    //   updateDataCount();
+    // });
     var input7 = document.querySelector('input[type="checkbox"][data-layer-id="structures"]');
     input7.onchange = function () {
       if (this.checked) {

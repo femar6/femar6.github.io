@@ -131,12 +131,19 @@
                     <hr><br>
                     <div class="g-3 mb-2 row row-cols-1 row-cols-md-3">
                         <div class="col">
-                            <div class="search-container">
-                                <input type="search" id="search-box" placeholder="Search PIR County">
-                                <ul id="results-list"></ul>
-                            </div>
+                          <div class="search-container">
+                            <select id="county-dropdown" onchange="zoomToCounty()">
+                              <option value="">Select a County</option>
+                              <option value="Choctaw">Choctaw</option>
+                              <option value="Harper">Harper</option>
+                              <option value="Latimer">Latimer</option>
+                              <option value="Love">Love</option>
+                              <option value="Pushmataha">Pushmataha</option>
+                              <option value="Trinity">Trinity</option>
+                            </select>
+                          </div>
                         </div>
-                    </div>
+                      </div>
                 </div>
             </div>
         </div>
@@ -305,9 +312,9 @@
     </div>
 </div>
 
-<div id="structureTable" style="position:absolute;z-index:650;top:5%;left:25%;font-size:1.25rem;"><button id="toggle-button">Toggle
+<!-- <div id="structureTable" style="position:absolute;z-index:650;top:5%;left:25%;font-size:1.25rem;"><button id="toggle-button">Toggle
     Filter</button><br><br><span id="value"></span>
-</div>
+</div> -->
 
 
 
