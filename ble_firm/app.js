@@ -217,6 +217,23 @@ function zoomToCounty() {
   // Remove the "Select a County" option from the dropdown
   dropdown.remove(0);
 }
+function closeModal() {
+  var modal = document.getElementById("UtilDialog");
+
+  // Add a fade-out effect before removing the "show" class
+  modal.classList.add("fade");
+  setTimeout(function() {
+    modal.classList.remove("show");
+  }, 250);
+
+  // Hide the modal after the fade-out animation completes
+  setTimeout(function() {
+    modal.style.display = "none";
+  }, 250);
+}
+
+
+
 
 const allLayers = L.layerGroup().addTo(map);
 const bleLayer = L.esri.Vector.vectorTileLayer(
