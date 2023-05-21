@@ -378,6 +378,11 @@ tr[data-State="NC"] {
   background-repeat: no-repeat;
   background-size:contain;
 }
+tr[data-State="OR"] {
+  background-image: url(https://icons.iconarchive.com/icons/wikipedia/flags/256/US-OR-Oregon-Flag-icon.png);
+  background-repeat: no-repeat;
+  background-size:contain;
+}
 tr[data-State="PR"] {
   background-image: url(https://icons.iconarchive.com/icons/wikipedia/flags/256/PR-Puerto-Rico-Flag-icon.png);
   background-repeat: no-repeat;

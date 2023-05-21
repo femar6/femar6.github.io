@@ -25,17 +25,19 @@ fetch(url).then(function (response) {return response.json();}).then(function (da
           autoPanOnFocus: true,
           riseOnHover: true,
           zIndexOffset: 1000
-        }).setBouncingOptions({
-          bounceHeight: 20,
-          contractHeight: 20,
-          bounceSpeed: 60,
-          contractSpeed: 30,
-          shadowAngle: null
-        });
+        })
+        // .setBouncingOptions({
+        //   bounceHeight: 20,
+        //   contractHeight: 20,
+        //   bounceSpeed: 60,
+        //   contractSpeed: 30,
+        //   shadowAngle: null
+        // });
         return marker;
       },
     }).addTo(map);
     var totalFeatures = geojsonLayer.getLayers().length;
+    console.log(totalFeatures)
     var stateCounts = {}; // Object to store count by state
         var featureData = [];
         geojsonLayer.eachLayer(function (layer) {
@@ -201,14 +203,14 @@ fetch(url).then(function (response) {return response.json();}).then(function (da
             });
             if (layer && marker) {
               marker.setLatLng(layer.getLatLng());
-              marker.bounce(1);
+              // marker.bounce(1);
             }
           });
-          row.addEventListener('mouseout', function () {
-            // if (marker) {
-              marker.bounce(0);
-            // }
-          });
+          // row.addEventListener('mouseout', function () {
+          //    if (marker) {
+          //     marker.bounce(0);
+          //   // }
+          // });
         });
 
 
@@ -328,7 +330,7 @@ fetch(url).then(function (response) {return response.json();}).then(function (da
           });
     }
     document.querySelector(".totalCnt").innerHTML = 'Total Best Practices: ' + totalFeatures + "<br><br>FL: " + stateCounts.FL + " | LA: " + stateCounts.LA +
-      " | MO: " + stateCounts.MO + " | NC: " + stateCounts.NC + " | PR: " + stateCounts.PR + " | TX: " + stateCounts.TX + " | UT: " + stateCounts.UT + " | WA: " + stateCounts.WA;
+      " | MO: " + stateCounts.MO + " | NC: " + stateCounts.NC + " | OR: " + stateCounts.OR + " | PR: " + stateCounts.PR + " | TX: " + stateCounts.TX + " | UT: " + stateCounts.UT + " | WA: " + stateCounts.WA;
   });
 
 
