@@ -1,0 +1,415 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400);
+.teal-bkg {
+  background-color: #0015ff;
+}
+
+.navy-bkg {
+  background-color: #112F41;
+}
+
+.brite-teal-bkg {
+  background-color: #ffffff;
+}
+
+.white-bkg {
+  background-color: #FFFFFF;
+}
+
+.orange-bkg {
+  background-color: #ff2600;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+body {
+  background-color: #013152;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 5px auto 5px 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, rgba(1, 9, 51, 0.1) 0%, rgba(0, 58, 193, 0) 100%);
+}
+main img{
+
+  /* width: 100%;
+  height: 100%; */
+
+  object-fit:over;
+
+
+  /* max-width: 100%;
+  max-height: 100%; */
+}
+
+h1 {
+  grid-row: 2/3;
+  grid-column: 3/4;
+  font-family: sans-serif;
+  color: #FFFFFF;
+  font-size: 8vw;
+  margin: 0;
+  align-self: end;
+  margin-bottom: 5%;
+}
+
+h2 {
+  grid-column: 3/-1;
+  grid-row: 1/3;
+  font-family: sans-serif;
+  color: #FFFFFF;
+  font-size: 2.75vw;
+  margin: 0;
+  align-self: end;
+}
+
+hr {
+  height: 5px;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-shadow: inset 2px 0 2px black;
+}
+
+hr.left,
+hr.right {
+  height: 100%;
+}
+
+hr.left {
+  grid-column: 2/3;
+  grid-row: 1/3;
+}
+
+hr.right {
+  grid-column: 4/5;
+  grid-row: 2/4;
+}
+
+hr.top {
+  grid-column: 3/-1;
+  grid-row: 1/2;
+  align-self: end;
+}
+
+hr.bottom {
+  grid-column: 1/-3;
+  grid-row: 3/4;
+  align-self: start;
+}
+
+span {
+  display: inline-block;
+}
+.pic {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding:0;
+  margin:0;
+  filter: saturate(132%) brightness(90%) contrast(120%) blur(1px);
+  border-radius:5px;
+}
+.pic1 {
+  grid-column: 1/3;
+  grid-row: 1/3;
+  z-index: -1;
+
+  background-image: url("pic1.PNG");
+
+
+}
+.pic2 {
+  grid-column: 3/-1;
+  grid-row: 1/2;
+  z-index: -1;
+
+  background-image: url("pic2.PNG");
+
+}
+.pic3 {
+  grid-column: 1/-3;
+  grid-row: 3/4;
+  z-index: -1;
+
+  background-image: url("pic3.PNG");
+}
+.pic4 {
+  grid-column: 5/5;
+  grid-row: 2/4;
+  z-index: -1;
+
+  background-image: url("https://i.ytimg.com/vi/wh-nIG2X25M/maxresdefault.jpg");
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    filter: saturate(132%) brightness(90%) contrast(120%) blur(1px);
+    scale:1;
+  }
+  to {
+    opacity: 0;
+    filter: saturate(132%) brightness(90%) contrast(120%) blur(25px);
+    scale:0.75;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    scale:0.5;
+    filter: saturate(132%) brightness(90%) contrast(120%) blur(100px);
+  }
+  to {
+    opacity: 1;
+    scale:1;
+    filter: saturate(132%) brightness(90%) contrast(120%) blur(0px);
+  }
+}
+
+
+.main-map {
+  display: grid;
+  grid-template-columns: 1fr 5px auto 5px 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, rgba(1, 9, 51, 0.1) 0%, rgba(0, 58, 193, 0) 100%);
+}
+
+#map{
+  grid-column: 2/6;
+  grid-row: 1/6;
+  opacity:0;
+  padding:2rem;
+  margin:2rem;
+  border-radius:10px;
+  border:#FFFFFF solid 1px;
+  background-color:#112F41;
+}
+.side-bar{
+  grid-column: 1;
+  grid-row: 1;
+  padding:0.5rem;
+  margin:0.5rem;
+  height:100%;
+  /* border-radius:3px;
+  border:#FFFFFF solid 1px; */
+}
+.hide{display:none;}
+
+@keyframes changeHeight {
+  from {
+    height:0%;
+  }
+  to {
+    height:98%;
+  }
+}
+.right-map{
+  grid-column: 3/6;
+  grid-row: 1/6;
+  /* height:98%; */
+  width:0.25rem;
+  margin-bottom:1rem;
+}
+@keyframes changeWidth {
+  from {
+    width:0%;
+  }
+  to {
+    width:100%;
+  }
+}
+.left-map{
+  height:0.25rem;
+  width:0%;
+  margin-top:1rem;
+}
+#text-animation {
+  overflow: hidden;
+  white-space: nowrap;
+}
+#text-animation span {
+  display: inline-block;
+  animation: slide-in 0.5s ease-in-out forwards;
+}
+@keyframes slide-in {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+/* Apply responsive styles to the table */
+@keyframes fade-in-table {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    transform: translateX(0%);
+  }
+}
+.story-img{
+  animation: fade-in 0.5s ease-in-out forwards;
+}
+.table-container {
+  overflow-y: auto; /* Enable vertical scrolling */
+  height: 100vh;
+  overflow-x: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.animated-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  height: 100%;
+  background-color: white;
+  color: #011e2f;
+  margin-top: 2rem;
+  animation: fade-in 1s ease-in-out;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  height:100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  background-color:white;
+  color:#011e2f;
+  margin-top:2rem;
+  text-align: center;
+}
+th,
+td {
+  padding: 6px;
+  border: 1px solid #ddd;
+  font-size:9px;
+}
+th {
+  background-color: black;
+  color:white;
+  font-weight: bold;
+  font-size:12px;
+  cursor:default;
+}
+table tr:hover td {
+  transform: scale(1.05);
+  background-color:rgb(1, 111, 222);
+  color:white;
+}
+tr:nth-child(odd) {
+  background: #d5d1d1;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    font-size: 6px;
+  }
+  
+  thead {
+    display: none;
+  }
+  tr {
+    display: block;
+    margin-bottom: 10px;
+    border: none;
+  }
+  td {
+    display: block;
+    text-align: right;
+    border: none;
+  }
+  td::before {
+    content: attr(data-label);
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 5px;
+  }
+}
+tr {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.totalCnt{
+  font-size:1rem;
+  margin-top:1rem;
+}
+tr[data-State="FL"] {
+  background-image: url(https://icons.iconarchive.com/icons/wikipedia/flags/256/US-FL-Florida-Flag-icon.png);
+  background-repeat: no-repeat;
+  background-size:contain;
+}
+tr[data-State="LA"] {
+  background-image: url(https://icons.iconarchive.com/icons/wikipedia/flags/256/US-LA-Louisiana-Flag-icon.png);
+  background-repeat: no-repeat;
+  background-size:contain;
+}
+tr[data-State="MO"] {
+  background-image: url(https://icons.iconarchive.com/icons/wikipedia/flags/256/US-MO-Missouri-Flag-icon.png);
+  background-repeat: no-repeat;
+  background-size:contain;
+}
+tr[data-State="NC"] {
+  background-image: url(https://icons.iconarchive.com/icons/wikipedia/flags/256/US-NC-North-Carolina-Flag-icon.png);
+  background-repeat: no-repeat;
+  background-size:contain;
+}
+tr[data-State="PR"] {
+  background-image: url(https://icons.iconarchive.com/icons/wikipedia/flags/256/PR-Puerto-Rico-Flag-icon.png);
+  background-repeat: no-repeat;
+  background-size:contain;
+}
+tr[data-State="UT"] {
+  background-image: url(https://icons.iconarchive.com/icons/wikipedia/flags/256/US-UT-Utah-Flag-icon.png);
+  background-repeat: no-repeat;
+  background-size:contain;
+}
+tr[data-State="TX"] {
+  background-image: url(https://icons.iconarchive.com/icons/wikipedia/flags/256/US-TX-Texas-Flag-icon.png);
+  background-repeat: no-repeat;
+  background-size:contain;
+}
+tr[data-State="WA"] {
+  background-image: url(https://icons.iconarchive.com/icons/wikipedia/flags/256/US-WA-Washington-Flag-icon.png);
+  background-repeat: no-repeat;
+  background-size:contain;
+}
+
+#test,#test2{
+  background-color:rgb(0, 183, 0);
+  color:white;
+  font-size:1.2rem;
+  margin-top:5px;
+  margin-left:2rem;
+  border-radius:5px;
+  padding-left:13px;
+  padding-right:13px;
+  border-color:white;
+  cursor:pointer;
+}
+
+
