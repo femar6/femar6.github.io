@@ -112,29 +112,8 @@ fetch(url).then(function (response) {return response.json();}).then(function (da
                 // controlAdded = false;
               }
             }
-
-            // var backButton = document.createElement("div");
-            // backButton.id = "back";
-            
-            // backButton.style.backgroundColor = "white";
-            // backButton.innerHTML = "Do you want to go back?";
-            // document.querySelector(".story-toggle").appendChild(backButton);
-            // backButton.onclick = function(e) {
-            //   document.querySelector("#text-animation").classList.remove("hide");
-            //   document.getElementById("feature-info").classList.add("hide");
-            //   document.querySelector(".story-toggle").innerHTML = "";
-            // };
-
-
-
-
-
             var storyName = layer.feature.properties.Story_Name;
             document.querySelector(".story-toggle").innerHTML = '<div style="background-color:white;color:black;padding:15px;"><span style="font-size:1.25rem;"><b>Do you want to see this story?</b></span><br><br>' + storyName + '<br><button id="test">yes</button></div>';
-            
-            
-            
-            
             document.querySelector("#test").onclick = function(e) {
               myControl.addTo(map);
               document.querySelector("#text-animation").classList.add("hide");
@@ -172,16 +151,6 @@ fetch(url).then(function (response) {return response.json();}).then(function (da
                     });
                   }
             };
-
-
-
-
-
-
-
-
-
-
           });
           row.setAttribute('data-State', data.State);
           propertyNames.forEach(function (propertyName) {
@@ -193,48 +162,25 @@ fetch(url).then(function (response) {return response.json();}).then(function (da
         });
         var tableContainer = document.getElementById('table-container');
         tableContainer.appendChild(table);
-        var tableRows = document.querySelectorAll('tr');
-        tableRows.forEach(function (row) {
-          row.addEventListener('mouseover', function () {
-            var layer = geojsonLayer.getLayers().find(function (layer) {
-              return layer.feature.properties.Story_Name === row.cells[0].textContent &&
-                layer.feature.properties.City === row.cells[1].textContent &&
-                layer.feature.properties.State === row.cells[2].textContent;
-            });
-            if (layer && marker) {
-              marker.setLatLng(layer.getLatLng());
+        // var tableRows = document.querySelectorAll('tr');
+        // tableRows.forEach(function (row) {
+          // row.addEventListener('mouseover', function () {
+          //   var layer = geojsonLayer.getLayers().find(function (layer) {
+          //     return layer.feature.properties.Story_Name === row.cells[0].textContent &&
+          //       layer.feature.properties.City === row.cells[1].textContent &&
+          //       layer.feature.properties.State === row.cells[2].textContent;
+          //   });
+            // if (layer && marker) {
+            //   marker.setLatLng(layer.getLatLng());
               // marker.bounce(1);
-            }
-          });
+            // }
+          // });
           // row.addEventListener('mouseout', function () {
           //    if (marker) {
           //     marker.bounce(0);
           //   // }
           // });
-        });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
+        // }); 
         const title = document.getElementsByTagName('h1')[0].innerText.split("").map((e, i) => e != " " ? `<span class="char">${e}</span>` : `<span class="space">&nbsp;</span>`).join("");
         document.getElementsByTagName('h1')[0].innerHTML = title;
         let title2 = document.getElementsByTagName('h1')[0];
