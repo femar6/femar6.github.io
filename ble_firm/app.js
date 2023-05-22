@@ -238,40 +238,40 @@ function closeModal() {
 const allLayers = L.layerGroup().addTo(map);
 const bleLayer = L.esri.Vector.vectorTileLayer(
   "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_SFHA05222023/VectorTileServer", {
-    style: (feature) => {
-      return {
-        "version": 8,
-        "sources": {
-          "my-vector-tiles": {
-            "type": "vector",
-            "tiles": [
-              "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_SFHA05222023/VectorTileServer/tile/{z}/{y}/{x}"
-            ]
-          }
-        },
-        "layers": [{
-          "id": "BLE_SFHA05222023/X/1",
-          "type": "fill",
-          "source": "my-vector-tiles",
-          "source-layer": "BLE_SFHA05222023",
-          "paint": {
-            "fill-color": "#A900E6",
-            "fill-opacity": 0.5
-          },
-          "filter": ["==", "_symbol", 1]
-        }, {
-          "id": "BLE_SFHA05222023/<all other values>",
-          "type": "fill",
-          "source": "my-vector-tiles",
-          "source-layer": "BLE_SFHA05222023",
-          "paint": {
-            "fill-color": "#00C5FF",
-            "fill-opacity": 0.5
-          },
-          "filter": ["!=", "_symbol", 1]
-        }]
-      };
-    }
+    // style: (feature) => {
+    //   return {
+    //     "version": 8,
+    //     "sources": {
+    //       "my-vector-tiles": {
+    //         "type": "vector",
+    //         "tiles": [
+    //           "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_SFHA05222023/VectorTileServer/tile/{z}/{y}/{x}"
+    //         ]
+    //       }
+    //     },
+    //     "layers": [{
+    //       "id": "BLE_SFHA05222023/X/1",
+    //       "type": "fill",
+    //       "source": "my-vector-tiles",
+    //       "source-layer": "BLE_SFHA05222023",
+    //       "paint": {
+    //         "fill-color": "#A900E6",
+    //         "fill-opacity": 0.5
+    //       },
+    //       "filter": ["==", "_symbol", 1]
+    //     }, {
+    //       "id": "BLE_SFHA05222023/<all other values>",
+    //       "type": "fill",
+    //       "source": "my-vector-tiles",
+    //       "source-layer": "BLE_SFHA05222023",
+    //       "paint": {
+    //         "fill-color": "#00C5FF",
+    //         "fill-opacity": 0.5
+    //       },
+    //       "filter": ["!=", "_symbol", 1]
+    //     }]
+    //   };
+    // }
   }
 ).addTo(allLayers);
 const Geo_Referenced_FIRMs = L.esri.tiledMapLayer({
