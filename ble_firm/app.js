@@ -237,7 +237,7 @@ function closeModal() {
 
 const allLayers = L.layerGroup().addTo(map);
 const bleLayer = L.esri.Vector.vectorTileLayer(
-  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLEtoFIRMSFHA/VectorTileServer", {
+  "https://vectortileservices.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_SFHA05222023/VectorTileServer", {
     style: (feature) => {
       return {
         "version": 8,
@@ -245,7 +245,7 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
           "my-vector-tiles": {
             "type": "vector",
             "tiles": [
-              "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLEtoFIRMSFHA/VectorTileServer/tile/{z}/{y}/{x}"
+              "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_SFHA05222023/VectorTileServer/tile/{z}/{y}/{x}"
             ]
           }
         },
