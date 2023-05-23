@@ -198,43 +198,45 @@ function zoomToCounty() {
   if (selectedCounty === "Choctaw") {
     map.setView([34, -95.55], 11);
   } else if (selectedCounty === "Harper") {
-    map.setView([36.82959180923689, -99.63055335115429], 12);
+    map.setView([36.82959180923689, -99.63055335115429], 11);
   } else if (selectedCounty === "Latimer") {
-    map.setView([34.87231196866829, -95.25671380632579], 12);
+    map.setView([34.87231196866829, -95.25671380632579], 11);
   } else if (selectedCounty === "Love") {
-    map.setView([33.98610403918645, -97.22297071856153], 12);
+    map.setView([33.98610403918645, -97.22297071856153], 11);
   } else if (selectedCounty === "Pushmataha") {
-    map.setView([34.48173274712084, -95.30996464363149], 12);
+    map.setView([34.48173274712084, -95.30996464363149], 11);
   } else if (selectedCounty === "Trinity") {
-    map.setView([31.09792847231909, -95.11758881648315], 12);
+    map.setView([31.09792847231909, -95.11758881648315], 11);
+  } else if (selectedCounty === "Freestone") {
+    map.setView([31.70395670549604, -96.14784140155388], 11);
+  } else if (selectedCounty === "Sabine") {
+    map.setView([31.37251240746822, -93.85488557644267], 11);
+  } else if (selectedCounty === "San Augustine") {
+    map.setView([31.40825510597208, -94.16545518643422], 11);
+  } else if (selectedCounty === "Shelby") {
+    map.setView([31.806832020550743, -94.1223292716277], 11);
   }
-
   document.getElementById("UtilDialog").classList.remove("show");
   setTimeout(function () {
     document.querySelector(".modal").style = "display:none";
   }, 750);
-
-  // Remove the "Select a County" option from the dropdown
   dropdown.remove(0);
 }
+
 function closeModal() {
   var modal = document.getElementById("UtilDialog");
 
   // Add a fade-out effect before removing the "show" class
   modal.classList.add("fade");
-  setTimeout(function() {
+  setTimeout(function () {
     modal.classList.remove("show");
   }, 250);
 
   // Hide the modal after the fade-out animation completes
-  setTimeout(function() {
+  setTimeout(function () {
     modal.style.display = "none";
   }, 250);
 }
-
-
-
-
 const allLayers = L.layerGroup().addTo(map);
 const bleLayer = L.esri.Vector.vectorTileLayer(
   "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLEtoFIRMSFHA/VectorTileServer", {
@@ -280,14 +282,14 @@ const Geo_Referenced_FIRMs = L.esri.tiledMapLayer({
 }).addTo(allLayers);
 // Streams
 const eff_scop_stream = L.esri.Vector.vectorTileLayer(
-  "https://vectortileservices.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/PIR_Stream_Centerline/VectorTileServer"
+  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines05222023/VectorTileServer"
 );
 const pir_stream_cent = L.esri.Vector.vectorTileLayer(
-  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL/VectorTileServer");
+  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL05222023/VectorTileServer");
 const cityLimits_ = L.geoJson(cityLimits, {
   style: {
     color: "orange", // set line color to orange
-    weight: 5, // set line weight to 5 pixels
+    weight: 3, // set line weight to 5 pixels
     fillOpacity: 0, // set fill opacity to 0 to hide the fill
     opacity: 1
   }
@@ -307,17 +309,17 @@ var data = omnivore.csv('data.csv')
   .on('ready', function () {
     var layer = data.toGeoJSON();
     var filteredFeatures = [];
-    var currentFilter = 'BLE_FLD_ZO';
+    var currentFilter = 'BLE_A_ZONE';
 
     function updateFilteredFeatures() {
       filteredFeatures.length = 0;
       layer.features.forEach(function (feature) {
-        if (currentFilter === 'FLD_ZONE') {
-          if (feature.properties.FLD_ZONE === 'yes') {
+        if (currentFilter === 'CORELOGIC') {
+          if (feature.properties.CORELOGIC == 1) {
             filteredFeatures.push(feature);
           }
-        } else if (currentFilter === 'BLE_FLD_ZO') {
-          if (feature.properties.BLE_FLD_ZO === 'yes') {
+        } else if (currentFilter === 'BLE_A_ZONE') {
+          if (feature.properties.BLE_A_ZONE == 1) {
             filteredFeatures.push(feature);
           }
         }
@@ -331,15 +333,15 @@ var data = omnivore.csv('data.csv')
         minOpacity: 0.5,
         blur: 10
       }).addTo(allLayers);
-      // updateDataCount();
+      updateDataCount();
     }
     updateFilteredFeatures();
     // var filterButton = document.getElementById('toggle-button');
     // filterButton.addEventListener('click', function () {
-    //   if (currentFilter === 'FLD_ZONE') {
-    //     currentFilter = 'BLE_FLD_ZO';
-    //   } else if (currentFilter === 'BLE_FLD_ZO') {
-    //     currentFilter = 'FLD_ZONE';
+    //   if (currentFilter === 'CORELOGIC') {
+    //     currentFilter = 'BLE_A_ZONE';
+    //   } else if (currentFilter === 'BLE_A_ZONE') {
+    //     currentFilter = 'CORELOGIC';
     //   }
     //   updateFilteredFeatures();
     // });
@@ -352,32 +354,33 @@ var data = omnivore.csv('data.csv')
       return featureGeometriesArray;
     }
 
-    // function updateDataCount() {
-    //   var bounds = map.getBounds();
-    //   var count1 = 0;
-    //   var count2 = 0;
-    //   filteredFeatures.forEach(function (feature) {
-    //     if (bounds.contains(L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]))) {
-    //       if (feature.properties.FLD_ZONE === 'yes') {
-    //         count1++;
-    //       }
-    //       if (feature.properties.BLE_FLD_ZO === 'yes') {
-    //         count2++;
-    //       }
-    //     }
-    //   });
-    //   var diff = count2 - count1;
-      // dataCount = count2 + " | " + count1 + " | " + diff;
-      // document.getElementById("value").innerHTML = dataCount;
-      //const svg = "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='#c0c0c0' d='M464 416h-416c-26.4 0-48-21.6-48-48v-256c0-26.4 21.6-48 48-48h128v32h-128v256h416v-256h-128v-32h128c26.4 0 48 21.6 48 48v256c0 26.4-21.6 48-48 48z'></path><path fill='#808080' d='M320 320h-128v-96h-96v128h-32v-192c0-17.6 14.4-32 32-32h192c17.6 0 32 14.4 32 32v192h-32z'></path><path fill='#fff' d='M288 288h-64v-64h-64v64h-32v-96c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16v96h-32z'></path></svg>";
-    //   const svg = "";
-    //   var tableHTML = "<table><tr><th>" + svg + " BLE</th><th>" + svg + "Paper</th><th>Increase</th></tr>";
-    //   tableHTML += "<tr><td>" + count2.toLocaleString() + "</td><td>" + count1.toLocaleString() + "</td><td> + " + diff.toLocaleString() + "</td></tr></table>";
-    //   document.getElementById("value").innerHTML = tableHTML;
-    // }
-    // map.on('moveend', function () {
-    //   updateDataCount();
-    // });
+    function updateDataCount() {
+      var bounds = map.getBounds();
+      var count1 = 0;
+      var count2 = 0;
+
+      filteredFeatures.forEach(function (feature) {
+        if (bounds.contains(L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]))) {
+          if (feature.properties.CORELOGIC == 1) {
+            count1++;
+          }
+          if (feature.properties.BLE_A_ZONE == 1) {
+            count2++;
+          }
+        }
+      });
+      var diff = count2 - count1;
+      dataCount = count2 + " | " + count1 + " | " + diff;
+      document.getElementById("value").innerHTML = dataCount;
+      // let svg = "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='#c0c0c0' d='M464 416h-416c-26.4 0-48-21.6-48-48v-256c0-26.4 21.6-48 48-48h128v32h-128v256h416v-256h-128v-32h128c26.4 0 48 21.6 48 48v256c0 26.4-21.6 48-48 48z'></path><path fill='#808080' d='M320 320h-128v-96h-96v128h-32v-192c0-17.6 14.4-32 32-32h192c17.6 0 32 14.4 32 32v192h-32z'></path><path fill='#fff' d='M288 288h-64v-64h-64v64h-32v-96c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16v96h-32z'></path></svg>";
+      // let svg2 = "";
+      var tableHTML = "<table><tr><th>BLE</th><th>Paper</th><th>Increase</th></tr>";
+      tableHTML += "<tr><td>" + count2.toLocaleString() + "</td><td>" + count1.toLocaleString() + "</td><td> + " + diff.toLocaleString() + "</td></tr></table>";
+      document.getElementById("value").innerHTML = tableHTML;
+    }
+    map.on('moveend', function () {
+      updateDataCount();
+    });
     var input7 = document.querySelector('input[type="checkbox"][data-layer-id="structures"]');
     input7.onchange = function () {
       if (this.checked) {
@@ -468,6 +471,7 @@ input8.onchange = function () {
     nfhl.removeFrom(allLayers);
   }
 };
+
 function clearMap() {
   allLayers.clearLayers();
   input.checked = false;

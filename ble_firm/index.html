@@ -130,13 +130,17 @@
                         <div class="col">
                           <div class="search-container">
                             <select id="county-dropdown" onchange="zoomToCounty()">
-                              <option value="">Select a County</option>
-                              <option value="Choctaw">Choctaw</option>
-                              <option value="Harper">Harper</option>
-                              <option value="Latimer">Latimer</option>
-                              <option value="Love">Love</option>
-                              <option value="Pushmataha">Pushmataha</option>
-                              <option value="Trinity">Trinity</option>
+                              <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select a County</option>
+                              <option value="Choctaw">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choctaw, OK</option>
+                              <option value="Freestone">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Freestone, TX</option>
+                              <option value="Harper">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Harper, OK</option>
+                              <option value="Latimer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Latimer, OK</option>
+                              <option value="Love">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Love, OK</option>
+                              <option value="Pushmataha">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pushmataha, OK</option>
+                              <option value="Sabine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sabine, TX</option>
+                              <option value="San Augustine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;San Augustine, TX</option>
+                              <option value="Shelby">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shelby, TX</option>
+                              <option value="Trinity">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trinity, TX</option>
                             </select>
                           </div>
                         </div>
@@ -178,12 +182,13 @@
                                         data-bs-original-title="Add or remove this map layer">
                                         <input type="checkbox" data-layer-id="structures" checked>
                                         <span><span></span></span>
-                                        <span>Structures </span>
+                                        <span style="margin-right:1rem;">Structures in BLE 1%</span>
                                     </label><br>
                                     <div class="gradient">
                                         <span></span>
                                       </div>
-                                </div>
+                                </div><span style="margin-left:2rem;">Source: <a style="border:none;padding:0;text-decoration:underline;" href="https://www.ornl.gov/project/geospatial-data-sets" target="_blank">OakRidge National Labs (ORNL)</a></span>
+                                <div class="border-bottom"></div>
                                 <div class="align-items-center d-flex justify-content-between my-1">
                                     <label class="flex-fill util-toggle" data-color="success" data-label="right"
                                         data-radius="pill" data-size="sm"
@@ -239,28 +244,28 @@
                                         onchange="PIR_Limit_Lines.setOpacity(Number(this.value))"
                                         oninput="PIR_Limit_Lines.setOpacity(Number(this.value))"
                                         aria-label="Adjust layer opacity" data-bs-original-title="Adjust layer opacity">
-                                </div>
+                                </div><span style="margin-left:2rem;">Source: <a style="border:none;padding:0;text-decoration:underline;" href="https://webapps.usgs.gov/infrm/" target="_blank">FEMA Region 6 & Mapping Partners</a></span>
                                 <div class="align-items-center d-flex justify-content-between my-1">
                                     <label class="flex-fill util-toggle" data-color="success" data-label="right"
                                         data-radius="pill" data-size="sm"
                                         data-bs-original-title="Add or remove this map layer">
                                         <input type="checkbox" data-layer-id="Geo-Referenced-FIRMs" checked>
                                         <span><span></span></span>
-                                        <span>Geo-Referenced FIRMs</span>
+                                        <span>Geo-Referenced Paper FIRMs</span>
                                     </label>
                                     <input type="range" class="form-range mx-1" style="width:4rem" min="0" step="0.01"
                                         max="1" value="1" data-layer-id="Geo-Referenced-FIRMs"
                                         onchange="Geo_Referenced_FIRMs.setOpacity(Number(this.value))"
                                         oninput="Geo_Referenced_FIRMs.setOpacity(Number(this.value))"
                                         aria-label="Adjust layer opacity" data-bs-original-title="Adjust layer opacity">
-                                </div>
+                                </div><span style="margin-left:2rem;">Source: <a style="border:none;padding:0;text-decoration:underline;" href="https://msc.fema.gov/portal/home" target="_blank">FEMA Flood Map Service Center</a></span>
                                 <div class="align-items-center d-flex justify-content-between my-1">
                                     <label class="flex-fill util-toggle" data-color="success" data-label="right"
                                         data-radius="pill" data-size="sm"
                                         data-bs-original-title="Add or remove this map layer">
                                         <input type="checkbox" data-layer-id="DFIRM">
                                         <span><span></span></span>
-                                        <span>Digital FIRM</span>
+                                        <span>Digital Flood Insurance Rate Map (DFIRM)</span>
                                     </label>
                                     <!-- <input type="range" class="form-range mx-1" style="width:4rem" min="0" step="0.01"
                                         max="1" value="1" data-layer-id="Geo-Referenced-FIRMs"
@@ -268,7 +273,7 @@
                                         oninput="Geo_Referenced_FIRMs.setOpacity(Number(this.value))"
                                         aria-label="Adjust layer opacity" data-bs-original-title="Adjust layer opacity"> -->
                                 </div>                                
-                            </div>
+                            </div><span style="margin-left:2rem;">Source: <a style="border:none;padding:0;text-decoration:underline;" href="https://www.fema.gov/flood-maps/national-flood-hazard-layer" target="_blank">National Flood Hazard Layer (NFHL)</a></span>
                             <div class="border-bottom"></div>
                             <div class="align-items-center d-flex justify-content-between my-1">
                                 <label class="flex-fill util-toggle" data-color="success" data-label="right"
@@ -289,7 +294,7 @@
                                     oninput="cityLimits_.setOpacity(Number(this.value))"
                                     aria-label="Adjust layer opacity" data-bs-original-title="Adjust layer opacity">
                             </div>
-                        </div>
+                        </div><span style="margin-left:2rem;">Source: <a style="border:none;padding:0;text-decoration:underline;" href="https://www.census.gov/geographies/mapping-files/time-series/geo/cartographic-boundary.html" target="_blank">Census Bureau</a></span>
                     </div>
                 </div>
             </div>
@@ -309,9 +314,14 @@
     </div>
 </div>
 
-<!-- <div id="structureTable" style="position:absolute;z-index:650;top:5%;left:25%;font-size:1.25rem;"><button id="toggle-button">Toggle
-    Filter</button><br><br><span id="value"></span>
-</div> -->
+<div id="structureTable" style="position:absolute;z-index:650;top:8%;right:3%;font-size:1.25rem;background-color:#005287;color:white;height:100px;">
+    <!-- <button id="toggle-button">Toggle
+    Filter</button><br><br> -->
+    Buildings in Flood Plain 1% annual chance | Source: FEMA/ORNL
+    <span style="color:black;font-size:0.95rem;margin-bottom:-1rem;" id="value">
+    </span>
+   
+</div>
 
 
 
