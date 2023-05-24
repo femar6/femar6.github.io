@@ -5,9 +5,9 @@ const map = L.map('map', {
   zoomDelta: 0.1,
   boxZoom: true,
   minZoom: 5
-}).setView([31.6, -99.5], 6);
+}).setView([31.6, -95.5], 6);
 map.setMaxBounds(map.getBounds().pad(0.2));
-
+let tableControl_ = true;
 
 const baseMapLayers = L.layerGroup([]).addTo(map);
 
@@ -70,127 +70,16 @@ document.querySelector(".layersTrayBtn").onclick = function (e) {
   document.getElementById("layerTray").classList.remove("hide");
   document.querySelector(".basemapTray").classList.add("hide");
 }
-// document.querySelector(".layersTrayBtn").addEventListener("mouseover", function (e) {
-//     var layerTooltip = document.createElement("div");
-//     layerTooltip.innerHTML = `<div id="layersTooltip" style="border-radius: 6px;padding:0.25rem 2rem 0.25rem 2rem;font-size:1.25rem;position:absolute;z-index:750;top:22.35%;left:2.5%;background-color:#337ab7;color:white;"><b>Layers</b></div>`;
-//     document.body.appendChild(layerTooltip);
 
-// });
-// document.querySelector(".layersTrayBtn").addEventListener("mouseout", function (e) {
-//     document.getElementById("layersTooltip").remove();
-// });
-// document.querySelector(".basemapTrayBtn").addEventListener("mouseover", function (e) {
-//     var basemapTooltip = document.createElement("div");
-//     basemapTooltip.innerHTML = `<div id="basemapTooltip" style="border-radius: 6px;padding:0.25rem 2rem 0.25rem 2rem;font-size:1.25rem;position:absolute;z-index:750;top:17.5%;left:2.5%;background-color:#337ab7;color:white;"><b>Base Maps</b></div>`;
-//     document.body.appendChild(basemapTooltip);
-// });
-// document.querySelector(".basemapTrayBtn").addEventListener("mouseout", function (e) {
-//     document.getElementById("basemapTooltip").remove();
-// });
-
-// document.querySelector(".splashBtn").addEventListener("mouseover", function (e) {
-//     var splashTooltip = document.createElement("div");
-//     splashTooltip.innerHTML = `<div id="splashTooltip" style="border-radius: 6px;padding:0.25rem 2rem 0.25rem 2rem;font-size:1.25rem;position:absolute;z-index:750;bottom:25%;left:2.5%;background-color:#337ab7;color:white;"><b>Queries</b></div>`;
-//     document.body.appendChild(splashTooltip);
-
-// });
-// document.querySelector(".splashBtn").addEventListener("mouseout", function (e) {
-//     document.getElementById("splashTooltip").remove();
-// });
 document.querySelector(".basemapTrayBtn").onclick = function (e) {
   document.querySelector(".basemapTray").classList.remove("hide");
   document.getElementById("layerTray").classList.add("hide");
 }
-// document.getElementById("closeLayers2").onclick = function (e) {
-//     document.querySelector(".layersTray").classList.add("hide");
-//     document.querySelector(".basemapTray").classList.add("hide");
-// }
+
 document.getElementById("closeBasemaps").onclick = function (e) {
   document.getElementById("layerTray").classList.add("hide");
   document.querySelector(".basemapTray").classList.add("hide");
 }
-// document.querySelector(".leaflet-control-container").addEventListener("mouseover", function (e) {
-//     document.querySelector(".layersTray").classList.add("hide");
-//     document.querySelector(".basemapTray").classList.add("hide");
-// });
-
-
-// map.createPane('labels');
-// map.getPane('labels').style.zIndex = 675;
-// map.createPane('labels2');
-// map.getPane('labels2').style.zIndex = 680;
-// const items = ["Choctaw", "Harper", "Latimer", "Love", "Pushmataha", "Trinity"];
-
-// function search() {
-//   var query = document.getElementById('search-box').value.toLowerCase();
-//   document.getElementById('results-list').innerHTML = '';
-//   for (var i = 0; i < items.length; i++) {
-//     var item = items[i];
-//     if (item.toLowerCase().indexOf(query) !== -1) {
-//       var resultItem = document.createElement('li');
-//       resultItem.textContent = item;
-//       resultItem.setAttribute('id', item);
-//       document.getElementById('results-list').appendChild(resultItem);
-//       (function (text) {
-//         document.querySelector('#' + text).addEventListener('click', function () {
-//           if (text == "Choctaw") {
-//             map.setView([34, -95.55], 11);
-//             document.getElementById("UtilDialog").classList.remove("show");
-//             setTimeout(function () {
-//               document.querySelector(".modal").style = "display:none";
-//             }, 750)
-
-//           } else if (text == "Harper") {
-//             map.setView([36.82959180923689, -99.63055335115429], 12);
-//             document.getElementById("UtilDialog").classList.remove("show");
-//             setTimeout(function () {
-//               document.querySelector(".modal").style = "display:none";
-//             }, 750)
-//           } else if (text == "Latimer") {
-//             map.setView([34.87231196866829, -95.25671380632579], 12);
-//             document.getElementById("UtilDialog").classList.remove("show");
-//             setTimeout(function () {
-//               document.querySelector(".modal").style = "display:none";
-//             }, 750)
-//           } else if (text == "Love") {
-//             map.setView([33.98610403918645, -97.22297071856153], 12);
-//             document.getElementById("UtilDialog").classList.remove("show");
-//             setTimeout(function () {
-//               document.querySelector(".modal").style = "display:none";
-//             }, 750)
-//           } else if (text == "Pushmataha") {
-//             map.setView([34.48173274712084, -95.30996464363149], 12);
-//             document.getElementById("UtilDialog").classList.remove("show");
-//             setTimeout(function () {
-//               document.querySelector(".modal").style = "display:none";
-//             }, 750)
-//           } else if (text == "Trinity") {
-//             map.setView([31.09792847231909, -95.11758881648315], 12);
-//             document.getElementById("UtilDialog").classList.remove("show");
-//             setTimeout(function () {
-//               document.querySelector(".modal").style = "display:none";
-//             }, 750)
-//           }
-//         });
-//       })(item);
-//     }
-//   }
-// }
-// document.getElementById('search-box').addEventListener('input', search);
-// const searchBox = document.getElementById("search-box");
-// const resultsList = document.getElementById("results-list");
-// searchBox.addEventListener("input", showResultsList);
-// document.addEventListener("click", hideResultsList);
-
-// function showResultsList() {
-//   resultsList.style.display = "block";
-// }
-
-// function hideResultsList(event) {
-//   if (event.target !== searchBox && !resultsList.contains(event.target)) {
-//     resultsList.style.display = "none";
-//   }
-// }
 function zoomToCounty() {
   var dropdown = document.getElementById('county-dropdown');
   var selectedCounty = dropdown.value;
@@ -277,7 +166,7 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
   }
 ).addTo(allLayers);
 const Geo_Referenced_FIRMs = L.esri.tiledMapLayer({
-  url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/geo_ref_firms05222023/MapServer',
+  url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/geo_ref_firms05232023/MapServer',
   opacity: 1
 }).addTo(allLayers);
 // Streams
@@ -309,6 +198,7 @@ var data = omnivore.csv('data.csv')
   .on('ready', function () {
     var layer = data.toGeoJSON();
     var filteredFeatures = [];
+    var filteredFeatures2 = [];
     var currentFilter = 'BLE_A_ZONE';
 
     function updateFilteredFeatures() {
@@ -317,13 +207,16 @@ var data = omnivore.csv('data.csv')
         if (currentFilter === 'CORELOGIC') {
           if (feature.properties.CORELOGIC == 1) {
             filteredFeatures.push(feature);
+
           }
+
         } else if (currentFilter === 'BLE_A_ZONE') {
           if (feature.properties.BLE_A_ZONE == 1) {
             filteredFeatures.push(feature);
           }
         }
       });
+
       var popHeatPoints = jsonPointsToArray(filteredFeatures);
       if (heat) {
         allLayers.removeLayer(heat);
@@ -333,18 +226,20 @@ var data = omnivore.csv('data.csv')
         minOpacity: 0.5,
         blur: 10
       }).addTo(allLayers);
+      // updateDataCount();
+    }
+
+    function updateFilteredFeatures2() {
+      filteredFeatures2.length = 0;
+      layer.features.forEach(function (feature) {
+        filteredFeatures2.push(feature);
+
+
+      });
       updateDataCount();
     }
     updateFilteredFeatures();
-    // var filterButton = document.getElementById('toggle-button');
-    // filterButton.addEventListener('click', function () {
-    //   if (currentFilter === 'CORELOGIC') {
-    //     currentFilter = 'BLE_A_ZONE';
-    //   } else if (currentFilter === 'BLE_A_ZONE') {
-    //     currentFilter = 'CORELOGIC';
-    //   }
-    //   updateFilteredFeatures();
-    // });
+    updateFilteredFeatures2();
 
     function jsonPointsToArray(features) {
       let featureGeometriesArray = [];
@@ -353,13 +248,14 @@ var data = omnivore.csv('data.csv')
       });
       return featureGeometriesArray;
     }
-
+    var tableControl;
     function updateDataCount() {
       var bounds = map.getBounds();
       var count1 = 0;
       var count2 = 0;
-
-      filteredFeatures.forEach(function (feature) {
+      var communityCounts = {};
+    
+      filteredFeatures2.forEach(function (feature) {
         if (bounds.contains(L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]))) {
           if (feature.properties.CORELOGIC == 1) {
             count1++;
@@ -367,39 +263,159 @@ var data = omnivore.csv('data.csv')
           if (feature.properties.BLE_A_ZONE == 1) {
             count2++;
           }
+          var community = feature.properties.POL_NAME2;
+    
+          if (!communityCounts[community]) {
+            communityCounts[community] = {
+              CORELOGIC: 0,
+              BLE_A_ZONE: 0
+            };
+          }
+    
+          if (feature.properties.CORELOGIC == 1) {
+            communityCounts[community].CORELOGIC++;
+          }
+          if (feature.properties.BLE_A_ZONE == 1) {
+            communityCounts[community].BLE_A_ZONE++;
+          }
         }
       });
-      var diff = count2 - count1;
-      dataCount = count2 + " | " + count1 + " | " + diff;
-      document.getElementById("value").innerHTML = dataCount;
-      // let svg = "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='#c0c0c0' d='M464 416h-416c-26.4 0-48-21.6-48-48v-256c0-26.4 21.6-48 48-48h128v32h-128v256h416v-256h-128v-32h128c26.4 0 48 21.6 48 48v256c0 26.4-21.6 48-48 48z'></path><path fill='#808080' d='M320 320h-128v-96h-96v128h-32v-192c0-17.6 14.4-32 32-32h192c17.6 0 32 14.4 32 32v192h-32z'></path><path fill='#fff' d='M288 288h-64v-64h-64v64h-32v-96c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16v96h-32z'></path></svg>";
-      // let svg2 = "";
-      var tableHTML = "<table><tr><th>BLE</th><th>Paper</th><th>Increase</th></tr>";
-      tableHTML += "<tr><td>" + count2.toLocaleString() + "</td><td>" + count1.toLocaleString() + "</td><td> + " + diff.toLocaleString() + "</td></tr></table>";
-      document.getElementById("value").innerHTML = tableHTML;
+    
+      var communityTotals = {};
+    
+      var communities = Object.keys(communityCounts);
+      communities.sort();
+      communities.forEach(function (community) {
+        communityTotals[community] = {
+          CORELOGIC: communityCounts[community].CORELOGIC,
+          BLE_A_ZONE: communityCounts[community].BLE_A_ZONE
+        };
+      });
+    
+      // Remove the existing table control from the map
+      if (tableControl) {
+        tableControl.remove();
+      }
+    
+      // Create a new TableControl with updated data
+      var TableControl = L.Control.extend({
+        onAdd: function (map) {
+          var container = L.DomUtil.create('div', 'structure-table-control');
+    
+          var tableHTML = "<span style='background-color:#005287;padding:0.5rem;font-size:0.95rem;'>Buildings in 1% annual chance floodplain | Source: FEMA/ORNL</span><table class='building-table'><tr><th>Geography (left-click to zoom-in/out)</th><th>BLE</th><th>Paper</th></tr>";
+          tableHTML += "<tr onclick='map.setView([31.6, -95.5], 6)'>";
+          tableHTML += "<td>ALL</td>";
+          tableHTML += "<td>" + count2.toLocaleString() + "</td>";
+          tableHTML += "<td>" + count1.toLocaleString() + "</td>";
+          tableHTML += "</tr>";
+          communities.forEach(function (community) {
+            tableHTML += "<tr class='community-row' onclick='fitBoundsToFeature(event)' data-community='" + community + "'>";
+            tableHTML += "<td>" + community + "</td>";
+            tableHTML += "<td>" + communityCounts[community].BLE_A_ZONE.toLocaleString() + "</td>";
+            tableHTML += "<td>" + communityCounts[community].CORELOGIC.toLocaleString() + "</td>";
+            tableHTML += "</tr>";
+          });
+          tableHTML += "</table>";
+    
+          container.innerHTML = tableHTML;
+    
+          L.DomEvent.disableClickPropagation(container);
+    
+          return container;
+        }
+      });
+      tableControl = new TableControl();
+      
+
+      if(tableControl_ == true){
+        tableControl.addTo(map);
+      } else if(tableControl_ == false){
+        map.removeControl(tableControl);
+      }
+      
+    
+      var communityRows = document.getElementsByClassName('community-row');
+      for (var i = 0; i < communityRows.length; i++) {
+        communityRows[i].addEventListener('click', flyToFeature);
+      }
+    }
+
+    function flyToFeature(event) {
+      var community = event.currentTarget.dataset.community;
+      if (community) {
+        var feature = filteredFeatures2.find(function (f) {
+          return f.properties.POL_NAME2 === community;
+        });
+
+        if (feature) {
+          // var latLng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
+          map.setView([feature.geometry.coordinates[1] +0.015,feature.geometry.coordinates[0]], 16);
+        }
+      }
     }
     map.on('moveend', function () {
       updateDataCount();
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     var input7 = document.querySelector('input[type="checkbox"][data-layer-id="structures"]');
     input7.onchange = function () {
       if (this.checked) {
         heat.addTo(allLayers);
-        document.getElementById("structureTable").classList.remove("hide");
+        tableControl_ = true;
+        tableControl.addTo(map);
+
       } else {
         heat.removeFrom(allLayers);
-        document.getElementById("structureTable").classList.add("hide");
+        tableControl_ = false;
+        map.removeControl(tableControl);
       }
     };
   });
-
-
-
-
-
-
-
-
 var input = document.querySelector('input[type="checkbox"][data-layer-id="extent1-02"]');
 input.onchange = function () {
   if (this.checked) {

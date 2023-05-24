@@ -524,3 +524,20 @@ tr:nth-child(even) {
   top: 0;
   font-weight:900;
 }
+.building-table{
+  color:black;
+  background-color:white;
+  font-size:1rem;
+}
+.building-table, th{
+  cursor:default;
+  color:black;
+}
+.building-table:nth-child(odd){
+  background-color:#696767;
+}
+.building-table tr:hover{
+  background-color: #009bca;
+  color:white;
+  cursor:pointer;
+}
