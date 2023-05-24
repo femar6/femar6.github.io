@@ -533,6 +533,9 @@ tr:nth-child(even) {
   cursor:default;
   color:black;
 }
+.building-table, tr{
+  font-size:0.8rem;
+}
 .building-table:nth-child(odd){
   background-color:#696767;
 }
