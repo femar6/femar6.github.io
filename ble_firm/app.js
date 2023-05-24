@@ -302,7 +302,7 @@ var data = omnivore.csv('data.csv')
         onAdd: function (map) {
           var container = L.DomUtil.create('div', 'structure-table-control');
     
-          var tableHTML = "<span style='background-color:#005287;padding:0.5rem;font-size:0.95rem;'>Buildings in 1% annual chance floodplain | Source: FEMA/ORNL</span><table class='building-table'><tr><th>Geography (left-click to zoom-in/out)</th><th>BLE</th><th>Paper</th></tr>";
+          var tableHTML = "<span style='background-color:#005287;padding:0.5rem;font-size:0.85rem;'>Buildings in 1% annual chance floodplain | Source: FEMA/ORNL</span><table class='building-table'><tr><th>Geography (left-click to zoom-in/out)</th><th>BLE</th><th>Paper</th></tr>";
           tableHTML += "<tr onclick='map.setView([31.6, -95.5], 6)'>";
           tableHTML += "<td>ALL</td>";
           tableHTML += "<td>" + count2.toLocaleString() + "</td>";
