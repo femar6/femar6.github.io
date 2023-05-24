@@ -356,52 +356,6 @@ var data = omnivore.csv('data.csv')
     map.on('moveend', function () {
       updateDataCount();
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     var input7 = document.querySelector('input[type="checkbox"][data-layer-id="structures"]');
     input7.onchange = function () {
       if (this.checked) {
@@ -479,14 +433,7 @@ cityLimits_.setOpacity = function (opacity) {
     opacity: opacity
   });
 };
-var input8 = document.querySelector('input[type="checkbox"][data-layer-id="DFIRM"]');
-input8.onchange = function () {
-  if (this.checked) {
-    nfhl.addTo(allLayers);
-  } else {
-    nfhl.removeFrom(allLayers);
-  }
-};
+
 
 function clearMap() {
   allLayers.clearLayers();
@@ -497,7 +444,6 @@ function clearMap() {
   input5.checked = false;
   input6.checked = false;
   input7.checked = false;
-  input8.checked = false;
 }
 
 function closeLayerTray() {
