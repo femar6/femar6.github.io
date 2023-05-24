@@ -543,4 +543,5 @@ tr:nth-child(even) {
   background-color: #009bca;
   color:white;
   cursor:pointer;
+  font-weight:900;
 }
