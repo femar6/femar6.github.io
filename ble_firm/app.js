@@ -349,7 +349,7 @@ var data = omnivore.csv('data.csv')
 
         if (feature) {
           // var latLng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
-          map.setView([feature.geometry.coordinates[1] +0.015,feature.geometry.coordinates[0]], 16);
+          map.setView([feature.geometry.coordinates[1] +0.015,feature.geometry.coordinates[0]], 15);
         }
       }
     }
