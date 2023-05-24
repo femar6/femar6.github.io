@@ -524,6 +524,7 @@ tr:nth-child(even) {
   top: 0;
   font-weight:900;
 }
+
 .building-table{
   color:black;
   background-color:white;
@@ -534,8 +535,14 @@ tr:nth-child(even) {
   color:black;
 }
 .building-table, tr{
-  font-size:0.7rem;
+  font-size:1.25rem;
 }
+.building-table td {
+  height: 10px;
+  font-size:1.25rem;
+  padding:0;
+}
+
 .building-table:nth-child(odd){
   background-color:#696767;
 }
