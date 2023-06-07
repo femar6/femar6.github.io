@@ -536,7 +536,7 @@ tr:nth-child(even) {
   color:black;
 }
 .building-table, tr{
-  font-size:0.95rem;
+  font-size:1rem;
 }
 .building-table td {
   height: 10px;
