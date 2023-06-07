@@ -80,6 +80,7 @@ document.getElementById("closeBasemaps").onclick = function (e) {
   document.getElementById("layerTray").classList.add("hide");
   document.querySelector(".basemapTray").classList.add("hide");
 }
+
 function zoomToCounty() {
   var dropdown = document.getElementById('county-dropdown');
   var selectedCounty = dropdown.value;
@@ -249,12 +250,13 @@ var data = omnivore.csv('data.csv')
       return featureGeometriesArray;
     }
     var tableControl;
+
     function updateDataCount() {
       var bounds = map.getBounds();
       var count1 = 0;
       var count2 = 0;
       var communityCounts = {};
-    
+
       filteredFeatures2.forEach(function (feature) {
         if (bounds.contains(L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]))) {
           if (feature.properties.CORELOGIC == 1) {
@@ -264,14 +266,14 @@ var data = omnivore.csv('data.csv')
             count2++;
           }
           var community = feature.properties.POL_NAME2;
-    
+
           if (!communityCounts[community]) {
             communityCounts[community] = {
               CORELOGIC: 0,
               BLE_A_ZONE: 0
             };
           }
-    
+
           if (feature.properties.CORELOGIC == 1) {
             communityCounts[community].CORELOGIC++;
           }
@@ -280,9 +282,9 @@ var data = omnivore.csv('data.csv')
           }
         }
       });
-    
+
       var communityTotals = {};
-    
+
       var communities = Object.keys(communityCounts);
       communities.sort();
       communities.forEach(function (community) {
@@ -291,17 +293,17 @@ var data = omnivore.csv('data.csv')
           BLE_A_ZONE: communityCounts[community].BLE_A_ZONE
         };
       });
-    
+
       // Remove the existing table control from the map
       if (tableControl) {
         tableControl.remove();
       }
-    
+
       // Create a new TableControl with updated data
       var TableControl = L.Control.extend({
         onAdd: function (map) {
           var container = L.DomUtil.create('div', 'structure-table-control');
-    
+
           var tableHTML = "<span style='background-color:#005287;padding:0.5rem;font-size:0.95rem;'>Buildings in 1% annual chance floodplain | Source: FEMA/ORNL</span><table class='building-table'><tr><th>Geography (left-click to zoom-in/out)</th><th>BLE</th><th>Paper</th></tr>";
           tableHTML += "<tr onclick='map.setView([31.6, -95.5], 6)'>";
           tableHTML += "<td><b>Region wide extent</b></td>";
@@ -316,24 +318,24 @@ var data = omnivore.csv('data.csv')
             tableHTML += "</tr>";
           });
           tableHTML += "</table>";
-    
+
           container.innerHTML = tableHTML;
-    
+
           L.DomEvent.disableClickPropagation(container);
-    
+
           return container;
         }
       });
       tableControl = new TableControl();
-      
 
-      if(tableControl_ == true){
+
+      if (tableControl_ == true) {
         tableControl.addTo(map);
-      } else if(tableControl_ == false){
+      } else if (tableControl_ == false) {
         map.removeControl(tableControl);
       }
-      
-    
+
+
       var communityRows = document.getElementsByClassName('community-row');
       for (var i = 0; i < communityRows.length; i++) {
         communityRows[i].addEventListener('click', flyToFeature);
@@ -349,27 +351,28 @@ var data = omnivore.csv('data.csv')
 
         if (feature) {
           // var latLng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
-          map.setView([feature.geometry.coordinates[1] +0.015,feature.geometry.coordinates[0]], 15);
+          map.setView([feature.geometry.coordinates[1] + 0.015, feature.geometry.coordinates[0]], 15);
         }
       }
     }
     map.on('moveend', function () {
       updateDataCount();
     });
-    var input7 = document.querySelector('input[type="checkbox"][data-layer-id="structures"]');
-    input7.onchange = function () {
-      if (this.checked) {
-        heat.addTo(allLayers);
-        tableControl_ = true;
-        tableControl.addTo(map);
 
-      } else {
-        heat.removeFrom(allLayers);
-        tableControl_ = false;
-        map.removeControl(tableControl);
-      }
-    };
-  });
+});
+var input7 = document.querySelector('input[type="checkbox"][data-layer-id="structures"]');
+input7.onchange = function () {
+  if (this.checked) {
+    heat.addTo(allLayers);
+    tableControl_ = true;
+    tableControl.addTo(map);
+
+  } else {
+    heat.removeFrom(allLayers);
+    tableControl_ = false;
+    map.removeControl(tableControl);
+  }
+};
 var input = document.querySelector('input[type="checkbox"][data-layer-id="extent1-02"]');
 input.onchange = function () {
   if (this.checked) {
@@ -433,7 +436,14 @@ cityLimits_.setOpacity = function (opacity) {
     opacity: opacity
   });
 };
-
+var input8 = document.querySelector('input[type="checkbox"][data-layer-id="DFIRM"]');
+input8.onchange = function () {
+  if (this.checked) {
+    nfhl.addTo(allLayers);
+  } else {
+    nfhl.removeFrom(allLayers);
+  }
+};
 
 function clearMap() {
   allLayers.clearLayers();
@@ -444,6 +454,7 @@ function clearMap() {
   input5.checked = false;
   input6.checked = false;
   input7.checked = false;
+  input8.checked = false;
 }
 
 function closeLayerTray() {

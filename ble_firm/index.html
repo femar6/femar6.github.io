@@ -261,7 +261,22 @@
                                 </div><span style="margin-left:2rem;">Source: <a style="border:none;padding:0;text-decoration:underline;" href="https://msc.fema.gov/portal/home" target="_blank">FEMA Flood Map Service Center</a></span>
                           
                             </div>
-                            <div class="border-bottom"></div>
+                            <div class="align-items-center d-flex justify-content-between my-1">
+                                <label class="flex-fill util-toggle" data-color="success" data-label="right"
+                                    data-radius="pill" data-size="sm"
+                                    data-bs-original-title="Add or remove this map layer">
+                                    <input type="checkbox" data-layer-id="DFIRM">
+                                    <span><span></span></span>
+                                    <span>Digital Flood Insurance Rate Map (DFIRM)</span>
+                                </label>
+                                <!-- <input type="range" class="form-range mx-1" style="width:4rem" min="0" step="0.01"
+                                    max="1" value="1" data-layer-id="Geo-Referenced-FIRMs"
+                                    onchange="Geo_Referenced_FIRMs.setOpacity(Number(this.value))"
+                                    oninput="Geo_Referenced_FIRMs.setOpacity(Number(this.value))"
+                                    aria-label="Adjust layer opacity" data-bs-original-title="Adjust layer opacity"> -->
+                            </div>                                
+                        </div><span style="margin-left:2rem;">Source: <a style="border:none;padding:0;text-decoration:underline;" href="https://www.fema.gov/flood-maps/national-flood-hazard-layer" target="_blank">National Flood Hazard Layer (NFHL)</a></span>
+                        <div class="border-bottom"></div>
                             <div class="align-items-center d-flex justify-content-between my-1">
                                 <label class="flex-fill util-toggle" data-color="success" data-label="right"
                                     data-radius="pill" data-size="sm"
