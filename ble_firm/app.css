@@ -536,11 +536,11 @@ tr:nth-child(even) {
   color:black;
 }
 .building-table, tr{
-  font-size:1.25rem;
+  font-size:0.95rem;
 }
 .building-table td {
   height: 10px;
-  font-size:1.25rem;
+  font-size:0.65rem;
   padding:0;
 }
 
