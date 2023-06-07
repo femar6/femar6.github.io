@@ -553,3 +553,6 @@ tr:nth-child(even) {
   cursor:pointer;
   font-weight:900;
 }
+.structure-table-control{
+ right:2%;
+}

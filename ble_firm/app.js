@@ -304,7 +304,7 @@ var data = omnivore.csv('data.csv')
     
           var tableHTML = "<span style='background-color:#005287;padding:0.5rem;font-size:1.25rem;'>Buildings in 1% annual chance floodplain | Source: FEMA/ORNL</span><table class='building-table'><tr><th>Geography (left-click to zoom-in/out)</th><th>BLE</th><th>Paper</th></tr>";
           tableHTML += "<tr onclick='map.setView([31.6, -95.5], 6)'>";
-          tableHTML += "<td>ALL</td>";
+          tableHTML += "<td><b>Region wide extent</b></td>";
           tableHTML += "<td>" + count2.toLocaleString() + "</td>";
           tableHTML += "<td>" + count1.toLocaleString() + "</td>";
           tableHTML += "</tr>";
