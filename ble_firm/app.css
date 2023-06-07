@@ -540,7 +540,7 @@ tr:nth-child(even) {
 }
 .building-table td {
   height: 10px;
-  font-size:0.65rem;
+  font-size:0.75rem;
   padding:0;
 }
 
