@@ -304,7 +304,7 @@ var data = omnivore.csv('data.csv')
         onAdd: function (map) {
           var container = L.DomUtil.create('div', 'structure-table-control');
 
-          var tableHTML = "<span style='background-color:#005287;padding:0.5rem;font-size:0.95rem;'>Buildings in 1% annual chance floodplain | Source: FEMA/ORNL</span><table class='building-table'><tr><th>Geography (left-click to zoom-in/out)</th><th>BLE</th><th>Paper</th></tr>";
+          var tableHTML = "<span style='background-color:#005287;padding:0.5rem;font-size:0.95rem;'>Buildings in 1% annual chance floodplain | Source: FEMA/ORNL<button onclick='tableClose_btn()' style='background-color:white;color:red;font-weight:900;border-radius:1rem;'>x</button></span><table class='building-table'><tr><th>Geography (left-click to zoom-in/out)</th><th>BLE</th><th>Paper</th></tr>";
           tableHTML += "<tr onclick='map.setView([31.6, -95.5], 6)'>";
           tableHTML += "<td><b>Region wide extent</b></td>";
           tableHTML += "<td>" + count2.toLocaleString() + "</td>";
@@ -358,21 +358,22 @@ var data = omnivore.csv('data.csv')
     map.on('moveend', function () {
       updateDataCount();
     });
+    var input7 = document.querySelector('input[type="checkbox"][data-layer-id="structures"]');
+    input7.onchange = function () {
+      if (this.checked) {
+        heat.addTo(allLayers);
+        tableControl_ = true;
+        tableControl.addTo(map);
+    
+      } else {
+        heat.removeFrom(allLayers);
+        tableControl_ = false;
+        map.removeControl(tableControl);
+      }
+    };
 
 });
-var input7 = document.querySelector('input[type="checkbox"][data-layer-id="structures"]');
-input7.onchange = function () {
-  if (this.checked) {
-    heat.addTo(allLayers);
-    tableControl_ = true;
-    tableControl.addTo(map);
 
-  } else {
-    heat.removeFrom(allLayers);
-    tableControl_ = false;
-    map.removeControl(tableControl);
-  }
-};
 var input = document.querySelector('input[type="checkbox"][data-layer-id="extent1-02"]');
 input.onchange = function () {
   if (this.checked) {
@@ -444,19 +445,35 @@ input8.onchange = function () {
     nfhl.removeFrom(allLayers);
   }
 };
+// function clearMap() {
+//   allLayers.clearLayers();
+//   map.removeControl(tableControl);
+//   input.checked = false;
+//   input2.checked = false;
+//   input3.checked = false;
+//   input4.checked = false;
+//   input5.checked = false;
+//   input6.checked = false;
+//   input7.checked = false;
+//   input8.checked = false;
+// }
 
-function clearMap() {
-  allLayers.clearLayers();
-  input.checked = false;
-  input2.checked = false;
-  input3.checked = false;
-  input4.checked = false;
-  input5.checked = false;
-  input6.checked = false;
-  input7.checked = false;
-  input8.checked = false;
-}
 
 function closeLayerTray() {
   document.querySelector(".card").classList.add("hide");
 }
+
+
+
+function tableClose_btn(){
+  var table = document.querySelector('.building-table');
+  
+  if (table.style.visibility === 'hidden') {
+    table.style.visibility = 'visible'; // Show the table
+  } else {
+    table.style.visibility = 'hidden'; // Hide the table
+  }
+}
+  
+
+

@@ -25,7 +25,7 @@ basemap1_.onclick = function () {
 		basemap8_.classList.remove("basemapSelected");
 		basemap9_.classList.remove("basemapSelected");
 	}
-	huc8Layer.setStyle(style1);
+
 }
 var basemap2_ = document.getElementById("basemap2");
 basemap2_.onclick = function () {
@@ -42,7 +42,7 @@ basemap2_.onclick = function () {
 		basemap8_.classList.remove("basemapSelected");
 		basemap9_.classList.remove("basemapSelected");
 	}
-    huc8Layer.setStyle(style2);
+
 }
 var basemap3_ = document.getElementById("basemap3");
 basemap3_.onclick = function () {
@@ -60,7 +60,7 @@ basemap3_.onclick = function () {
 		basemap8_.classList.remove("basemapSelected");
 		basemap9_.classList.remove("basemapSelected");
 	}
-	huc8Layer.setStyle(style2);
+
 }
 var basemap4_ = document.getElementById("basemap4");
 basemap4_.onclick = function () {
@@ -78,7 +78,7 @@ basemap4_.onclick = function () {
 		basemap8_.classList.remove("basemapSelected");
 		basemap9_.classList.remove("basemapSelected");
 	}
-	huc8Layer.setStyle(style1);
+
 }
 var basemap5_ = document.getElementById("basemap5");
 basemap5_.onclick = function () {
@@ -95,7 +95,7 @@ basemap5_.onclick = function () {
 		basemap8_.classList.remove("basemapSelected");
 		basemap9_.classList.remove("basemapSelected");
 	}
-	huc8Layer.setStyle(style2);
+
 }
 var basemap6_ = document.getElementById("basemap6");
 basemap6_.onclick = function () {
@@ -112,7 +112,7 @@ basemap6_.onclick = function () {
 		basemap8_.classList.remove("basemapSelected");
 		basemap9_.classList.remove("basemapSelected");
 	}
-	huc8Layer.setStyle(style1);
+
 }
 var basemap7_ = document.getElementById("basemap7");
 basemap7_.onclick = function () {
@@ -129,7 +129,7 @@ basemap7_.onclick = function () {
 		basemap8_.classList.remove("basemapSelected");
 		basemap9_.classList.remove("basemapSelected");
 	}
-	huc8Layer.setStyle(style2);
+
 }
 var basemap8_ = document.getElementById("basemap8");
 basemap8_.onclick = function () {
@@ -163,5 +163,5 @@ basemap9_.onclick = function () {
 		basemap8_.classList.remove("basemapSelected");
 		basemap9_.classList.add("basemapSelected");
 	}
-	huc8Layer.setStyle(style2);
+
 }
