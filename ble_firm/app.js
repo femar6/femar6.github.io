@@ -167,9 +167,13 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
   }
 ).addTo(allLayers);
 const Geo_Referenced_FIRMs = L.esri.tiledMapLayer({
-  url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/geo_ref_firms05232023/MapServer',
+  // url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/geo_ref_firms05232023/MapServer',
+  url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/geo_ref_firms06152023/MapServer',
+
   opacity: 1
 }).addTo(allLayers);
+
+
 // Streams
 const eff_scop_stream = L.esri.Vector.vectorTileLayer(
   "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines05222023/VectorTileServer"
