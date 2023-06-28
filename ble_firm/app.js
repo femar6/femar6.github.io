@@ -153,7 +153,7 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
           },
           "filter": ["==", "_symbol", 1]
         }, {
-          "id": "BLE_SFHA6272023/<all other values>",
+          "id": "BLE_SFHA06272023/<all other values>",
           "type": "fill",
           "source": "my-vector-tiles",
           "source-layer": "BLE_SFHA6272023",
