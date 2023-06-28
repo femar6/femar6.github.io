@@ -526,33 +526,65 @@ tr:nth-child(even) {
   font-weight:900;
 }
 
-.building-table{
+.building-table-com{
   color:black;
   background-color:white;
   font-size:0.8rem;
 }
-.building-table, th{
+.building-table-com, th{
   cursor:default;
   color:black;
 }
-.building-table, tr{
+.building-table-com, tr{
   font-size:1rem;
 }
-.building-table td {
+.building-table-com td {
   height: 10px;
   font-size:0.85rem;
   padding:0;
 }
 
-.building-table:nth-child(odd){
+.building-table-com:nth-child(odd){
   background-color:#696767;
 }
-.building-table tr:hover{
+.building-table-com tr:hover{
   background-color: #009bca;
   color:white;
   cursor:pointer;
   font-weight:900;
 }
-.structure-table-control{
+
+.building-table-county{
+  color:black;
+  background-color:white;
+  font-size:0.8rem;
+}
+.building-table-county, th{
+  cursor:default;
+  color:black;
+}
+.building-table-county, tr{
+  font-size:1rem;
+}
+.building-table-county td {
+  height: 10px;
+  font-size:0.85rem;
+  padding:0;
+}
+
+.building-table-county:nth-child(odd){
+  background-color:#696767;
+}
+.building-table-county tr:hover{
+  background-color: #009bca;
+  color:white;
+  cursor:pointer;
+  font-weight:900;
+}
+
+.structure-table-cnty{
  right:2%;
 }
+.structure-table-com{
+  right:2%;
+ }

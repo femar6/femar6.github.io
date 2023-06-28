@@ -7,8 +7,8 @@ const map = L.map('map', {
   minZoom: 5
 }).setView([31.6, -95.5], 6);
 map.setMaxBounds(map.getBounds().pad(0.2));
-let tableControl_ = true;
-
+let communityTableControl_ = false;
+let countyTableControl_ = true;
 const baseMapLayers = L.layerGroup([]).addTo(map);
 
 
@@ -39,17 +39,17 @@ var USGS_USImageryTopo = L.tileLayer('https://basemap.nationalmap.gov/arcgis/res
 });
 const OPNVKarte = L.tileLayer('https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png', {
   maxZoom: 18,
-  attribution: 'Map <a href="https://memomaps.de/">memomaps.de</a> <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  attribution: 'Map <a href="https://memomaps.de/">memomaps.de</a> <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 });
 const Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
-  attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+  attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
 });
 map.createPane('labels');
 map.getPane('labels').style.zIndex = 675;
 map.getPane('labels').style.pointerEvents = 'none';
 
 const Stamen_TerrainLabels = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-labels/{z}/{x}/{y}{r}.{ext}', {
-  attribution: 'Map tiles by <a href="https://stamen.com">Stamen Design</a>, <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   subdomains: 'abcd',
   minZoom: 0,
   maxZoom: 18,
@@ -58,7 +58,7 @@ const Stamen_TerrainLabels = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.
 });
 const OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png');
 const baseMaps = document.createElement("div");
-baseMaps.innerHTML = `<div id='baseMapsid' class='basemapsContainer basemapTray hide'><div style='width:100%;height:100%;background-color:rgb(255, 255, 255);padding:0.3rem;'><p style='margin:0px 0px 5px 0px;'><b>Select a base map:</b></p><hr><div id='basemap1' class='basemaps basemapSelected'><img class='basemapImg' src='https://mt1.google.com/vt/lyrs=s,h&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Imagery</div></div><div id='basemap2' class='basemaps'><img class='basemapImg' src='https://mt1.google.com/vt/lyrs=p&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Terrain</div></div><div id='basemap3' class='basemaps'><img class='basemapImg' src='https://mt0.google.com/vt/lyrs=m&hl=en&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Roads</div></div><br><div id='basemap4' class='basemaps'><img class='basemapImg' src='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/105398/60373'><div class='basemapLabel'>ESRI Imagery</div></div><div id='basemap5' class='basemaps'><img class='basemapImg' src='https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/16/26349/15093'><div class='basemapLabel'>USGS Topo</div></div><div id='basemap6' class='basemaps'><img class='basemapImg' src='https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/16/26349/15093'><div class='basemapLabel'>USGS Imagery</div></div><br><div id='basemap7' class='basemaps'><img class='basemapImg' src='https://tileserver.memomaps.de/tilegen/17/30186/52699.png'><div class='basemapLabel'>ÖPNVKarte</div></div><div id='basemap8' class='basemaps'><img class='basemapImg' src='https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/17/30186/52699.png'><div class='basemapLabel'>Stadia Dark</div></div><div id='basemap9' class='basemaps'><img class='basemapImg' src='https://c.tile.opentopomap.org/15/7546/13174.png'><div class='basemapLabel'>OSM OpenTopo</div></div><hr><button id='closeBasemaps' class='baseMap-layersClose'>X</button></div></div></div>`;
+baseMaps.innerHTML = `<div id='baseMapsid' class='basemapsContainer basemapTray hide'><div style='width:100%;height:100%;background-color:rgb(255, 255, 255);padding:0.3rem;'><p style='margin:0px 0px 5px 0px;'><b>Select a base map:</b></p><hr><div id='basemap1' class='basemaps basemapSelected'><img class='basemapImg' src='http://mt1.google.com/vt/lyrs=s,h&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Imagery</div></div><div id='basemap2' class='basemaps'><img class='basemapImg' src='http://mt1.google.com/vt/lyrs=p&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Terrain</div></div><div id='basemap3' class='basemaps'><img class='basemapImg' src='http://mt0.google.com/vt/lyrs=m&hl=en&x=30186&y=52699&z=17'><div class='basemapLabel'>Google Roads</div></div><br><div id='basemap4' class='basemaps'><img class='basemapImg' src='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/105398/60373'><div class='basemapLabel'>ESRI Imagery</div></div><div id='basemap5' class='basemaps'><img class='basemapImg' src='https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/16/26349/15093'><div class='basemapLabel'>USGS Topo</div></div><div id='basemap6' class='basemaps'><img class='basemapImg' src='https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/16/26349/15093'><div class='basemapLabel'>USGS Imagery</div></div><br><div id='basemap7' class='basemaps'><img class='basemapImg' src='https://tileserver.memomaps.de/tilegen/17/30186/52699.png'><div class='basemapLabel'>ÖPNVKarte</div></div><div id='basemap8' class='basemaps'><img class='basemapImg' src='https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/17/30186/52699.png'><div class='basemapLabel'>Stadia Dark</div></div><div id='basemap9' class='basemaps'><img class='basemapImg' src='https://c.tile.opentopomap.org/15/7546/13174.png'><div class='basemapLabel'>OSM OpenTopo</div></div><hr><button id='closeBasemaps' class='baseMap-layersClose'>X</button></div></div></div>`;
 document.body.appendChild(baseMaps);
 
 
@@ -205,6 +205,8 @@ var data = omnivore.csv('data.csv')
     var filteredFeatures = [];
     var filteredFeatures2 = [];
     var currentFilter = 'BLE_A_ZONE';
+    var communityTableControl;
+    var countyTableControl;
 
     function updateFilteredFeatures() {
       filteredFeatures.length = 0;
@@ -238,8 +240,6 @@ var data = omnivore.csv('data.csv')
       filteredFeatures2.length = 0;
       layer.features.forEach(function (feature) {
         filteredFeatures2.push(feature);
-
-
       });
       updateDataCount();
     }
@@ -253,26 +253,38 @@ var data = omnivore.csv('data.csv')
       });
       return featureGeometriesArray;
     }
-    var tableControl;
+
 
     function updateDataCount() {
       var bounds = map.getBounds();
-      var count1 = 0;
-      var count2 = 0;
+      var communityCount1 = 0;
+      var communityCount2 = 0;
       var communityCounts = {};
+      var countyCount1 = 0;
+      var countyCount2 = 0;
+      var countyCounts = {};
 
       filteredFeatures2.forEach(function (feature) {
         if (bounds.contains(L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]))) {
           if (feature.properties.CORELOGIC == 1) {
-            count1++;
+            communityCount1++;
+            countyCount1++;
           }
           if (feature.properties.BLE_A_ZONE == 1) {
-            count2++;
+            communityCount2++;
+            countyCount2++;
           }
           var community = feature.properties.POL_NAME2;
+          var county = feature.properties.CNTY;
 
           if (!communityCounts[community]) {
             communityCounts[community] = {
+              CORELOGIC: 0,
+              BLE_A_ZONE: 0
+            };
+          }
+          if (!countyCounts[county]) {
+            countyCounts[county] = {
               CORELOGIC: 0,
               BLE_A_ZONE: 0
             };
@@ -284,11 +296,17 @@ var data = omnivore.csv('data.csv')
           if (feature.properties.BLE_A_ZONE == 1) {
             communityCounts[community].BLE_A_ZONE++;
           }
+          if (feature.properties.CORELOGIC == 1) {
+            countyCounts[county].CORELOGIC++;
+          }
+          if (feature.properties.BLE_A_ZONE == 1) {
+            countyCounts[county].BLE_A_ZONE++;
+          }
         }
       });
 
       var communityTotals = {};
-
+      var countyTotals = {};
       var communities = Object.keys(communityCounts);
       communities.sort();
       communities.forEach(function (community) {
@@ -297,22 +315,28 @@ var data = omnivore.csv('data.csv')
           BLE_A_ZONE: communityCounts[community].BLE_A_ZONE
         };
       });
+      var county = Object.keys(countyCounts);
+      county.forEach(function (county) {
+        countyTotals[county] = {
+          CORELOGIC: countyCounts[county].CORELOGIC,
+          BLE_A_ZONE: countyCounts[county].BLE_A_ZONE
+        };
+      });
 
-      // Remove the existing table control from the map
-      if (tableControl) {
-        tableControl.remove();
+
+
+
+      if (communityTableControl) {
+        communityTableControl.remove();
       }
-
-      // Create a new TableControl with updated data
-      var TableControl = L.Control.extend({
+      var CommunityTableControl = L.Control.extend({
         onAdd: function (map) {
-          var container = L.DomUtil.create('div', 'structure-table-control');
-
-          var tableHTML = "<span style='background-color:#005287;padding:0.5rem;font-size:0.95rem;'>Buildings in 1% annual chance floodplain | Source: FEMA/ORNL<button onclick='tableClose_btn()' style='background-color:white;color:red;font-weight:900;border-radius:1rem;'>x</button></span><table class='building-table'><tr><th>Geography (left-click to zoom-in/out)</th><th>BLE</th><th>Paper</th></tr>";
+          var container = L.DomUtil.create('div', 'structure-table-com');
+          var tableHTML = "<span style='background-color:#005287;padding:0.5rem;font-size:0.95rem;'><button class='testCom'>Community</button>Buildings in 1% annual chance floodplain | Source: FEMA/ORNL<button onclick='tableCloseCom_btn()' style='background-color:white;color:red;font-weight:900;border-radius:1rem;'>x</button></span><table class='building-table-com'><tr><th>Geography (left-click to zoom-in/out)<br></th><th>BLE</th><th>Paper</th></tr>";
           tableHTML += "<tr onclick='map.setView([31.6, -95.5], 6)'>";
           tableHTML += "<td><b>Region wide extent</b></td>";
-          tableHTML += "<td>" + count2.toLocaleString() + "</td>";
-          tableHTML += "<td>" + count1.toLocaleString() + "</td>";
+          tableHTML += "<td>" + communityCount2.toLocaleString() + "</td>";
+          tableHTML += "<td>" + communityCount1.toLocaleString() + "</td>";
           tableHTML += "</tr>";
           communities.forEach(function (community) {
             tableHTML += "<tr class='community-row' onclick='fitBoundsToFeature(event)' data-community='" + community + "'>";
@@ -322,29 +346,87 @@ var data = omnivore.csv('data.csv')
             tableHTML += "</tr>";
           });
           tableHTML += "</table>";
-
           container.innerHTML = tableHTML;
-
           L.DomEvent.disableClickPropagation(container);
-
           return container;
         }
       });
-      tableControl = new TableControl();
+      communityTableControl = new CommunityTableControl();
 
-
-      if (tableControl_ == true) {
-        tableControl.addTo(map);
-      } else if (tableControl_ == false) {
-        map.removeControl(tableControl);
+      if (countyTableControl) {
+        countyTableControl.remove();
       }
+      var CountyTableControl = L.Control.extend({
+        onAdd: function (map) {
+          var container = L.DomUtil.create('div', 'structure-table-cnty');
+          var tableHTML = "<span style='background-color:#005287;padding:0.5rem;font-size:0.95rem;'><button class='testCnty'>County</button>Buildings in 1% annual chance floodplain | Source: FEMA/ORNL<button onclick='tableCloseCnty_btn()' style='background-color:white;color:red;font-weight:900;border-radius:1rem;'>x</button></span><table class='building-table-county'><tr><th>Geography (left-click to zoom-in/out)<br></th><th>BLE</th><th>Paper</th></tr>";
+          tableHTML += "<tr onclick='map.setView([31.6, -95.5], 6)'>";
+          tableHTML += "<td><b>Region wide extent</b></td>";
+          tableHTML += "<td>" + countyCount2.toLocaleString() + "</td>";
+          tableHTML += "<td>" + countyCount1.toLocaleString() + "</td>";
+          tableHTML += "</tr>";
+          county.forEach(function (county) {
+            tableHTML += "<tr class='community-row' onclick='fitBoundsToFeature(event)' data-county='" + county + "'>";
+            tableHTML += "<td>" + county + "</td>";
+            tableHTML += "<td>" + countyCounts[county].BLE_A_ZONE.toLocaleString() + "</td>";
+            tableHTML += "<td>" + countyCounts[county].CORELOGIC.toLocaleString() + "</td>";
+            tableHTML += "</tr>";
+          });
+          tableHTML += "</table>";
+          container.innerHTML = tableHTML;
+          L.DomEvent.disableClickPropagation(container);
+          return container;
+        }      
+      });
+      countyTableControl = new CountyTableControl();
+
 
 
       var communityRows = document.getElementsByClassName('community-row');
       for (var i = 0; i < communityRows.length; i++) {
         communityRows[i].addEventListener('click', flyToFeature);
       }
-    }
+
+
+
+
+
+      countyTableControl.addTo(map);
+      communityTableControl.addTo(map);
+      // alert("County " + countyTableControl_)
+      // alert("Community " + communityTableControl_)
+      if(countyTableControl_ == true){
+        document.querySelector(".structure-table-com").classList.add("hide");
+        document.querySelector(".structure-table-cnty").classList.remove("hide");
+      }
+      if(communityTableControl_ == true){
+        document.querySelector(".structure-table-com").classList.remove("hide");
+        document.querySelector(".structure-table-cnty").classList.add("hide");
+      }
+
+      document.querySelector(".testCnty").onclick = function(){
+          document.querySelector(".structure-table-com").classList.remove("hide");
+          document.querySelector(".structure-table-cnty").classList.add("hide");
+          communityTableControl_ = true;
+          countyTableControl_ = false;
+      }
+      document.querySelector(".testCom").onclick = function(){
+          document.querySelector(".structure-table-com").classList.add("hide");
+          document.querySelector(".structure-table-cnty").classList.remove("hide");
+          communityTableControl_ = false;
+          countyTableControl_ = true;
+      }
+
+    } /// updateDataCount
+    
+    map.on('moveend', function () {
+      updateDataCount();
+      if(tableHidden == true){
+        document.querySelector(".structure-table-com").classList.add("hide");
+        document.querySelector(".structure-table-cnty").classList.add("hide");
+      }
+    });
+
 
     function flyToFeature(event) {
       var community = event.currentTarget.dataset.community;
@@ -352,31 +434,47 @@ var data = omnivore.csv('data.csv')
         var feature = filteredFeatures2.find(function (f) {
           return f.properties.POL_NAME2 === community;
         });
-
         if (feature) {
-          // var latLng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
+          map.setView([feature.geometry.coordinates[1] + 0.015, feature.geometry.coordinates[0]], 15);
+        }
+      }
+      var county = event.currentTarget.dataset.county;
+      if (county) {
+        var feature = filteredFeatures2.find(function (f) {
+          return f.properties.CNTY === county;
+        });
+        if (feature) {
           map.setView([feature.geometry.coordinates[1] + 0.015, feature.geometry.coordinates[0]], 15);
         }
       }
     }
-    map.on('moveend', function () {
-      updateDataCount();
-    });
+
+    let tableHidden = false;
+
     var input7 = document.querySelector('input[type="checkbox"][data-layer-id="structures"]');
     input7.onchange = function () {
       if (this.checked) {
         heat.addTo(allLayers);
-        tableControl_ = true;
-        tableControl.addTo(map);
-    
+        if (countyTableControl_ == true) {
+          document.querySelector(".structure-table-com").classList.add("hide");
+          document.querySelector(".structure-table-cnty").classList.remove("hide");
+        } else if (countyTableControl_ == false) {
+          document.querySelector(".structure-table-com").classList.remove("hide");
+          document.querySelector(".structure-table-cnty").classList.add("hide");
+
+        }
+        tableHidden = false;
       } else {
         heat.removeFrom(allLayers);
-        tableControl_ = false;
-        map.removeControl(tableControl);
+
+        document.querySelector(".structure-table-com").classList.add("hide");
+        document.querySelector(".structure-table-cnty").classList.add("hide");
+        tableHidden = true;
+
       }
     };
 
-});
+  });
 
 var input = document.querySelector('input[type="checkbox"][data-layer-id="extent1-02"]');
 input.onchange = function () {
@@ -449,35 +547,27 @@ input8.onchange = function () {
     nfhl.removeFrom(allLayers);
   }
 };
-// function clearMap() {
-//   allLayers.clearLayers();
-//   map.removeControl(tableControl);
-//   input.checked = false;
-//   input2.checked = false;
-//   input3.checked = false;
-//   input4.checked = false;
-//   input5.checked = false;
-//   input6.checked = false;
-//   input7.checked = false;
-//   input8.checked = false;
-// }
-
 
 function closeLayerTray() {
   document.querySelector(".card").classList.add("hide");
 }
 
+function tableCloseCom_btn() {
+  var table = document.querySelector('.building-table-com');
 
-
-function tableClose_btn(){
-  var table = document.querySelector('.building-table');
-  
   if (table.style.visibility === 'hidden') {
     table.style.visibility = 'visible'; // Show the table
   } else {
     table.style.visibility = 'hidden'; // Hide the table
   }
 }
-  
 
+function tableCloseCnty_btn() {
+  var table = document.querySelector('.building-table-county');
 
+  if (table.style.visibility === 'hidden') {
+    table.style.visibility = 'visible'; // Show the table
+  } else {
+    table.style.visibility = 'hidden'; // Hide the table
+  }
+}

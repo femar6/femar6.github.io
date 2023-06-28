@@ -141,7 +141,7 @@ BLE_A_ZONE,CORELOGIC,CNTY,POL_NAME2,lat,lng,state
 1,0,Love,"Unincorporated Areas, Love",33.926016,-97.55305,OK
 1,0,Love,"Unincorporated Areas, Love",33.926118,-97.552261,OK
 1,0,Love,"Unincorporated Areas, Love",33.922112,-97.549562,OK
-1,0,Jefferson,"Unincorporated Areas, Love",33.991159,-97.548954,OK
+1,0,Love,"Unincorporated Areas, Love",33.991159,-97.548954,OK
 1,0,Love,"Unincorporated Areas, Love",33.920029,-97.548919,OK
 1,0,Love,"Unincorporated Areas, Love",33.924405,-97.547966,OK
 1,0,Love,"Unincorporated Areas, Love",34.035751,-97.534793,OK
@@ -643,7 +643,7 @@ BLE_A_ZONE,CORELOGIC,CNTY,POL_NAME2,lat,lng,state
 1,0,Freestone,"Unincorporated Areas, Freestone",31.728528,-96.194583,TX
 1,0,Freestone,"Unincorporated Areas, Freestone",31.726276,-96.191912,TX
 1,0,Freestone,"Unincorporated Areas, Freestone",31.946797,-96.18951,TX
-1,0,Navarro,"Unincorporated Areas, Freestone",31.947764,-96.188555,TX
+1,0,Freestone,"Unincorporated Areas, Freestone",31.947764,-96.188555,TX
 1,0,Freestone,"Unincorporated Areas, Freestone",31.947206,-96.188409,TX
 1,1,Freestone,"Unincorporated Areas, Freestone",31.637631,-96.188241,TX
 1,0,Freestone,"Unincorporated Areas, Freestone",31.947244,-96.188085,TX
@@ -1071,7 +1071,7 @@ BLE_A_ZONE,CORELOGIC,CNTY,POL_NAME2,lat,lng,state
 1,1,Freestone,"Unincorporated Areas, Freestone",31.589892,-95.851789,TX
 0,1,Freestone,"Unincorporated Areas, Freestone",31.674834,-95.851774,TX
 0,1,Freestone,"Unincorporated Areas, Freestone",31.67463,-95.851669,TX
-1,0,Bryan,Choctaw Nation of Oklahoma,33.88134,-95.851484,OK
+1,0,Choctaw,Choctaw Nation of Oklahoma,33.88134,-95.851484,OK
 0,1,Choctaw,Choctaw Nation of Oklahoma,34.149924,-95.850429,OK
 1,1,Choctaw,Choctaw Nation of Oklahoma,34.140628,-95.849959,OK
 1,1,Choctaw,Choctaw Nation of Oklahoma,34.144617,-95.848947,OK
@@ -5262,7 +5262,7 @@ BLE_A_ZONE,CORELOGIC,CNTY,POL_NAME2,lat,lng,state
 0,1,San Augustine,"Unincorporated Areas, San Augustine",31.647735,-94.387078,TX
 0,1,San Augustine,"Unincorporated Areas, San Augustine",31.651174,-94.383221,TX
 0,1,San Augustine,"Unincorporated Areas, San Augustine",31.651115,-94.382899,TX
-1,1,Nacogdoches,"Unincorporated Areas, San Augustine",31.627004,-94.366562,TX
+1,1,San Augustine,"Unincorporated Areas, San Augustine",31.627004,-94.366562,TX
 1,0,Shelby,"Unincorporated Areas, Shelby",31.709331,-94.35284,TX
 1,0,Shelby,"Unincorporated Areas, Shelby",31.712612,-94.348955,TX
 1,0,Shelby,"Unincorporated Areas, Shelby",31.709245,-94.348877,TX
@@ -5378,7 +5378,7 @@ BLE_A_ZONE,CORELOGIC,CNTY,POL_NAME2,lat,lng,state
 0,1,San Augustine,"Unincorporated Areas, San Augustine",31.383094,-94.311915,TX
 0,1,San Augustine,"Unincorporated Areas, San Augustine",31.383062,-94.311749,TX
 0,1,San Augustine,"Unincorporated Areas, San Augustine",31.296959,-94.311273,TX
-0,1,Nacogdoches,"Unincorporated Areas, San Augustine",31.494531,-94.311161,TX
+0,1,San Augustine,"Unincorporated Areas, San Augustine",31.494531,-94.311161,TX
 0,1,San Augustine,"Unincorporated Areas, San Augustine",31.459966,-94.310735,TX
 0,1,San Augustine,"Unincorporated Areas, San Augustine",31.29817,-94.310679,TX
 0,1,San Augustine,"Unincorporated Areas, San Augustine",31.250578,-94.310301,TX
