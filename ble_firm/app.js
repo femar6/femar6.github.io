@@ -129,8 +129,7 @@ function closeModal() {
 }
 const allLayers = L.layerGroup().addTo(map);
 const bleLayer = L.esri.Vector.vectorTileLayer(
-  // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLEtoFIRMSFHA/VectorTileServer", {
-    "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_SFHA6272023/VectorTileServer",{
+  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_SFHA6272023/VectorTileServer", {
     style: (feature) => {
       return {
         "version": 8,
@@ -153,10 +152,10 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
           },
           "filter": ["==", "_symbol", 1]
         }, {
-          "id": "BLE_SFHA06272023/<all other values>",
+          "id": "BLE_SFHA6272023/<all other values>",
           "type": "fill",
           "source": "my-vector-tiles",
-          "source-layer": "BLE_SFHA6272023",
+          "source-layer": "BLE_SFHA06272023",
           "paint": {
             "fill-color": "#00C5FF",
             "fill-opacity": 0.5
