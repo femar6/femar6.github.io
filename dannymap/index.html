@@ -1,0 +1,275 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>D3 Map with CSV Data</title>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+    body,
+    html {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      padding: 0.25rem;
+    }
+
+    h1 {}
+
+    #map {
+      margin-top: 1rem;
+      margin-left: 1rem;
+      width: 50%;
+      height: 50%;
+      border-color: black;
+      border-style: solid;
+      border-width: 0.05rem;
+      float: left;
+    }
+
+    #data-table {
+      float: left;
+    }
+
+    #chart {
+      float: left;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Marketing Operations Analyst I Animal Nutrition & Health, North America - Heifers vs. Dairy Totals (CONUS)</h1>
+  <div id="map"></div>
+  <div>
+    <label><input type="radio" name="view" value="Heifers" checked> Heifers</label>
+    <label><input type="radio" name="view" value="Dairy"> Dairy</label>
+  </div>
+  <table id="data-table">
+    <thead>
+      <tr>
+        <th>State</th>
+        <th>Heifers</th>
+        <th>Dairy</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <div id="chart"></div>
+
+  <script>
+    const mapView = document.getElementById("map");
+    // const width = window.innerWidth;
+    // const height = window.innerHeight;
+    const width = mapView.clientWidth;
+    const height = mapView.clientHeight;
+    const svg = d3.select("#map")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+    // const projection = d3.geoMercator()
+    const projection = d3.geoAlbers()
+      .center([0, 36]) // Adjust this to center the map on your desired coordinates
+      .scale(1250) // Adjust this to scale the map size
+      .translate([width / 2, height / 2]);
+    const path = d3.geoPath().projection(projection);
+    d3.csv("addresses_with_coordinates.csv").then(function (data) {
+
+
+      const markers = svg.selectAll("circle")
+        .data(data)
+        .enter()
+        .append("circle")
+        .attr("r", 5) // Adjust this to change the marker size
+        .attr("fill", "steelblue")
+        .attr("stroke", "black") // Add the stroke attribute for the black border
+        .attr("stroke-width", 1); // Adjust the stroke width as desired
+
+      function updateView() {
+        const view = document.querySelector('input[name="view"]:checked').value;
+
+        markers.attr("cx", function (d) {
+            return projection([d.Longitude, d.Latitude])[0];
+          })
+          .attr("cy", function (d) {
+            return projection([d.Longitude, d.Latitude])[1];
+          })
+          .attr("r", function (d) {
+            if (view === "Heifers") {
+              return d.Heifers / 2500;
+            } else if (view === "Dairy") {
+              return d.Dairy / 2500;
+            }
+          })
+          .attr("fill", function (d) {
+            if (view === "Heifers") {
+              return "steelblue";
+            } else if (view === "Dairy") {
+              return "orange";
+            }
+          });
+
+        // Update the table
+        const tableBody = d3.select("#data-table tbody");
+        tableBody.html(""); // Clear the existing table data
+
+        const stateData = d3.rollups(
+          data,
+          (group) => ({
+            Heifers: d3.sum(group, (d) => d.Heifers),
+            Dairy: d3.sum(group, (d) => d.Dairy),
+          }),
+          (d) => d.StateCode // Use "StateCode" instead of "State"
+        );
+
+        const filteredData = stateData.filter((d) => {
+          if (view === "Heifers") {
+            return d[1].Heifers > 0;
+          } else if (view === "Dairy") {
+            return d[1].Dairy > 0;
+          }
+        });
+
+        filteredData.forEach((d) => {
+          const row = tableBody.append("tr");
+          row.append("td").text(d[0]);
+          row.append("td").text(d[1].Heifers.toLocaleString()); // Add .toLocaleString()
+          row.append("td").text(d[1].Dairy.toLocaleString()); // Add .toLocaleString()
+        });
+
+
+
+
+
+
+
+
+
+
+        const barData = filteredData.map((d) => ({
+          stateCode: d[0], // Add the State Code field
+          heifers: d[1].Heifers,
+          dairy: d[1].Dairy,
+        }));
+
+        // Set up the chart dimensions
+        const chartMargin = {
+          top: 40,
+          right: 20,
+          bottom: 80,
+          left: 120
+        };
+        const chartWidth = width - chartMargin.left - chartMargin.right;
+        const chartHeight = height - chartMargin.top - chartMargin.bottom;
+
+        const chartSvg = d3
+          .select("#chart")
+          .html("")
+          .append("svg")
+          .attr("width", chartWidth + chartMargin.left + chartMargin.right)
+          .attr("height", chartHeight + chartMargin.top + chartMargin.bottom)
+          .append("g")
+          .attr("transform",
+            `translate(${chartMargin.left}, ${chartMargin.top}) scale(0.8)`); // Adjust the scale factor as needed
+
+
+        // Create the scales for the chart
+        const xScale = d3
+          .scaleBand()
+          .domain(barData.map((d) => d.stateCode))
+          .range([0, chartWidth])
+          .padding(0.2);
+
+        const yScale = d3
+          .scaleLinear()
+          .domain([0, d3.max(barData, (d) => Math.max(d.heifers, d.dairy))])
+          .range([chartHeight, 0]);
+
+        // Add the bars to the chart
+        chartSvg
+          .selectAll(".bar")
+          .data(barData)
+          .enter()
+          .append("rect")
+          .attr("class", "bar")
+          .attr("x", (d) => xScale(d.stateCode))
+          .attr("y", (d) => yScale(d.heifers))
+          .attr("width", xScale.bandwidth())
+          .attr("height", (d) => chartHeight - yScale(d.heifers))
+          .attr("fill", "steelblue");
+
+        chartSvg
+          .selectAll(".label")
+          .data(barData)
+          .enter()
+          .append("text")
+          .attr("class", "label")
+          .attr("x", (d) => xScale(d.stateCode) + xScale.bandwidth() / 2)
+          .attr("y", (d) => yScale(d.heifers) - 5)
+          .text((d) => d.heifers.toLocaleString())
+          .attr("text-anchor", "middle")
+          .attr("fill", "white");
+
+        chartSvg
+          .append("g")
+          .attr("class", "x-axis")
+          .attr("transform", `translate(0, ${chartHeight})`)
+          .call(d3.axisBottom(xScale))
+          .selectAll("text")
+          .attr("y", 10)
+          .attr("dy", "0.35em")
+          .attr("transform", "rotate(-45)")
+          .style("text-anchor", "end");
+
+        // Add y-axis label
+        chartSvg
+          .append("text")
+          .attr("class", "axis-label")
+          .attr("x", -chartMargin.left)
+          .attr("y", -10)
+          .attr("text-anchor", "start")
+          .text("Number of Heifers");
+
+        // Add y-axis
+        chartSvg.append("g").attr("class", "y-axis").call(d3.axisLeft(yScale));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      }
+      updateView();
+
+      d3.selectAll('input[name="view"]').on("change", updateView);
+
+    });
+
+    d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json").then(function (states) {
+      // d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-albers-10m.json").then(function (states) {      
+      // Convert the TopoJSON to GeoJSON format
+      const geojson = topojson.feature(states, states.objects.states);
+      svg.selectAll("path")
+        .data(geojson.features)
+        .enter()
+        .append("path")
+        .attr("d", path)
+        .attr("fill", "none")
+        .attr("stroke", "#888")
+        .attr("stroke-width", 0.5);
+    });
+  </script>
+</body>
+
+</html>
