@@ -1,58 +1,68 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>FEMA Best Practices</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-<link rel="stylesheet" href="./style.css">
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="./style.css">
 
 </head>
+
 <body>
-<!-- partial:index.partial.html -->
-<body>
-  <div class="main-map hide">
-    <div id="map">
+  <!-- partial:index.partial.html -->
+
+  <body>
+    <div class="main-map hide">
+      <div id="map">
+      </div>
+      <hr class="right-map white-bkg " />
+
+      <div class="side-bar">
+        <div id="text-animation"
+          style="font-weight:bold;color:white;font-size: 2vw;padding:1rem;margin-bottom:1rem;font-family: sans-serif;">
+          <span>Welcome to the Best Practices Viewer!</span>
+          <hr class="left-map orange-bkg" />
+          <span class="totalCnt"></span>
+          <div id="table-container"></div>
+        </div>
+        <div id="feature-info" class="hide">
+
+        </div>
+      </div>
     </div>
-    <hr class="right-map white-bkg "/>
 
-    <div class="side-bar">
-    <div  id="text-animation" style="font-weight:bold;color:white;font-size: 2vw;padding:1rem;margin-bottom:1rem;font-family: sans-serif;"><span>Welcome to the Best Practices Viewer!</span>
-      <hr class="left-map orange-bkg"/>
-      <span class="totalCnt"></span>
-      <div id="table-container"></div>
-    </div>
-    <div id="feature-info" class="hide">
+    <main>
+      <h2>Best Practices Viewer</h2>
+      <hr class="vertical left white-bkg" />
+      <hr class="top horizontal brite-teal-bkg" />
+      <h1>FEMA MITIGATION</h1>
+      <hr class="horizontal bottom orange-bkg" />
 
-    </div>
-  </div>
-  </div>
+      <hr class="vertical right white-bkg" />
+      <div class="pic pic1"></div>
+      <div class="pic pic2"></div>
+      <div class="enterBtn-container">
+        <a class="enterBtn">ENTER SITE</a>
+      </div>
+      <div class="pic pic3"> </div>
+      <div class="pic pic4"></div>
 
-  <main><h2>Best Practices Viewer</h2>
-    <hr class="vertical left white-bkg"/>
-    <hr class="top horizontal brite-teal-bkg"/>
-    <h1>FEMA MITIGATION</h1>    
-    <hr class="horizontal bottom orange-bkg"/>
+    </main>
 
-    <hr class="vertical right white-bkg"/>
-    <div class="pic pic1"></div>
-    <div class="pic pic2"></div>
-    <div class="pic pic3"></div>
-    <div class="pic pic4"></div>
-
-  </main>
-  
-</body>
-<!-- partial -->
+  </body>
+  <!-- partial -->
   <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script> -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <!-- <script src="https://cdn.jsdelivr.net/gh/hosuaby/Leaflet.SmoothMarkerBouncing@v3.0.0/dist/bundle.js"
   crossorigin="anonymous"></script> -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TimelineMax.min.js'></script>
-<script  src="./script.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TimelineMax.min.js'></script>
+  <script src="./script.js"></script>
 
 </body>
+
 </html>
