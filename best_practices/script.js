@@ -1,6 +1,7 @@
 var map = L.map('map').setView([31.505, -90.09], 5);
-var Stadia_Outdoors = L.tileLayer('https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png', {
-  maxZoom: 20,
+var CartoDB_VoyagerLabelsUnder = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {
+	subdomains: 'abcd',
+	maxZoom: 20
 }).addTo(map);
 var controlAdded = false;
 var MyControl = L.Control.extend({
