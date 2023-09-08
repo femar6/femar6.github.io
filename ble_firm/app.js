@@ -88,11 +88,11 @@ function zoomToCounty() {
   if (selectedCounty === "Choctaw") {
     map.setView([34, -95.55], 11);
   } else if (selectedCounty === "Camp") {
-    map.setView([36.82959180923689, -99.63055335115429], 11);
+    map.setView([32.98500890780826, -94.93490109384865], 11);
   } else if (selectedCounty === "Morris") {
-    map.setView([36.82959180923689, -99.63055335115429], 11); 
-  } else if (selectedCounty === "Panoi") {
-    map.setView([36.82959180923689, -99.63055335115429], 11);         
+    map.setView([33.11900756529249, -94.73601863456466], 11); 
+  } else if (selectedCounty === "Panola") {
+    map.setView([32.181645, -94.323686], 11);         
   } else if (selectedCounty === "Harper") {
     map.setView([36.82959180923689, -99.63055335115429], 11);
   } else if (selectedCounty === "Latimer") {
