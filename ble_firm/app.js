@@ -87,6 +87,12 @@ function zoomToCounty() {
 
   if (selectedCounty === "Choctaw") {
     map.setView([34, -95.55], 11);
+  } else if (selectedCounty === "Camp") {
+    map.setView([36.82959180923689, -99.63055335115429], 11);
+  } else if (selectedCounty === "Morris") {
+    map.setView([36.82959180923689, -99.63055335115429], 11); 
+  } else if (selectedCounty === "Panoi") {
+    map.setView([36.82959180923689, -99.63055335115429], 11);         
   } else if (selectedCounty === "Harper") {
     map.setView([36.82959180923689, -99.63055335115429], 11);
   } else if (selectedCounty === "Latimer") {
@@ -129,7 +135,7 @@ function closeModal() {
 }
 const allLayers = L.layerGroup().addTo(map);
 const bleLayer = L.esri.Vector.vectorTileLayer(
-  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study07272023/VectorTileServer", {
+  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study09052023/VectorTileServer", {
     style: (feature) => {
       return {
         "version": 8,
@@ -137,25 +143,25 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
           "my-vector-tiles": {
             "type": "vector",
             "tiles": [
-              "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study07272023/VectorTileServer/tile/{z}/{y}/{x}"
+              "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study09052023/VectorTileServer/tile/{z}/{y}/{x}"
             ]
           }
         },
         "layers": [{
-          "id": "status_study07272023/X/1",
+          "id": "status_study09052023/X/1",
           "type": "fill",
           "source": "my-vector-tiles",
-          "source-layer": "status_study07272023",
+          "source-layer": "status_study09052023",
           "paint": {
             "fill-color": "#A900E6",
             "fill-opacity": 0.5
           },
           "filter": ["==", "_symbol", 1]
         }, {
-          "id": "status_study07272023/<all other values>",
+          "id": "status_study09052023/<all other values>",
           "type": "fill",
           "source": "my-vector-tiles",
-          "source-layer": "status_study07272023",
+          "source-layer": "status_study09052023",
           "paint": {
             "fill-color": "#00C5FF",
             "fill-opacity": 0.5
