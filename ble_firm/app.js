@@ -182,10 +182,10 @@ const Geo_Referenced_FIRMs = L.esri.tiledMapLayer({
 
 // Streams
 const eff_scop_stream = L.esri.Vector.vectorTileLayer(
-  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines05222023/VectorTileServer"
+  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines09052023/VectorTileServer"
 );
 const pir_stream_cent = L.esri.Vector.vectorTileLayer(
-  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL05222023/VectorTileServer");
+  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL09052023/VectorTileServer");
 const cityLimits_ = L.geoJson(cityLimits, {
   style: {
     color: "orange", // set line color to orange
