@@ -748,7 +748,7 @@ var queryEffAeCompFldway = function (feature) {
 
 var queryUnmapped = function (feature) {
     if (query == 0) {
-        query = "CO_FIPS = '" + feature.properties.GEOID + "'";
+        query = "CO_FIPS = '" + feature.properties.OBJECTID + "'";
     } else if (query == 1) {
         query = "HUC8_KEY = " + feature.properties.HUC8 + "'";
     } else if (query == 2) {
