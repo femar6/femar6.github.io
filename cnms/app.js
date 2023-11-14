@@ -39,7 +39,7 @@ const comUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/service
 const streamsUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_cnms_S_Studies/FeatureServer/0";
 // const UnmappedStreamsUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/S_Unmapped_Ln12312022/FeatureServer/0";
 //const UnmappedStreamsUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/S_Unmapped_Ln06302023/FeatureServer/0";
-const UnmappedStreamsUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/S_Unmapped_Ln06302023/FeatureServer/0https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_cnms_S_Unmapped_BsLn/FeatureServer/0";
+const UnmappedStreamsUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/S_Unmapped_Ln06302023/FeatureServer/0";
 
 let query = null;
 let aoiUrl = null;
