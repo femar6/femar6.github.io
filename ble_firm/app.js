@@ -136,7 +136,7 @@ function closeModal() {
 const allLayers = L.layerGroup().addTo(map);
 const bleLayer = L.esri.Vector.vectorTileLayer(
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study09052023/VectorTileServer", {
-   "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study01312024/VectorTileServer", {
+   "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study0131204/VectorTileServer", {
 
   style: (feature) => {
       return {
@@ -145,7 +145,7 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
           "my-vector-tiles": {
             "type": "vector",
             "tiles": [
-              "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study01312024/VectorTileServer/tile/{z}/{y}/{x}"
+              "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study0131204/VectorTileServer/tile/{z}/{y}/{x}"
             ]
           }
         },
@@ -153,7 +153,7 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
           "id": "status_study01312024/X/1",
           "type": "fill",
           "source": "my-vector-tiles",
-          "source-layer": "status_study01312024",
+          "source-layer": "status_study0131204",
           "paint": {
             "fill-color": "#A900E6",
             "fill-opacity": 0.5
@@ -163,7 +163,7 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
           "id": "status_study01312024/<all other values>",
           "type": "fill",
           "source": "my-vector-tiles",
-          "source-layer": "status_study01312024",
+          "source-layer": "status_study0131204",
           "paint": {
             "fill-color": "#00C5FF",
             "fill-opacity": 0.5
