@@ -153,7 +153,7 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
           "id": "status_study01312024/X/1",
           "type": "fill",
           "source": "my-vector-tiles",
-          "source-layer": "status_study0131204",
+          "source-layer": "status_study013125024",
           "paint": {
             "fill-color": "#A900E6",
             "fill-opacity": 0.5
@@ -163,7 +163,7 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
           "id": "status_study01312024/<all other values>",
           "type": "fill",
           "source": "my-vector-tiles",
-          "source-layer": "status_study0131204",
+          "source-layer": "status_study013125024",
           "paint": {
             "fill-color": "#00C5FF",
             "fill-opacity": 0.5
