@@ -135,33 +135,35 @@ function closeModal() {
 }
 const allLayers = L.layerGroup().addTo(map);
 const bleLayer = L.esri.Vector.vectorTileLayer(
-  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study09052023/VectorTileServer", {
-    style: (feature) => {
+  // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study09052023/VectorTileServer", {
+   "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study01312024/VectorTileServer", {
+
+  style: (feature) => {
       return {
         "version": 8,
         "sources": {
           "my-vector-tiles": {
             "type": "vector",
             "tiles": [
-              "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study09052023/VectorTileServer/tile/{z}/{y}/{x}"
+              "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study01312024/VectorTileServer/tile/{z}/{y}/{x}"
             ]
           }
         },
         "layers": [{
-          "id": "status_study09052023/X/1",
+          "id": "status_study01312024/X/1",
           "type": "fill",
           "source": "my-vector-tiles",
-          "source-layer": "status_study09052023",
+          "source-layer": "status_study01312024",
           "paint": {
             "fill-color": "#A900E6",
             "fill-opacity": 0.5
           },
           "filter": ["==", "_symbol", 1]
         }, {
-          "id": "status_study09052023/<all other values>",
+          "id": "status_study01312024/<all other values>",
           "type": "fill",
           "source": "my-vector-tiles",
-          "source-layer": "status_study09052023",
+          "source-layer": "status_study01312024",
           "paint": {
             "fill-color": "#00C5FF",
             "fill-opacity": 0.5
