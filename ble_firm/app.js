@@ -91,6 +91,8 @@ function zoomToCounty() {
     map.setView([32.98500890780826, -94.93490109384865], 11);
   } else if (selectedCounty === "Morris") {
     map.setView([33.11900756529249, -94.73601863456466], 11); 
+  } else if (selectedCounty === "Madison") {
+    map.setView([36.033107316746, -93.72651939809032], 11); 
   } else if (selectedCounty === "Panola") {
     map.setView([32.181645, -94.323686], 11);         
   } else if (selectedCounty === "Harper") {
@@ -99,6 +101,10 @@ function zoomToCounty() {
     map.setView([34.87231196866829, -95.25671380632579], 11);
   } else if (selectedCounty === "Love") {
     map.setView([33.98610403918645, -97.22297071856153], 11);
+  } else if (selectedCounty === "Pike") {
+    map.setView([34.17165832512154, -93.64440539091959], 11);
+  } else if (selectedCounty === "Polk") {
+    map.setView([34.53477274742985, -94.21215371827834], 11);
   } else if (selectedCounty === "Pushmataha") {
     map.setView([34.48173274712084, -95.30996464363149], 11);
   } else if (selectedCounty === "Trinity") {
@@ -107,6 +113,8 @@ function zoomToCounty() {
     map.setView([31.70395670549604, -96.14784140155388], 11);
   } else if (selectedCounty === "Sabine") {
     map.setView([31.37251240746822, -93.85488557644267], 11);
+  } else if (selectedCounty === "Sevier") {
+    map.setView([33.98730650947136, -94.2371081518305], 11);
   } else if (selectedCounty === "San Augustine") {
     map.setView([31.40825510597208, -94.16545518643422], 11);
   } else if (selectedCounty === "Shelby") {
@@ -137,7 +145,7 @@ const allLayers = L.layerGroup().addTo(map);
 const bleLayer = L.esri.Vector.vectorTileLayer(
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study01312024/VectorTileServer", {
   //  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study01312024/VectorTileServer", {
-    "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_BLE_Layer/VectorTileServer", {
+    "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_2_FIRM_Layer04052024/VectorTileServer", {
   style: (feature) => {
       return {
         "version": 8,
@@ -145,25 +153,25 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
           "my-vector-tiles": {
             "type": "vector",
             "tiles": [
-              "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_BLE_Layer/VectorTileServer/tile/{z}/{y}/{x}"
+              "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_2_FIRM_Layer04052024/VectorTileServer/tile/{z}/{y}/{x}"
             ]
           }
         },
         "layers": [{
-          "id": "BLE2FIRM_BLE_Layer/X/1",
+          "id": "BLE2FIRM_Layer04052024/X/1",
           "type": "fill",
           "source": "my-vector-tiles",
-          "source-layer": "BLE2FIRM_BLE_Layer",
+          "source-layer": "BLE2FIRM_Layer04052024",
           "paint": {
             "fill-color": "#A900E6",
             "fill-opacity": 0.5
           },
           "filter": ["==", "_symbol", 1]
         }, {
-          "id": "BLE2FIRM_BLE_Layer/<all other values>",
+          "id": "BLE2FIRM_Layer04052024/A/1",
           "type": "fill",
           "source": "my-vector-tiles",
-          "source-layer": "BLE2FIRM_BLE_Layer",
+          "source-layer": "BLE2FIRM_Layer04052024",
           "paint": {
             "fill-color": "#00C5FF",
             "fill-opacity": 0.5
@@ -176,7 +184,9 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
 ).addTo(allLayers);
 const Geo_Referenced_FIRMs = L.esri.tiledMapLayer({
   // url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/geo_ref_firms05232023/MapServer',
-  url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/geo_ref_firms09052023/MapServer',
+  // url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/geo_ref_firms09052023/MapServer',
+  url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_geo_ref_firms/MapServer',
+  
 
   opacity: 1
 }).addTo(allLayers);
@@ -184,10 +194,12 @@ const Geo_Referenced_FIRMs = L.esri.tiledMapLayer({
 
 // Streams
 const eff_scop_stream = L.esri.Vector.vectorTileLayer(
-  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines09052023/VectorTileServer"
+  // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines09052023/VectorTileServer"
+  "https://vectortileservices.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Scoping_Lines/VectorTileServer"
 );
 const pir_stream_cent = L.esri.Vector.vectorTileLayer(
-  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL09052023/VectorTileServer");
+  // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL09052023/VectorTileServer");
+  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_PBL/VectorTileServer");
 const cityLimits_ = L.geoJson(cityLimits, {
   style: {
     color: "orange", // set line color to orange
