@@ -276,7 +276,7 @@ const mCover = new L.map("coverMap", {
                 document.getElementById('draft_panel').innerHTML = ""
                 document.getElementById('draft_bfe').innerHTML = ''
                 L.esri.query({
-                  url: "https://hazards.fema.gov/gis/nfhl/rest/services/AFHI/Draft_FIRM_DB/MapServer/10"
+                  url: "https://hazards.fema.gov/gis/nfhl/rest/services/AFHI/Draft_FIRM_DB/MapServer/20"
                 }).intersects(getLatLng).run(function(error, draft) {
                   if (draft.features.length > 0) {
                     document.getElementById('draft_source').innerHTML =
