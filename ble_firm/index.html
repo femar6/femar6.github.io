@@ -21,8 +21,8 @@
 
 
 
-<header><span style="margin-left:1.5em;">FEMA Region 6 | Base Level Engineering (BLE) to Flood Insurance Rate Map (FIRM) Viewer</span><img
-        style="float:right;padding-top:0.5rem;padding-right:0.5rem;" height=50 width=135
+<header><span style="margin-left:1.5em;">FEMA Region 6 | Base Level Engineering (BLE) to Flood Insurance Rate Map (FIRM)
+        Viewer</span><img style="float:right;padding-top:0.5rem;padding-right:0.5rem;" height=50 width=135
         src="https://webapps.usgs.gov/infrm/estBFE/img/logo-fema-white.svg" />
 </header>
 <div class="sidebar">
@@ -100,16 +100,19 @@
             Act</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
     <a href="https://www.fema.gov/foia/" target="_blank"><b>FOIA</b></a><span id="table-text">
 </footer>
-<div class="modal fade util-effect-zoomIn show test" data-bs-backdrop="true" data-bs-keyboard="true" id="UtilDialog" tabindex="-1" aria-modal="true" role="dialog" style="display: block;">
+<div class="modal fade util-effect-zoomIn show test" data-bs-backdrop="true" data-bs-keyboard="true" id="UtilDialog"
+    tabindex="-1" aria-modal="true" role="dialog" style="display: block;">
     <div class="modal-dialog modal-md modal-dialog-centered" style="max-width:70rem;">
-      <div class="modal-content">
-        <div class="modal-header px-3 py-1 user-select-none bg-white">
-          <button style="background-color:white;" class="btn-close" data-bs-dismiss="modal" type="button" onclick="closeModal()"></button>
-        </div>
-        <div class="modal-body">
-          <span class="text-muted">Welcome to the</span>
-          <h2 class="mb-2 text-primary"> <i class="fas fa-water"></i> Base Level Engineering to Flood Insurance Rate Map Viewer </h2>
-          <div class="mb-3 small">FEMA’s Region 6 BLE-to-FIRM Viewer (B2F) uses a geospatial database to help
+        <div class="modal-content">
+            <div class="modal-header px-3 py-1 user-select-none bg-white">
+                <button style="background-color:white;" class="btn-close" data-bs-dismiss="modal" type="button"
+                    onclick="closeModal()"></button>
+            </div>
+            <div class="modal-body">
+                <span class="text-muted">Welcome to the</span>
+                <h2 class="mb-2 text-primary"> <i class="fas fa-water"></i> Base Level Engineering to Flood Insurance
+                    Rate Map Viewer </h2>
+                <div class="mb-3 small">FEMA’s Region 6 BLE-to-FIRM Viewer (B2F) uses a geospatial database to help
                     communities and counties review effective flood hazard areas that may be updated with Base Level
                     Engineering
                     (BLE) data, understand where BLE data may be adopted by the community for floodplain management
@@ -128,31 +131,33 @@
                     <hr><br>
                     <div class="g-3 mb-2 row row-cols-1 row-cols-md-3">
                         <div class="col">
-                          <div class="search-container">
-                            <select id="county-dropdown" onchange="zoomToCounty()">
-                              <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select a County</option>
-                              <option value="Camp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Camp, TX</option>
-                              <option value="Choctaw">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choctaw, OK</option>
-                              <option value="Falls">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Falls, TX</option>
-                              <option value="Freestone">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Freestone, TX</option>
-                              <option value="Harper">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Harper, OK</option>
-                              <option value="Latimer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Latimer, OK</option>
-                              <option value="Love">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Love, OK</option>
-                              <option value="Madison">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Madison, AR</option>
-                              <option value="Morris">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Morris, TX</option>
-                              <option value="Panola">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Panola, TX</option>
-                              <option value="Pike">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pike, AR</option>
-                              <option value="Polk">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Polk, AR</option>
-                              <option value="Pushmataha">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pushmataha, OK</option>
-                              <option value="Sabine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sabine, TX</option>
-                              <option value="San Augustine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;San Augustine, TX</option>
-                              <option value="Sevier">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sevier, AR</option>
-                              <option value="Shelby">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shelby, TX</option>
-                              <option value="Trinity">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trinity, TX</option>
-                            </select>
-                          </div>
+                            <div class="search-container">
+                                <select id="county-dropdown" onchange="zoomToCounty()">
+                                    <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select a County</option>
+                                    <option value="Camp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Camp, TX</option>
+                                    <option value="Choctaw">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choctaw, OK</option>
+                                    <option value="Falls">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Falls, TX</option>
+                                    <option value="Freestone">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Freestone, TX</option>
+                                    <option value="Harper">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Harper, OK</option>
+                                    <option value="Latimer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Latimer, OK</option>
+                                    <option value="Love">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Love, OK</option>
+                                    <option value="Madison">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Madison, AR</option>
+                                    <option value="Morris">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Morris, TX</option>
+                                    <option value="Panola">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Panola, TX</option>
+                                    <option value="Pike">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pike, AR</option>
+                                    <option value="Polk">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Polk, AR</option>
+                                    <option value="Pushmataha">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pushmataha, OK
+                                    </option>
+                                    <option value="Sabine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sabine, TX</option>
+                                    <option value="San Augustine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;San Augustine, TX
+                                    </option>
+                                    <option value="Sevier">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sevier, AR</option>
+                                    <option value="Shelby">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shelby, TX</option>
+                                    <option value="Trinity">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trinity, TX</option>
+                                </select>
+                            </div>
                         </div>
-                      </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -194,8 +199,11 @@
                                     </label><br>
                                     <div class="gradient">
                                         <span></span>
-                                      </div>
-                                </div><span style="margin-left:2rem;">Source: <a style="border:none;padding:0;text-decoration:underline;" href="https://www.ornl.gov/project/geospatial-data-sets" target="_blank">OakRidge National Labs (ORNL)</a></span>
+                                    </div>
+                                </div><span style="margin-left:2rem;">Source: <a
+                                        style="border:none;padding:0;text-decoration:underline;"
+                                        href="https://www.ornl.gov/project/geospatial-data-sets"
+                                        target="_blank">OakRidge National Labs (ORNL)</a></span>
                                 <div class="border-bottom"></div>
                                 <div class="align-items-center d-flex justify-content-between my-1">
                                     <label class="flex-fill util-toggle" data-color="success" data-label="right"
@@ -252,7 +260,10 @@
                                         onchange="PIR_Limit_Lines.setOpacity(Number(this.value))"
                                         oninput="PIR_Limit_Lines.setOpacity(Number(this.value))"
                                         aria-label="Adjust layer opacity" data-bs-original-title="Adjust layer opacity">
-                                </div><span style="margin-left:2rem;">Source: <a style="border:none;padding:0;text-decoration:underline;" href="https://webapps.usgs.gov/infrm/" target="_blank">FEMA Region 6 & Mapping Partners</a></span>
+                                </div><span style="margin-left:2rem;">Source: <a
+                                        style="border:none;padding:0;text-decoration:underline;"
+                                        href="https://webapps.usgs.gov/infrm/" target="_blank">FEMA Region 6 & Mapping
+                                        Partners</a></span>
                                 <div class="align-items-center d-flex justify-content-between my-1">
                                     <label class="flex-fill util-toggle" data-color="success" data-label="right"
                                         data-radius="pill" data-size="sm"
@@ -261,13 +272,20 @@
                                         <span><span></span></span>
                                         <span>Geo-Referenced Paper FIRMs</span>
                                     </label>
-                                    <input type="range" class="form-range mx-1" style="width:4rem" min="0" step="0.01"
+                                    <!-- <input type="range" class="form-range mx-1" style="width:4rem" min="0" step="0.01"
                                         max="1" value="1" data-layer-id="Geo-Referenced-FIRMs"
                                         onchange="Geo_Referenced_FIRMs.setOpacity(Number(this.value))"
                                         oninput="Geo_Referenced_FIRMs.setOpacity(Number(this.value))"
+                                        aria-label="Adjust layer opacity" data-bs-original-title="Adjust layer opacity"> -->
+                                    <input type="range" class="form-range mx-1" style="width:4rem" min="0" step="0.01"
+                                        max="1" value="1" data-layer-id="Geo-Referenced-FIRMs"
+                                        onchange="setLayerOpacity(this.value)" oninput="setLayerOpacity(this.value)"
                                         aria-label="Adjust layer opacity" data-bs-original-title="Adjust layer opacity">
-                                </div><span style="margin-left:2rem;">Source: <a style="border:none;padding:0;text-decoration:underline;" href="https://msc.fema.gov/portal/home" target="_blank">FEMA Flood Map Service Center</a></span>
-                          
+                                </div><span style="margin-left:2rem;">Source: <a
+                                        style="border:none;padding:0;text-decoration:underline;"
+                                        href="https://msc.fema.gov/portal/home" target="_blank">FEMA Flood Map Service
+                                        Center</a></span>
+
                             </div>
                             <div class="align-items-center d-flex justify-content-between my-1">
                                 <label class="flex-fill util-toggle" data-color="success" data-label="right"
@@ -282,49 +300,53 @@
                                     onchange="Geo_Referenced_FIRMs.setOpacity(Number(this.value))"
                                     oninput="Geo_Referenced_FIRMs.setOpacity(Number(this.value))"
                                     aria-label="Adjust layer opacity" data-bs-original-title="Adjust layer opacity"> -->
-                            </div>                                
-                        </div><span style="margin-left:2rem;">Source: <a style="border:none;padding:0;text-decoration:underline;" href="https://www.fema.gov/flood-maps/national-flood-hazard-layer" target="_blank">National Flood Hazard Layer (NFHL)</a></span>
-                        <div class="border-bottom"></div>
-                            <div class="align-items-center d-flex justify-content-between my-1">
-                                <label class="flex-fill util-toggle" data-color="success" data-label="right"
-                                    data-radius="pill" data-size="sm"
-                                    data-bs-original-title="Add or remove this map layer">
-                                    <input type="checkbox" data-layer-id="city-Limits" checked>
-                                    <span><span></span></span>
-                                    <span>County and incorporated political</span>
-                                </label>
-                                <svg width="1.5rem" height="1rem" style="margin-right:8rem;">
-                                    <rect x="0" y="0" width="100%" height="100%" fill="none" stroke="orange"
-                                        stroke-width="0.3rem" />
-                                </svg>
-
-                                <input type="range" class="form-range mx-1" style="width:4rem" min="0" step="0.01"
-                                    max="1" value="1" data-layer-id="city-Limits"
-                                    onchange="cityLimits_.setOpacity(Number(this.value))"
-                                    oninput="cityLimits_.setOpacity(Number(this.value))"
-                                    aria-label="Adjust layer opacity" data-bs-original-title="Adjust layer opacity">
                             </div>
-                        </div><span style="margin-left:2rem;">Source: <a style="border:none;padding:0;text-decoration:underline;" href="https://www.census.gov/geographies/mapping-files/time-series/geo/cartographic-boundary.html" target="_blank">Census Bureau</a></span>
-                    </div>
+                        </div><span style="margin-left:2rem;">Source: <a
+                                style="border:none;padding:0;text-decoration:underline;"
+                                href="https://www.fema.gov/flood-maps/national-flood-hazard-layer"
+                                target="_blank">National Flood Hazard Layer (NFHL)</a></span>
+                        <div class="border-bottom"></div>
+                        <div class="align-items-center d-flex justify-content-between my-1">
+                            <label class="flex-fill util-toggle" data-color="success" data-label="right"
+                                data-radius="pill" data-size="sm" data-bs-original-title="Add or remove this map layer">
+                                <input type="checkbox" data-layer-id="city-Limits" checked>
+                                <span><span></span></span>
+                                <span>County and incorporated political</span>
+                            </label>
+                            <svg width="1.5rem" height="1rem" style="margin-right:8rem;">
+                                <rect x="0" y="0" width="100%" height="100%" fill="none" stroke="orange"
+                                    stroke-width="0.3rem" />
+                            </svg>
+
+                            <input type="range" class="form-range mx-1" style="width:4rem" min="0" step="0.01" max="1"
+                                value="1" data-layer-id="city-Limits"
+                                onchange="cityLimits_.setOpacity(Number(this.value))"
+                                oninput="cityLimits_.setOpacity(Number(this.value))" aria-label="Adjust layer opacity"
+                                data-bs-original-title="Adjust layer opacity">
+                        </div>
+                    </div><span style="margin-left:2rem;">Source: <a
+                            style="border:none;padding:0;text-decoration:underline;"
+                            href="https://www.census.gov/geographies/mapping-files/time-series/geo/cartographic-boundary.html"
+                            target="_blank">Census Bureau</a></span>
                 </div>
             </div>
-            <!-- insert content -->
         </div>
-        <!-- clear and close -->
-        <div class="border-top d-flex justify-content-between pt-2 px-3">
-            <!-- <span class="text-danger" onclick="clearMap()" role="button"
+        <!-- insert content -->
+    </div>
+    <!-- clear and close -->
+    <div class="border-top d-flex justify-content-between pt-2 px-3">
+        <!-- <span class="text-danger" onclick="clearMap()" role="button"
                 data-bs-original-title="Clear all data layers from the map">
                 <i class="fas fa-trash-alt"></i> Clear Map
             </span> -->
-            <span class="text-danger" role="button"
-                data-bs-original-title="Clear all data layers from the map">
-            </span>            
-            <span class="text-danger" onclick="closeLayerTray()" role="button"
-                data-bs-original-title="Close the map layer panel">
-                <i class="fas fa-times"></i> Close
-            </span>
-        </div>
+        <span class="text-danger" role="button" data-bs-original-title="Clear all data layers from the map">
+        </span>
+        <span class="text-danger" onclick="closeLayerTray()" role="button"
+            data-bs-original-title="Close the map layer panel">
+            <i class="fas fa-times"></i> Close
+        </span>
     </div>
+</div>
 </div>
 
 <!-- <div id="structureTable" style="position:absolute;z-index:650;top:8%;right:3%;font-size:1.25rem;color:white;">
@@ -355,7 +377,13 @@
 <script src="heat.js"></script>
 <script src="app.js"></script>
 <script src="basemaps.js"></script>
-
+<script>
+    function setLayerOpacity(opacity) {
+        const value = Number(opacity);
+        Geo_Referenced_FIRMs.setOpacity(value);
+        Geo_Referenced_FIRMs2.setOpacity(value);
+    }
+</script>
 
 
 
