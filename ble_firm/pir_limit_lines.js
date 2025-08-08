@@ -1528,6 +1528,10 @@ const pirLimitLines =
 {"type":"Feature","geometry":{"type":"LineString","coordinates":[[-99.73423556983471,34.288300627842546],[-99.73251589667052,34.28795030899346]]},"properties":{"OBJECTID":3,"DFIRM_ID":"48197C","VERSION_ID":"2.8.5.6","FLD_LN_ID":"3","LN_TYP":"1010","SOURCE_CIT":"STUDY2","Shape_Leng":0.00175499261755}},
 {"type":"Feature","geometry":{"type":"LineString","coordinates":[[-99.5188705874607,34.250607369467616],[-99.5221971347928,34.24975031800568]]},"properties":{"OBJECTID":4,"DFIRM_ID":"48197C","VERSION_ID":"2.8.5.6","FLD_LN_ID":"4","LN_TYP":"1010","SOURCE_CIT":"STUDY2","Shape_Leng":0.00343517894165}},
 {"type":"Feature","geometry":{"type":"LineString","coordinates":[[-99.73763318452984,34.3060587644577],[-99.73673706874251,34.3059791456908]]},"properties":{"OBJECTID":5,"DFIRM_ID":"48197C","VERSION_ID":"2.8.5.6","FLD_LN_ID":"5","LN_TYP":"1010","SOURCE_CIT":"STUDY2","Shape_Leng":0.000899645848287}},
-{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-99.72674471978098,34.29405815526843],[-99.72621877025813,34.29455319978297]]},"properties":{"OBJECTID":6,"DFIRM_ID":"48197C","VERSION_ID":"2.8.5.6","FLD_LN_ID":"6","LN_TYP":"1010","SOURCE_CIT":"STUDY2","Shape_Leng":0.000722282473802}}
-    
+{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-99.72674471978098,34.29405815526843],[-99.72621877025813,34.29455319978297]]},"properties":{"OBJECTID":6,"DFIRM_ID":"48197C","VERSION_ID":"2.8.5.6","FLD_LN_ID":"6","LN_TYP":"1010","SOURCE_CIT":"STUDY2","Shape_Leng":0.000722282473802}},
+    {"type":"FeatureCollection", "features": [
+{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-99.29402949540341,36.14675868481518],[-99.29341765599078,36.14685094631391]]},"properties":{"Id":0}},
+{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-99.29841434452716,36.1450105722077],[-99.29818611871453,36.14556414120007]]},"properties":{"Id":0}},
+{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-99.29629718592477,36.14707917212656],[-99.29563193196026,36.1471277308101]]},"properties":{"Id":0}}
+]}
     ]};

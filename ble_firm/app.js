@@ -89,6 +89,8 @@ function zoomToCounty() {
     map.setView([34, -95.55], 11);
   } else if (selectedCounty === "Camp") {
     map.setView([32.98500890780826, -94.93490109384865], 11);
+  } else if (selectedCounty === "Dewey") {
+    map.setView([35.993879507033824, -99.00984168635424], 11);    
   } else if (selectedCounty === "Morris") {
     map.setView([33.11900756529249, -94.73601863456466], 11); 
   } else if (selectedCounty === "Madison") {
@@ -151,7 +153,9 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
   //  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study01312024/VectorTileServer", {
    // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_2_FIRM_Layer04052024/VectorTileServer", {
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer01122025/VectorTileServer", {
-      "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer06232025/VectorTileServer",{
+      // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer06232025/VectorTileServer",{
+      "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08082025/VectorTileServer",{      
+        
   style: (feature) => {
       return {
         "version": 8,
@@ -159,25 +163,25 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
           "my-vector-tiles": {
             "type": "vector",
             "tiles": [
-              "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer06232025/VectorTileServer/tile/{z}/{y}/{x}"
+              "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08082025/VectorTileServer/tile/{z}/{y}/{x}"
             ]
           }
         },
         "layers": [{
-          "id": "BLE2FIRM_Layer06232025/X/1",
+          "id": "BLE2FIRM_Layer08082025/X/1",
           "type": "fill",
           "source": "my-vector-tiles",
-          "source-layer": "BLE2FIRM_Layer06232025",
+          "source-layer": "BLE2FIRM_Layer08082025",
           "paint": {
             "fill-color": "#A900E6",
             "fill-opacity": 0.5
           },
           "filter": ["==", "_symbol", 1]
         }, {
-          "id": "BLE2FIRM_Layer04052024/A/1",
+          "id": "BLE2FIRM_Layer08082025/A/1",
           "type": "fill",
           "source": "my-vector-tiles",
-          "source-layer": "BLE2FIRM_Layer06232025",
+          "source-layer": "BLE2FIRM_Layer08082025",
           "paint": {
             "fill-color": "#00C5FF",
             "fill-opacity": 0.5
@@ -206,13 +210,15 @@ const eff_scop_stream = L.esri.Vector.vectorTileLayer(
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines09052023/VectorTileServer"
   //"https://vectortileservices.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Scoping_Lines/VectorTileServer"
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines01122025/VectorTileServer"
-  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines_06202025/VectorTileServer"
+  // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines_06202025/VectorTileServer"
+  "https://vectortileservices.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines_08082025/VectorTileServer"
 );
 const pir_stream_cent = L.esri.Vector.vectorTileLayer(
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL09052023/VectorTileServer");
   //"https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_PBL/VectorTileServer");
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL01122025/VectorTileServer");
-  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL06202025/VectorTileServer");
+  // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL06202025/VectorTileServer");
+   "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL08082025/VectorTileServer");
 const cityLimits_ = L.geoJson(cityLimits, {
   style: {
     color: "orange", // set line color to orange
