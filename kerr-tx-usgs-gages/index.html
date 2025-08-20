@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8" />
+<title>Kerr County USGS – Current + Today Stats (IV 00060) & NWS Flood Stages + Map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""/>
+
+<style>
+  :root { --muted:#666; --border:#ddd; }
+  body { font: 14px system-ui, sans-serif; max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+  h1 { margin: 0 0 .25rem; }
+  h2 { margin: 1.5rem 0 .5rem; }
+  .muted { color: var(--muted); }
+  .row { display: flex; gap: .5rem; align-items: center; margin: .75rem 0; flex-wrap: wrap; }
+  button { padding: .5rem .9rem; border-radius: .5rem; border: 1px solid #ccc; cursor: pointer; }
+  input[type="text"] { width: 520px; max-width: 100%; padding: .45rem .6rem; border: 1px solid #ccc; border-radius: .4rem; }
+  input[type="number"] { padding: .35rem .5rem; border: 1px solid #ccc; border-radius: .4rem; }
+  table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
+  th, td { border: 1px solid var(--border); padding: .5rem; text-align: left; vertical-align: top; }
+  th { background: #f6f6f6; }
+  .right { text-align: right; }
+  .divider { margin: 1.5rem 0; border: 0; height: 1px; background: #e5e5e5; }
+  .pill { display:inline-block; padding:.15rem .5rem; border-radius:999px; border:1px solid var(--border); font-size:12px; }
+  .stage-None    { background:#f3f3f3; }
+  .stage-Action  { background:#eaf2ff; }
+  .stage-Minor   { background:#fff5e6; }
+  .stage-Moderate{ background:#ffeaea; }
+  .stage-Major   { background:#ffe1e1; }
+  details summary { cursor:pointer; margin:.5rem 0; }
+  code { background:#f7f7f7; padding:.1rem .25rem; border-radius:.25rem; }
+
+  /* Map area (your red box) */
+  #mapWrap { margin-top: 1.5rem; }
+  #mapTitle { margin: .25rem 0; }
+  #map { height: 600px; width: 100%; border: 1px solid #ddd; border-radius: 8px; }
+  .legend {
+    background: white; padding: .5rem .75rem; border: 1px solid #ccc; border-radius: 8px; line-height: 1.2;
+  }
+  .legend .dot { display:inline-block; width:12px; height:12px; border-radius:50%; margin-right:.5rem; vertical-align:middle; }
+</style>
+
+<h1>Kerr County – USGS Current Flow (IV 00060) with Today’s Min/Max/Avg</h1>
+<p class="muted">
+  Uses the USGS Instantaneous Values API to fetch the last 24 hours of discharge (<code>00060</code>, cfs),
+  shows the latest reading and min/max/avg since <strong>12:00 AM America/Chicago</strong>.
+</p>
+
+<div class="row">
+  <button id="fetchBtn">Fetch now</button>
+  <button id="csvBtn" disabled>Download CSV</button>
+  <button style="background-color:green;color:white;" id="copyUsgsBtn" disabled>Copy USGS table</button>
+  <button style="background-color:steelblue;color:white;"  id="copyNwsBtn" disabled>Copy NWS table</button>
+  <label class="muted">Auto-refresh (min):
+    <input type="number" id="autoMin" value="0" min="0" style="width:4ch">
+  </label>
+  <span id="status" class="muted"></span>
+</div>
+
+<div class="row">
+  <label class="muted">Sites (comma-separated IDs):</label>
+  <input id="sitesInput" type="text"
+    value="08165300,08165500,08166140,08166200,08166000"
+    title="Edit and click Fetch now" />
+</div>
+
+<table id="tbl-usgs" hidden>
+  <thead>
+    <tr>
+      <th>Site ID</th>
+      <th>Site Name</th>
+      <th>Timestamp (UTC)</th>
+      <th class="right">Current (cfs)</th>
+      <th class="right">Today Min</th>
+      <th class="right">Today Max</th>
+      <th class="right">Today Avg</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<hr class="divider" />
+
+<h2>NWS/NWPS Flood-Stage Context (separate from USGS)</h2>
+<p class="muted">
+  <strong>USGS</strong> provides observations (e.g., discharge <code>00060</code> in cfs; gage height <code>00065</code> in ft).<br/>
+  <strong>NWS/NWPS</strong> defines flood categories (Action, Minor, Moderate, Major) at many river points based on
+  <em>gage height (ft)</em> thresholds. Those thresholds are not in the USGS API.
+</p>
+<p class="muted">
+  Below we compute the live category by comparing the current USGS <em>gage height (00065)</em> with the thresholds you define per site.
+  Open the “Thresholds mapping” block to review/edit.
+</p>
+
+<details>
+  <summary><strong>Thresholds mapping</strong> (Action / Minor / Moderate / Major, in feet)</summary>
+  <p class="muted">
+    Edit this mapping if you know the official NWS thresholds for each site (values are examples/placeholders).
+    If a site has no thresholds, its Category will show “—”.
+  </p>
+  <pre id="mappingView" style="white-space:pre-wrap; background:#fafafa; padding:.75rem; border:1px solid #eee; border-radius:.5rem;"></pre>
+</details>
+
+<table id="tbl-nws" hidden>
+  <thead>
+    <tr>
+      <th>Site ID</th>
+      <th>Site Name</th>
+      <th class="right">Gage Height (ft)</th>
+      <th>Action</th>
+      <th>Minor</th>
+      <th>Moderate</th>
+      <th>Major</th>
+      <th>Category</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<!-- MAP SECTION -->
+<hr class="divider" />
+<div id="mapWrap">
+  <h2 id="mapTitle">Map of Gauges (colored by flood category)</h2>
+  <div id="map" aria-label="Leaflet map of USGS gauges"></div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+
+<script>
+/* ================== Config ================== */
+const PARAM_FLOW  = '00060'; // discharge (cfs)
+const PARAM_STAGE = '00065'; // gage height (ft)
+const BASE  = 'https://waterservices.usgs.gov/nwis/iv/';
+const CHI_TZ = 'America/Chicago';
+
+// 👉 Editable NWS/NWPS flood thresholds by USGS siteId (feet).
+const NWS_THRESHOLDS = {
+  // Examples (replace with official thresholds if you have them)
+  "08165300": { },
+  "08165500": { action: 10,  minor: 10,  moderate: 12, major: 22 },
+  "08166140": { },
+  "08166200": { action: 7,  minor: 9,  moderate: 12, major: 20 },
+    "08166000":{ }
+};
+
+/* ================== Utilities ================== */
+const chicagoDateFmt = new Intl.DateTimeFormat('en-CA', {
+  timeZone: CHI_TZ, year: 'numeric', month: '2-digit', day: '2-digit'
+});
+function chicagoYmd(d) { return chicagoDateFmt.format(d); }
+
+function parseSites(input) {
+  return input.split(',').map(s => s.trim()).filter(Boolean);
+}
+
+function toCSV(rows) {
+  const header = ['timestamp_iso','site_id','site_name',
+                  'current_cfs','todays_min_cfs','todays_max_cfs','todays_avg_cfs'];
+  const esc = (s) => `"${String(s ?? '').replace(/"/g,'""')}"`;
+  return [header, ...rows].map(r => r.map(esc).join(',')).join('\r\n');
+}
+
+/* ---- NEW: generic table-to-TSV + clipboard ---- */
+function tableToTSV(tableId) {
+  const table = document.getElementById(tableId);
+  if (!table || table.hidden) return '';
+  const rows = [];
+  const headCells = [...table.tHead?.rows?.[0]?.cells || []].map(th => th.textContent.trim());
+  if (headCells.length) rows.push(headCells);
+  [...table.tBodies[0].rows].forEach(tr => {
+    const cells = [...tr.cells].map(td => td.textContent.trim());
+    rows.push(cells);
+  });
+  // Excel-friendly tabs + CRLF
+  return rows.map(r => r.join('\t')).join('\r\n');
+}
+
+async function copyTable(tableId, label) {
+  try {
+    const tsv = tableToTSV(tableId);
+    if (!tsv) throw new Error('No rows to copy.');
+    await navigator.clipboard.writeText(tsv);
+    flashStatus(`Copied ${label} to clipboard.`);
+  } catch (e) {
+    flashStatus(`Copy failed: ${e.message}`);
+  }
+}
+
+function flashStatus(msg) {
+  const el = document.getElementById('status');
+  const prev = el.textContent;
+  el.textContent = msg;
+  setTimeout(() => { el.textContent = prev; }, 2000);
+}
+
+/* ---------------------------------------------- */
+
+function latestValue(series) {
+  const vals = series?.values?.[0]?.value || [];
+  if (!vals.length) return null;
+  const last = vals[vals.length - 1];
+  const v = last?.value;
+  if (v === undefined || v === '') return null;
+  return { when: last.dateTime, value: Number(v) };
+}
+
+function seriesParam(series) { return series?.variable?.variableCode?.[0]?.value || ''; }
+function seriesSiteId(series) { return series?.sourceInfo?.siteCode?.[0]?.value || ''; }
+function seriesSiteName(series) { return series?.sourceInfo?.siteName || ''; }
+function seriesLatLng(series) {
+  const g = series?.sourceInfo?.geoLocation?.geogLocation;
+  const lat = g?.latitude, lon = g?.longitude;
+  return (typeof lat === 'number' && typeof lon === 'number') ? [lat, lon] : null;
+}
+
+function statsTodayFromSeries(series, todayChiYmd) {
+  const vals = series?.values?.[0]?.value || [];
+  let sum=0, count=0, min=Infinity, max=-Infinity;
+  for (const rec of vals) {
+    const v = rec?.value;
+    if (v === undefined || v === '') continue;
+    const dt = new Date(rec.dateTime);
+    const ymd = chicagoYmd(dt);
+    if (ymd === todayChiYmd) {
+      const num = Number(v);
+      if (!Number.isNaN(num)) {
+        sum += num; count++;
+        if (num < min) min = num;
+        if (num > max) max = num;
+      }
+    }
+  }
+  if (!count) return {min:null, max:null, avg:null};
+  return { min, max, avg: sum/count };
+}
+
+function categorizeStage(heightFt, t) {
+  if (heightFt == null || t == null) return { label: '—', css: 'stage-None', color:'#999' };
+  if (t.major    != null && heightFt >= t.major)    return { label: 'Major',    css: 'stage-Major',    color:'#b30000' };
+  if (t.moderate != null && heightFt >= t.moderate) return { label: 'Moderate', css: 'stage-Moderate', color:'#ff4d4d' };
+  if (t.minor    != null && heightFt >= t.minor)    return { label: 'Minor',    css: 'stage-Minor',    color:'#ff9900' };
+  if (t.action   != null && heightFt >= t.action)   return { label: 'Action',   css: 'stage-Action',   color:'#2b7bff' };
+  return { label: 'No Flood', css: 'stage-None', color:'#777' };
+}
+
+/* ================== Rendering (tables) ================== */
+function renderUsgsTable(rows) {
+  const tbody = document.querySelector('#tbl-usgs tbody');
+  tbody.innerHTML = '';
+  rows.forEach(r => {
+    const tr = document.createElement('tr');
+    const cells = [
+      r.siteId,
+      r.siteName,
+      r.when,
+      r.flowCurrent!=null ? r.flowCurrent.toLocaleString(undefined,{maximumFractionDigits:3}) : '',
+      r.flowMinToday !=null ? r.flowMinToday.toLocaleString(undefined,{maximumFractionDigits:3}) : '',
+      r.flowMaxToday !=null ? r.flowMaxToday.toLocaleString(undefined,{maximumFractionDigits:3}) : '',
+      r.flowAvgToday !=null ? r.flowAvgToday.toLocaleString(undefined,{maximumFractionDigits:3}) : ''
+    ];
+    cells.forEach((c,i) => {
+      const td = document.createElement('td');
+      td.textContent = c;
+      if (i>=3) td.className='right';
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+  const show = rows.length>0;
+  document.getElementById('tbl-usgs').hidden = !show;
+  document.getElementById('copyUsgsBtn').disabled = !show;
+}
+
+function renderNwsTable(rows) {
+  const tbody = document.querySelector('#tbl-nws tbody');
+  tbody.innerHTML = '';
+  rows.forEach(r => {
+    const tr = document.createElement('tr');
+    const thresholds = r.thresholds || {};
+    const cat = r.category || {label:'—', css:'stage-None'};
+
+    const cells = [
+      r.siteId,
+      r.siteName,
+      r.stageCurrent!=null ? r.stageCurrent.toLocaleString(undefined,{maximumFractionDigits:2}) : '',
+      thresholds.action   ?? '',
+      thresholds.minor    ?? '',
+      thresholds.moderate ?? '',
+      thresholds.major    ?? '',
+      { badge: cat.label, css: cat.css }
+    ];
+
+    cells.forEach((c,i) => {
+      const td = document.createElement('td');
+      if (typeof c === 'object' && c.badge) {
+        const span = document.createElement('span');
+        span.className = `pill ${c.css}`;
+        span.textContent = c.badge;
+        td.appendChild(span);
+      } else {
+        td.textContent = c;
+        if (i===2) td.className='right';
+      }
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+  const show = rows.length>0;
+  document.getElementById('tbl-nws').hidden = !show;
+  document.getElementById('copyNwsBtn').disabled = !show;
+
+  document.getElementById('mappingView').textContent =
+    JSON.stringify(NWS_THRESHOLDS, null, 2);
+}
+
+/* ================== Map ================== */
+let map, gaugeLayer;
+
+function ensureMap() {
+  if (map) return;
+  map = L.map('map');
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+  gaugeLayer = L.layerGroup().addTo(map);
+
+  // Legend
+  const legend = L.control({ position: 'bottomright' });
+  legend.onAdd = function() {
+    const div = L.DomUtil.create('div', 'legend');
+    div.innerHTML = `
+      <div><strong>Flood Category</strong></div>
+      <div><span class="dot" style="background:#777"></span>No Flood</div>
+      <div><span class="dot" style="background:#2b7bff"></span>Action</div>
+      <div><span class="dot" style="background:#ff9900"></span>Minor</div>
+      <div><span class="dot" style="background:#ff4d4d"></span>Moderate</div>
+      <div><span class="dot" style="background:#b30000"></span>Major</div>
+    `;
+    return div;
+  };
+  legend.addTo(map);
+}
+
+function updateMap(mapRows) {
+  ensureMap();
+  gaugeLayer.clearLayers();
+
+  const pts = [];
+  mapRows.forEach(r => {
+    if (!r.latLng) return;
+    const color = r.category?.color || '#777';
+    const marker = L.circleMarker(r.latLng, {
+      radius: 8, color, fillColor: color, fillOpacity: 0.9, weight: 1
+    });
+    const html = `
+      <div style="min-width:220px">
+        <strong>${r.siteId}</strong><br/>
+        ${r.siteName}<br/>
+        <small>${new Date(r.when).toLocaleString()}</small>
+        <hr style="border:none;border-top:1px solid #eee;margin:.35rem 0"/>
+        <div><b>Current</b>: ${fmtNum(r.flowCurrent)} cfs</div>
+        <div><b>Today Min</b>: ${fmtNum(r.flowMinToday)} cfs</div>
+        <div><b>Today Max</b>: ${fmtNum(r.flowMaxToday)} cfs</div>
+        <div><b>Today Avg</b>: ${fmtNum(r.flowAvgToday)} cfs</div>
+        <div style="margin-top:.25rem"><b>Stage</b>: ${fmtNum(r.stageCurrent,2)} ft</div>
+        <div><b>Category</b>: <span class="pill ${r.category?.css||'stage-None'}">${r.category?.label||'—'}</span></div>
+      </div>`;
+    marker.bindPopup(html);
+    marker.addTo(gaugeLayer);
+    pts.push(r.latLng);
+  });
+
+  if (pts.length) {
+    const b = L.latLngBounds(pts);
+    map.fitBounds(b.pad(0.2));
+  } else {
+    map.setView([30.05, -99.14], 10); // Kerr County-ish fallback
+  }
+}
+
+function fmtNum(v, digits=3) {
+  return (v==null || Number.isNaN(v)) ? '—' : Number(v).toLocaleString(undefined,{maximumFractionDigits:digits});
+}
+
+/* ================== Data fetch & wiring ================== */
+async function fetchUSGS(sites) {
+  const url = `${BASE}?format=json&sites=${encodeURIComponent(sites.join(','))}`
+            + `&parameterCd=${PARAM_FLOW},${PARAM_STAGE}&siteStatus=all&period=P1D`;
+  const res = await fetch(url, { cache:'no-store' });
+  if (!res.ok) throw new Error(`USGS IV error ${res.status}`);
+  return res.json();
+}
+
+function buildPerSiteData(json) {
+  const seriesArr = json?.value?.timeSeries || [];
+  const todayChi = chicagoYmd(new Date());
+  const sites = new Map(); // siteId -> entry
+
+    for (const s of seriesArr) {
+    const siteId   = seriesSiteId(s);
+    const siteName = seriesSiteName(s);
+    const param    = seriesParam(s);
+    const latLng   = seriesLatLng(s);
+    if (!siteId || !param) continue;
+    if (!sites.has(siteId)) sites.set(siteId, { siteId, siteName, flow: null, stage: null, latLng });
+    const entry = sites.get(siteId);
+    if (param === PARAM_FLOW)  entry.flow  = s;
+    if (param === PARAM_STAGE) entry.stage = s;
+    if (!entry.latLng && latLng) entry.latLng = latLng;
+  }
+
+  const usgsRows = [];
+  const nwsRows  = [];
+  const mapRows  = [];
+
+  for (const [,entry] of sites) {
+    const siteId = entry.siteId, siteName = entry.siteName;
+
+    // Flow
+    let flowCurrent=null, flowMinToday=null, flowMaxToday=null, flowAvgToday=null, when='';
+    if (entry.flow) {
+      const latest = latestValue(entry.flow);
+      const stats  = statsTodayFromSeries(entry.flow, todayChi);
+      flowCurrent  = latest?.value ?? null;
+      when         = latest?.when ?? '';
+      flowMinToday = stats.min;
+      flowMaxToday = stats.max;
+      flowAvgToday = stats.avg;
+    }
+    usgsRows.push({ siteId, siteName, when, flowCurrent, flowMinToday, flowMaxToday, flowAvgToday });
+
+    // Stage/category
+    let stageCurrent=null;
+    if (entry.stage) {
+      const latestS = latestValue(entry.stage);
+      stageCurrent = latestS?.value ?? null;
+    }
+    const thresholds = NWS_THRESHOLDS[siteId] || null;
+    const category   = categorizeStage(stageCurrent, thresholds);
+    nwsRows.push({ siteId, siteName, stageCurrent, thresholds, category });
+
+    mapRows.push({
+      siteId, siteName, when,
+      flowCurrent, flowMinToday, flowMaxToday, flowAvgToday,
+      stageCurrent, category, latLng: entry.latLng
+    });
+  }
+
+  usgsRows.sort((a,b)=>a.siteId.localeCompare(b.siteId));
+  nwsRows.sort((a,b)=>a.siteId.localeCompare(b.siteId));
+  mapRows.sort((a,b)=>a.siteId.localeCompare(b.siteId));
+  return { usgsRows, nwsRows, mapRows };
+}
+
+let autoTimer=null;
+
+async function doFetch() {
+  try {
+    const sites = parseSites(document.getElementById('sitesInput').value);
+    if (!sites.length) throw new Error('Enter at least one site id.');
+    document.getElementById('status').textContent='Fetching...';
+
+    const json = await fetchUSGS(sites);
+    const { usgsRows, nwsRows, mapRows } = buildPerSiteData(json);
+
+    renderUsgsTable(usgsRows);
+    renderNwsTable(nwsRows);
+    updateMap(mapRows);
+
+    // CSV for USGS table
+    window.__rows = usgsRows.map(r => [
+      r.when, r.siteId, r.siteName,
+      r.flowCurrent,
+      r.flowMinToday!=null ? r.flowMinToday : '',
+      r.flowMaxToday!=null ? r.flowMaxToday : '',
+      r.flowAvgToday!=null ? r.flowAvgToday : ''
+    ]);
+
+    document.getElementById('csvBtn').disabled = !window.__rows.length;
+    const ts=new Date().toISOString();
+    document.getElementById('status').textContent =
+      `${usgsRows.length} sites • updated ${ts}`;
+  } catch(e) {
+    document.getElementById('csvBtn').disabled=true;
+    document.getElementById('tbl-usgs').hidden=true;
+    document.getElementById('tbl-nws').hidden=true;
+    document.getElementById('copyUsgsBtn').disabled = true;
+    document.getElementById('copyNwsBtn').disabled = true;
+    document.getElementById('status').textContent=e.message;
+  }
+}
+
+document.getElementById('fetchBtn').onclick=doFetch;
+document.getElementById('csvBtn').onclick=()=>{
+  const csv=toCSV(window.__rows||[]);
+  const blob=new Blob([csv],{type:'text/csv'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`kerr_usgs_current_flow_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+};
+
+// NEW: copy buttons
+document.getElementById('copyUsgsBtn').onclick = () => copyTable('tbl-usgs', 'USGS table');
+document.getElementById('copyNwsBtn').onclick  = () => copyTable('tbl-nws',  'NWS table');
+
+document.getElementById('autoMin').addEventListener('change',()=>{
+  const mins=Number(document.getElementById('autoMin').value||0);
+  if(autoTimer){clearInterval(autoTimer);autoTimer=null;}
+  if(mins>0){autoTimer=setInterval(doFetch,Math.max(mins,1)*60*1000);}
+});
+
+// Auto-fetch on load
+doFetch();
+</script>
+</html>
