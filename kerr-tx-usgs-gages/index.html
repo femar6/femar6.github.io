@@ -2,13 +2,11 @@
 <html lang="en">
 <meta charset="utf-8" />
 <title>Kerr County USGS – Current + Today Stats (IV 00060) & NWS Flood Stages + Map</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-      crossorigin=""/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
 <style>
   :root { --muted:#666; --border:#ddd; }
-  body { font: 14px system-ui, sans-serif; max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+  body { font: 14px system-ui, -apple-system, Segoe UI, Roboto, sans-serif; max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
   h1 { margin: 0 0 .25rem; }
   h2 { margin: 1.5rem 0 .5rem; }
   .muted { color: var(--muted); }
@@ -30,335 +28,410 @@
   details summary { cursor:pointer; margin:.5rem 0; }
   code { background:#f7f7f7; padding:.1rem .25rem; border-radius:.25rem; }
 
-  /* Map area (your red box) */
+  /* Map */
   #mapWrap { margin-top: 1.5rem; }
   #mapTitle { margin: .25rem 0; }
   #map { height: 600px; width: 100%; border: 1px solid #ddd; border-radius: 8px; }
-  .legend {
-    background: white; padding: .5rem .75rem; border: 1px solid #ccc; border-radius: 8px; line-height: 1.2;
-  }
+  .legend { background: white; padding: .5rem .75rem; border: 1px solid #ccc; border-radius: 8px; line-height: 1.2; }
   .legend .dot { display:inline-block; width:12px; height:12px; border-radius:50%; margin-right:.5rem; vertical-align:middle; }
+
+  /* Matrix section */
+  #matrixControls button { margin-right: .4rem; }
+  #tbl-matrix th { white-space: nowrap; }
+  #tbl-matrix td.right { text-align: right; }
+
+  /* Attention pulse (blue) for matrix no-header button */
+  #copyMatrixNoHeaderBtn{
+    background: linear-gradient(135deg,#0ea5e9,#3b82f6);
+    color:#fff; border-color:#1d4ed8;
+  }
+  #copyMatrixNoHeaderBtn:hover{ filter:brightness(1.06); }
+  .btn-pulse{ position:relative; overflow:visible; }
+  .btn-pulse::after{
+    content:""; position:absolute; left:50%; top:50%; width:120%; height:140%; transform:translate(-50%,-50%);
+    border-radius:999px; box-shadow:0 0 0 0 rgba(59,130,246,.55); animation:btnPulse 1.6s ease-out infinite; pointer-events:none;
+  }
+  @keyframes btnPulse{
+    0%{box-shadow:0 0 0 0 rgba(59,130,246,.55)} 70%{box-shadow:0 0 0 18px rgba(59,130,246,0)} 100%{box-shadow:0 0 0 0 rgba(59,130,246,0)}
+  }
+  #copyMatrixNoHeaderBtn:disabled{ opacity:.6; cursor:not-allowed; }
+  #copyMatrixNoHeaderBtn:disabled.btn-pulse::after{ animation:none; box-shadow:none; }
+
+  /* Brighter, haloed gauge markers */
+  .gauge-dot{
+    --color:#777;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--color);
+    border: 2px solid #fff;                 /* white ring */
+    box-shadow: 0 0 0 2px rgba(0,0,0,.25);  /* halo */
+  }
+
+  /* Pump donuts (net/total) */
+  .pump-dot{
+    --pct: .75; --fill: #2b7bff; --bg: #e5e7eb;
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 2px solid #333; box-shadow: 0 0 0 2px #fff inset;
+    background: conic-gradient(var(--fill) calc(var(--pct)*360deg), var(--bg) 0);
+  }
+  .pump-legend{ background:white; padding:.5rem .75rem; border:1px solid #ccc; border-radius:8px; line-height:1.2; }
+  .pump-legend .sw{ display:inline-block; width:18px; height:18px; border-radius:50%; border:2px solid #333; box-shadow:0 0 0 2px #fff inset; margin-right:.4rem; vertical-align:middle; }
+  .pump-legend .full{ background: conic-gradient(#2b7bff 360deg, #e5e7eb 0); }
+  .pump-legend .half{ background: conic-gradient(#2b7bff 180deg, #e5e7eb 0); }
+
+  /* Title bar (stronger colors) */
+  .titlebar{
+    --ring:#c7d2fe; --bg1:#0b1220; --bg2:#111827; --text:#e5e7eb;
+    background: linear-gradient(135deg,var(--bg1),var(--bg2));
+    border:1px solid #1f2937; border-radius:14px; padding:1rem 1.25rem; margin:1rem 0 1.25rem;
+    box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 12px 28px rgba(0,0,0,.25); color:var(--text);
+  }
+  .tb-top{ display:flex; align-items:center; justify-content:space-between; gap:.75rem; flex-wrap:wrap; }
+  .tb-brand{ display:flex; align-items:center; gap:.6rem; }
+  .tb-logo{ width:28px; height:28px; fill:#60a5fa; filter: drop-shadow(0 1px 0 rgba(255,255,255,.6)); }
+  .tb-title{ font-size:1.125rem; font-weight:800; margin:0; letter-spacing:.1px; }
+
+  .tb-badges{ display:flex; gap:.5rem; flex-wrap:wrap; }
+  .tb-badge{ display:inline-block; padding:.25rem .55rem; border-radius:999px; background:#111827; border:1px solid #374151; color:#e5e7eb; font-size:.85rem; }
+
+  .chips-row{ margin-top:.45rem; display:flex; align-items:center; gap:.45rem; flex-wrap:wrap; }
+  .tb-label{ font-weight:700; color:#cbd5e1; margin-right:.1rem; }
+  .chip{ display:inline-block; padding:.2rem .55rem; border-radius:999px; font-weight:600; font-size:.85rem; border:1px solid transparent; }
+  .chip-county{ background:#dbeafe; color:#1e3a8a; border-color:#93c5fd; }
+  .chip-city{   background:#dcfce7; color:#065f46; border-color:#86efac; }
+
+  /* Lake header coloring */
+  .lake-head{ color:#0f172a; }
+  .lake-city{   background:#dcfce7; }
+  .lake-county{ background:#dbeafe; }
+
+  /* Pump copy (green pulse) */
+  #copyPumpNoHeaderBtn{
+    background: linear-gradient(135deg,#22c55e,#16a34a); color:#fff; border-color:#166534;
+  }
+  #copyPumpNoHeaderBtn:hover{ filter:brightness(1.06); }
+  .btn-pulse-green{ position:relative; overflow:visible; }
+  .btn-pulse-green::after{
+    content:""; position:absolute; left:50%; top:50%; width:120%; height:140%; transform:translate(-50%,-50%);
+    border-radius:999px; box-shadow:0 0 0 0 rgba(34,197,94,.55); animation:btnPulseGreen 1.6s ease-out infinite; pointer-events:none;
+  }
+  @keyframes btnPulseGreen{
+    0%{box-shadow:0 0 0 0 rgba(34,197,94,.55)} 70%{box-shadow:0 0 0 18px rgba(34,197,94,0)} 100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}
+  }
+  #copyPumpNoHeaderBtn:disabled{ opacity:.6; cursor:not-allowed; }
+  #copyPumpNoHeaderBtn:disabled.btn-pulse-green::after{ animation:none; box-shadow:none; }
 </style>
 
-<h1>Kerr County – USGS Current Flow (IV 00060) with Today’s Min/Max/Avg</h1>
-<p class="muted">
-  Uses the USGS Instantaneous Values API to fetch the last 24 hours of discharge (<code>00060</code>, cfs),
-  shows the latest reading and min/max/avg since <strong>12:00 AM America/Chicago</strong>.
-</p>
+<body>
+  <!-- Title -->
+  <header class="titlebar">
+    <div class="tb-top">
+      <div class="tb-brand">
+        <svg class="tb-logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2S5 10 5 14.5C5 18.09 8.134 21 12 21s7-2.91 7-6.5C19 10 12 2 12 2z"/></svg>
+        <h1 class="tb-title">Guadalupe River Impoundment Dewatering Project</h1>
+      </div>
+      <div class="tb-badges">
+        <span class="tb-badge" id="pumpSummary">—</span>
+        <span class="tb-badge" id="titleUpdated">Updated —</span>
+      </div>
+    </div>
+    <div class="chips-row">
+      <span class="tb-label">County Lakes:</span>
+      <span class="chip chip-county">Ingram</span>
+      <span class="chip chip-county">Flat Rock</span>
+      <span class="chip chip-county">Lions Park</span>
+    </div>
+    <div class="chips-row">
+      <span class="tb-label">City of Kerrville Lakes:</span>
+      <span class="chip chip-city">Nimitz</span>
+      <span class="chip chip-city">Tranquility Island</span>
+    </div>
+  </header>
 
-<div class="row">
-  <button id="fetchBtn">Fetch now</button>
-  <button id="csvBtn" disabled>Download CSV</button>
-  <button style="background-color:green;color:white;" id="copyUsgsBtn" disabled>Copy USGS table</button>
-  <button style="background-color:steelblue;color:white;"  id="copyNwsBtn" disabled>Copy NWS table</button>
-  <label class="muted">Auto-refresh (min):
-    <input type="number" id="autoMin" value="0" min="0" style="width:4ch">
-  </label>
-  <span id="status" class="muted"></span>
-</div>
-
-<div class="row">
-  <label class="muted">Sites (comma-separated IDs):</label>
-  <input id="sitesInput" type="text"
-    value="08165300,08165500,08166140,08166200,08166000"
-    title="Edit and click Fetch now" />
-</div>
-
-<table id="tbl-usgs" hidden>
-  <thead>
-    <tr>
-      <th>Site ID</th>
-      <th>Site Name</th>
-      <th>Timestamp (UTC)</th>
-      <th class="right">Current (cfs)</th>
-      <th class="right">Today Min</th>
-      <th class="right">Today Max</th>
-      <th class="right">Today Avg</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
-
-<hr class="divider" />
-
-<h2>NWS/NWPS Flood-Stage Context (separate from USGS)</h2>
-<p class="muted">
-  <strong>USGS</strong> provides observations (e.g., discharge <code>00060</code> in cfs; gage height <code>00065</code> in ft).<br/>
-  <strong>NWS/NWPS</strong> defines flood categories (Action, Minor, Moderate, Major) at many river points based on
-  <em>gage height (ft)</em> thresholds. Those thresholds are not in the USGS API.
-</p>
-<p class="muted">
-  Below we compute the live category by comparing the current USGS <em>gage height (00065)</em> with the thresholds you define per site.
-  Open the “Thresholds mapping” block to review/edit.
-</p>
-
-<details>
-  <summary><strong>Thresholds mapping</strong> (Action / Minor / Moderate / Major, in feet)</summary>
+  <!-- Pump-down planner -->
+  <hr class="divider" />
+  <h2>Pump-Down Planner — River Flow (GPM) and Lake Pump-Down Time (Hours)</h2>
   <p class="muted">
-    Edit this mapping if you know the official NWS thresholds for each site (values are examples/placeholders).
-    If a site has no thresholds, its Category will show “—”.
+    Uses current USGS flows (converted to GPM) and fixed lake volumes you provide below.
+    Net rate = (pumps × per-pump GPM) minus inflow from the selected gage (optional).
+    <strong>Settings are saved locally in this browser and restored on load.</strong>
   </p>
-  <pre id="mappingView" style="white-space:pre-wrap; background:#fafafa; padding:.75rem; border:1px solid #eee; border-radius:.5rem;"></pre>
-</details>
 
-<table id="tbl-nws" hidden>
-  <thead>
-    <tr>
-      <th>Site ID</th>
-      <th>Site Name</th>
-      <th class="right">Gage Height (ft)</th>
-      <th>Action</th>
-      <th>Minor</th>
-      <th>Moderate</th>
-      <th>Major</th>
-      <th>Category</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
+  <div class="row" id="pumpControls">
+    <label>Pumps:</label>
+    <input type="number" id="pumpCount" value="7" min="1" style="width:5ch">
+    <label>Per-pump GPM:</label>
+    <input type="number" id="pumpGpm" value="20000" min="1" style="width:8ch">
+    <label><input type="checkbox" id="subtractInflow" checked> Subtract inflow from lake’s gage</label>
+    <label><input type="checkbox" id="useFixedHours"> Lock pump-down to fixed hours</label>
+    <button id="clearPumpCfgBtn">Clear Pump Settings</button>
+  </div>
 
-<!-- MAP SECTION -->
-<hr class="divider" />
-<div id="mapWrap">
-  <h2 id="mapTitle">Map of Gauges (colored by flood category)</h2>
-  <div id="map" aria-label="Leaflet map of USGS gauges"></div>
-</div>
+  <details>
+    <summary><strong>Lake volumes &amp; gage mapping (editable JSON)</strong></summary>
+    <p class="muted">
+      <code>volumeMG</code> = million gallons, <code>inflowSite</code> = USGS site id used as inflow for this lake.
+      You can also add <code>lat</code>/<code>lng</code> for map placement and optional <code>hoursFixed</code> for the “Lock” mode.
+    </p>
+    <textarea id="lakeConfig" style="width:100%;height:160px;font-family:ui-monospace,monospace;"></textarea>
+    <div class="row">
+      <button id="applyLakeCfgBtn">Apply lake config</button>
+    </div>
+  </details>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
+  <div class="row" id="pumpCopyControls">
+    <button id="copyPumpBtn" disabled>Copy Pump Table</button>
+    <button id="copyPumpNoHeaderBtn" disabled>Copy Pump Row (no header)</button>
+  </div>
 
+  <table id="tbl-pump" hidden>
+    <thead><tr id="pumpHead1"></tr></thead>
+    <tbody id="pumpBody"></tbody>
+  </table>
+
+  <!-- DAILY FLOW MATRIX -->
+  <hr class="divider" />
+  <h2>Daily Flow Matrix (CFS) — columns = gages, rows = dates (America/Chicago)</h2>
+  <p class="muted">Each fetch stores today’s snapshot (Current CFS) once per day. Use the buttons to copy/download. Data is kept in your browser (localStorage).</p>
+  <div id="matrixControls" class="row">
+    <button id="copyMatrixBtn" disabled>Copy Matrix</button>
+    <button id="copyMatrixNoHeaderBtn" title="Copy the latest day's row only (no header)" disabled>Copy (no header)</button>
+    <button id="csvMatrixBtn"  disabled>Download Matrix CSV</button>
+    <button id="clearMatrixBtn">Clear Matrix</button>
+  </div>
+
+  <table id="tbl-matrix" hidden>
+    <thead><tr id="matrixHeadRow"></tr></thead>
+    <tbody id="matrixBody"></tbody>
+  </table>
+
+  <h1>Kerr County – USGS Current Flow (IV 00060) with Today’s Min/Max/Avg</h1>
+  <p class="muted">
+    Uses the USGS Instantaneous Values API to fetch the last 24 hours of discharge (<code>00060</code>, cfs),
+    shows the latest reading and min/max/avg since <strong>12:00 AM America/Chicago</strong>.
+  </p>
+
+  <!-- MAP -->
+  <hr class="divider" />
+  <div id="mapWrap">
+    <h2 id="mapTitle">Map of Gauges (colored by flood category)</h2>
+    <div id="map" aria-label="Leaflet map of USGS gauges"></div>
+  </div>
+
+  <div class="row">
+    <button id="fetchBtn">Fetch now</button>
+    <button id="csvBtn" disabled>Download CSV</button>
+    <button style="background-color:green;color:white;" id="copyUsgsBtn" disabled>Copy USGS table</button>
+    <button style="background-color:steelblue;color:white;"  id="copyNwsBtn" disabled>Copy NWS table</button>
+    <label class="muted">Auto-refresh (min):
+      <input type="number" id="autoMin" value="0" min="0" style="width:4ch">
+    </label>
+    <span id="status" class="muted"></span>
+  </div>
+
+  <div class="row">
+    <label class="muted">Sites (comma-separated IDs):</label>
+    <input id="sitesInput" type="text"
+      value="08165300,08165500,08166000,08166140,08166200,08166250,08167000"
+      title="Edit and click Fetch now" />
+  </div>
+
+  <table id="tbl-usgs" hidden>
+    <thead>
+      <tr>
+        <th>Site ID</th><th>Site Name</th><th>Timestamp (UTC)</th>
+        <th class="right">Current (cfs)</th><th class="right">Today Min</th>
+        <th class="right">Today Max</th><th class="right">Today Avg</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <hr class="divider" />
+  <h2>NWS/NWPS Flood-Stage Context (separate from USGS)</h2>
+  <p class="muted">
+    <strong>USGS</strong> provides observations (e.g., discharge <code>00060</code> in cfs; gage height <code>00065</code> in ft).<br/>
+    <strong>NWS/NWPS</strong> defines flood categories (Action, Minor, Moderate, Major) at many river points based on
+    <em>gage height (ft)</em> thresholds.
+  </p>
+
+  <details>
+    <summary><strong>Thresholds mapping</strong> (Action / Minor / Moderate / Major, in feet)</summary>
+    <pre id="mappingView" style="white-space:pre-wrap; background:#fafafa; padding:.75rem; border:1px solid #eee; border-radius:.5rem;"></pre>
+  </details>
+
+  <table id="tbl-nws" hidden>
+    <thead>
+      <tr>
+        <th>Site ID</th><th>Site Name</th><th class="right">Gage Height (ft)</th>
+        <th>Action</th><th>Minor</th><th>Moderate</th><th>Major</th><th>Category</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</body>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 /* ================== Config ================== */
 const PARAM_FLOW  = '00060'; // discharge (cfs)
 const PARAM_STAGE = '00065'; // gage height (ft)
 const BASE  = 'https://waterservices.usgs.gov/nwis/iv/';
 const CHI_TZ = 'America/Chicago';
+const CFS_TO_GPM = 448.831;
 
-// 👉 Editable NWS/NWPS flood thresholds by USGS siteId (feet).
+/* NWS thresholds (fill real ones as needed) */
 const NWS_THRESHOLDS = {
-  // Examples (replace with official thresholds if you have them)
   "08165300": { },
-  "08165500": { action: 10,  minor: 10,  moderate: 12, major: 22 },
+  "08165500": { action: 10, minor: 10, moderate: 12, major: 22 },
+  "08166000": { },  // Johnson Ck nr Ingram
   "08166140": { },
   "08166200": { action: 7,  minor: 9,  moderate: 12, major: 20 },
-    "08166000":{ }
+  "08166250": { },
+  "08167000": { action: 10, minor: 21, moderate: 26, major: 28 }
 };
+const FRIENDLY_NAME = {}; // optional overrides
 
 /* ================== Utilities ================== */
-const chicagoDateFmt = new Intl.DateTimeFormat('en-CA', {
-  timeZone: CHI_TZ, year: 'numeric', month: '2-digit', day: '2-digit'
-});
-function chicagoYmd(d) { return chicagoDateFmt.format(d); }
-
-function parseSites(input) {
-  return input.split(',').map(s => s.trim()).filter(Boolean);
+const chicagoDateFmt = new Intl.DateTimeFormat('en-CA',{timeZone:CHI_TZ,year:'numeric',month:'2-digit',day:'2-digit'});
+function chicagoYmd(d){ return chicagoDateFmt.format(d); }
+function parseSites(input){ return input.split(',').map(s=>s.trim()).filter(Boolean); }
+function toCSV(rows, header){
+  const esc = (s)=>`"${String(s ?? '').replace(/"/g,'""')}"`;
+  const arr = header? [header, ...rows] : rows;
+  return arr.map(r => r.map(esc).join(',')).join('\r\n');
 }
-
-function toCSV(rows) {
-  const header = ['timestamp_iso','site_id','site_name',
-                  'current_cfs','todays_min_cfs','todays_max_cfs','todays_avg_cfs'];
-  const esc = (s) => `"${String(s ?? '').replace(/"/g,'""')}"`;
-  return [header, ...rows].map(r => r.map(esc).join(',')).join('\r\n');
-}
-
-/* ---- NEW: generic table-to-TSV + clipboard ---- */
-function tableToTSV(tableId) {
-  const table = document.getElementById(tableId);
-  if (!table || table.hidden) return '';
-  const rows = [];
-  const headCells = [...table.tHead?.rows?.[0]?.cells || []].map(th => th.textContent.trim());
-  if (headCells.length) rows.push(headCells);
-  [...table.tBodies[0].rows].forEach(tr => {
-    const cells = [...tr.cells].map(td => td.textContent.trim());
-    rows.push(cells);
+function tableToTSV(tableId){
+  const table=document.getElementById(tableId); if(!table||table.hidden) return '';
+  const rows=[]; const head=[...(table.tHead?.rows?.[0]?.cells||[])].map(th=>th.textContent.trim());
+  if(head.length) rows.push(head);
+  [...table.tBodies[0].rows].forEach(tr=>{
+    rows.push([...tr.cells].map(td=>td.textContent.trim()));
   });
-  // Excel-friendly tabs + CRLF
-  return rows.map(r => r.join('\t')).join('\r\n');
+  return rows.map(r=>r.join('\t')).join('\r\n');
 }
-
-async function copyTable(tableId, label) {
-  try {
-    const tsv = tableToTSV(tableId);
-    if (!tsv) throw new Error('No rows to copy.');
-    await navigator.clipboard.writeText(tsv);
-    flashStatus(`Copied ${label} to clipboard.`);
-  } catch (e) {
-    flashStatus(`Copy failed: ${e.message}`);
+async function copyTable(tableId,label){
+  try{ const t=tableToTSV(tableId); if(!t) throw new Error('No rows to copy.');
+    await navigator.clipboard.writeText(t); flashStatus(`Copied ${label} to clipboard.`);
+  }catch(e){ flashStatus(`Copy failed: ${e.message}`); }
+}
+function flashStatus(msg){ const el=document.getElementById('status'); const p=el.textContent; el.textContent=msg; setTimeout(()=>{el.textContent=p;},2000); }
+function latestValue(series){
+  const vals=series?.values?.[0]?.value||[]; if(!vals.length) return null;
+  const last=vals[vals.length-1]; const v=last?.value; if(v===''||v===undefined) return null;
+  return { when:last.dateTime, value:Number(v) };
+}
+function seriesParam(s){ return s?.variable?.variableCode?.[0]?.value || ''; }
+function seriesSiteId(s){ return s?.sourceInfo?.siteCode?.[0]?.value || ''; }
+function seriesSiteName(s){ return s?.sourceInfo?.siteName || ''; }
+function seriesLatLng(s){
+  const g=s?.sourceInfo?.geoLocation?.geogLocation; const lat=g?.latitude, lon=g?.longitude;
+  return (typeof lat==='number' && typeof lon==='number') ? [lat,lon] : null;
+}
+function statsTodayFromSeries(series, todayChiYmd){
+  const vals=series?.values?.[0]?.value||[]; let sum=0,count=0,min=Infinity,max=-Infinity;
+  for(const rec of vals){ const v=rec?.value; if(v===''||v===undefined) continue;
+    const ymd=chicagoYmd(new Date(rec.dateTime)); if(ymd!==todayChiYmd) continue;
+    const num=Number(v); if(Number.isNaN(num)) continue;
+    sum+=num; count++; if(num<min)min=num; if(num>max)max=num;
   }
+  if(!count) return {min:null,max:null,avg:null};
+  return {min,max,avg:sum/count};
 }
-
-function flashStatus(msg) {
-  const el = document.getElementById('status');
-  const prev = el.textContent;
-  el.textContent = msg;
-  setTimeout(() => { el.textContent = prev; }, 2000);
+function categorizeStage(heightFt,t){
+  if(heightFt==null||t==null) return {label:'—', css:'stage-None', color:'#777'};
+  if(t.major    !=null && heightFt>=t.major)    return {label:'Major',    css:'stage-Major',    color:'#b30000'};
+  if(t.moderate !=null && heightFt>=t.moderate) return {label:'Moderate', css:'stage-Moderate', color:'#ff4d4d'};
+  if(t.minor    !=null && heightFt>=t.minor)    return {label:'Minor',    css:'stage-Minor',    color:'#ff9900'};
+  if(t.action   !=null && heightFt>=t.action)   return {label:'Action',   css:'stage-Action',   color:'#2b7bff'};
+  return {label:'No Flood', css:'stage-None', color:'#777'};
 }
-
-/* ---------------------------------------------- */
-
-function latestValue(series) {
-  const vals = series?.values?.[0]?.value || [];
-  if (!vals.length) return null;
-  const last = vals[vals.length - 1];
-  const v = last?.value;
-  if (v === undefined || v === '') return null;
-  return { when: last.dateTime, value: Number(v) };
-}
-
-function seriesParam(series) { return series?.variable?.variableCode?.[0]?.value || ''; }
-function seriesSiteId(series) { return series?.sourceInfo?.siteCode?.[0]?.value || ''; }
-function seriesSiteName(series) { return series?.sourceInfo?.siteName || ''; }
-function seriesLatLng(series) {
-  const g = series?.sourceInfo?.geoLocation?.geogLocation;
-  const lat = g?.latitude, lon = g?.longitude;
-  return (typeof lat === 'number' && typeof lon === 'number') ? [lat, lon] : null;
-}
-
-function statsTodayFromSeries(series, todayChiYmd) {
-  const vals = series?.values?.[0]?.value || [];
-  let sum=0, count=0, min=Infinity, max=-Infinity;
-  for (const rec of vals) {
-    const v = rec?.value;
-    if (v === undefined || v === '') continue;
-    const dt = new Date(rec.dateTime);
-    const ymd = chicagoYmd(dt);
-    if (ymd === todayChiYmd) {
-      const num = Number(v);
-      if (!Number.isNaN(num)) {
-        sum += num; count++;
-        if (num < min) min = num;
-        if (num > max) max = num;
-      }
-    }
-  }
-  if (!count) return {min:null, max:null, avg:null};
-  return { min, max, avg: sum/count };
-}
-
-function categorizeStage(heightFt, t) {
-  if (heightFt == null || t == null) return { label: '—', css: 'stage-None', color:'#999' };
-  if (t.major    != null && heightFt >= t.major)    return { label: 'Major',    css: 'stage-Major',    color:'#b30000' };
-  if (t.moderate != null && heightFt >= t.moderate) return { label: 'Moderate', css: 'stage-Moderate', color:'#ff4d4d' };
-  if (t.minor    != null && heightFt >= t.minor)    return { label: 'Minor',    css: 'stage-Minor',    color:'#ff9900' };
-  if (t.action   != null && heightFt >= t.action)   return { label: 'Action',   css: 'stage-Action',   color:'#2b7bff' };
-  return { label: 'No Flood', css: 'stage-None', color:'#777' };
-}
+function fmtNum(v,d=3){ return (v==null||Number.isNaN(v)) ? '—' : Number(v).toLocaleString(undefined,{maximumFractionDigits:d}); }
 
 /* ================== Rendering (tables) ================== */
-function renderUsgsTable(rows) {
-  const tbody = document.querySelector('#tbl-usgs tbody');
-  tbody.innerHTML = '';
-  rows.forEach(r => {
-    const tr = document.createElement('tr');
-    const cells = [
-      r.siteId,
-      r.siteName,
-      r.when,
-      r.flowCurrent!=null ? r.flowCurrent.toLocaleString(undefined,{maximumFractionDigits:3}) : '',
-      r.flowMinToday !=null ? r.flowMinToday.toLocaleString(undefined,{maximumFractionDigits:3}) : '',
-      r.flowMaxToday !=null ? r.flowMaxToday.toLocaleString(undefined,{maximumFractionDigits:3}) : '',
-      r.flowAvgToday !=null ? r.flowAvgToday.toLocaleString(undefined,{maximumFractionDigits:3}) : ''
-    ];
-    cells.forEach((c,i) => {
-      const td = document.createElement('td');
-      td.textContent = c;
-      if (i>=3) td.className='right';
-      tr.appendChild(td);
-    });
-    tbody.appendChild(tr);
+function renderUsgsTable(rows){
+  const tb=document.querySelector('#tbl-usgs tbody'); tb.innerHTML='';
+  rows.forEach(r=>{
+    const tr=document.createElement('tr');
+    [r.siteId,r.siteName,r.when,
+     r.flowCurrent!=null? r.flowCurrent.toLocaleString(undefined,{maximumFractionDigits:3}):'',
+     r.flowMinToday!=null? r.flowMinToday.toLocaleString(undefined,{maximumFractionDigits:3}):'',
+     r.flowMaxToday!=null? r.flowMaxToday.toLocaleString(undefined,{maximumFractionDigits:3}):'',
+     r.flowAvgToday!=null? r.flowAvgToday.toLocaleString(undefined,{maximumFractionDigits:3}):'',
+    ].forEach((c,i)=>{ const td=document.createElement('td'); td.textContent=c; if(i>=3) td.className='right'; tr.appendChild(td); });
+    tb.appendChild(tr);
   });
-  const show = rows.length>0;
-  document.getElementById('tbl-usgs').hidden = !show;
-  document.getElementById('copyUsgsBtn').disabled = !show;
+  const show=rows.length>0;
+  document.getElementById('tbl-usgs').hidden=!show;
+  document.getElementById('copyUsgsBtn').disabled=!show;
 }
-
-function renderNwsTable(rows) {
-  const tbody = document.querySelector('#tbl-nws tbody');
-  tbody.innerHTML = '';
-  rows.forEach(r => {
-    const tr = document.createElement('tr');
-    const thresholds = r.thresholds || {};
-    const cat = r.category || {label:'—', css:'stage-None'};
-
-    const cells = [
-      r.siteId,
-      r.siteName,
-      r.stageCurrent!=null ? r.stageCurrent.toLocaleString(undefined,{maximumFractionDigits:2}) : '',
-      thresholds.action   ?? '',
-      thresholds.minor    ?? '',
-      thresholds.moderate ?? '',
-      thresholds.major    ?? '',
-      { badge: cat.label, css: cat.css }
+function renderNwsTable(rows){
+  const tb=document.querySelector('#tbl-nws tbody'); tb.innerHTML='';
+  rows.forEach(r=>{
+    const tr=document.createElement('tr'); const t=r.thresholds||{}; const cat=r.category||{label:'—',css:'stage-None'};
+    const cells=[r.siteId,r.siteName,
+      r.stageCurrent!=null? r.stageCurrent.toLocaleString(undefined,{maximumFractionDigits:2}):'',
+      t.action??'', t.minor??'', t.moderate??'', t.major??'', {badge:cat.label, css:cat.css}
     ];
-
-    cells.forEach((c,i) => {
-      const td = document.createElement('td');
-      if (typeof c === 'object' && c.badge) {
-        const span = document.createElement('span');
-        span.className = `pill ${c.css}`;
-        span.textContent = c.badge;
-        td.appendChild(span);
-      } else {
-        td.textContent = c;
-        if (i===2) td.className='right';
-      }
+    cells.forEach((c,i)=>{ const td=document.createElement('td');
+      if(typeof c==='object' && c.badge){ const span=document.createElement('span'); span.className=`pill ${c.css}`; span.textContent=c.badge; td.appendChild(span); }
+      else { td.textContent=c; if(i===2) td.className='right'; }
       tr.appendChild(td);
     });
-    tbody.appendChild(tr);
+    tb.appendChild(tr);
   });
-  const show = rows.length>0;
-  document.getElementById('tbl-nws').hidden = !show;
-  document.getElementById('copyNwsBtn').disabled = !show;
-
-  document.getElementById('mappingView').textContent =
-    JSON.stringify(NWS_THRESHOLDS, null, 2);
+  const show=rows.length>0;
+  document.getElementById('tbl-nws').hidden=!show;
+  document.getElementById('copyNwsBtn').disabled=!show;
+  document.getElementById('mappingView').textContent = JSON.stringify(NWS_THRESHOLDS,null,2);
 }
 
 /* ================== Map ================== */
-let map, gaugeLayer;
+let map, gaugeLayer, pumpLayer;
+window.__siteLatLng=new Map();
+function ensureMap(){
+  if(map) return;
+  map=L.map('map');
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+  gaugeLayer=L.layerGroup().addTo(map);
+  pumpLayer=L.layerGroup().addTo(map);
 
-function ensureMap() {
-  if (map) return;
-  map = L.map('map');
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-  gaugeLayer = L.layerGroup().addTo(map);
-
-  // Legend
-  const legend = L.control({ position: 'bottomright' });
-  legend.onAdd = function() {
-    const div = L.DomUtil.create('div', 'legend');
-    div.innerHTML = `
+  const legend=L.control({position:'bottomright'});
+  legend.onAdd=function(){
+    const div=L.DomUtil.create('div','legend');
+    div.innerHTML=`
       <div><strong>Flood Category</strong></div>
       <div><span class="dot" style="background:#777"></span>No Flood</div>
       <div><span class="dot" style="background:#2b7bff"></span>Action</div>
       <div><span class="dot" style="background:#ff9900"></span>Minor</div>
       <div><span class="dot" style="background:#ff4d4d"></span>Moderate</div>
-      <div><span class="dot" style="background:#b30000"></span>Major</div>
-    `;
+      <div><span class="dot" style="background:#b30000"></span>Major</div>`;
     return div;
-  };
-  legend.addTo(map);
+  }; legend.addTo(map);
+
+  const pumpLeg=L.control({position:'bottomleft'});
+  pumpLeg.onAdd=function(){
+    const div=L.DomUtil.create('div','pump-legend');
+    div.innerHTML=`
+      <div><strong>Pumps</strong> (donut = net / total)</div>
+      <div><span class="sw full"></span>100% capacity</div>
+      <div><span class="sw half"></span>50% net after inflow</div>`;
+    return div;
+  }; pumpLeg.addTo(map);
 }
-
-function updateMap(mapRows) {
-  ensureMap();
-  gaugeLayer.clearLayers();
-
-  const pts = [];
-  mapRows.forEach(r => {
-    if (!r.latLng) return;
-    const color = r.category?.color || '#777';
-    const marker = L.circleMarker(r.latLng, {
-      radius: 8, color, fillColor: color, fillOpacity: 0.9, weight: 1
+function updateMap(mapRows){
+  ensureMap(); gaugeLayer.clearLayers();
+  const pts=[];
+  mapRows.forEach(r=>{
+    if(!r.latLng) return;
+    const icon=L.divIcon({
+      className:'gaugeIcon',
+      html:`<div class="gauge-dot" style="--color:${r.category?.color||'#777'}"></div>`,
+      iconSize:[18,18], iconAnchor:[9,9], popupAnchor:[0,-12]
     });
-    const html = `
+    const m=L.marker(r.latLng,{icon});
+    m.bindPopup(`
       <div style="min-width:220px">
-        <strong>${r.siteId}</strong><br/>
-        ${r.siteName}<br/>
+        <strong>${r.siteId}</strong><br/>${r.siteName}<br/>
         <small>${new Date(r.when).toLocaleString()}</small>
         <hr style="border:none;border-top:1px solid #eee;margin:.35rem 0"/>
         <div><b>Current</b>: ${fmtNum(r.flowCurrent)} cfs</div>
@@ -367,153 +440,345 @@ function updateMap(mapRows) {
         <div><b>Today Avg</b>: ${fmtNum(r.flowAvgToday)} cfs</div>
         <div style="margin-top:.25rem"><b>Stage</b>: ${fmtNum(r.stageCurrent,2)} ft</div>
         <div><b>Category</b>: <span class="pill ${r.category?.css||'stage-None'}">${r.category?.label||'—'}</span></div>
-      </div>`;
-    marker.bindPopup(html);
-    marker.addTo(gaugeLayer);
+      </div>`).addTo(gaugeLayer);
     pts.push(r.latLng);
   });
+  if(pts.length){ map.fitBounds(L.latLngBounds(pts).pad(0.2)); } else { map.setView([30.05,-99.14],10); }
+}
 
-  if (pts.length) {
-    const b = L.latLngBounds(pts);
-    map.fitBounds(b.pad(0.2));
-  } else {
-    map.setView([30.05, -99.14], 10); // Kerr County-ish fallback
+/* ================== Fetch & build ================== */
+async function fetchUSGS(sites){
+  const url = `${BASE}?format=json&sites=${encodeURIComponent(sites.join(','))}` +
+              `&parameterCd=${PARAM_FLOW},${PARAM_STAGE}&siteStatus=all&period=P1D`;
+  const res=await fetch(url,{cache:'no-store'}); if(!res.ok) throw new Error(`USGS IV error ${res.status}`); return res.json();
+}
+function buildPerSiteData(json){
+  const seriesArr=json?.value?.timeSeries||[]; const sites=new Map();
+  for(const s of seriesArr){
+    const id=seriesSiteId(s), name=seriesSiteName(s), param=seriesParam(s), latLng=seriesLatLng(s);
+    if(!id||!param) continue;
+    if(!sites.has(id)) sites.set(id,{siteId:id, siteName:name, flow:null, stage:null, latLng});
+    const e=sites.get(id);
+    if(param===PARAM_FLOW) e.flow=s;
+    if(param===PARAM_STAGE) e.stage=s;
+    if(!e.latLng && latLng) e.latLng=latLng;
   }
-}
-
-function fmtNum(v, digits=3) {
-  return (v==null || Number.isNaN(v)) ? '—' : Number(v).toLocaleString(undefined,{maximumFractionDigits:digits});
-}
-
-/* ================== Data fetch & wiring ================== */
-async function fetchUSGS(sites) {
-  const url = `${BASE}?format=json&sites=${encodeURIComponent(sites.join(','))}`
-            + `&parameterCd=${PARAM_FLOW},${PARAM_STAGE}&siteStatus=all&period=P1D`;
-  const res = await fetch(url, { cache:'no-store' });
-  if (!res.ok) throw new Error(`USGS IV error ${res.status}`);
-  return res.json();
-}
-
-function buildPerSiteData(json) {
-  const seriesArr = json?.value?.timeSeries || [];
-  const todayChi = chicagoYmd(new Date());
-  const sites = new Map(); // siteId -> entry
-
-    for (const s of seriesArr) {
-    const siteId   = seriesSiteId(s);
-    const siteName = seriesSiteName(s);
-    const param    = seriesParam(s);
-    const latLng   = seriesLatLng(s);
-    if (!siteId || !param) continue;
-    if (!sites.has(siteId)) sites.set(siteId, { siteId, siteName, flow: null, stage: null, latLng });
-    const entry = sites.get(siteId);
-    if (param === PARAM_FLOW)  entry.flow  = s;
-    if (param === PARAM_STAGE) entry.stage = s;
-    if (!entry.latLng && latLng) entry.latLng = latLng;
-  }
-
-  const usgsRows = [];
-  const nwsRows  = [];
-  const mapRows  = [];
-
-  for (const [,entry] of sites) {
-    const siteId = entry.siteId, siteName = entry.siteName;
-
-    // Flow
+  const usgsRows=[], nwsRows=[], mapRows=[];
+  for(const [,e] of sites){
+    const siteId=e.siteId, siteName=e.siteName;
+    // flow
     let flowCurrent=null, flowMinToday=null, flowMaxToday=null, flowAvgToday=null, when='';
-    if (entry.flow) {
-      const latest = latestValue(entry.flow);
-      const stats  = statsTodayFromSeries(entry.flow, todayChi);
-      flowCurrent  = latest?.value ?? null;
-      when         = latest?.when ?? '';
-      flowMinToday = stats.min;
-      flowMaxToday = stats.max;
-      flowAvgToday = stats.avg;
-    }
-    usgsRows.push({ siteId, siteName, when, flowCurrent, flowMinToday, flowMaxToday, flowAvgToday });
-
-    // Stage/category
-    let stageCurrent=null;
-    if (entry.stage) {
-      const latestS = latestValue(entry.stage);
-      stageCurrent = latestS?.value ?? null;
-    }
-    const thresholds = NWS_THRESHOLDS[siteId] || null;
-    const category   = categorizeStage(stageCurrent, thresholds);
-    nwsRows.push({ siteId, siteName, stageCurrent, thresholds, category });
-
-    mapRows.push({
-      siteId, siteName, when,
-      flowCurrent, flowMinToday, flowMaxToday, flowAvgToday,
-      stageCurrent, category, latLng: entry.latLng
-    });
+    if(e.flow){ const latest=latestValue(e.flow); const stats=statsTodayFromSeries(e.flow,chicagoYmd(new Date()));
+      flowCurrent=latest?.value ?? null; when=latest?.when ?? '';
+      flowMinToday=stats.min; flowMaxToday=stats.max; flowAvgToday=stats.avg; }
+    usgsRows.push({siteId,siteName,when,flowCurrent,flowMinToday,flowMaxToday,flowAvgToday});
+    // stage/category
+    let stageCurrent=null; if(e.stage){ const s=latestValue(e.stage); stageCurrent=s?.value ?? null; }
+    const thresholds=NWS_THRESHOLDS[siteId]||null; const category=categorizeStage(stageCurrent,thresholds);
+    nwsRows.push({siteId,siteName,stageCurrent,thresholds,category});
+    mapRows.push({siteId,siteName,when,flowCurrent,flowMinToday,flowMaxToday,flowAvgToday,stageCurrent,category,latLng:e.latLng});
   }
-
-  usgsRows.sort((a,b)=>a.siteId.localeCompare(b.siteId));
-  nwsRows.sort((a,b)=>a.siteId.localeCompare(b.siteId));
-  mapRows.sort((a,b)=>a.siteId.localeCompare(b.siteId));
+  // Keep input order for USGS/NWS/map tables
+  const order=parseSites(document.getElementById('sitesInput').value);
+  const byOrder=(a,b)=>order.indexOf(a.siteId)-order.indexOf(b.siteId);
+  usgsRows.sort(byOrder); nwsRows.sort(byOrder); mapRows.sort(byOrder);
   return { usgsRows, nwsRows, mapRows };
 }
 
 let autoTimer=null;
-
-async function doFetch() {
-  try {
-    const sites = parseSites(document.getElementById('sitesInput').value);
-    if (!sites.length) throw new Error('Enter at least one site id.');
+async function doFetch(){
+  try{
+    const sites=parseSites(document.getElementById('sitesInput').value); if(!sites.length) throw new Error('Enter at least one site id.');
     document.getElementById('status').textContent='Fetching...';
-
-    const json = await fetchUSGS(sites);
+    const json=await fetchUSGS(sites);
     const { usgsRows, nwsRows, mapRows } = buildPerSiteData(json);
 
     renderUsgsTable(usgsRows);
     renderNwsTable(nwsRows);
     updateMap(mapRows);
 
-    // CSV for USGS table
-    window.__rows = usgsRows.map(r => [
-      r.when, r.siteId, r.siteName,
-      r.flowCurrent,
-      r.flowMinToday!=null ? r.flowMinToday : '',
-      r.flowMaxToday!=null ? r.flowMaxToday : '',
-      r.flowAvgToday!=null ? r.flowAvgToday : ''
-    ]);
+    // remember site coords for lake fallback
+    window.__siteLatLng.clear(); mapRows.forEach(r=>{ if(r.latLng) window.__siteLatLng.set(r.siteId,r.latLng); });
+
+    // CSV payload for USGS
+    window.__rows = usgsRows.map(r => [r.when,r.siteId,r.siteName,r.flowCurrent,
+                                       r.flowMinToday??'',r.flowMaxToday??'',r.flowAvgToday??'']);
+
+    // Update title chips
+    updateTitleBar();
+
+    // update matrix & pump planner
+    updateDailyMatrix(usgsRows);
+    renderPumpTable(usgsRows);
 
     document.getElementById('csvBtn').disabled = !window.__rows.length;
-    const ts=new Date().toISOString();
-    document.getElementById('status').textContent =
-      `${usgsRows.length} sites • updated ${ts}`;
-  } catch(e) {
+    document.getElementById('status').textContent = `${usgsRows.length} sites • updated ${new Date().toISOString()}`;
+  }catch(e){
     document.getElementById('csvBtn').disabled=true;
     document.getElementById('tbl-usgs').hidden=true;
     document.getElementById('tbl-nws').hidden=true;
-    document.getElementById('copyUsgsBtn').disabled = true;
-    document.getElementById('copyNwsBtn').disabled = true;
+    document.getElementById('copyUsgsBtn').disabled=true;
+    document.getElementById('copyNwsBtn').disabled=true;
     document.getElementById('status').textContent=e.message;
   }
 }
-
 document.getElementById('fetchBtn').onclick=doFetch;
 document.getElementById('csvBtn').onclick=()=>{
-  const csv=toCSV(window.__rows||[]);
-  const blob=new Blob([csv],{type:'text/csv'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download=`kerr_usgs_current_flow_${new Date().toISOString().slice(0,10)}.csv`;
-  a.click();
+  const csv=toCSV(window.__rows||[],["timestamp_iso","site_id","site_name","current_cfs","todays_min_cfs","todays_max_cfs","todays_avg_cfs"]);
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download=`kerr_usgs_current_flow_${new Date().toISOString().slice(0,10)}.csv`; a.click();
 };
-
-// NEW: copy buttons
-document.getElementById('copyUsgsBtn').onclick = () => copyTable('tbl-usgs', 'USGS table');
-document.getElementById('copyNwsBtn').onclick  = () => copyTable('tbl-nws',  'NWS table');
-
-document.getElementById('autoMin').addEventListener('change',()=>{
+document.getElementById('copyUsgsBtn').onclick=()=>copyTable('tbl-usgs','USGS table');
+document.getElementById('copyNwsBtn').onclick =()=>copyTable('tbl-nws','NWS table');
+document.getElementById('autoMin').addEventListener('change', ()=>{
   const mins=Number(document.getElementById('autoMin').value||0);
-  if(autoTimer){clearInterval(autoTimer);autoTimer=null;}
-  if(mins>0){autoTimer=setInterval(doFetch,Math.max(mins,1)*60*1000);}
+  if(autoTimer){ clearInterval(autoTimer); autoTimer=null; }
+  if(mins>0){ autoTimer=setInterval(doFetch, Math.max(mins,1)*60*1000); }
 });
 
-// Auto-fetch on load
+/* ================== Daily Flow Matrix (persisted) ================== */
+const MATRIX_KEY='kerr-daily-matrix-v1';
+function loadMatrix(){ try{return JSON.parse(localStorage.getItem(MATRIX_KEY))||{cols:[],rows:[]}}catch{return {cols:[],rows:[]}} }
+function saveMatrix(m){ localStorage.setItem(MATRIX_KEY, JSON.stringify(m)); }
+function labelFor(siteId, siteName){ return FRIENDLY_NAME[siteId] || siteName || siteId; }
+
+function updateDailyMatrix(usgsRows){
+  const m=loadMatrix(); const today=chicagoYmd(new Date());
+  const desiredCols=usgsRows.map(r=>({id:r.siteId, label:labelFor(r.siteId,r.siteName)}));
+  m.cols=desiredCols;
+  let row=m.rows.find(r=>r.date===today); if(!row){ row={date:today, values:{}}; m.rows.push(row); }
+  for(const r of usgsRows){ const val=(r.flowCurrent==null||Number.isNaN(r.flowCurrent))? null : Number(r.flowCurrent); row.values[r.siteId]=val; }
+  m.rows.sort((a,b)=>a.date.localeCompare(b.date));
+  saveMatrix(m); renderMatrix();
+}
+function renderMatrix(){
+  const m=loadMatrix(); const table=document.getElementById('tbl-matrix'); const head=document.getElementById('matrixHeadRow'); const body=document.getElementById('matrixBody');
+  head.innerHTML=''; body.innerHTML='';
+  if(!m.cols.length){ table.hidden=true; document.getElementById('copyMatrixBtn').disabled=true; document.getElementById('csvMatrixBtn').disabled=true; return; }
+  const thDate=document.createElement('th'); thDate.textContent='Date'; head.appendChild(thDate);
+  m.cols.forEach(c=>{ const th=document.createElement('th'); th.textContent=c.label; head.appendChild(th); });
+  for(const r of m.rows){
+    const tr=document.createElement('tr');
+    const tdDate=document.createElement('td'); tdDate.textContent=r.date; tr.appendChild(tdDate);
+    m.cols.forEach(c=>{ const v=r.values?.[c.id]; const td=document.createElement('td'); td.className='right'; td.textContent=(v==null?'':Number(v).toLocaleString(undefined,{maximumFractionDigits:1})); tr.appendChild(td); });
+    body.appendChild(tr);
+  }
+  table.hidden=false;
+  document.getElementById('copyMatrixBtn').disabled=m.rows.length===0;
+  document.getElementById('copyMatrixNoHeaderBtn').disabled=m.rows.length===0;
+  document.getElementById('csvMatrixBtn').disabled=m.rows.length===0;
+  highlightCopyNoHeader();
+}
+document.getElementById('copyMatrixBtn').onclick=()=>copyTable('tbl-matrix','Daily Flow Matrix');
+document.getElementById('copyMatrixNoHeaderBtn').onclick=async()=>{
+  const m=loadMatrix(); if(!m.rows||m.rows.length===0) return;
+  const last=m.rows[m.rows.length-1]; const row=[last.date, ...m.cols.map(c=>last.values?.[c.id]??'')];
+  const tsv=row.map(v=>String(v??'')).join('\t');
+  try{ await navigator.clipboard.writeText(tsv); flashStatus('Copied latest row (no header).'); }catch(e){ flashStatus('Copy failed: '+e.message); }
+};
+document.getElementById('csvMatrixBtn').onclick=()=>{
+  const m=loadMatrix(); const header=['Date',...m.cols.map(c=>c.label)];
+  const rows=m.rows.map(r=>[r.date, ...m.cols.map(c=>r.values?.[c.id]??'')]);
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([toCSV(rows,header)],{type:'text/csv'}));
+  a.download=`kerr_daily_flow_matrix_${new Date().toISOString().slice(0,10)}.csv`; a.click();
+};
+document.getElementById('clearMatrixBtn').onclick=()=>{ if(confirm('Clear the saved Daily Flow Matrix?')){ localStorage.removeItem(MATRIX_KEY); renderMatrix(); } };
+
+/* ================== Pump-down planner ================== */
+const PUMP_CFG_KEY='kerr-pump-settings-v2';
+
+/* Lake list & fixed hours (from your sheet). Add/adjust freely. */
+let LAKES=[
+  { key:'ingram',      name:'Ingram Lake (157MG)',       volumeMG:157, inflowSite:'08166140', lat:30.070607741975838, lng:-99.26075808261017, hoursFixed:25.1, owner:'county' },
+  { key:'nimitz',      name:'Nimitz Lake (234MG)',       volumeMG:234, inflowSite:'08166200', lat:30.06036056088572,  lng:-99.17199792094979, hoursFixed:34.1, owner:'city'   },
+  { key:'tranquility', name:'Tranquility Island (30MG)', volumeMG: 30, inflowSite:'08166200', lat:30.049053382452048, lng:-99.14572178601725, hoursFixed: 4.4, owner:'city'   },
+  { key:'flatrock',    name:'Flat Rock Lake (256MG)',    volumeMG:256, inflowSite:'08166200', lat:30.009304730420602, lng:-99.11582125432463, hoursFixed:37.3, owner:'county' },
+  { key:'lions',       name:'Lions Park Lake (30MG)',    volumeMG: 30, inflowSite:'08166250', lat:29.946576074533596, lng:-99.04266717296188, hoursFixed: 5.6, owner:'county' },
+];
+
+/* Pump table order to match your screenshot */
+const PUMP_COLUMNS_ORDER = [
+  { kind:'site', id:'08165300' }, // N Fk Guadalupe nr Hunt (GPM)
+  { kind:'site', id:'08165500' }, // Guadalupe at Hunt (GPM)
+  { kind:'site', id:'08166000' }, // Johnson Ck nr Ingram (GPM)
+  { kind:'lake', key:'ingram'  , owner:'county' },
+  { kind:'site', id:'08166140' }, // Guadalupe abv Bear Ck at Kerrville
+  { kind:'lake', key:'nimitz'  , owner:'city'   },
+  { kind:'site', id:'08166200' }, // Guadalupe at Kerrville
+  { kind:'lake', key:'tranquility', owner:'city' },
+  { kind:'lake', key:'flatrock', owner:'county' },
+  { kind:'site', id:'08166250' }, // Guadalupe nr Center Point
+  { kind:'lake', key:'lions', owner:'county' },
+  { kind:'site', id:'08167000' }, // Guadalupe at Comfort
+];
+
+function loadPumpCfg(){ try{return JSON.parse(localStorage.getItem(PUMP_CFG_KEY))||null}catch{return null} }
+function savePumpCfg(){
+  const cfg={
+    pumpCount:Number(document.getElementById('pumpCount').value||0),
+    pumpGpm:Number(document.getElementById('pumpGpm').value||0),
+    subtractInflow:document.getElementById('subtractInflow').checked,
+    useFixedHours:document.getElementById('useFixedHours').checked,
+    lakes:LAKES
+  };
+  localStorage.setItem(PUMP_CFG_KEY,JSON.stringify(cfg));
+}
+function applyPumpCfg(cfg){
+  if(!cfg) return;
+  const pc=document.getElementById('pumpCount'), pg=document.getElementById('pumpGpm'), si=document.getElementById('subtractInflow'), uf=document.getElementById('useFixedHours');
+  if(typeof cfg.pumpCount==='number') pc.value=cfg.pumpCount;
+  if(typeof cfg.pumpGpm==='number') pg.value=cfg.pumpGpm;
+  if(typeof cfg.subtractInflow==='boolean') si.checked=cfg.subtractInflow;
+  if(typeof cfg.useFixedHours==='boolean') uf.checked=cfg.useFixedHours;
+  if(Array.isArray(cfg.lakes)) LAKES=cfg.lakes;
+  document.getElementById('lakeConfig').value = JSON.stringify(LAKES,null,2);
+}
+(function initPumpSection(){
+  const saved=loadPumpCfg(); if(saved) applyPumpCfg(saved); else document.getElementById('lakeConfig').value=JSON.stringify(LAKES,null,2);
+  document.getElementById('applyLakeCfgBtn').onclick=()=>{
+    try{
+      const next=JSON.parse(document.getElementById('lakeConfig').value);
+      if(!Array.isArray(next)) throw new Error('Config must be an array');
+      LAKES=next; savePumpCfg(); flashStatus('Lake config applied + saved.');
+      if(window.__lastUsgsRows) renderPumpTable(window.__lastUsgsRows);
+    }catch(e){ flashStatus('Bad lake config: '+e.message); }
+  };
+  document.getElementById('clearPumpCfgBtn').onclick=()=>{
+    if(confirm('Clear saved pump settings for this browser?')){ localStorage.removeItem(PUMP_CFG_KEY); flashStatus('Pump settings cleared.'); }
+  };
+})();
+['pumpCount','pumpGpm','subtractInflow','useFixedHours'].forEach(id=>{
+  const el=document.getElementById(id);
+  el.addEventListener('change',()=>{ savePumpCfg(); if(window.__lastUsgsRows) renderPumpTable(window.__lastUsgsRows); updateTitleBar(); });
+});
+
+function cfsToGpm(v){ return (v==null||Number.isNaN(v))? null : v*CFS_TO_GPM; }
+function hoursToDrain(volumeMG,pumpCount,perPumpGpm,inflowGpm){
+  const cap=Math.max(0,(pumpCount*perPumpGpm)-(inflowGpm||0)); if(!cap) return null;
+  const gallons=(volumeMG||0)*1_000_000; return gallons/cap/60;
+}
+function setPumpCopyButtonsEnabled(enabled){
+  ['copyPumpBtn','copyPumpNoHeaderBtn'].forEach(id=>{ const el=document.getElementById(id); if(el) el.disabled=!enabled; });
+}
+function renderPumpTable(usgsRows){
+  window.__lastUsgsRows=usgsRows;
+  const pumpCount=Number(document.getElementById('pumpCount').value||0);
+  const pumpGpm=Number(document.getElementById('pumpGpm').value||0);
+  const subtractIn=document.getElementById('subtractInflow').checked;
+  const useFixed=document.getElementById('useFixedHours').checked;
+
+  const flowMap=new Map(); usgsRows.forEach(r=>flowMap.set(r.siteId,{name:r.siteName, gpm:cfsToGpm(r.flowCurrent)}));
+
+  // Header
+  const h=document.getElementById('pumpHead1'); h.innerHTML='';
+  const thDate=document.createElement('th'); thDate.textContent='Date'; h.appendChild(thDate);
+
+  PUMP_COLUMNS_ORDER.forEach(col=>{
+    const th=document.createElement('th');
+    if(col.kind==='site'){
+      th.textContent=(flowMap.get(col.id)?.name||col.id)+' (GPM)';
+    }else{
+      const lk=LAKES.find(x=>x.key===col.key); th.textContent=lk? lk.name+' — Pump Down (hrs)' : (col.key+' — Pump Down (hrs)');
+      th.classList.add('lake-head', col.owner==='city' ? 'lake-city' : 'lake-county');
+    }
+    h.appendChild(th);
+  });
+
+  // Row
+  const body=document.getElementById('pumpBody'); body.innerHTML='';
+  const tr=document.createElement('tr'); const tdDate=document.createElement('td'); tdDate.textContent=chicagoYmd(new Date()); tr.appendChild(tdDate);
+
+  PUMP_COLUMNS_ORDER.forEach(col=>{
+    const td=document.createElement('td'); td.className='right';
+    if(col.kind==='site'){
+      const gpm=flowMap.get(col.id)?.gpm ?? null; td.textContent=(gpm==null?'':Math.round(gpm).toLocaleString());
+    }else{
+      const lk=LAKES.find(x=>x.key===col.key);
+      let hrs=null;
+      if(useFixed && typeof lk?.hoursFixed==='number'){ hrs=lk.hoursFixed; }
+      else{
+        const inflowGpm = subtractIn ? (flowMap.get(lk?.inflowSite)?.gpm ?? 0) : 0;
+        hrs = hoursToDrain(lk?.volumeMG, pumpCount, pumpGpm, inflowGpm);
+      }
+      td.textContent=(hrs==null?'—':Number(hrs).toFixed(1));
+    }
+    tr.appendChild(td);
+  });
+
+  body.appendChild(tr);
+  document.getElementById('tbl-pump').hidden=false;
+
+  // Map donuts
+  updatePumpMap(usgsRows);
+
+  // Buttons ready
+  setPumpCopyButtonsEnabled(true);
+  highlightCopyPumpNoHeader();
+}
+function updatePumpMap(usgsRows){
+  ensureMap(); pumpLayer.clearLayers();
+  const pumpCount=Number(document.getElementById('pumpCount').value||0);
+  const pumpGpm=Number(document.getElementById('pumpGpm').value||0);
+  const subtractIn=document.getElementById('subtractInflow').checked;
+
+  const siteGpm=new Map(); usgsRows.forEach(r=>siteGpm.set(r.siteId,(r.flowCurrent==null?null:r.flowCurrent*CFS_TO_GPM)));
+
+  LAKES.forEach(lk=>{
+    const total=pumpCount*pumpGpm;
+    const inflow=subtractIn ? (siteGpm.get(lk.inflowSite)||0) : 0;
+    const net=Math.max(0,total-inflow); const pct=total>0 ? net/total : 0;
+    const pos = (lk.lat!=null && lk.lng!=null) ? [lk.lat, lk.lng] : (window.__siteLatLng.get(lk.inflowSite)||null);
+    if(!pos) return;
+    const icon=L.divIcon({ className:'pumpIcon', html:`<div class="pump-dot" style="--pct:${pct}"></div>`, iconSize:[26,26], iconAnchor:[13,13], popupAnchor:[0,-12] });
+    const hrs=hoursToDrain(lk.volumeMG,pumpCount,pumpGpm,inflow);
+    L.marker(pos,{icon}).bindPopup(`
+      <div style="min-width:220px">
+        <b>${lk.name}</b><br>
+        Pumps: ${pumpCount} × ${pumpGpm.toLocaleString()} GPM<br>
+        Total capacity: <b>${total.toLocaleString()}</b> GPM<br>
+        Inflow: ${Math.round(inflow).toLocaleString()} GPM${subtractIn?'':' (not subtracted)'}<br>
+        Net: <b>${Math.round(net).toLocaleString()}</b> GPM (${Math.round(pct*100)}%)<br>
+        Est. pump-down: ${hrs==null?'—':hrs.toFixed(1)} hrs
+      </div>
+    `).addTo(pumpLayer);
+  });
+}
+
+/* Copy pump table */
+document.getElementById('copyPumpBtn').onclick = ()=> copyTable('tbl-pump','Pump table');
+document.getElementById('copyPumpNoHeaderBtn').onclick = async ()=>{
+  const tb=document.querySelector('#tbl-pump tbody'); if(!tb||!tb.rows.length) return;
+  const cells=[...tb.rows[0].cells].map(td=>td.textContent.trim());
+  const tsv=cells.join('\t');
+  try{ await navigator.clipboard.writeText(tsv); flashStatus('Copied pump row (no header).'); }
+  catch(e){ flashStatus('Copy failed: '+e.message); }
+};
+
+/* ====== Title bar dynamic bits ====== */
+function updateTitleBar(){
+  const pumpCount=Number(document.getElementById('pumpCount').value||0);
+  const pumpGpm=Number(document.getElementById('pumpGpm').value||0);
+  const sum=document.getElementById('pumpSummary');
+  sum.textContent = `${pumpCount} pumps @ ${pumpGpm.toLocaleString()} GPM each`;
+  document.getElementById('titleUpdated').textContent = `Updated — ${new Date().toLocaleString()}`;
+}
+
+/* ====== Button highlight helpers ====== */
+function highlightCopyNoHeader(){
+  const btn=document.getElementById('copyMatrixNoHeaderBtn'); if(!btn||btn.disabled) return;
+  btn.classList.add('btn-pulse'); const remove=()=>btn.classList.remove('btn-pulse');
+  btn.addEventListener('click',remove,{once:true}); btn.addEventListener('blur',remove,{once:true}); setTimeout(remove,8000);
+}
+function highlightCopyPumpNoHeader(){
+  const btn=document.getElementById('copyPumpNoHeaderBtn'); if(!btn||btn.disabled) return;
+  btn.classList.add('btn-pulse-green'); const remove=()=>btn.classList.remove('btn-pulse-green');
+  btn.addEventListener('click',remove,{once:true}); btn.addEventListener('blur',remove,{once:true}); setTimeout(remove,8000);
+}
+
+/* ===== bootstrap ===== */
+function initLakeEditor(){ const ta=document.getElementById('lakeConfig'); if(ta && !ta.value) ta.value=JSON.stringify(LAKES,null,2); }
+initLakeEditor();
+renderMatrix();
 doFetch();
 </script>
 </html>
