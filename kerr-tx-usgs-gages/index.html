@@ -40,45 +40,16 @@
   #tbl-matrix th { white-space: nowrap; }
   #tbl-matrix td.right { text-align: right; }
 
-  /* Attention pulse (blue) for matrix no-header button */
-  #copyMatrixNoHeaderBtn{
-    background: linear-gradient(135deg,#0ea5e9,#3b82f6);
-    color:#fff; border-color:#1d4ed8;
-  }
-  #copyMatrixNoHeaderBtn:hover{ filter:brightness(1.06); }
-  .btn-pulse{ position:relative; overflow:visible; }
-  .btn-pulse::after{
-    content:""; position:absolute; left:50%; top:50%; width:120%; height:140%; transform:translate(-50%,-50%);
-    border-radius:999px; box-shadow:0 0 0 0 rgba(59,130,246,.55); animation:btnPulse 1.6s ease-out infinite; pointer-events:none;
-  }
-  @keyframes btnPulse{
-    0%{box-shadow:0 0 0 0 rgba(59,130,246,.55)} 70%{box-shadow:0 0 0 18px rgba(59,130,246,0)} 100%{box-shadow:0 0 0 0 rgba(59,130,246,0)}
-  }
-  #copyMatrixNoHeaderBtn:disabled{ opacity:.6; cursor:not-allowed; }
-  #copyMatrixNoHeaderBtn:disabled.btn-pulse::after{ animation:none; box-shadow:none; }
-
   /* Brighter, haloed gauge markers */
   .gauge-dot{
     --color:#777;
     width: 18px; height: 18px; border-radius: 50%;
     background: var(--color);
-    border: 2px solid #fff;                 /* white ring */
-    box-shadow: 0 0 0 2px rgba(0,0,0,.25);  /* halo */
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px rgba(0,0,0,.25);
   }
 
-  /* Pump donuts (net/total) */
-  .pump-dot{
-    --pct: .75; --fill: #2b7bff; --bg: #e5e7eb;
-    width: 26px; height: 26px; border-radius: 50%;
-    border: 2px solid #333; box-shadow: 0 0 0 2px #fff inset;
-    background: conic-gradient(var(--fill) calc(var(--pct)*360deg), var(--bg) 0);
-  }
-  .pump-legend{ background:white; padding:.5rem .75rem; border:1px solid #ccc; border-radius:8px; line-height:1.2; }
-  .pump-legend .sw{ display:inline-block; width:18px; height:18px; border-radius:50%; border:2px solid #333; box-shadow:0 0 0 2px #fff inset; margin-right:.4rem; vertical-align:middle; }
-  .pump-legend .full{ background: conic-gradient(#2b7bff 360deg, #e5e7eb 0); }
-  .pump-legend .half{ background: conic-gradient(#2b7bff 180deg, #e5e7eb 0); }
-
-  /* Title bar (stronger colors) */
+  /* Title bar */
   .titlebar{
     --ring:#c7d2fe; --bg1:#0b1220; --bg2:#111827; --text:#e5e7eb;
     background: linear-gradient(135deg,var(--bg1),var(--bg2));
@@ -88,7 +59,7 @@
   .tb-top{ display:flex; align-items:center; justify-content:space-between; gap:.75rem; flex-wrap:wrap; }
   .tb-brand{ display:flex; align-items:center; gap:.6rem; }
   .tb-logo{ width:28px; height:28px; fill:#60a5fa; filter: drop-shadow(0 1px 0 rgba(255,255,255,.6)); }
-  .tb-title{ font-size:1.125rem; font-weight:800; margin:0; letter-spacing:.1px; }
+  .tb-title{ font-weight:800; margin:0; letter-spacing:.1px; }
 
   .tb-badges{ display:flex; gap:.5rem; flex-wrap:wrap; }
   .tb-badge{ display:inline-block; padding:.25rem .55rem; border-radius:999px; background:#111827; border:1px solid #374151; color:#e5e7eb; font-size:.85rem; }
@@ -98,27 +69,39 @@
   .chip{ display:inline-block; padding:.2rem .55rem; border-radius:999px; font-weight:600; font-size:.85rem; border:1px solid transparent; }
   .chip-county{ background:#dbeafe; color:#1e3a8a; border-color:#93c5fd; }
   .chip-city{   background:#dcfce7; color:#065f46; border-color:#86efac; }
+  /* Light pulse for the "Copy (no header)" river-flow button */
+#copyMatrixNoHeaderBtn{
+  position: relative;
+  overflow: visible; /* allow the glow to show outside the button */
+  background-color:#0044ff;
+  color:white;
+}
+#copyMatrixNoHeaderBtn:hover{
+    background-color:#4274ff;
+}
+#copyMatrixNoHeaderBtn::after{
+  content:"";
+  position:absolute;
+  left:50%; top:50%;
+  transform:translate(-50%,-50%);
+  width:120%; height:150%;
+  border-radius:999px;
+  box-shadow:0 0 0 0 rgb(0, 13, 255); /* light blue */
+  animation:lightPulse 1.8s ease-out infinite;
+  pointer-events:none;
+}
 
-  /* Lake header coloring */
-  .lake-head{ color:#0f172a; }
-  .lake-city{   background:#dcfce7; }
-  .lake-county{ background:#dbeafe; }
+@keyframes lightPulse{
+  0%   { box-shadow:0 0 0 0   rgba(96,165,250,.35); }
+  70%  { box-shadow:0 0 0 18px rgba(96,165,250,0); }
+  100% { box-shadow:0 0 0 0   rgba(96,165,250,0); }
+}
 
-  /* Pump copy (green pulse) */
-  #copyPumpNoHeaderBtn{
-    background: linear-gradient(135deg,#22c55e,#16a34a); color:#fff; border-color:#166534;
-  }
-  #copyPumpNoHeaderBtn:hover{ filter:brightness(1.06); }
-  .btn-pulse-green{ position:relative; overflow:visible; }
-  .btn-pulse-green::after{
-    content:""; position:absolute; left:50%; top:50%; width:120%; height:140%; transform:translate(-50%,-50%);
-    border-radius:999px; box-shadow:0 0 0 0 rgba(34,197,94,.55); animation:btnPulseGreen 1.6s ease-out infinite; pointer-events:none;
-  }
-  @keyframes btnPulseGreen{
-    0%{box-shadow:0 0 0 0 rgba(34,197,94,.55)} 70%{box-shadow:0 0 0 18px rgba(34,197,94,0)} 100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}
-  }
-  #copyPumpNoHeaderBtn:disabled{ opacity:.6; cursor:not-allowed; }
-  #copyPumpNoHeaderBtn:disabled.btn-pulse-green::after{ animation:none; box-shadow:none; }
+/* Respect disabled + reduced-motion */
+#copyMatrixNoHeaderBtn:disabled::after{ animation:none; box-shadow:none; }
+@media (prefers-reduced-motion: reduce){
+  #copyMatrixNoHeaderBtn::after{ animation:none; }
+}
 </style>
 
 <body>
@@ -127,76 +110,22 @@
     <div class="tb-top">
       <div class="tb-brand">
         <svg class="tb-logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2S5 10 5 14.5C5 18.09 8.134 21 12 21s7-2.91 7-6.5C19 10 12 2 12 2z"/></svg>
-        <h1 class="tb-title">Guadalupe River Impoundment Dewatering Project</h1>
+        <h1 class="tb-title">Kerr County | River Flow (CFS) per USGS River Flow Dashboard</h1>
       </div>
       <div class="tb-badges">
-        <span class="tb-badge" id="pumpSummary">—</span>
         <span class="tb-badge" id="titleUpdated">Updated —</span>
       </div>
     </div>
-    <div class="chips-row">
-      <span class="tb-label">County Lakes:</span>
-      <span class="chip chip-county">Ingram</span>
-      <span class="chip chip-county">Flat Rock</span>
-      <span class="chip chip-county">Lions Park</span>
-    </div>
-    <div class="chips-row">
-      <span class="tb-label">City of Kerrville Lakes:</span>
-      <span class="chip chip-city">Nimitz</span>
-      <span class="chip chip-city">Tranquility Island</span>
-    </div>
   </header>
-
-  <!-- Pump-down planner -->
-  <hr class="divider" />
-  <h2>Pump-Down Planner — River Flow (GPM) and Lake Pump-Down Time (Hours)</h2>
-  <p class="muted">
-    Uses current USGS flows (converted to GPM) and fixed lake volumes you provide below.
-    Net rate = (pumps × per-pump GPM) minus inflow from the selected gage (optional).
-    <strong>Settings are saved locally in this browser and restored on load.</strong>
-  </p>
-
-  <div class="row" id="pumpControls">
-    <label>Pumps:</label>
-    <input type="number" id="pumpCount" value="7" min="1" style="width:5ch">
-    <label>Per-pump GPM:</label>
-    <input type="number" id="pumpGpm" value="20000" min="1" style="width:8ch">
-    <label><input type="checkbox" id="subtractInflow" checked> Subtract inflow from lake’s gage</label>
-    <label><input type="checkbox" id="useFixedHours"> Lock pump-down to fixed hours</label>
-    <button id="clearPumpCfgBtn">Clear Pump Settings</button>
-  </div>
-
-  <details>
-    <summary><strong>Lake volumes &amp; gage mapping (editable JSON)</strong></summary>
-    <p class="muted">
-      <code>volumeMG</code> = million gallons, <code>inflowSite</code> = USGS site id used as inflow for this lake.
-      You can also add <code>lat</code>/<code>lng</code> for map placement and optional <code>hoursFixed</code> for the “Lock” mode.
-    </p>
-    <textarea id="lakeConfig" style="width:100%;height:160px;font-family:ui-monospace,monospace;"></textarea>
-    <div class="row">
-      <button id="applyLakeCfgBtn">Apply lake config</button>
-    </div>
-  </details>
-
-  <div class="row" id="pumpCopyControls">
-    <button id="copyPumpBtn" disabled>Copy Pump Table</button>
-    <button id="copyPumpNoHeaderBtn" disabled>Copy Pump Row (no header)</button>
-  </div>
-
-  <table id="tbl-pump" hidden>
-    <thead><tr id="pumpHead1"></tr></thead>
-    <tbody id="pumpBody"></tbody>
-  </table>
 
   <!-- DAILY FLOW MATRIX -->
   <hr class="divider" />
-  <h2>Daily Flow Matrix (CFS) — columns = gages, rows = dates (America/Chicago)</h2>
   <p class="muted">Each fetch stores today’s snapshot (Current CFS) once per day. Use the buttons to copy/download. Data is kept in your browser (localStorage).</p>
   <div id="matrixControls" class="row">
-    <button id="copyMatrixBtn" disabled>Copy Matrix</button>
+    <button id="copyMatrixBtn" disabled>Copy River Flows</button>
     <button id="copyMatrixNoHeaderBtn" title="Copy the latest day's row only (no header)" disabled>Copy (no header)</button>
-    <button id="csvMatrixBtn"  disabled>Download Matrix CSV</button>
-    <button id="clearMatrixBtn">Clear Matrix</button>
+    <button id="csvMatrixBtn"  disabled>Download River Flows CSV</button>
+    <button id="clearMatrixBtn">Clear River Flows</button>    <button id="fetchBtn">Fetch now</button>
   </div>
 
   <table id="tbl-matrix" hidden>
@@ -204,7 +133,7 @@
     <tbody id="matrixBody"></tbody>
   </table>
 
-  <h1>Kerr County – USGS Current Flow (IV 00060) with Today’s Min/Max/Avg</h1>
+
   <p class="muted">
     Uses the USGS Instantaneous Values API to fetch the last 24 hours of discharge (<code>00060</code>, cfs),
     shows the latest reading and min/max/avg since <strong>12:00 AM America/Chicago</strong>.
@@ -216,7 +145,7 @@
     <h2 id="mapTitle">Map of Gauges (colored by flood category)</h2>
     <div id="map" aria-label="Leaflet map of USGS gauges"></div>
   </div>
-
+  <h2>Kerr County – USGS Current Flow with Today’s Min/Max/Avg</h2>
   <div class="row">
     <button id="fetchBtn">Fetch now</button>
     <button id="csvBtn" disabled>Download CSV</button>
@@ -277,7 +206,6 @@ const PARAM_FLOW  = '00060'; // discharge (cfs)
 const PARAM_STAGE = '00065'; // gage height (ft)
 const BASE  = 'https://waterservices.usgs.gov/nwis/iv/';
 const CHI_TZ = 'America/Chicago';
-const CFS_TO_GPM = 448.831;
 
 /* NWS thresholds (fill real ones as needed) */
 const NWS_THRESHOLDS = {
@@ -386,14 +314,13 @@ function renderNwsTable(rows){
 }
 
 /* ================== Map ================== */
-let map, gaugeLayer, pumpLayer;
+let map, gaugeLayer;
 window.__siteLatLng=new Map();
 function ensureMap(){
   if(map) return;
   map=L.map('map');
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
   gaugeLayer=L.layerGroup().addTo(map);
-  pumpLayer=L.layerGroup().addTo(map);
 
   const legend=L.control({position:'bottomright'});
   legend.onAdd=function(){
@@ -407,16 +334,6 @@ function ensureMap(){
       <div><span class="dot" style="background:#b30000"></span>Major</div>`;
     return div;
   }; legend.addTo(map);
-
-  const pumpLeg=L.control({position:'bottomleft'});
-  pumpLeg.onAdd=function(){
-    const div=L.DomUtil.create('div','pump-legend');
-    div.innerHTML=`
-      <div><strong>Pumps</strong> (donut = net / total)</div>
-      <div><span class="sw full"></span>100% capacity</div>
-      <div><span class="sw half"></span>50% net after inflow</div>`;
-    return div;
-  }; pumpLeg.addTo(map);
 }
 function updateMap(mapRows){
   ensureMap(); gaugeLayer.clearLayers();
@@ -497,19 +414,18 @@ async function doFetch(){
     renderNwsTable(nwsRows);
     updateMap(mapRows);
 
-    // remember site coords for lake fallback
+    // remember site coords
     window.__siteLatLng.clear(); mapRows.forEach(r=>{ if(r.latLng) window.__siteLatLng.set(r.siteId,r.latLng); });
 
     // CSV payload for USGS
     window.__rows = usgsRows.map(r => [r.when,r.siteId,r.siteName,r.flowCurrent,
                                        r.flowMinToday??'',r.flowMaxToday??'',r.flowAvgToday??'']);
 
-    // Update title chips
+    // Update title badge
     updateTitleBar();
 
-    // update matrix & pump planner
+    // update matrix
     updateDailyMatrix(usgsRows);
-    renderPumpTable(usgsRows);
 
     document.getElementById('csvBtn').disabled = !window.__rows.length;
     document.getElementById('status').textContent = `${usgsRows.length} sites • updated ${new Date().toISOString()}`;
@@ -584,200 +500,19 @@ document.getElementById('csvMatrixBtn').onclick=()=>{
 };
 document.getElementById('clearMatrixBtn').onclick=()=>{ if(confirm('Clear the saved Daily Flow Matrix?')){ localStorage.removeItem(MATRIX_KEY); renderMatrix(); } };
 
-/* ================== Pump-down planner ================== */
-const PUMP_CFG_KEY='kerr-pump-settings-v2';
-
-/* Lake list & fixed hours (from your sheet). Add/adjust freely. */
-let LAKES=[
-  { key:'ingram',      name:'Ingram Lake (157MG)',       volumeMG:157, inflowSite:'08166140', lat:30.070607741975838, lng:-99.26075808261017, hoursFixed:25.1, owner:'county' },
-  { key:'nimitz',      name:'Nimitz Lake (234MG)',       volumeMG:234, inflowSite:'08166200', lat:30.06036056088572,  lng:-99.17199792094979, hoursFixed:34.1, owner:'city'   },
-  { key:'tranquility', name:'Tranquility Island (30MG)', volumeMG: 30, inflowSite:'08166200', lat:30.049053382452048, lng:-99.14572178601725, hoursFixed: 4.4, owner:'city'   },
-  { key:'flatrock',    name:'Flat Rock Lake (256MG)',    volumeMG:256, inflowSite:'08166200', lat:30.009304730420602, lng:-99.11582125432463, hoursFixed:37.3, owner:'county' },
-  { key:'lions',       name:'Lions Park Lake (30MG)',    volumeMG: 30, inflowSite:'08166250', lat:29.946576074533596, lng:-99.04266717296188, hoursFixed: 5.6, owner:'county' },
-];
-
-/* Pump table order to match your screenshot */
-const PUMP_COLUMNS_ORDER = [
-  { kind:'site', id:'08165300' }, // N Fk Guadalupe nr Hunt (GPM)
-  { kind:'site', id:'08165500' }, // Guadalupe at Hunt (GPM)
-  { kind:'site', id:'08166000' }, // Johnson Ck nr Ingram (GPM)
-  { kind:'lake', key:'ingram'  , owner:'county' },
-  { kind:'site', id:'08166140' }, // Guadalupe abv Bear Ck at Kerrville
-  { kind:'lake', key:'nimitz'  , owner:'city'   },
-  { kind:'site', id:'08166200' }, // Guadalupe at Kerrville
-  { kind:'lake', key:'tranquility', owner:'city' },
-  { kind:'lake', key:'flatrock', owner:'county' },
-  { kind:'site', id:'08166250' }, // Guadalupe nr Center Point
-  { kind:'lake', key:'lions', owner:'county' },
-  { kind:'site', id:'08167000' }, // Guadalupe at Comfort
-];
-
-function loadPumpCfg(){ try{return JSON.parse(localStorage.getItem(PUMP_CFG_KEY))||null}catch{return null} }
-function savePumpCfg(){
-  const cfg={
-    pumpCount:Number(document.getElementById('pumpCount').value||0),
-    pumpGpm:Number(document.getElementById('pumpGpm').value||0),
-    subtractInflow:document.getElementById('subtractInflow').checked,
-    useFixedHours:document.getElementById('useFixedHours').checked,
-    lakes:LAKES
-  };
-  localStorage.setItem(PUMP_CFG_KEY,JSON.stringify(cfg));
-}
-function applyPumpCfg(cfg){
-  if(!cfg) return;
-  const pc=document.getElementById('pumpCount'), pg=document.getElementById('pumpGpm'), si=document.getElementById('subtractInflow'), uf=document.getElementById('useFixedHours');
-  if(typeof cfg.pumpCount==='number') pc.value=cfg.pumpCount;
-  if(typeof cfg.pumpGpm==='number') pg.value=cfg.pumpGpm;
-  if(typeof cfg.subtractInflow==='boolean') si.checked=cfg.subtractInflow;
-  if(typeof cfg.useFixedHours==='boolean') uf.checked=cfg.useFixedHours;
-  if(Array.isArray(cfg.lakes)) LAKES=cfg.lakes;
-  document.getElementById('lakeConfig').value = JSON.stringify(LAKES,null,2);
-}
-(function initPumpSection(){
-  const saved=loadPumpCfg(); if(saved) applyPumpCfg(saved); else document.getElementById('lakeConfig').value=JSON.stringify(LAKES,null,2);
-  document.getElementById('applyLakeCfgBtn').onclick=()=>{
-    try{
-      const next=JSON.parse(document.getElementById('lakeConfig').value);
-      if(!Array.isArray(next)) throw new Error('Config must be an array');
-      LAKES=next; savePumpCfg(); flashStatus('Lake config applied + saved.');
-      if(window.__lastUsgsRows) renderPumpTable(window.__lastUsgsRows);
-    }catch(e){ flashStatus('Bad lake config: '+e.message); }
-  };
-  document.getElementById('clearPumpCfgBtn').onclick=()=>{
-    if(confirm('Clear saved pump settings for this browser?')){ localStorage.removeItem(PUMP_CFG_KEY); flashStatus('Pump settings cleared.'); }
-  };
-})();
-['pumpCount','pumpGpm','subtractInflow','useFixedHours'].forEach(id=>{
-  const el=document.getElementById(id);
-  el.addEventListener('change',()=>{ savePumpCfg(); if(window.__lastUsgsRows) renderPumpTable(window.__lastUsgsRows); updateTitleBar(); });
-});
-
-function cfsToGpm(v){ return (v==null||Number.isNaN(v))? null : v*CFS_TO_GPM; }
-function hoursToDrain(volumeMG,pumpCount,perPumpGpm,inflowGpm){
-  const cap=Math.max(0,(pumpCount*perPumpGpm)-(inflowGpm||0)); if(!cap) return null;
-  const gallons=(volumeMG||0)*1_000_000; return gallons/cap/60;
-}
-function setPumpCopyButtonsEnabled(enabled){
-  ['copyPumpBtn','copyPumpNoHeaderBtn'].forEach(id=>{ const el=document.getElementById(id); if(el) el.disabled=!enabled; });
-}
-function renderPumpTable(usgsRows){
-  window.__lastUsgsRows=usgsRows;
-  const pumpCount=Number(document.getElementById('pumpCount').value||0);
-  const pumpGpm=Number(document.getElementById('pumpGpm').value||0);
-  const subtractIn=document.getElementById('subtractInflow').checked;
-  const useFixed=document.getElementById('useFixedHours').checked;
-
-  const flowMap=new Map(); usgsRows.forEach(r=>flowMap.set(r.siteId,{name:r.siteName, gpm:cfsToGpm(r.flowCurrent)}));
-
-  // Header
-  const h=document.getElementById('pumpHead1'); h.innerHTML='';
-  const thDate=document.createElement('th'); thDate.textContent='Date'; h.appendChild(thDate);
-
-  PUMP_COLUMNS_ORDER.forEach(col=>{
-    const th=document.createElement('th');
-    if(col.kind==='site'){
-      th.textContent=(flowMap.get(col.id)?.name||col.id)+' (GPM)';
-    }else{
-      const lk=LAKES.find(x=>x.key===col.key); th.textContent=lk? lk.name+' — Pump Down (hrs)' : (col.key+' — Pump Down (hrs)');
-      th.classList.add('lake-head', col.owner==='city' ? 'lake-city' : 'lake-county');
-    }
-    h.appendChild(th);
-  });
-
-  // Row
-  const body=document.getElementById('pumpBody'); body.innerHTML='';
-  const tr=document.createElement('tr'); const tdDate=document.createElement('td'); tdDate.textContent=chicagoYmd(new Date()); tr.appendChild(tdDate);
-
-  PUMP_COLUMNS_ORDER.forEach(col=>{
-    const td=document.createElement('td'); td.className='right';
-    if(col.kind==='site'){
-      const gpm=flowMap.get(col.id)?.gpm ?? null; td.textContent=(gpm==null?'':Math.round(gpm).toLocaleString());
-    }else{
-      const lk=LAKES.find(x=>x.key===col.key);
-      let hrs=null;
-      if(useFixed && typeof lk?.hoursFixed==='number'){ hrs=lk.hoursFixed; }
-      else{
-        const inflowGpm = subtractIn ? (flowMap.get(lk?.inflowSite)?.gpm ?? 0) : 0;
-        hrs = hoursToDrain(lk?.volumeMG, pumpCount, pumpGpm, inflowGpm);
-      }
-      td.textContent=(hrs==null?'—':Number(hrs).toFixed(1));
-    }
-    tr.appendChild(td);
-  });
-
-  body.appendChild(tr);
-  document.getElementById('tbl-pump').hidden=false;
-
-  // Map donuts
-  updatePumpMap(usgsRows);
-
-  // Buttons ready
-  setPumpCopyButtonsEnabled(true);
-  highlightCopyPumpNoHeader();
-}
-function updatePumpMap(usgsRows){
-  ensureMap(); pumpLayer.clearLayers();
-  const pumpCount=Number(document.getElementById('pumpCount').value||0);
-  const pumpGpm=Number(document.getElementById('pumpGpm').value||0);
-  const subtractIn=document.getElementById('subtractInflow').checked;
-
-  const siteGpm=new Map(); usgsRows.forEach(r=>siteGpm.set(r.siteId,(r.flowCurrent==null?null:r.flowCurrent*CFS_TO_GPM)));
-
-  LAKES.forEach(lk=>{
-    const total=pumpCount*pumpGpm;
-    const inflow=subtractIn ? (siteGpm.get(lk.inflowSite)||0) : 0;
-    const net=Math.max(0,total-inflow); const pct=total>0 ? net/total : 0;
-    const pos = (lk.lat!=null && lk.lng!=null) ? [lk.lat, lk.lng] : (window.__siteLatLng.get(lk.inflowSite)||null);
-    if(!pos) return;
-    const icon=L.divIcon({ className:'pumpIcon', html:`<div class="pump-dot" style="--pct:${pct}"></div>`, iconSize:[26,26], iconAnchor:[13,13], popupAnchor:[0,-12] });
-    const hrs=hoursToDrain(lk.volumeMG,pumpCount,pumpGpm,inflow);
-    L.marker(pos,{icon}).bindPopup(`
-      <div style="min-width:220px">
-        <b>${lk.name}</b><br>
-        Pumps: ${pumpCount} × ${pumpGpm.toLocaleString()} GPM<br>
-        Total capacity: <b>${total.toLocaleString()}</b> GPM<br>
-        Inflow: ${Math.round(inflow).toLocaleString()} GPM${subtractIn?'':' (not subtracted)'}<br>
-        Net: <b>${Math.round(net).toLocaleString()}</b> GPM (${Math.round(pct*100)}%)<br>
-        Est. pump-down: ${hrs==null?'—':hrs.toFixed(1)} hrs
-      </div>
-    `).addTo(pumpLayer);
-  });
-}
-
-/* Copy pump table */
-document.getElementById('copyPumpBtn').onclick = ()=> copyTable('tbl-pump','Pump table');
-document.getElementById('copyPumpNoHeaderBtn').onclick = async ()=>{
-  const tb=document.querySelector('#tbl-pump tbody'); if(!tb||!tb.rows.length) return;
-  const cells=[...tb.rows[0].cells].map(td=>td.textContent.trim());
-  const tsv=cells.join('\t');
-  try{ await navigator.clipboard.writeText(tsv); flashStatus('Copied pump row (no header).'); }
-  catch(e){ flashStatus('Copy failed: '+e.message); }
-};
-
 /* ====== Title bar dynamic bits ====== */
 function updateTitleBar(){
-  const pumpCount=Number(document.getElementById('pumpCount').value||0);
-  const pumpGpm=Number(document.getElementById('pumpGpm').value||0);
-  const sum=document.getElementById('pumpSummary');
-  sum.textContent = `${pumpCount} pumps @ ${pumpGpm.toLocaleString()} GPM each`;
   document.getElementById('titleUpdated').textContent = `Updated — ${new Date().toLocaleString()}`;
 }
 
-/* ====== Button highlight helpers ====== */
+/* ===== Button highlight helper ===== */
 function highlightCopyNoHeader(){
   const btn=document.getElementById('copyMatrixNoHeaderBtn'); if(!btn||btn.disabled) return;
   btn.classList.add('btn-pulse'); const remove=()=>btn.classList.remove('btn-pulse');
   btn.addEventListener('click',remove,{once:true}); btn.addEventListener('blur',remove,{once:true}); setTimeout(remove,8000);
 }
-function highlightCopyPumpNoHeader(){
-  const btn=document.getElementById('copyPumpNoHeaderBtn'); if(!btn||btn.disabled) return;
-  btn.classList.add('btn-pulse-green'); const remove=()=>btn.classList.remove('btn-pulse-green');
-  btn.addEventListener('click',remove,{once:true}); btn.addEventListener('blur',remove,{once:true}); setTimeout(remove,8000);
-}
 
 /* ===== bootstrap ===== */
-function initLakeEditor(){ const ta=document.getElementById('lakeConfig'); if(ta && !ta.value) ta.value=JSON.stringify(LAKES,null,2); }
-initLakeEditor();
 renderMatrix();
 doFetch();
 </script>
