@@ -18,9 +18,6 @@
         integrity="sha256-k1l+ouvMXT+0iRA8pc8e0dge4ZeGjXG6imrvWboFTRE=" crossorigin="anonymous"></script>
 
 </head>
-
-
-
 <header><span style="margin-left:1.5em;">FEMA Region 6 | Base Level Engineering (BLE) to Flood Insurance Rate Map (FIRM)
         Viewer</span><img style="float:right;padding-top:0.5rem;padding-right:0.5rem;" height=50 width=135
         src="https://webapps.usgs.gov/infrm/estBFE/img/logo-fema-white.svg" />
@@ -78,13 +75,13 @@
                     d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v1H1V2a1 1 0 0 1 1-1h12zm1 3v10a1 1 0 0 1-1 1h-2V4h3zm-4 0v11H2a1 1 0 0 1-1-1V4h10z" />
             </svg>
         </button>
-        <button style="position:absolute;bottom:5%;left:0;background-color:#005287;width:2rem;border:none;">
+        <!-- <button style="position:absolute;bottom:5%;left:0;background-color:#005287;width:2rem;border:none;">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white"
                 style="background-color:#005287;" viewBox="0 0 16 16">
                 <path
                     d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z" />
             </svg>
-        </button>
+        </button> -->
     </div>
 </div>
 </div>
@@ -134,6 +131,7 @@
                             <div class="search-container">
                                 <select id="county-dropdown" onchange="zoomToCounty()">
                                     <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select a County</option>
+                                    <option value="Atoka">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Atoka, OK</option>
                                     <option value="Camp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Camp, TX</option>
                                     <option value="Choctaw">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choctaw, OK</option>
                                     <option value="Dewey">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dewey, OK</option>                                    
@@ -206,20 +204,46 @@
                                         style="border:none;padding:0;text-decoration:underline;"
                                         href="https://www.ornl.gov/project/geospatial-data-sets"
                                         target="_blank">OakRidge National Labs (ORNL)</a></span>
-                                <div class="border-bottom"></div>
-                                <div class="align-items-center d-flex justify-content-between my-1">
+                                <br/><br/><div class="border-bottom"></div><br/>
+                                <div class="align-items-start d-flex flex-column my-1">
                                     <label class="flex-fill util-toggle" data-color="success" data-label="right"
                                         data-radius="pill" data-size="sm"
                                         data-bs-original-title="Add or remove this map layer">
                                         <input type="checkbox" data-layer-id="extent1-02" checked>
                                         <span><span></span></span>
-                                        <span>Flood extent ( <svg width="1rem" height="0.75rem">
+                                        <span>Flood extent (
+                                            <svg width="1rem" height="0.75rem">
                                                 <rect x="0" y="0" width="100%" height="100%" fill="#00C5FF" />
-                                            </svg> 1% and <svg width="1rem" height="0.75rem">
+                                            </svg> 1% and 
+                                            <svg width="1rem" height="0.75rem">
                                                 <rect x="0" y="0" width="100%" height="100%" fill="#A900E6" />
-                                            </svg> 0.2%)</span>
+                                            </svg> 0.2%)
+                                        </span>
+                                    </label><br/>
+                                    <label style="margin-left:4.75rem;">        
+                                        <span>Enhanced Flood Extent (
+                                            <svg width="1rem" height="0.75rem">
+                                                <rect x="0" y="0" width="100%" height="100%" fill="#FFFF00" />
+                                            </svg> AE and 
+                                            <svg width="1rem" height="0.75rem">
+                                                <rect x="0" y="0" width="100%" height="100%" fill="#A900E6" />
+                                            </svg> 0.2%)
+                                        </span>
                                     </label>
-                                </div>
+                                </div><br/>
+                               <div class="align-items-center d-flex justify-content-between my-1">
+                                    <label class="flex-fill util-toggle" data-color="success" data-label="right"
+                                        data-radius="pill" data-size="sm"
+                                        data-bs-original-title="Add or remove this map layer">
+                                        <input type="checkbox" data-layer-id="enhanced_xs">
+                                        <span><span></span></span>
+                                        <span>Enhanced XS  </span>
+                                    </label>
+                                    <svg width="5rem" height="3" style="margin-right:9.5rem;">
+                                    <line x1="0" y1="1.5" x2="5rem" y2="1.5" 
+                                            style="stroke:rgb(0, 0, 0); stroke-width:2; stroke-dasharray:4,4;" />
+                                    </svg>
+                                </div>                                
                                 <div class="align-items-center d-flex justify-content-between my-1">
                                     <label class="flex-fill util-toggle" data-color="success" data-label="right"
                                         data-radius="pill" data-size="sm"
@@ -379,6 +403,7 @@
 <script src="limits.js"></script>
 <script src="pir_limit_lines.js"></script>
 <script src="heat.js"></script>
+<script src="Enhanced_XS.js"></script>
 <script src="app.js"></script>
 <script src="basemaps.js"></script>
 <script>

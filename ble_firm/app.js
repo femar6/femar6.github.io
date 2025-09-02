@@ -87,6 +87,8 @@ function zoomToCounty() {
 
   if (selectedCounty === "Choctaw") {
     map.setView([34, -95.55], 11);
+  } else if (selectedCounty === "Atoka") {
+    map.setView([34.38577561049687, -96.13662618862482], 11);
   } else if (selectedCounty === "Camp") {
     map.setView([32.98500890780826, -94.93490109384865], 11);
   } else if (selectedCounty === "Dewey") {
@@ -154,8 +156,8 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
    // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_2_FIRM_Layer04052024/VectorTileServer", {
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer01122025/VectorTileServer", {
       // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer06232025/VectorTileServer",{
-      "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08082025/VectorTileServer",{      
-        
+      // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08082025/VectorTileServer",{      
+        "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08282025/VectorTileServer",{
   style: (feature) => {
       return {
         "version": 8,
@@ -163,30 +165,41 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
           "my-vector-tiles": {
             "type": "vector",
             "tiles": [
-              "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08082025/VectorTileServer/tile/{z}/{y}/{x}"
+              //"https://vectortileservices.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08282025/VectorTileServer/tile/{z}/{y}/{x}"
+              "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08282025/VectorTileServer/tile/{z}/{y}/{x}"
             ]
           }
         },
         "layers": [{
-          "id": "BLE2FIRM_Layer08082025/X/1",
+          "id": "BLE2FIRM_Layer08282025/AE/1",
           "type": "fill",
           "source": "my-vector-tiles",
-          "source-layer": "BLE2FIRM_Layer08082025",
+          "source-layer": "BLE2FIRM_Layer08282025",
           "paint": {
-            "fill-color": "#A900E6",
+            "fill-color": "#FFFF00",
             "fill-opacity": 0.5
           },
           "filter": ["==", "_symbol", 1]
         }, {
-          "id": "BLE2FIRM_Layer08082025/A/1",
+          "id": "BLE2FIRM_Layer08282025/A/0",
           "type": "fill",
           "source": "my-vector-tiles",
-          "source-layer": "BLE2FIRM_Layer08082025",
+          "source-layer": "BLE2FIRM_Layer08282025",
           "paint": {
             "fill-color": "#00C5FF",
             "fill-opacity": 0.5
           },
-          "filter": ["!=", "_symbol", 1]
+          "filter": ["==", "_symbol", 0]
+        }, {
+          "id": "BLE2FIRM_Layer08282025/X/2",
+          "type": "fill",
+          "source": "my-vector-tiles",
+          "source-layer": "BLE2FIRM_Layer08282025",
+          "paint": {
+            "fill-color": "#C500FF",
+            "fill-opacity": 0.5
+          },
+          "filter": ["==", "_symbol", 2]
         }]
       };
     }
@@ -211,14 +224,15 @@ const eff_scop_stream = L.esri.Vector.vectorTileLayer(
   //"https://vectortileservices.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Scoping_Lines/VectorTileServer"
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines01122025/VectorTileServer"
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines_06202025/VectorTileServer"
-  "https://vectortileservices.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines_08082025/VectorTileServer"
+  // "https://vectortileservices.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines_08082025/VectorTileServer"
+    "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines_08282025/VectorTileServer"
 );
 const pir_stream_cent = L.esri.Vector.vectorTileLayer(
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL09052023/VectorTileServer");
   //"https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_PBL/VectorTileServer");
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL01122025/VectorTileServer");
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL06202025/VectorTileServer");
-   "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL08082025/VectorTileServer");
+   "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL08282025/VectorTileServer");
 const cityLimits_ = L.geoJson(cityLimits, {
   style: {
     color: "orange", // set line color to orange
@@ -234,6 +248,50 @@ const PIR_Limit_Lines = L.geoJson(pirLimitLines, {
     opacity: 1 // set initial opacity to 1
   }
 });
+
+const enhanced_xs = L.geoJSON(enhanced_xs_, {
+  style: function (feature) {
+    return {
+      color: '#000000ff', // Default blue color for FEMA cross-section
+      weight: 4,        // Default visible line thickness
+      dashArray: '8,8', // Dashed line pattern
+      opacity: 1,       // Full opacity
+      interactive: true // Ensure the line is interactive
+    };
+  },
+  onEachFeature: function (feature, layer) {
+    // Bind tooltip to display WSEL_REG
+    if (feature.properties && feature.properties.WSEL_REG) {
+      layer.bindTooltip(`WSEL_REG: ${feature.properties.WSEL_REG}`);
+    }
+
+    // Add mouseover effect
+    layer.on('mouseover', function (e) {
+      layer.setStyle({
+        color: 'red', // Change color to yellow
+        weight: 6        // Increase line thickness for better visibility
+      });
+    });
+
+    // Add mouseout effect to reset style
+    layer.on('mouseout', function (e) {
+      layer.setStyle({
+      color: '#000000ff', // Default blue color for FEMA cross-section
+      weight: 4,        // Default visible line thickness
+      dashArray: '8,8', // Dashed line pattern
+      opacity: 1,       // Full opacity
+      interactive: true // Ensure the line is interactive
+      });
+    });
+
+    // Increase the hitbox area without changing the visible style
+    layer.on('add', function () {
+      layer.bringToFront(); // Ensure the layer is on top
+    });
+  }
+});
+
+
 const nfhl = L.esri.dynamicMapLayer({
   url: "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer"
 });
@@ -523,6 +581,14 @@ input.onchange = function () {
     bleLayer.removeFrom(allLayers);
   }
 };
+var input2_1 = document.querySelector('input[type="checkbox"][data-layer-id="enhanced_xs"]');
+input2_1.onchange = function () {
+  if (this.checked) {
+    enhanced_xs.addTo(allLayers);
+  } else {
+    enhanced_xs.removeFrom(allLayers);
+  }
+};
 var input2 = document.querySelector('input[type="checkbox"][data-layer-id="eff-scop-stream"]');
 input2.onchange = function () {
   if (this.checked) {
@@ -531,6 +597,7 @@ input2.onchange = function () {
     eff_scop_stream.removeFrom(allLayers);
   }
 };
+
 eff_scop_stream.setOpacity = function (opacity) {
   this.setStyle({
     opacity: opacity
@@ -612,3 +679,4 @@ function tableCloseCnty_btn() {
     table.style.visibility = 'hidden'; // Hide the table
   }
 }
+
