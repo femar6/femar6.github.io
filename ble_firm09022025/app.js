@@ -123,8 +123,6 @@ function zoomToCounty() {
     map.setView([33.98730650947136, -94.2371081518305], 11);
   } else if (selectedCounty === "San Augustine") {
     map.setView([31.40825510597208, -94.16545518643422], 11);
-  } else if (selectedCounty === "Scott") {
-    map.setView([34.876404, -94.066534], 11);
   } else if (selectedCounty === "Shelby") {
     map.setView([31.806832020550743, -94.1223292716277], 11);
   } else if (selectedCounty === "Falls") {
@@ -159,55 +157,53 @@ const bleLayer = L.esri.Vector.vectorTileLayer(
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer01122025/VectorTileServer", {
       // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer06232025/VectorTileServer",{
       // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08082025/VectorTileServer",{      
-       // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08282025/VectorTileServer",{
-          "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_BLE_Layer12092025/VectorTileServer",
-  //         {
-  // style: (feature) => {
-  //     return {
-  //       "version": 8,
-  //       "sources": {
-  //         "my-vector-tiles": {
-  //           "type": "vector",
-  //           "tiles": [
-  //             //"https://vectortileservices.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08282025/VectorTileServer/tile/{z}/{y}/{x}"
-  //             "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_BLE_Layer12092025/VectorTileServer/tile/{z}/{y}/{x}"
-  //           ]
-  //         }
-  //       },
-  //       "layers": [{
-  //         "id": "BLE2FIRM_Layer12092025/AE/1",
-  //         "type": "fill",
-  //         "source": "my-vector-tiles",
-  //         "source-layer": "BLE2FIRM_Layer12092025",
-  //         "paint": {
-  //           "fill-color": "#FFFF00",
-  //           "fill-opacity": 0.5
-  //         },
-  //         "filter": ["==", "_symbol", 1]
-  //       }, {
-  //         "id": "BLE2FIRM_Layer12092025/A/0",
-  //         "type": "fill",
-  //         "source": "my-vector-tiles",
-  //         "source-layer": "BLE2FIRM_Layer12092025",
-  //         "paint": {
-  //           "fill-color": "#00C5FF",
-  //           "fill-opacity": 0.5
-  //         },
-  //         "filter": ["==", "_symbol", 0]
-  //       }, {
-  //         "id": "BLE2FIRM_Layer12092025/X/2",
-  //         "type": "fill",
-  //         "source": "my-vector-tiles",
-  //         "source-layer": "BLE2FIRM_Layer12092025",
-  //         "paint": {
-  //           "fill-color": "#C500FF",
-  //           "fill-opacity": 0.5
-  //         },
-  //         "filter": ["==", "_symbol", 2]
-  //       }]
-  //     };
-  //   }
-  // }
+        "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08282025/VectorTileServer",{
+  style: (feature) => {
+      return {
+        "version": 8,
+        "sources": {
+          "my-vector-tiles": {
+            "type": "vector",
+            "tiles": [
+              //"https://vectortileservices.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08282025/VectorTileServer/tile/{z}/{y}/{x}"
+              "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08282025/VectorTileServer/tile/{z}/{y}/{x}"
+            ]
+          }
+        },
+        "layers": [{
+          "id": "BLE2FIRM_Layer08282025/AE/1",
+          "type": "fill",
+          "source": "my-vector-tiles",
+          "source-layer": "BLE2FIRM_Layer08282025",
+          "paint": {
+            "fill-color": "#FFFF00",
+            "fill-opacity": 0.5
+          },
+          "filter": ["==", "_symbol", 1]
+        }, {
+          "id": "BLE2FIRM_Layer08282025/A/0",
+          "type": "fill",
+          "source": "my-vector-tiles",
+          "source-layer": "BLE2FIRM_Layer08282025",
+          "paint": {
+            "fill-color": "#00C5FF",
+            "fill-opacity": 0.5
+          },
+          "filter": ["==", "_symbol", 0]
+        }, {
+          "id": "BLE2FIRM_Layer08282025/X/2",
+          "type": "fill",
+          "source": "my-vector-tiles",
+          "source-layer": "BLE2FIRM_Layer08282025",
+          "paint": {
+            "fill-color": "#C500FF",
+            "fill-opacity": 0.5
+          },
+          "filter": ["==", "_symbol", 2]
+        }]
+      };
+    }
+  }
 ).addTo(allLayers);
 const Geo_Referenced_FIRMs = L.esri.tiledMapLayer({
   // url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/geo_ref_firms05232023/MapServer',
