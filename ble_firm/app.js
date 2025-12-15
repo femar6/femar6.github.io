@@ -152,63 +152,108 @@ function closeModal() {
   }, 250);
 }
 const allLayers = L.layerGroup().addTo(map);
-const bleLayer = L.esri.Vector.vectorTileLayer(
-  // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study01312024/VectorTileServer", {
-  //  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study01312024/VectorTileServer", {
-   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_2_FIRM_Layer04052024/VectorTileServer", {
-  // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer01122025/VectorTileServer", {
-      // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer06232025/VectorTileServer",{
-      // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08082025/VectorTileServer",{      
-       // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08282025/VectorTileServer",{
-          "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_BLE_Layer12092025/VectorTileServer",
-  //         {
-  // style: (feature) => {
-  //     return {
-  //       "version": 8,
-  //       "sources": {
-  //         "my-vector-tiles": {
-  //           "type": "vector",
-  //           "tiles": [
-  //             //"https://vectortileservices.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08282025/VectorTileServer/tile/{z}/{y}/{x}"
-  //             "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_BLE_Layer12092025/VectorTileServer/tile/{z}/{y}/{x}"
-  //           ]
-  //         }
-  //       },
-  //       "layers": [{
-  //         "id": "BLE2FIRM_Layer12092025/AE/1",
-  //         "type": "fill",
-  //         "source": "my-vector-tiles",
-  //         "source-layer": "BLE2FIRM_Layer12092025",
-  //         "paint": {
-  //           "fill-color": "#FFFF00",
-  //           "fill-opacity": 0.5
-  //         },
-  //         "filter": ["==", "_symbol", 1]
-  //       }, {
-  //         "id": "BLE2FIRM_Layer12092025/A/0",
-  //         "type": "fill",
-  //         "source": "my-vector-tiles",
-  //         "source-layer": "BLE2FIRM_Layer12092025",
-  //         "paint": {
-  //           "fill-color": "#00C5FF",
-  //           "fill-opacity": 0.5
-  //         },
-  //         "filter": ["==", "_symbol", 0]
-  //       }, {
-  //         "id": "BLE2FIRM_Layer12092025/X/2",
-  //         "type": "fill",
-  //         "source": "my-vector-tiles",
-  //         "source-layer": "BLE2FIRM_Layer12092025",
-  //         "paint": {
-  //           "fill-color": "#C500FF",
-  //           "fill-opacity": 0.5
-  //         },
-  //         "filter": ["==", "_symbol", 2]
-  //       }]
-  //     };
-  //   }
-  // }
-).addTo(allLayers);
+// const bleLayer = L.esri.Vector.vectorTileLayer(
+//   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study01312024/VectorTileServer", {
+//   //  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/status_study01312024/VectorTileServer", {
+//    // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_2_FIRM_Layer04052024/VectorTileServer", {
+//   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer01122025/VectorTileServer", {
+//       // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer06232025/VectorTileServer",{
+//       // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08082025/VectorTileServer",{      
+//        // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08282025/VectorTileServer",{
+//           "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_BLE_Layer12092025/VectorTileServer",
+//           {
+//   style: (feature) => {
+//       return {
+//         "version": 8,
+//         "sources": {
+//           "my-vector-tiles": {
+//             "type": "vector",
+//             "tiles": [
+//               //"https://vectortileservices.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer08282025/VectorTileServer/tile/{z}/{y}/{x}"
+//               "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_BLE_Layer12092025/VectorTileServer/tile/{z}/{y}/{x}"
+//             ]
+//           }
+//         },
+//         "layers": [{
+//           "id": "BLE2FIRM_Layer12092025/AE/1",
+//           "type": "fill",
+//           "source": "my-vector-tiles",
+//           "source-layer": "BLE2FIRM_Layer12092025",
+//           "paint": {
+//             "fill-color": "#FFFF00",
+//             "fill-opacity": 0.5
+//           },
+//           "filter": ["==", "_symbol", 1]
+//         }, {
+//           "id": "BLE2FIRM_Layer12092025/A/0",
+//           "type": "fill",
+//           "source": "my-vector-tiles",
+//           "source-layer": "BLE2FIRM_Layer12092025",
+//           "paint": {
+//             "fill-color": "#00C5FF",
+//             "fill-opacity": 0.5
+//           },
+//           "filter": ["==", "_symbol", 0]
+//         }, {
+//           "id": "BLE2FIRM_Layer12092025/X/2",
+//           "type": "fill",
+//           "source": "my-vector-tiles",
+//           "source-layer": "BLE2FIRM_Layer12092025",
+//           "paint": {
+//             "fill-color": "#C500FF",
+//             "fill-opacity": 0.5
+//           },
+//           "filter": ["==", "_symbol", 2]
+//         }]
+//       };
+//     }
+//   }
+// ).addTo(allLayers);
+const serviceUrl =
+  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_BLE_Layer12092025/VectorTileServer";
+
+const bleLayer = L.esri.Vector.vectorTileLayer(serviceUrl, {
+  style: function (style) {
+    // Find whatever source name Esri put in the default style (often "esri")
+    const src = Object.keys(style.sources)[0];
+
+    // IMPORTANT: set this to the *actual* source-layer name used inside the tiles
+    // (it is often the service name, but verify from root.json)
+    const sourceLayerName = "BLE2FIRM_BLE_Layer12092025";
+
+    style.layers = [
+      {
+        id: "ble-a",
+        type: "fill",
+        source: src,
+        "source-layer": sourceLayerName,
+        paint: { "fill-color": "#00C5FF", "fill-opacity": 0.5 },
+        filter: ["==", "_symbol", 0],
+      },
+      {
+        id: "ble-ae",
+        type: "fill",
+        source: src,
+        "source-layer": sourceLayerName,
+        paint: { "fill-color": "#FFFF00", "fill-opacity": 0.5 },
+        filter: ["==", "_symbol", 1],
+      },
+      {
+        id: "ble-x",
+        type: "fill",
+        source: src,
+        "source-layer": sourceLayerName,
+        paint: { "fill-color": "#C500FF", "fill-opacity": 0.5 },
+        filter: ["==", "_symbol", 2],
+      },
+    ];
+
+    return style;
+  },
+});
+
+bleLayer.addTo(allLayers);
+
 const Geo_Referenced_FIRMs = L.esri.tiledMapLayer({
   // url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/geo_ref_firms05232023/MapServer',
   // url: 'https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/geo_ref_firms09052023/MapServer',
@@ -221,6 +266,10 @@ const Geo_Referenced_FIRMs2 = L.esri.tiledMapLayer({
   url:"https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_R6_Referenced_FIRMs2/MapServer",
   opacity:1
 }).addTo(allLayers);
+const Geo_Referenced_FIRMs3 = L.esri.tiledMapLayer({
+  url:"https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_R6_Referenced_FIRMs3/MapServer",
+  opacity:1
+}).addTo(allLayers);
 
 // Streams
 const eff_scop_stream = L.esri.Vector.vectorTileLayer(
@@ -229,14 +278,16 @@ const eff_scop_stream = L.esri.Vector.vectorTileLayer(
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines01122025/VectorTileServer"
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines_06202025/VectorTileServer"
   // "https://vectortileservices.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines_08082025/VectorTileServer"
-    "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines_08282025/VectorTileServer"
+   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines_08282025/VectorTileServer"
+    "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/Scoping_Lines_12092025/VectorTileServer"
 );
 const pir_stream_cent = L.esri.Vector.vectorTileLayer(
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL09052023/VectorTileServer");
   //"https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_PBL/VectorTileServer");
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL01122025/VectorTileServer");
   // "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL06202025/VectorTileServer");
-   "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL08282025/VectorTileServer");
+   //"https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL08282025/VectorTileServer");
+      "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_PBL12092025/VectorTileServer");
 const cityLimits_ = L.geoJson(cityLimits, {
   style: {
     color: "orange", // set line color to orange
