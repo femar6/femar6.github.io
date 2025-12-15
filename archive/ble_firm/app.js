@@ -267,7 +267,7 @@ const Geo_Referenced_FIRMs2 = L.esri.tiledMapLayer({
   opacity:1
 }).addTo(allLayers);
 const Geo_Referenced_FIRMs3 = L.esri.tiledMapLayer({
-  url:"https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_R6_Referenced_FIRMs_3/MapServer",
+  url:"https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE_R6_Referenced_FIRMs3/MapServer",
   opacity:1
 }).addTo(allLayers);
 
