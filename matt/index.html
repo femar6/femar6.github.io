@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Buffer → Forecast (A/AE) → Parcels</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+  html, body, #map { height: 100%; margin: 0; padding: 0; }
+
+  /* ================= LOADER ================= */
+  #loader {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 9999;
+  }
+  #loaderBox {
+    background: #fff;
+    padding: 20px 26px;
+    border-radius: 14px;
+    min-width: 340px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+    font: 14px system-ui;
+  }
+  #loaderTitle { font-weight: 700; margin-bottom: 6px; }
+  #loaderStep { opacity: 0.85; }
+
+  /* ================= LEGEND ================= */
+  .legend {
+    background: rgba(255,255,255,0.95);
+    padding: 10px 12px;
+    border-radius: 10px;
+    font: 13px system-ui;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  }
+  .legend small {
+    display: block;
+    margin-top: 6px;
+    opacity: 0.85;
+    line-height: 1.25;
+  }
+
+  /* ================= LEFT PANEL ================= */
+  .panel {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    width: min(520px, calc(100vw - 20px));
+    background: rgba(255,255,255,0.96);
+    border-radius: 14px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+    z-index: 1200;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 220ms ease;
+  }
+  .panel.closed {
+    transform: translateX(calc(-100% - 14px));
+  }
+  .panel-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .panel-title {
+    font: 700 14px system-ui;
+    flex: 1;
+  }
+  .panel-subtitle {
+    font: 12px system-ui;
+    opacity: 0.75;
+    margin-top: 2px;
+  }
+  .panel-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .btn {
+    border: 1px solid rgba(0,0,0,0.15);
+    background: #fff;
+    border-radius: 10px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font: 13px system-ui;
+  }
+  .btn:hover { background: rgba(0,0,0,0.04); }
+
+  .panel-tools {
+    display: flex;
+    gap: 8px;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .panel-tools input {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.15);
+    font: 13px system-ui;
+    outline: none;
+  }
+
+  .panel-body {
+    flex: 1;
+    overflow: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font: 12px system-ui;
+  }
+  thead th {
+    position: sticky;
+    top: 0;
+    background: #f6f7f8;
+    z-index: 1;
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.10);
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    vertical-align: top;
+  }
+  tbody tr:hover { background: rgba(0,0,0,0.03); }
+
+  .pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.06);
+    font-size: 12px;
+  }
+
+  .panel-footer {
+    padding: 10px 12px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    font: 12px system-ui;
+    opacity: 0.85;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* Small “open” tab when closed */
+  .open-tab {
+    position: absolute;
+    top: 16px;
+    left: 10px;
+    z-index: 1199;
+    background: rgba(255,255,255,0.96);
+    border-radius: 12px;
+    padding: 8px 10px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.10);
+    font: 13px system-ui;
+    display: none;
+  }
+  .open-tab.show { display: inline-flex; align-items: center; gap: 8px; }
+
+  /* Responsive: narrower table columns on small screens */
+  @media (max-width: 700px) {
+    .panel { width: calc(100vw - 20px); }
+    thead th:nth-child(n+4),
+    tbody td:nth-child(n+4) { display: none; } /* show only first 3 cols on small screens */
+  }
+</style>
+</head>
+
+<body>
+<div id="map"></div>
+
+<!-- Left panel -->
+<div id="panel" class="panel">
+  <div class="panel-header">
+    <div style="min-width:0;">
+      <div class="panel-title">Selected Parcels</div>
+      <div class="panel-subtitle" id="panelSubtitle">No results yet</div>
+    </div>
+    <div class="panel-actions">
+      <button class="btn" id="btnExport">Export CSV</button>
+      <button class="btn" id="btnClose">Close</button>
+    </div>
+  </div>
+
+  <div class="panel-tools">
+    <input id="searchBox" type="text" placeholder="Filter parcels (owner, address, PROP_ID, GEO_ID, ZIP)…" />
+  </div>
+
+  <div class="panel-body">
+    <table id="parcelTable">
+      <thead>
+        <tr>
+          <th>OBJECTID</th>
+          <th>OWNER_NAME</th>
+          <th>SITUS_ADDR</th>
+          <th>PROP_ID</th>
+          <th>GEO_ID</th>
+          <th>MKT_VALUE</th>
+          <th>SITUS_CITY</th>
+          <th>SITUS_ZIP</th>
+        </tr>
+      </thead>
+      <tbody id="parcelTbody">
+        <tr><td colspan="8" style="padding:14px 10px; opacity:.75;">Run a query to populate this table.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="panel-footer">
+    <span class="pill" id="pillCount">0 parcels</span>
+    <span class="pill" id="pillForecast">0 forecast polys</span>
+    <span class="pill">Alt+Click = run here</span>
+    <span class="pill">Alt+L = rerun last</span>
+  </div>
+</div>
+
+<div id="openTab" class="open-tab">📄 Parcels</div>
+
+<!-- Loader -->
+<div id="loader">
+  <div id="loaderBox">
+    <div id="loaderTitle">Processing</div>
+    <div id="loaderStep">Starting…</div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+
+<script>
+/* ======================================================
+   CONFIG
+====================================================== */
+const ONE_MILE_METERS = 1609.344;
+
+// FEMA NFHL S_Fld_Haz_Ar layer (your MapServer/28)
+const FORECAST_URL = "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28";
+
+// Texas parcels (TNRIS)
+const PARCELS_URL = "https://feature.tnris.org/arcgis/rest/services/Parcels/stratmap19_land_parcels_48/MapServer/0";
+
+// IMPORTANT: using only A/AE (you can change to just 'AE' if you want)
+const FLOOD_WHERE = "FLD_ZONE IN ('A','AE')";
+
+/* ======================================================
+   MAP
+====================================================== */
+const map = L.map("map").setView([31, -99], 6);
+
+L.tileLayer(
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+  { attribution: "Tiles © Esri" }
+).addTo(map);
+
+/* ======================================================
+   LOADER
+====================================================== */
+const loader = document.getElementById("loader");
+const loaderStep = document.getElementById("loaderStep");
+
+function showLoader(msg){ loader.style.display="flex"; loaderStep.textContent=msg; }
+function stepLoader(msg){ loaderStep.textContent=msg; }
+function hideLoader(){ loader.style.display="none"; }
+
+/* ======================================================
+   LEFT PANEL UI
+====================================================== */
+const panel = document.getElementById("panel");
+const openTab = document.getElementById("openTab");
+const btnClose = document.getElementById("btnClose");
+const btnExport = document.getElementById("btnExport");
+const searchBox = document.getElementById("searchBox");
+const tbody = document.getElementById("parcelTbody");
+const panelSubtitle = document.getElementById("panelSubtitle");
+const pillCount = document.getElementById("pillCount");
+const pillForecast = document.getElementById("pillForecast");
+
+btnClose.addEventListener("click", () => {
+  panel.classList.add("closed");
+  openTab.classList.add("show");
+});
+openTab.addEventListener("click", () => {
+  panel.classList.remove("closed");
+  openTab.classList.remove("show");
+});
+
+// Prevent map drag when interacting with panel
+L.DomEvent.disableClickPropagation(panel);
+L.DomEvent.disableScrollPropagation(panel);
+
+/* ======================================================
+   LAYERS
+====================================================== */
+const bufferLayer = L.featureGroup().addTo(map);
+
+const forecastLayer = L.geoJSON(null, {
+  style: {
+    color: "#0078ff",
+    weight: 2,
+    opacity: 1,
+    fillColor: "#00ccff",
+    fillOpacity: 0.35
+  }
+}).addTo(map);
+
+const parcelsLayer = L.geoJSON(null, {
+  style: {
+    color: "red",
+    weight: 2,
+    opacity: 1,
+    fillColor: "red",
+    fillOpacity: 0.5
+  }
+}).addTo(map);
+
+const heatLayer = L.heatLayer([], { radius: 28, blur: 20 }).addTo(map);
+
+/* ======================================================
+   LEGEND
+====================================================== */
+let fcEl, pcEl;
+const legend = L.control({ position: "bottomright" });
+legend.onAdd = function () {
+  const div = L.DomUtil.create("div", "legend");
+  div.innerHTML = `
+    <b>Results</b><br>
+    Flood polys (A/AE): <strong id="fc">—</strong><br>
+    Parcels inside flood: <strong id="pc">—</strong>
+    <small>📍 = locate • Alt+Click = run here • Alt+L = rerun last</small>
+  `;
+  fcEl = div.querySelector("#fc");
+  pcEl = div.querySelector("#pc");
+  return div;
+};
+legend.addTo(map);
+
+function setCounts(fc, pc){
+  fcEl.textContent = fc;
+  pcEl.textContent = pc;
+  pillForecast.textContent = `${fc} flood polys`;
+  pillCount.textContent = `${pc} parcels`;
+}
+
+/* ======================================================
+   HELPERS
+====================================================== */
+let currentParcels = [];   // store last parcels for table/filter/export
+let currentFloodCount = 0; // store last flood poly count
+
+function clearAll(){
+  bufferLayer.clearLayers();
+  forecastLayer.clearLayers();
+  parcelsLayer.clearLayers();
+  heatLayer.setLatLngs([]);
+  setCounts("—","—");
+
+  currentParcels = [];
+  currentFloodCount = 0;
+  renderParcelTable([]);
+  panelSubtitle.textContent = "No results yet";
+}
+
+function centroid(feature){
+  const b = L.geoJSON(feature).getBounds();
+  return b.isValid() ? b.getCenter() : null;
+}
+
+function buildMultiPolygon(features){
+  const coords = [];
+  for (const f of features){
+    const g = f.geometry;
+    if (!g) continue;
+
+    if (g.type === "Polygon") coords.push(g.coordinates);
+    else if (g.type === "MultiPolygon") {
+      for (const poly of g.coordinates) coords.push(poly);
+    }
+  }
+  return { type:"Feature", geometry:{ type:"MultiPolygon", coordinates: coords } };
+}
+
+function safeStr(v){
+  if (v === null || v === undefined) return "";
+  return String(v);
+}
+
+function money(v){
+  const n = Number(v);
+  if (!isFinite(n)) return "";
+  return n.toLocaleString(undefined, { maximumFractionDigits: 0 });
+}
+
+/* ======================================================
+   TABLE RENDERING (responsive, searchable)
+   Fields you requested are available in row object; we show a useful subset
+   but export includes ALL requested fields.
+====================================================== */
+
+// Fields list (for CSV export)
+const PARCEL_FIELDS = [
+  "objectid",
+  "prop_id",
+  "geo_id",
+  "owner_name",
+  "name_care",
+  "legal_area",
+  "lgl_area_u",
+  "gis_area",
+  "gis_area_u",
+  "legal_desc",
+  "stat_land_",
+  "loc_land_u",
+  "land_value",
+  "imp_value",
+  "mkt_value",
+  "situs_addr",
+  "situs_num",
+  "situs_stre",
+  "situs_st_1",
+  "situs_st_2",
+  "situs_city",
+  "situs_stat",
+  "situs_zip"
+];
+
+function normalizeAttrs(attrs){
+  // TNRIS parcels often return UPPERCASE field names; normalize to lowercase keys
+  const out = {};
+  for (const k in attrs){
+    out[k.toLowerCase()] = attrs[k];
+  }
+  return out;
+}
+
+function renderParcelTable(parcelFeatures, filterText=""){
+  const ft = filterText.trim().toLowerCase();
+
+  // Build rows
+  const rows = [];
+  for (const f of parcelFeatures){
+    const a = normalizeAttrs(f.properties || f.attributes || {});
+    // Keep only requested keys + also allow displayed subset
+    rows.push(a);
+  }
+
+  const filtered = ft ? rows.filter(r => {
+    const hay =
+      safeStr(r.owner_name) + " " +
+      safeStr(r.situs_addr) + " " +
+      safeStr(r.situs_city) + " " +
+      safeStr(r.situs_zip) + " " +
+      safeStr(r.prop_id) + " " +
+      safeStr(r.geo_id);
+    return hay.toLowerCase().includes(ft);
+  }) : rows;
+
+  // Update subtitle
+  panelSubtitle.textContent = `${filtered.length} shown • ${rows.length} total`;
+
+  // Render table body
+  tbody.innerHTML = "";
+
+  if (!filtered.length){
+    tbody.innerHTML = `<tr><td colspan="8" style="padding:14px 10px; opacity:.75;">No parcels match your filter.</td></tr>`;
+    return;
+  }
+
+  for (const r of filtered){
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${safeStr(r.objectid)}</td>
+      <td>${safeStr(r.owner_name)}</td>
+      <td>${safeStr(r.situs_addr)}</td>
+      <td>${safeStr(r.prop_id)}</td>
+      <td>${safeStr(r.geo_id)}</td>
+      <td>${money(r.mkt_value)}</td>
+      <td>${safeStr(r.situs_city)}</td>
+      <td>${safeStr(r.situs_zip)}</td>
+    `;
+    tbody.appendChild(tr);
+  }
+}
+
+searchBox.addEventListener("input", () => {
+  renderParcelTable(currentParcels, searchBox.value);
+});
+
+btnExport.addEventListener("click", () => {
+  if (!currentParcels.length){
+    alert("No parcels to export yet.");
+    return;
+  }
+
+  // Build CSV with all requested fields
+  const header = PARCEL_FIELDS.join(",");
+  const lines = [header];
+
+  for (const f of currentParcels){
+    const a = normalizeAttrs(f.properties || f.attributes || {});
+    const row = PARCEL_FIELDS.map(fn => {
+      const val = a[fn];
+      // CSV escape
+      const s = safeStr(val).replace(/"/g, '""');
+      return `"${s}"`;
+    }).join(",");
+    lines.push(row);
+  }
+
+  const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "selected_parcels.csv";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+});
+
+/* ======================================================
+   WORKFLOW
+   Buffer → Flood polys (A/AE) → Parcels ∩ Flood → Heatmap
+====================================================== */
+let workflowInFlight = false;
+let lastAltClickLatLng = null;
+
+function runWorkflow(lat, lng, { zoomToBuffer = true } = {}){
+  if (workflowInFlight) return;
+  workflowInFlight = true;
+
+  showLoader("Creating 1-mile buffer…");
+  clearAll();
+
+  const buffer = L.circle([lat, lng], {
+    radius: ONE_MILE_METERS,
+    color: "yellow",
+    fillOpacity: 0.10
+  }).addTo(bufferLayer);
+
+  if (zoomToBuffer) map.fitBounds(buffer.getBounds());
+
+  stepLoader("Querying FEMA flood polygons (A/AE)…");
+
+  // Step 1: Flood polygons (A/AE only) near the point
+  L.esri.query({ url: FORECAST_URL })
+    .where(FLOOD_WHERE)
+    .nearby(L.latLng(lat, lng), ONE_MILE_METERS)
+    .limit(200)
+    .run((fErr, floodFC) => {
+      if (fErr){
+        console.error("Flood query error:", fErr);
+        hideLoader();
+        workflowInFlight = false;
+        alert("Flood query failed.");
+        return;
+      }
+
+      const floodFeats = floodFC?.features || [];
+      currentFloodCount = floodFeats.length;
+      setCounts(currentFloodCount, "—");
+
+      if (!floodFeats.length){
+        hideLoader();
+        workflowInFlight = false;
+        alert("No A/AE flood polygons found within 1 mile.");
+        return;
+      }
+
+      forecastLayer.addData(floodFeats);
+
+      stepLoader("Querying parcels inside flood area…");
+
+      // Step 2: Parcels that intersect the flood polygons we just got
+      const floodMultiPoly = buildMultiPolygon(floodFeats);
+
+      L.esri.query({ url: PARCELS_URL })
+        .intersects(floodMultiPoly)
+        .limit(5000)
+        .run((pErr, parcelFC) => {
+          if (pErr){
+            console.error("Parcel query error:", pErr);
+            hideLoader();
+            workflowInFlight = false;
+            alert("Parcel query failed.");
+            return;
+          }
+
+          const parcels = parcelFC?.features || [];
+          currentParcels = parcels;
+
+          setCounts(currentFloodCount, parcels.length);
+
+          parcelsLayer.addData(parcels);
+
+          stepLoader("Building heatmap and table…");
+
+          // Heatmap points
+          const heatPts = [];
+          for (const p of parcels){
+            const c = centroid(p);
+            if (c) heatPts.push([c.lat, c.lng, 1]);
+          }
+          heatLayer.setLatLngs(heatPts);
+
+          // Table
+          renderParcelTable(currentParcels, searchBox.value);
+
+          hideLoader();
+          workflowInFlight = false;
+
+          // Open panel automatically if it’s closed
+          panel.classList.remove("closed");
+          openTab.classList.remove("show");
+
+          L.popup()
+            .setLatLng([lat, lng])
+            .setContent(`
+              <b>Complete</b><br>
+              Flood polys (A/AE): ${currentFloodCount}<br>
+              Parcels inside flood: ${parcels.length}
+            `)
+            .openOn(map);
+        });
+    });
+}
+
+/* ======================================================
+   LOCATION (GPS → IP fallback)
+====================================================== */
+function locateByIP(){
+  stepLoader("GPS blocked — using IP location…");
+  fetch("https://ipapi.co/json/")
+    .then(r => r.json())
+    .then(d => {
+      if (!d || !d.latitude) throw new Error();
+      runWorkflow(d.latitude, d.longitude);
+    })
+    .catch(() => {
+      hideLoader();
+      workflowInFlight = false;
+      alert("Location failed.");
+    });
+}
+
+function smartLocate(){
+  showLoader("Locating…");
+
+  if (navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(
+      pos => runWorkflow(pos.coords.latitude, pos.coords.longitude),
+      () => locateByIP(),
+      { enableHighAccuracy: true, timeout: 5000 }
+    );
+  } else {
+    locateByIP();
+  }
+}
+
+/* ======================================================
+   CONTROLS
+====================================================== */
+const locateBtn = L.control({ position: "topleft" });
+locateBtn.onAdd = function () {
+  const div = L.DomUtil.create("div", "leaflet-bar leaflet-control");
+  div.innerHTML = `<a href="#" title="Locate" style="font-size:20px;padding:4px;">📍</a>`;
+  div.onclick = e => { e.preventDefault(); smartLocate(); };
+  return div;
+};
+locateBtn.addTo(map);
+
+/* ======================================================
+   ALT INTERACTIONS
+====================================================== */
+map.on("click", e => {
+  if (e.originalEvent?.altKey){
+    lastAltClickLatLng = e.latlng;
+    runWorkflow(e.latlng.lat, e.latlng.lng);
+  }
+});
+
+window.addEventListener("keydown", e => {
+  if (!e.altKey) return;
+  if ((e.key || "").toLowerCase() !== "l") return;
+
+  e.preventDefault();
+
+  if (!lastAltClickLatLng){
+    alert("Alt+L: Alt+Click somewhere on the map first.");
+    return;
+  }
+
+  clearAll();
+  runWorkflow(lastAltClickLatLng.lat, lastAltClickLatLng.lng);
+});
+
+/* ======================================================
+   START
+====================================================== */
+smartLocate();
+</script>
+</body>
+</html>
