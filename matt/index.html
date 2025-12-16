@@ -344,7 +344,7 @@ legend.onAdd = function () {
   div.innerHTML = `
     <b>Results</b><br>
    Flood Plain Extent: <strong id="fc">—</strong><br>
-    Properties inside flood:: <strong id="pc">—</strong>
+    Properties inside flood: <strong id="pc">—</strong>
     <small>📍 = locate • Alt+Click = run here • Alt+L = rerun last</small>
   `;
   fcEl = div.querySelector("#fc");
@@ -637,7 +637,7 @@ function runWorkflow(lat, lng, { zoomToBuffer = true } = {}){
             .setContent(`
               <b>Complete</b><br>
              Flood Plain Extent: ${currentFloodCount}<br>
-              Properties inside flood:: ${parcels.length}
+              Properties inside flood: ${parcels.length}
             `)
             .openOn(map);
         });
