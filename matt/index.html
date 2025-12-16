@@ -260,8 +260,12 @@ const FLOOD_WHERE = "FLD_ZONE IN ('A','AE')";
 /* ======================================================
    MAP
 ====================================================== */
-const map = L.map("map").setView([31, -99], 6);
-
+const map = L.map("map",{
+    zoomControl: false   // disable default zoom
+}).setView([31, -99], 6);
+L.control.zoom({
+  position: "topright"
+}).addTo(map);
 L.tileLayer(
   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
   { attribution: "Tiles © Esri" }
@@ -339,8 +343,8 @@ legend.onAdd = function () {
   const div = L.DomUtil.create("div", "legend");
   div.innerHTML = `
     <b>Results</b><br>
-    Flood polys (A/AE): <strong id="fc">—</strong><br>
-    Parcels inside flood: <strong id="pc">—</strong>
+   Flood Plain Extent: <strong id="fc">—</strong><br>
+    Properties inside flood:: <strong id="pc">—</strong>
     <small>📍 = locate • Alt+Click = run here • Alt+L = rerun last</small>
   `;
   fcEl = div.querySelector("#fc");
@@ -535,7 +539,7 @@ btnExport.addEventListener("click", () => {
 
 /* ======================================================
    WORKFLOW
-   Buffer → Flood polys (A/AE) → Parcels ∩ Flood → Heatmap
+   Buffer →Flood Plain Extent → Parcels ∩ Flood → Heatmap
 ====================================================== */
 let workflowInFlight = false;
 let lastAltClickLatLng = null;
@@ -584,7 +588,7 @@ function runWorkflow(lat, lng, { zoomToBuffer = true } = {}){
 
       forecastLayer.addData(floodFeats);
 
-      stepLoader("Querying parcels inside flood area…");
+      stepLoader("Querying Properties inside flood: area…");
 
       // Step 2: Parcels that intersect the flood polygons we just got
       const floodMultiPoly = buildMultiPolygon(floodFeats);
@@ -632,8 +636,8 @@ function runWorkflow(lat, lng, { zoomToBuffer = true } = {}){
             .setLatLng([lat, lng])
             .setContent(`
               <b>Complete</b><br>
-              Flood polys (A/AE): ${currentFloodCount}<br>
-              Parcels inside flood: ${parcels.length}
+             Flood Plain Extent: ${currentFloodCount}<br>
+              Properties inside flood:: ${parcels.length}
             `)
             .openOn(map);
         });
