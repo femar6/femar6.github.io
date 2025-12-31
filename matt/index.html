@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Buffer → Forecast (A/AE) → Parcels</title>
+<title>Buffer → Hazard Extent → Parcels</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -12,7 +12,7 @@
 
   /* ================= LOADER ================= */
   #loader {
-    position: absolute; inset: 0;
+    position: fixed; inset: 0;
     background: rgba(0,0,0,0.45);
     display: none;
     align-items: center; justify-content: center;
@@ -60,9 +60,8 @@
     overflow: hidden;
     transition: transform 220ms ease;
   }
-  .panel.closed {
-    transform: translateX(calc(-100% - 14px));
-  }
+  .panel.closed { transform: translateX(calc(-100% - 14px)); }
+
   .panel-header {
     display: flex;
     align-items: center;
@@ -70,19 +69,10 @@
     padding: 10px 12px;
     border-bottom: 1px solid rgba(0,0,0,0.08);
   }
-  .panel-title {
-    font: 700 14px system-ui;
-    flex: 1;
-  }
-  .panel-subtitle {
-    font: 12px system-ui;
-    opacity: 0.75;
-    margin-top: 2px;
-  }
-  .panel-actions {
-    display: flex;
-    gap: 8px;
-  }
+  .panel-title { font: 700 14px system-ui; flex: 1; }
+  .panel-subtitle { font: 12px system-ui; opacity: 0.75; margin-top: 2px; }
+  .panel-actions { display: flex; gap: 8px; }
+
   .btn {
     border: 1px solid rgba(0,0,0,0.15);
     background: #fff;
@@ -90,8 +80,15 @@
     padding: 6px 10px;
     cursor: pointer;
     font: 13px system-ui;
+    user-select: none;
   }
   .btn:hover { background: rgba(0,0,0,0.04); }
+  .btn.primary {
+    background: linear-gradient(180deg, #1f7ae0, #0e5fc4);
+    color: #fff;
+    border: 1px solid rgba(0,0,0,0.12);
+  }
+  .btn.primary:hover { filter: brightness(1.03); }
 
   .panel-tools {
     display: flex;
@@ -108,19 +105,11 @@
     outline: none;
   }
 
-  .panel-body {
-    flex: 1;
-    overflow: auto;
-  }
+  .panel-body { flex: 1; overflow: auto; }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font: 12px system-ui;
-  }
+  table { width: 100%; border-collapse: collapse; font: 12px system-ui; }
   thead th {
-    position: sticky;
-    top: 0;
+    position: sticky; top: 0;
     background: #f6f7f8;
     z-index: 1;
     text-align: left;
@@ -147,7 +136,7 @@
     padding: 10px 12px;
     border-top: 1px solid rgba(0,0,0,0.08);
     font: 12px system-ui;
-    opacity: 0.85;
+    opacity: 0.90;
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
@@ -175,13 +164,128 @@
   @media (max-width: 700px) {
     .panel { width: calc(100vw - 20px); }
     thead th:nth-child(n+4),
-    tbody td:nth-child(n+4) { display: none; } /* show only first 3 cols on small screens */
+    tbody td:nth-child(n+4) { display: none; }
+  }
+
+  /* ================= BASEMAP CONTROL STYLING ================= */
+  .leaflet-control-layers {
+    border-radius: 14px !important;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.25) !important;
+    border: 1px solid rgba(0,0,0,0.10) !important;
+    overflow: hidden;
+  }
+  .leaflet-control-layers-expanded {
+    background: rgba(255,255,255,0.96) !important;
+    padding: 10px 12px !important;
+    font: 13px system-ui !important;
+  }
+  .leaflet-control-layers label { margin: 6px 0; }
+  .leaflet-control-layers-separator { border-top: 1px solid rgba(0,0,0,0.08); }
+
+  /* ================= SPLASH SCREEN ================= */
+  #splash {
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(1200px 700px at 20% 15%, rgba(40,150,255,0.35), transparent 60%),
+      radial-gradient(900px 600px at 80% 35%, rgba(0,255,180,0.20), transparent 55%),
+      linear-gradient(180deg, rgba(10,20,35,0.65), rgba(10,20,35,0.65));
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+  }
+  #splashCard {
+    width: min(1100px, calc(100vw - 24px));
+    max-height: min(88vh, 900px);
+    overflow: auto;
+    background: rgba(255,255,255,0.96);
+    border-radius: 18px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.50);
+    border: 1px solid rgba(255,255,255,0.35);
+  }
+  #splashHeader {
+    padding: 16px 16px 14px 16px;
+    background: linear-gradient(180deg, #1f7ae0, #0e5fc4);
+    color: white;
+  }
+  #splashHeader h2 {
+    margin: 0;
+    font: 800 18px system-ui;
+    letter-spacing: 0.2px;
+  }
+  #splashHeader p {
+    margin: 6px 0 0 0;
+    opacity: 0.92;
+    font: 13px system-ui;
+    line-height: 1.35;
+  }
+
+  #splashBody { padding: 14px 16px 16px 16px; }
+  .sourceGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    gap: 12px;
+  }
+  @media (max-width: 860px){
+    .sourceGrid { grid-template-columns: 1fr; }
+  }
+
+  .sourceCard {
+    border: 1px solid rgba(0,0,0,0.10);
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+    padding: 12px 12px 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .sourceTitle { font: 800 14px system-ui; margin: 0; }
+  .sourceDesc { font: 12.5px system-ui; opacity: 0.85; line-height: 1.35; margin: 0; }
+  .sourceUrl {
+    font: 12px ui-monospace, SFMono-Regular, Menlo, monospace;
+    padding: 8px 10px;
+    background: rgba(0,0,0,0.04);
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.08);
+    overflow-wrap: anywhere;
+  }
+  .sourceActions { display: flex; gap: 10px; justify-content: flex-end; align-items: center; }
+
+  #splashFooter {
+    padding: 12px 16px 16px 16px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    background: rgba(0,0,0,0.02);
+    font: 12px system-ui;
+    opacity: 0.85;
   }
 </style>
 </head>
 
 <body>
 <div id="map"></div>
+
+<!-- Splash screen -->
+<div id="splash">
+  <div id="splashCard">
+    <div id="splashHeader">
+      <h2>Choose a spatial query source</h2>
+      <p>
+        We’ll locate you (GPS → IP fallback), draw a 1-mile buffer, fetch hazard features within 1 mile,
+        then find parcels intersecting those features.
+      </p>
+    </div>
+
+    <div id="splashBody">
+      <div class="sourceGrid" id="sourceGrid"></div>
+    </div>
+
+    <div id="splashFooter">
+      Tip: After running once, you can <b>Alt+Click</b> anywhere to run there, or <b>Alt+L</b> to rerun the last location.
+    </div>
+  </div>
+</div>
 
 <!-- Left panel -->
 <div id="panel" class="panel">
@@ -191,6 +295,7 @@
       <div class="panel-subtitle" id="panelSubtitle">No results yet</div>
     </div>
     <div class="panel-actions">
+      <button class="btn" id="btnSource">Source</button>
       <button class="btn" id="btnExport">Export CSV</button>
       <button class="btn" id="btnClose">Close</button>
     </div>
@@ -222,7 +327,8 @@
 
   <div class="panel-footer">
     <span class="pill" id="pillCount">0 parcels</span>
-    <span class="pill" id="pillForecast">0 forecast polys</span>
+    <span class="pill" id="pillForecast">0 hazard feats</span>
+    <span class="pill" id="pillSource">Source: —</span>
     <span class="pill">Alt+Click = run here</span>
     <span class="pill">Alt+L = rerun last</span>
   </div>
@@ -248,35 +354,124 @@
 ====================================================== */
 const ONE_MILE_METERS = 1609.344;
 
-// FEMA NFHL S_Fld_Haz_Ar layer (your MapServer/28)
-const FORECAST_URL = "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28";
-
 // Texas parcels (TNRIS)
 const PARCELS_URL = "https://feature.tnris.org/arcgis/rest/services/Parcels/stratmap19_land_parcels_48/MapServer/0";
 
-// IMPORTANT: using only A/AE (you can change to just 'AE' if you want)
-const FLOOD_WHERE = "FLD_ZONE IN ('A','AE')";
+// NFHL (Flood Hazard Areas) - you were using layer 28 directly
+const NFHL_LAYER_URL = "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28";
+const NFHL_WHERE = "FLD_ZONE IN ('A','AE')";
+
+// NOAA services user requested
+const NOAA_5DAY_MAX_INUNDATION_LAYER_URL =
+  "https://maps.water.noaa.gov/server/rest/services/nwm/mrf_gfs_5day_max_inundation_extent/MapServer/0";
+
+// NWM ANA Inundation Extent (EXPERIMENTAL) FeatureServer
+const NWM_ANA_INUNDATION_LAYER_URL =
+  "https://maps.water.noaa.gov/server/rest/services/nwm/ana_inundation_extent/FeatureServer/0";
+
+// NWM AEP FeatureServer layer 2
+const NWM_AEP_LAYER_URL =
+  "https://maps.water.noaa.gov/server/rest/services/nwm/ana_inundation_extent/FeatureServer/2";
+
+// Splash query sources (4 options)
+const SOURCES = [
+  {
+    id: "nfhl",
+    title: "Query the NFHL (Current Effective)",
+    desc: "FEMA NFHL Flood Hazard Areas filtered to A/AE. Best for regulatory flood zone context.",
+    layerUrl: NFHL_LAYER_URL,
+    where: NFHL_WHERE
+  },
+  {
+    id: "noaa5",
+    title: "Query the 5-Day Max Inundation Extent",
+    desc: "NOAA/NWS NWM maximum forecast inundation extent over the next 5 days (service-specific).",
+    layerUrl: NOAA_5DAY_MAX_INUNDATION_LAYER_URL,
+    where: "1=1"
+  },
+  {
+    id: "ana0",
+    title: "Query ANA Inundation Extent (EXPERIMENTAL)",
+    desc: "Experimental inundation extent derived from NWM analysis/assimilation. Updated hourly.",
+    layerUrl: NWM_ANA_INUNDATION_LAYER_URL,
+    where: "1=1"
+  },
+  {
+    id: "aep2",
+    title: "Query Estimated Annual Exceedance Probability (AEP)",
+    desc: "Shows magnitude/probability context (AEP). Not a regulatory floodplain; probability-based.",
+    layerUrl: NWM_AEP_LAYER_URL,
+    where: "1=1"
+  }
+];
+
+// Active source (set by splash selection)
+let activeSource = null;
 
 /* ======================================================
-   MAP
+   MAP + BASEMAPS (no Stadia/Stamen provider strings)
 ====================================================== */
-const map = L.map("map",{
-    zoomControl: false   // disable default zoom
-}).setView([31, -99], 6);
-L.control.zoom({
-  position: "topright"
-}).addTo(map);
-L.tileLayer(
+const map = L.map("map", { zoomControl: false }).setView([31, -99], 6);
+L.control.zoom({ position: "topright" }).addTo(map);
+
+// Basemaps (lots of options, all public/free)
+const bmEsriImagery = L.tileLayer(
   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
   { attribution: "Tiles © Esri" }
-).addTo(map);
+);
+const bmEsriStreets = L.tileLayer(
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+  { attribution: "Tiles © Esri" }
+);
+const bmEsriTopo = L.tileLayer(
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+  { attribution: "Tiles © Esri" }
+);
+const bmEsriLightGray = L.tileLayer(
+  "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+  { attribution: "Tiles © Esri" }
+);
+const bmEsriDarkGray = L.tileLayer(
+  "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+  { attribution: "Tiles © Esri" }
+);
+const bmEsriNatGeo = L.tileLayer(
+  "https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}",
+  { attribution: "Tiles © Esri" }
+);
+const bmOSM = L.tileLayer(
+  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  { attribution: "© OpenStreetMap contributors", maxZoom: 19 }
+);
+const bmCartoPositron = L.tileLayer(
+  "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+  { attribution: "© OpenStreetMap © CARTO", maxZoom: 20 }
+);
+const bmCartoDark = L.tileLayer(
+  "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+  { attribution: "© OpenStreetMap © CARTO", maxZoom: 20 }
+);
+const bmOpenTopo = L.tileLayer(
+  "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+  { attribution: "© OpenStreetMap contributors, © OpenTopoMap", maxZoom: 17 }
+);
+const bmUSGSTopo = L.tileLayer(
+  "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}",
+  { attribution: "USGS The National Map", maxZoom: 20 }
+);
+const bmUSGSImagery = L.tileLayer(
+  "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}",
+  { attribution: "USGS The National Map", maxZoom: 20 }
+);
+
+// Default basemap
+bmEsriImagery.addTo(map);
 
 /* ======================================================
    LOADER
 ====================================================== */
 const loader = document.getElementById("loader");
 const loaderStep = document.getElementById("loaderStep");
-
 function showLoader(msg){ loader.style.display="flex"; loaderStep.textContent=msg; }
 function stepLoader(msg){ loaderStep.textContent=msg; }
 function hideLoader(){ loader.style.display="none"; }
@@ -288,11 +483,13 @@ const panel = document.getElementById("panel");
 const openTab = document.getElementById("openTab");
 const btnClose = document.getElementById("btnClose");
 const btnExport = document.getElementById("btnExport");
+const btnSource = document.getElementById("btnSource");
 const searchBox = document.getElementById("searchBox");
 const tbody = document.getElementById("parcelTbody");
 const panelSubtitle = document.getElementById("panelSubtitle");
 const pillCount = document.getElementById("pillCount");
 const pillForecast = document.getElementById("pillForecast");
+const pillSource = document.getElementById("pillSource");
 
 btnClose.addEventListener("click", () => {
   panel.classList.add("closed");
@@ -303,16 +500,21 @@ openTab.addEventListener("click", () => {
   openTab.classList.remove("show");
 });
 
+// Open splash again any time
+btnSource.addEventListener("click", () => {
+  showSplash();
+});
+
 // Prevent map drag when interacting with panel
 L.DomEvent.disableClickPropagation(panel);
 L.DomEvent.disableScrollPropagation(panel);
 
 /* ======================================================
-   LAYERS
+   RESULT LAYERS
 ====================================================== */
 const bufferLayer = L.featureGroup().addTo(map);
 
-const forecastLayer = L.geoJSON(null, {
+const hazardLayer = L.geoJSON(null, {
   style: {
     color: "#0078ff",
     weight: 2,
@@ -335,20 +537,49 @@ const parcelsLayer = L.geoJSON(null, {
 const heatLayer = L.heatLayer([], { radius: 28, blur: 20 }).addTo(map);
 
 /* ======================================================
+   BASEMAP + OVERLAY CONTROL (nice widget)
+====================================================== */
+const baseLayers = {
+  "Esri Imagery": bmEsriImagery,
+  "Esri Streets": bmEsriStreets,
+  "Esri Topo": bmEsriTopo,
+  "Esri Light Gray": bmEsriLightGray,
+  "Esri Dark Gray": bmEsriDarkGray,
+  "Esri NatGeo": bmEsriNatGeo,
+  "OpenStreetMap": bmOSM,
+  "CARTO Positron": bmCartoPositron,
+  "CARTO DarkMatter": bmCartoDark,
+  "OpenTopoMap": bmOpenTopo,
+  "USGS Topo": bmUSGSTopo,
+  "USGS Imagery": bmUSGSImagery
+};
+
+const overlays = {
+  "Buffer (1 mile)": bufferLayer,
+  "Hazard extent": hazardLayer,
+  "Selected parcels": parcelsLayer,
+  "Parcel heatmap": heatLayer
+};
+
+// Put it top-right under zoom; collapsed so it’s a tidy widget
+L.control.layers(baseLayers, overlays, { position: "topright", collapsed: true }).addTo(map);
+
+/* ======================================================
    LEGEND
 ====================================================== */
-let fcEl, pcEl;
+let fcEl, pcEl, srcEl;
 const legend = L.control({ position: "bottomright" });
 legend.onAdd = function () {
   const div = L.DomUtil.create("div", "legend");
   div.innerHTML = `
     <b>Results</b><br>
-   Flood Plain Extent: <strong id="fc">—</strong><br>
-    Properties inside flood: <strong id="pc">—</strong>
-    <small>📍 = locate • Alt+Click = run here • Alt+L = rerun last</small>
+    Hazard features: <strong id="fc">—</strong><br>
+    Parcels intersecting: <strong id="pc">—</strong>
+    <small id="srcLine">Source: —<br>📍 = locate • Alt+Click = run here • Alt+L = rerun last</small>
   `;
   fcEl = div.querySelector("#fc");
   pcEl = div.querySelector("#pc");
+  srcEl = div.querySelector("#srcLine");
   return div;
 };
 legend.addTo(map);
@@ -356,25 +587,31 @@ legend.addTo(map);
 function setCounts(fc, pc){
   fcEl.textContent = fc;
   pcEl.textContent = pc;
-  pillForecast.textContent = `${fc} flood polys`;
+  pillForecast.textContent = `${fc} hazard feats`;
   pillCount.textContent = `${pc} parcels`;
+}
+
+function setSourceLabel(){
+  const name = activeSource ? activeSource.title : "—";
+  pillSource.textContent = `Source: ${name}`;
+  if (srcEl) srcEl.innerHTML = `Source: ${name}<br>📍 = locate • Alt+Click = run here • Alt+L = rerun last`;
 }
 
 /* ======================================================
    HELPERS
 ====================================================== */
-let currentParcels = [];   // store last parcels for table/filter/export
-let currentFloodCount = 0; // store last flood poly count
+let currentParcels = [];
+let currentHazardCount = 0;
 
 function clearAll(){
   bufferLayer.clearLayers();
-  forecastLayer.clearLayers();
+  hazardLayer.clearLayers();
   parcelsLayer.clearLayers();
   heatLayer.setLatLngs([]);
   setCounts("—","—");
 
   currentParcels = [];
-  currentFloodCount = 0;
+  currentHazardCount = 0;
   renderParcelTable([]);
   panelSubtitle.textContent = "No results yet";
 }
@@ -410,55 +647,27 @@ function money(v){
 }
 
 /* ======================================================
-   TABLE RENDERING (responsive, searchable)
-   Fields you requested are available in row object; we show a useful subset
-   but export includes ALL requested fields.
+   TABLE
 ====================================================== */
-
-// Fields list (for CSV export)
 const PARCEL_FIELDS = [
-  "objectid",
-  "prop_id",
-  "geo_id",
-  "owner_name",
-  "name_care",
-  "legal_area",
-  "lgl_area_u",
-  "gis_area",
-  "gis_area_u",
-  "legal_desc",
-  "stat_land_",
-  "loc_land_u",
-  "land_value",
-  "imp_value",
-  "mkt_value",
-  "situs_addr",
-  "situs_num",
-  "situs_stre",
-  "situs_st_1",
-  "situs_st_2",
-  "situs_city",
-  "situs_stat",
-  "situs_zip"
+  "objectid","prop_id","geo_id","owner_name","name_care","legal_area","lgl_area_u",
+  "gis_area","gis_area_u","legal_desc","stat_land_","loc_land_u","land_value","imp_value",
+  "mkt_value","situs_addr","situs_num","situs_stre","situs_st_1","situs_st_2",
+  "situs_city","situs_stat","situs_zip"
 ];
 
 function normalizeAttrs(attrs){
-  // TNRIS parcels often return UPPERCASE field names; normalize to lowercase keys
   const out = {};
-  for (const k in attrs){
-    out[k.toLowerCase()] = attrs[k];
-  }
+  for (const k in attrs){ out[k.toLowerCase()] = attrs[k]; }
   return out;
 }
 
 function renderParcelTable(parcelFeatures, filterText=""){
   const ft = filterText.trim().toLowerCase();
 
-  // Build rows
   const rows = [];
   for (const f of parcelFeatures){
     const a = normalizeAttrs(f.properties || f.attributes || {});
-    // Keep only requested keys + also allow displayed subset
     rows.push(a);
   }
 
@@ -473,12 +682,9 @@ function renderParcelTable(parcelFeatures, filterText=""){
     return hay.toLowerCase().includes(ft);
   }) : rows;
 
-  // Update subtitle
   panelSubtitle.textContent = `${filtered.length} shown • ${rows.length} total`;
 
-  // Render table body
   tbody.innerHTML = "";
-
   if (!filtered.length){
     tbody.innerHTML = `<tr><td colspan="8" style="padding:14px 10px; opacity:.75;">No parcels match your filter.</td></tr>`;
     return;
@@ -510,7 +716,6 @@ btnExport.addEventListener("click", () => {
     return;
   }
 
-  // Build CSV with all requested fields
   const header = PARCEL_FIELDS.join(",");
   const lines = [header];
 
@@ -518,7 +723,6 @@ btnExport.addEventListener("click", () => {
     const a = normalizeAttrs(f.properties || f.attributes || {});
     const row = PARCEL_FIELDS.map(fn => {
       const val = a[fn];
-      // CSV escape
       const s = safeStr(val).replace(/"/g, '""');
       return `"${s}"`;
     }).join(",");
@@ -538,13 +742,58 @@ btnExport.addEventListener("click", () => {
 });
 
 /* ======================================================
+   SPLASH SCREEN LOGIC (4 options)
+====================================================== */
+const splash = document.getElementById("splash");
+const sourceGrid = document.getElementById("sourceGrid");
+
+function showSplash(){
+  // close panel so splash feels cleaner
+  panel.classList.add("closed");
+  openTab.classList.add("show");
+
+  sourceGrid.innerHTML = "";
+  for (const s of SOURCES){
+    const card = document.createElement("div");
+    card.className = "sourceCard";
+    card.innerHTML = `
+      <div>
+        <p class="sourceTitle">${s.title}</p>
+        <p class="sourceDesc">${s.desc}</p>
+      </div>
+      <div class="sourceUrl">${s.layerUrl}</div>
+      <div class="sourceActions">
+        <button class="btn primary" data-source="${s.id}">Select & Run</button>
+      </div>
+    `;
+    sourceGrid.appendChild(card);
+  }
+
+  splash.style.display = "flex";
+
+  splash.querySelectorAll("button[data-source]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-source");
+      activeSource = SOURCES.find(x => x.id === id) || null;
+      setSourceLabel();
+      splash.style.display = "none";
+      smartLocate(); // start only after selection
+    });
+  });
+}
+
+/* ======================================================
    WORKFLOW
-   Buffer →Flood Plain Extent → Parcels ∩ Flood → Heatmap
+   Buffer → Hazard (nearby) → Parcels ∩ Hazard → Heatmap + Table
 ====================================================== */
 let workflowInFlight = false;
 let lastAltClickLatLng = null;
 
 function runWorkflow(lat, lng, { zoomToBuffer = true } = {}){
+  if (!activeSource){
+    showSplash();
+    return;
+  }
   if (workflowInFlight) return;
   workflowInFlight = true;
 
@@ -559,89 +808,100 @@ function runWorkflow(lat, lng, { zoomToBuffer = true } = {}){
 
   if (zoomToBuffer) map.fitBounds(buffer.getBounds());
 
-  stepLoader("Querying FEMA flood polygons (A/AE)…");
+  stepLoader("Querying hazard features (within 1 mile)…");
 
-  // Step 1: Flood polygons (A/AE only) near the point
-  L.esri.query({ url: FORECAST_URL })
-    .where(FLOOD_WHERE)
+  // Step 1: Hazard features from selected service near the point
+  L.esri.query({ url: activeSource.layerUrl })
+    .where(activeSource.where || "1=1")
     .nearby(L.latLng(lat, lng), ONE_MILE_METERS)
-    .limit(200)
-    .run((fErr, floodFC) => {
-      if (fErr){
-        console.error("Flood query error:", fErr);
+    .limit(2000) // NOAA services may have more; MaxRecordCount applies server-side
+    .run((hErr, hazardFC) => {
+      if (hErr){
+        console.error("Hazard query error:", hErr);
         hideLoader();
         workflowInFlight = false;
-        alert("Flood query failed.");
+        alert("Hazard query failed. Check the console for details.");
         return;
       }
 
-      const floodFeats = floodFC?.features || [];
-      currentFloodCount = floodFeats.length;
-      setCounts(currentFloodCount, "—");
+      const hazardFeats = hazardFC?.features || [];
+      currentHazardCount = hazardFeats.length;
+      setCounts(currentHazardCount, "—");
 
-      if (!floodFeats.length){
+      if (!hazardFeats.length){
         hideLoader();
         workflowInFlight = false;
-        alert("No A/AE flood polygons found within 1 mile.");
+        alert("No hazard features found within 1 mile.");
         return;
       }
 
-      forecastLayer.addData(floodFeats);
+      hazardLayer.addData(hazardFeats);
 
-      stepLoader("Querying Properties inside flood: area…");
+      stepLoader("Querying parcels intersecting hazard…");
 
-      // Step 2: Parcels that intersect the flood polygons we just got
-      const floodMultiPoly = buildMultiPolygon(floodFeats);
+      // Step 2: Parcels that intersect hazard geometry
+      const hazardMultiPoly = buildMultiPolygon(hazardFeats);
 
-      L.esri.query({ url: PARCELS_URL })
-        .intersects(floodMultiPoly)
-        .limit(5000)
-        .run((pErr, parcelFC) => {
-          if (pErr){
-            console.error("Parcel query error:", pErr);
-            hideLoader();
-            workflowInFlight = false;
-            alert("Parcel query failed.");
-            return;
-          }
+      // NOTE: If the hazard layer returns LINE features only, MultiPolygon will be empty.
+      // In that case, fall back to a broad parcel query in 1 mile and intersect client-side.
+      const hasPoly = (hazardMultiPoly?.geometry?.coordinates || []).length > 0;
 
-          const parcels = parcelFC?.features || [];
-          currentParcels = parcels;
-
-          setCounts(currentFloodCount, parcels.length);
-
-          parcelsLayer.addData(parcels);
-
-          stepLoader("Building heatmap and table…");
-
-          // Heatmap points
-          const heatPts = [];
-          for (const p of parcels){
-            const c = centroid(p);
-            if (c) heatPts.push([c.lat, c.lng, 1]);
-          }
-          heatLayer.setLatLngs(heatPts);
-
-          // Table
-          renderParcelTable(currentParcels, searchBox.value);
-
-          hideLoader();
-          workflowInFlight = false;
-
-          // Open panel automatically if it’s closed
-          panel.classList.remove("closed");
-          openTab.classList.remove("show");
-
-          L.popup()
-            .setLatLng([lat, lng])
-            .setContent(`
-              <b>Complete</b><br>
-             Flood Plain Extent: ${currentFloodCount}<br>
-              Properties inside flood: ${parcels.length}
-            `)
-            .openOn(map);
-        });
+      if (hasPoly){
+        L.esri.query({ url: PARCELS_URL })
+          .intersects(hazardMultiPoly)
+          .limit(5000)
+          .run((pErr, parcelFC) => finishParcels(lat, lng, pErr, parcelFC));
+      } else {
+        // Fallback: get parcels near point, then intersect in browser with bounds check
+        L.esri.query({ url: PARCELS_URL })
+          .nearby(L.latLng(lat, lng), ONE_MILE_METERS)
+          .limit(5000)
+          .run((pErr, parcelFC) => finishParcels(lat, lng, pErr, parcelFC));
+      }
     });
+}
+
+function finishParcels(lat, lng, pErr, parcelFC){
+  if (pErr){
+    console.error("Parcel query error:", pErr);
+    hideLoader();
+    workflowInFlight = false;
+    alert("Parcel query failed.");
+    return;
+  }
+
+  const parcels = parcelFC?.features || [];
+  currentParcels = parcels;
+
+  setCounts(currentHazardCount, parcels.length);
+  parcelsLayer.addData(parcels);
+
+  stepLoader("Building heatmap and table…");
+
+  const heatPts = [];
+  for (const p of parcels){
+    const c = centroid(p);
+    if (c) heatPts.push([c.lat, c.lng, 1]);
+  }
+  heatLayer.setLatLngs(heatPts);
+
+  renderParcelTable(currentParcels, searchBox.value);
+
+  hideLoader();
+  workflowInFlight = false;
+
+  // Open panel automatically
+  panel.classList.remove("closed");
+  openTab.classList.remove("show");
+
+  L.popup()
+    .setLatLng([lat, lng])
+    .setContent(`
+      <b>Complete</b><br>
+      Hazard features: ${currentHazardCount}<br>
+      Parcels intersecting: ${parcels.length}
+    `)
+    .openOn(map);
 }
 
 /* ======================================================
@@ -669,7 +929,7 @@ function smartLocate(){
     navigator.geolocation.getCurrentPosition(
       pos => runWorkflow(pos.coords.latitude, pos.coords.longitude),
       () => locateByIP(),
-      { enableHighAccuracy: true, timeout: 5000 }
+      { enableHighAccuracy: true, timeout: 7000 }
     );
   } else {
     locateByIP();
@@ -716,7 +976,8 @@ window.addEventListener("keydown", e => {
 /* ======================================================
    START
 ====================================================== */
-smartLocate();
+setSourceLabel();
+showSplash(); // require choosing a source first
 </script>
 </body>
 </html>
