@@ -217,7 +217,7 @@ const allLayers = L.layerGroup().addTo(map);
 
 
 const serviceUrl =
-  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer01122026/VectorTileServer";
+  "https://tiles.arcgis.com/tiles/XG15cJAlne2vxtgt/arcgis/rest/services/BLE2FIRM_Layer01292026/VectorTileServer";
 
 const bleLayer = L.esri.Vector.vectorTileLayer(serviceUrl, {
   style: function (style) {
@@ -226,7 +226,7 @@ const bleLayer = L.esri.Vector.vectorTileLayer(serviceUrl, {
 
     // IMPORTANT: set this to the *actual* source-layer name used inside the tiles
     // (it is often the service name, but verify from root.json)
-    const sourceLayerName = "BLE2FIRM_Layer01122026";
+    const sourceLayerName = "BLE2FIRM_Layer01292026";
 
     style.layers = [
       {
