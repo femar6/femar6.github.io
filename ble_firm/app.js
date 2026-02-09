@@ -11,6 +11,9 @@ let communityTableControl_ = false;
 let countyTableControl_ = true;
 const baseMapLayers = L.layerGroup([]).addTo(map);
 
+const results = L.layerGroup().addTo(map);
+  var geocodeService = L.esri.Geocoding.geocodeService();
+  var searchControl = L.esri.Geocoding.geosearch({expanded:true,collapseAfterResult:false,searchBounds:L.latLngBounds([ 48.904331,-124.503294],[  24.489948,-66.885886])}).addTo(map);
 
 const googleRoad = L.tileLayer('https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}', {
   maxZoom: 21,
